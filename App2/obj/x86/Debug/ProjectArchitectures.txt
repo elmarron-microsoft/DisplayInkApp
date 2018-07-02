@@ -1,0 +1,1 @@
+C:\Users\elmarron\Development\InkDisplay\App2\DisplayInkApp.csproj;x86
