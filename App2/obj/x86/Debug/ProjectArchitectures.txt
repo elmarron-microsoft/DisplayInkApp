@@ -1,1 +1,1 @@
-C:\Users\elmarron\Development\InkDisplay\App2\DisplayInkApp.csproj;x86
+C:\Users\elmarron\dev\InkDisplay\App2\DisplayInkApp.csproj;x86

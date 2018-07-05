@@ -27653,11 +27653,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\elmarron\\Development\\InkDisplay\\App2\\DisplayInkApp.csproj",
+      "projectUniqueName": "C:\\Users\\elmarron\\dev\\InkDisplay\\App2\\DisplayInkApp.csproj",
       "projectName": "DisplayInkApp",
-      "projectPath": "C:\\Users\\elmarron\\Development\\InkDisplay\\App2\\DisplayInkApp.csproj",
+      "projectPath": "C:\\Users\\elmarron\\dev\\InkDisplay\\App2\\DisplayInkApp.csproj",
       "packagesPath": "C:\\Users\\elmarron\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\elmarron\\Development\\InkDisplay\\App2\\obj\\",
+      "outputPath": "C:\\Users\\elmarron\\dev\\InkDisplay\\App2\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
       "fallbackFolders": [

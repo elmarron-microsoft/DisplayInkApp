@@ -10,7 +10,7 @@
     <PackageArchitecture>x86</PackageArchitecture>
     <PackageIdentityName>f40a04d1-8dfa-49af-881a-2fda04bcfd13</PackageIdentityName>
     <PackageIdentityPublisher>CN=mavashis</PackageIdentityPublisher>
-    <IntermediateOutputPath>C:\Users\elmarron\Development\InkDisplay\App2\obj\x86\Debug\</IntermediateOutputPath>
+    <IntermediateOutputPath>C:\Users\elmarron\dev\InkDisplay\App2\obj\x86\Debug\</IntermediateOutputPath>
     <RemoteDeploymentType>
     </RemoteDeploymentType>
     <PackageRegistrationPath>
@@ -18,7 +18,7 @@
     <RemoveNonLayoutFiles>true</RemoveNonLayoutFiles>
     <DeployOptionalPackages>false</DeployOptionalPackages>
     <WindowsSdkPath>C:\Program Files %28x86%29\Windows Kits\10\</WindowsSdkPath>
-    <LayoutDir>C:\Users\elmarron\Development\InkDisplay\App2\bin\x86\Debug\AppX</LayoutDir>
+    <LayoutDir>C:\Users\elmarron\dev\InkDisplay\App2\bin\x86\Debug\AppX</LayoutDir>
     <RegisteredManifestChecksum>B11CCD8B8C1006373F874164D8DEDBD3CE6DB469728CA7CCAE6E11F90425625F</RegisteredManifestChecksum>
     <RegisteredPackageMoniker>f40a04d1-8dfa-49af-881a-2fda04bcfd13_1.0.0.0_x86__v87ap9edqzxsw</RegisteredPackageMoniker>
     <RegisteredUserModeAppID>f40a04d1-8dfa-49af-881a-2fda04bcfd13_v87ap9edqzxsw!App</RegisteredUserModeAppID>
@@ -28,16 +28,16 @@
     <JitOptimizationSuppressed>True</JitOptimizationSuppressed>
   </PropertyGroup>
   <ItemGroup>
-    <AppXManifest Include="C:\Users\elmarron\Development\InkDisplay\App2\bin\x86\Debug\Core\AppxManifest.xml">
+    <AppXManifest Include="C:\Users\elmarron\dev\InkDisplay\App2\bin\x86\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-07-02T23:15:52.209</Modified>
+      <Modified>2018-07-05T22:39:49.595</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
-    <AppxPackagedFile Include="C:\Users\elmarron\Development\InkDisplay\App2\bin\x86\Debug\App2.exe">
+    <AppxPackagedFile Include="C:\Users\elmarron\dev\InkDisplay\App2\bin\x86\Debug\App2.exe">
       <PackagePath>entrypoint\App2.exe</PackagePath>
-      <Modified>2018-07-02T23:15:51.841</Modified>
+      <Modified>2018-07-05T22:39:49.179</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Microsoft SDKs\UWPNuGetPackages\microsoft.csharp\4.0.1\lib\netcore50\Microsoft.CSharp.dll">
       <PackagePath>Microsoft.CSharp.dll</PackagePath>
@@ -495,68 +495,68 @@
       <PackagePath>System.Xml.XmlSerializer.dll</PackagePath>
       <Modified>2016-06-12T06:15:04.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\elmarron\Development\InkDisplay\App2\Properties\Default.rd.xml">
+    <AppxPackagedFile Include="C:\Users\elmarron\dev\InkDisplay\App2\Properties\Default.rd.xml">
       <PackagePath>Properties\Default.rd.xml</PackagePath>
       <Modified>2018-03-02T23:43:16.413</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\elmarron\Development\InkDisplay\App2\Assets\LockScreenLogo.scale-200.png">
+    <AppxPackagedFile Include="C:\Users\elmarron\dev\InkDisplay\App2\Assets\LockScreenLogo.scale-200.png">
       <PackagePath>Assets\LockScreenLogo.scale-200.png</PackagePath>
       <Modified>2017-10-18T22:31:17.119</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\elmarron\Development\InkDisplay\App2\Assets\SplashScreen.scale-200.png">
+    <AppxPackagedFile Include="C:\Users\elmarron\dev\InkDisplay\App2\Assets\SplashScreen.scale-200.png">
       <PackagePath>Assets\SplashScreen.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
       <Modified>2017-10-18T22:31:17.119</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\elmarron\Development\InkDisplay\App2\Assets\Square150x150Logo.scale-200.png">
+    <AppxPackagedFile Include="C:\Users\elmarron\dev\InkDisplay\App2\Assets\Square150x150Logo.scale-200.png">
       <PackagePath>Assets\Square150x150Logo.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
       <Modified>2017-10-18T22:31:17.119</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\elmarron\Development\InkDisplay\App2\Assets\Square44x44Logo.scale-200.png">
+    <AppxPackagedFile Include="C:\Users\elmarron\dev\InkDisplay\App2\Assets\Square44x44Logo.scale-200.png">
       <PackagePath>Assets\Square44x44Logo.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
       <Modified>2017-10-18T22:31:17.119</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\elmarron\Development\InkDisplay\App2\Assets\Square44x44Logo.targetsize-24_altform-unplated.png">
+    <AppxPackagedFile Include="C:\Users\elmarron\dev\InkDisplay\App2\Assets\Square44x44Logo.targetsize-24_altform-unplated.png">
       <PackagePath>Assets\Square44x44Logo.targetsize-24_altform-unplated.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
       <Modified>2017-10-18T22:31:17.119</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\elmarron\Development\InkDisplay\App2\Assets\StoreLogo.png">
+    <AppxPackagedFile Include="C:\Users\elmarron\dev\InkDisplay\App2\Assets\StoreLogo.png">
       <PackagePath>Assets\StoreLogo.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
       <Modified>2017-10-18T22:31:17.119</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\elmarron\Development\InkDisplay\App2\Assets\Wide310x150Logo.scale-200.png">
+    <AppxPackagedFile Include="C:\Users\elmarron\dev\InkDisplay\App2\Assets\Wide310x150Logo.scale-200.png">
       <PackagePath>Assets\Wide310x150Logo.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
       <Modified>2017-10-18T22:31:17.119</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\elmarron\Development\InkDisplay\App2\bin\x86\Debug\App2.xr.xml">
+    <AppxPackagedFile Include="C:\Users\elmarron\dev\InkDisplay\App2\bin\x86\Debug\App2.xr.xml">
       <PackagePath>App2.xr.xml</PackagePath>
-      <Modified>2018-07-02T23:15:20.804</Modified>
+      <Modified>2018-07-05T22:39:48.982</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\elmarron\Development\InkDisplay\App2\bin\x86\Debug\App.xbf">
+    <AppxPackagedFile Include="C:\Users\elmarron\dev\InkDisplay\App2\bin\x86\Debug\App.xbf">
       <PackagePath>App.xbf</PackagePath>
-      <Modified>2018-07-02T23:03:28.058</Modified>
+      <Modified>2018-07-03T18:19:29.718</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\elmarron\Development\InkDisplay\App2\bin\x86\Debug\MainPage.xbf">
+    <AppxPackagedFile Include="C:\Users\elmarron\dev\InkDisplay\App2\bin\x86\Debug\MainPage.xbf">
       <PackagePath>MainPage.xbf</PackagePath>
-      <Modified>2018-07-02T23:15:51.591</Modified>
+      <Modified>2018-07-05T22:39:48.997</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Windows Kits\10\UnionMetadata\10.0.17134.0\Windows.winmd">
       <PackagePath>WinMetadata\Windows.winmd</PackagePath>
       <Modified>2018-04-20T05:01:52.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\elmarron\Development\InkDisplay\App2\bin\x86\Debug\resources.pri">
+    <AppxPackagedFile Include="C:\Users\elmarron\dev\InkDisplay\App2\bin\x86\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-07-02T23:03:32.197</Modified>
+      <Modified>2018-07-03T18:19:31.029</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\elmarron\Development\InkDisplay\App2\bin\x86\Debug\Core\App2.exe">
+    <AppxPackagedFile Include="C:\Users\elmarron\dev\InkDisplay\App2\bin\x86\Debug\Core\App2.exe">
       <PackagePath>App2.exe</PackagePath>
-      <Modified>2018-07-02T23:15:52.199</Modified>
+      <Modified>2018-07-05T22:39:49.588</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>

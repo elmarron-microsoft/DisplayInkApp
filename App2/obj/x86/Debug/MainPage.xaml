@@ -8,12 +8,34 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Border x:ConnectionId='1' x:Name="ButtonBorder" BorderBrush="Black" BorderThickness="4">
-            <Button x:ConnectionId='4' Content="Next" HorizontalAlignment="Left" Margin="512,815,0,0" VerticalAlignment="Top" Height="82" Width="401"                     />
-        </Border>
-        <Border x:ConnectionId='2' x:Name="CanvasBorder" BorderBrush="Black" BorderThickness="4">
-            <InkCanvas x:ConnectionId='3' x:Name="InkCanvas" HorizontalAlignment="Left" Height="400" Margin="172,148,0,0" VerticalAlignment="Top" Width="400"/>
-        </Border>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!--<Border Grid.Column ="1" Background="#1f3d7a"/>-->
+        <Border Grid.Row="1" Grid.ColumnSpan="2" Background="#2f5cb6"/>
+        <StackPanel Margin="40,0,40,0" VerticalAlignment="Center">
+            <InkCanvas x:ConnectionId='4' x:Name="SampleInkCanvas" Height="200" Width="200"/>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Margin="40,0,40,0" VerticalAlignment="Center">
+            <TextBox x:ConnectionId='1' x:Name="ISFText" Foreground="White" Header="ISF Hex Input:" FontSize="16" 
+                     PlaceholderText="Paste hexidecimal ISF string" Margin="0, 0, 0, 16" />
+            <Button x:ConnectionId='2' Content="Render Sample" FontSize="16"                     />
+            <TextBlock x:ConnectionId='3' x:Name="StrokeTextBlock" Foreground="White" FontSize="25" Text="" Margin="0,0,20,0"/>
+        </StackPanel>
     </Grid>
+
+
+    <!--<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <TextBox Width="500" Header="ISF Hex Input:" PlaceholderText="Paste hexidecimal ISF string"/>
+        <Button Content="Next" HorizontalAlignment="Left" Margin="512,815,0,0" VerticalAlignment="Top" Height="82" Width="401" Click="Button_Click"/>
+        <Border x:Name="CanvasBorder" BorderBrush="Black" BorderThickness="4">
+            <InkCanvas x:Name="InkCanvas" HorizontalAlignment="Left" Height="504" Margin="172,148,0,0" VerticalAlignment="Top" Width="1139"/>
+        </Border>
+    </Grid>-->
 </Page>
 

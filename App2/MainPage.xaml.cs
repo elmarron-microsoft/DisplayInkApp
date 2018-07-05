@@ -19,9 +19,7 @@ namespace DisplayInkApp
     /// </summary>
     public sealed partial class MainPage : Page
     {
-
-        static int INK_SAMPLE_INDEX = 0;
-
+        public static Windows.UI.Color BLUE_COLOR = Windows.UI.Color.FromArgb(255, 0, 255, 0);
         public MainPage()
         {
             this.InitializeComponent();
@@ -32,11 +30,8 @@ namespace DisplayInkApp
         {
             try
             {
-                if (INK_SAMPLE_INDEX != InkSamples.INK_SAMPLE_ARRAY.Length - 1)
-                {
-                    INK_SAMPLE_INDEX += 1;
-                }
-                DisplayRecord(INK_SAMPLE_INDEX);
+                string hexInput = ISFText.Text;
+                DisplayRecord(hexInput);
             }
             catch (Exception ex)
             {
@@ -44,30 +39,25 @@ namespace DisplayInkApp
             }
         }
 
-        private async void DisplayRecord(int idx)
+        private async void DisplayRecord(string hexInput)
         {
             try
             {
-                String InkIsf = InkSamples.INK_SAMPLE_ARRAY[idx];
                 InMemoryRandomAccessStream stream = new InMemoryRandomAccessStream();
-
-
                 using (DataWriter writer = new DataWriter(stream.GetOutputStreamAt(0)))
                 {
-                    writer.WriteBytes(HexStringToByteArray(InkIsf));
+                    writer.WriteBytes(HexStringToByteArray(hexInput));
                     await writer.StoreAsync();
-                    var inkStrokeContainer = new InkStrokeContainer();
-                }
+                    var iSC = new InkStrokeContainer();
 
-                try
-                {
-                    await InkCanvas.InkPresenter.StrokeContainer.LoadAsync(stream);
+                    await SampleInkCanvas.InkPresenter.StrokeContainer.LoadAsync(stream);
 
+                    SampleInkCanvas.Width = SampleInkCanvas.InkPresenter.StrokeContainer.BoundingRect.Right;
+                    SampleInkCanvas.Height = SampleInkCanvas.InkPresenter.StrokeContainer.BoundingRect.Bottom;
+
+                    StrokeTextBlock.Text = "Number of Strokes: " + SampleInkCanvas.InkPresenter.StrokeContainer.GetStrokes().Count.ToString();
                 }
-                catch (Exception ex)
-                {
-                    ErrorDisplay.ShowErrorMessage(ex.Message);
-                }
+                stream.Dispose();
             }
             catch (Exception ex)
             {
@@ -98,6 +88,5 @@ namespace DisplayInkApp
 
                 return bytes;
             }
-
     }
 }
