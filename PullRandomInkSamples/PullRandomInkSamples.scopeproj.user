@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <StartFile>RandomEnglishInkSamples.script</StartFile>
+    <OutputStreamPath>%24(PROJECT_DIR)</OutputStreamPath>
+    <CurrentWorkingVC>vc://cosmos15/asimov.partner.osg</CurrentWorkingVC>
+    <ActiveFile>RandomEnglishInkSamples.script</ActiveFile>
+    <BuildClusterPlanProperty>False</BuildClusterPlanProperty>
+  </PropertyGroup>
+  <ItemGroup>
+    <ScriptUserData Include="RandomEnglishInkSamples.script">
+      <UseLocalComputeAccount>false</UseLocalComputeAccount>
+      <ClusterComputeAccount>CosmosVc:https://cosmos15.osdinfra.net/cosmos/asimov.partner.osg/</ClusterComputeAccount>
+    </ScriptUserData>
+  </ItemGroup>
+</Project>

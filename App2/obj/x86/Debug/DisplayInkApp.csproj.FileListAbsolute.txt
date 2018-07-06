@@ -426,3 +426,13 @@ C:\Users\elmarron\dev\InkDisplay\App2\obj\x86\Debug\qualifiers.txt.intermediate
 C:\Users\elmarron\dev\InkDisplay\App2\obj\x86\Debug\MultipleQualifiersPerDimensionFound.txt
 C:\Users\elmarron\dev\InkDisplay\App2\obj\x86\Debug\ProjectArchitectures.txt
 C:\Users\elmarron\dev\InkDisplay\App2\obj\x86\Debug\DisplayInkApp.csprojAssemblyReference.cache
+C:\Users\elmarron\dev\InkDisplay\App2\bin\x86\Debug\log4net.dll
+C:\Users\elmarron\dev\InkDisplay\App2\bin\x86\Debug\Newtonsoft.Json.dll
+C:\Users\elmarron\dev\InkDisplay\App2\bin\x86\Debug\System.Console.dll
+C:\Users\elmarron\dev\InkDisplay\App2\bin\x86\Debug\System.Diagnostics.TraceSource.dll
+C:\Users\elmarron\dev\InkDisplay\App2\bin\x86\Debug\System.Runtime.InteropServices.RuntimeInformation.dll
+C:\Users\elmarron\dev\InkDisplay\App2\bin\x86\Debug\System.Runtime.Serialization.Formatters.dll
+C:\Users\elmarron\dev\InkDisplay\App2\obj\x86\Debug\FxResources.System.Console.SR.resw
+C:\Users\elmarron\dev\InkDisplay\App2\obj\x86\Debug\FxResources.System.Diagnostics.TraceSource.SR.resw
+C:\Users\elmarron\dev\InkDisplay\App2\obj\x86\Debug\FxResources.System.Runtime.InteropServices.RuntimeInformation.SR.resw
+C:\Users\elmarron\dev\InkDisplay\App2\obj\x86\Debug\FxResources.System.Runtime.Serialization.Formatters.SR.resw

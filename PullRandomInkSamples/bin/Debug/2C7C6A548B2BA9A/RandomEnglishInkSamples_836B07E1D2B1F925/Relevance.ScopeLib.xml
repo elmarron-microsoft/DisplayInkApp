@@ -1,0 +1,1936 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Relevance.ScopeLib</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.SegmentRelevance.ScopeLib.AddRowNumberReducer">
+            <summary>
+            Appends a column 'RowNumber' containing sequential row numbers (per key).
+            
+            <para>
+            <b>Args</b>: <i>[-startAt {StartAt}] [-step {Step}]</i>
+            </para>
+            </summary>
+            <remarks>
+            <b>Args</b>: <i>[-startAt {StartAt}] [-step {Step}]</i>
+            <list type="bullet">
+              <item><i>{StartAt}</i><br/>Value of first RowNumber.  Default = 1.</item>
+              <item><i>{Step}</i><br/>Increment between consecutive RowNumbers.  Default = 1.</item>
+            </list>
+            <b>Notes</b><br/>
+            <list type="bullet">
+             <item>Order of sequentially assigned rows is nondeterministic unless a PRESORT fully specifies the ordering of the rows.</item>
+             <item>This class can be used to assign unique Ids to rows (potentially in conjunction with <see cref="T:Microsoft.SegmentRelevance.ScopeLib.AddRandomNumberProcessor"/>).<br/>
+                   Collaboration with <see cref="T:Microsoft.SegmentRelevance.ScopeLib.CumulativeSumReducer"/> can enable assigning unique <b>sequential</b> Ids to rows.</item>
+             <item><i>This class will be obsolete if and when windowing functions are added to SCOPE.</i></item>
+            </list>
+            </remarks>
+            <exception cref="T:System.ArgumentException">args are malformed - thrown at compile-time</exception>
+            <example>
+             <code>
+              // Add sequential row numbers / key
+              rowNumberedData = 
+                  REDUCE data ON Key
+                  USING RowNumberReducer
+                  PRESORT Col1;
+                  
+              // Add even row numbers starting at 24
+              // (Technically redundant since SELECT 22 + RowNumber * 2 AS RowNumber achieves the same goal).
+              rowNumberedData = 
+                  REDUCE data ON Key
+                  USING RowNumberReducer("-startAt", "24", "-step", "2")
+                  PRESORT Col1;
+             </code>
+              <code>
+                // Standard ScopeLib header (point to your location)
+                REFERENCE "Relevance.ScopeLib.dll";
+                RESOURCE "Relevance.ScopeLib.pdb",
+                         "Relevance.ScopeLib.xml";
+                USING Microsoft.SegmentRelevance.ScopeLib;
+              </code>
+            </example>
+            <seealso cref="T:Microsoft.SegmentRelevance.ScopeLib.CumulativeSumReducer"/>
+        </member>
+        <member name="P:Microsoft.SegmentRelevance.ScopeLib.AddRowNumberReducer.AllowColumnPruning">
+            <summary>Column Pruning is complicated to implement - <see cref="T:Microsoft.SegmentRelevance.ScopeLib.CumulativeSumReducer"/> implements it.</summary>
+        </member>
+        <member name="P:Microsoft.SegmentRelevance.ScopeLib.AddRowNumberReducer.IsRecursive">
+            <summary>Reducer does not filter, and thus isn't recursive (no benefit)</summary>
+        </member>
+        <member name="P:Microsoft.SegmentRelevance.ScopeLib.AddRowNumberReducer.RunSingleThreaded">
+            <summary>Reducer is thread-safe</summary>
+        </member>
+        <member name="M:Microsoft.SegmentRelevance.ScopeLib.AddRowNumberReducer.ParseArgs(System.String[])">
+            <summary>Parses args and wraps any exception with usage info.</summary>
+        </member>
+        <member name="M:Microsoft.SegmentRelevance.ScopeLib.AddRowNumberReducer.ParseArgsInternal(System.String[])">
+            <summary>Parses args into Args instance.</summary>
+        </member>
+        <member name="M:Microsoft.SegmentRelevance.ScopeLib.AddRowNumberReducer.Produces(System.String[],System.String[],ScopeRuntime.Schema)">
+            <summary>
+            Adds a RowNumber column to the input schema.  Compile-time validates the usage.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SegmentRelevance.ScopeLib.AddRowNumberReducer.Reduce(ScopeRuntime.RowSet,ScopeRuntime.Row,System.String[])">
+            <summary>
+            Adds a RowNumber column to the schema, imitating SQL's ROW_NUMBER for a reducer.
+            </summary>
+        </member>
+        <member name="T:Microsoft.SegmentRelevance.ScopeLib.AddRandomNumberProcessor">
+            <summary>
+            Appends a column 'Rand' containing:<br/>
+            <list type="bullet">
+              <item>random doubles if no args other than {Seed} are supplied.</item>
+              <item>random integers if minValue and/or maxValue is specified</item>
+            </list>
+            <b>Args</b>: <i>{Seed} [-minValue {MinValueInclusive}] [-maxValue {MaxValueExclusive}]</i><br/>
+            </summary>
+            <remarks>
+            <b>Args</b>: <i>{Seed} [-minValue {MinValueInclusive}] [-maxValue {MaxValueExclusive}]</i><br/>
+            <list type="bullet">
+              <item><i>{Seed}</i><br/>
+                       Initial value to seed the random generator.<br/>
+                        Recommendation: <c>#DECLARE Seed string = ((int)DateTime.Now.Ticks).ToString();</c>.</item>
+              <item><i>-minValue {MinValueInclusive}</i><br/>
+                       Minimum inclusive integer value to generate.  Default = 0.</item>
+              <item><i>-maxValue {MaxValueExclusive}</i><br/>
+                       Maximum exclusive integer value to generate.  Default = Int32.MaxValue.</item>
+            </list>
+            <b>Notes</b>
+            <list type="bullet">
+              <item>If no args other than seed are specified, Rand is a double between 0 and 1.<br/>
+                    If minValue and/or maxValue is specified, Rand is an integer between minValue and maxValue.</item>
+              <item>Input must obey <see cref="T:Microsoft.SegmentRelevance.ScopeLib.ScopeRandom"/>'s requirement on UDTs (they must implement GetHashCode()).</item>
+            </list>
+            </remarks>
+            <example>
+              <code>
+                // Random sample n% of data (to random sample exact # of rows, use TopNReducer)
+                data = PROCESS input USING AddRandomNumberProcessor(@Seed); // Pre: [#DECLARE Seed string = ((int)DateTime.Now.Ticks).ToString();]
+                sample = SELECT * FROM data WHERE Rand &lt; 0.5;
+                
+                // Assign data to N buckets.
+                data = PROCESS input USING AddRandomNumberProcessor(@Seed, "-maxValue", @N); // Pre: [#DECLARE Seed string = ((int)DateTime.Now.Ticks).ToString();]
+                myReduce = REDUCE data ON Rand USING MyReducer;
+              </code>
+              <code>
+                // Standard ScopeLib header (point to your location)
+                REFERENCE "Relevance.ScopeLib.dll";
+                RESOURCE "Relevance.ScopeLib.pdb",
+                         "Relevance.ScopeLib.xml";
+                USING Microsoft.SegmentRelevance.ScopeLib;
+              </code>
+            </example>
+            <exception cref="T:System.ArgumentException">
+              Thrown during script compilation, Args are malformed:
+              <list type="bullet">
+                <item>Seed/MinValue/MaxValue is not an integer</item>
+                <item>MinValue &gt; MaxValue</item>
+                <item>Unrecognized args</item>
+              </list>
+            </exception>
+            <seealso cref="T:Microsoft.SegmentRelevance.ScopeLib.ScopeRandom"/>
+            <seealso cref="T:Microsoft.SegmentRelevance.ScopeLib.TopNReducer"/>
+        </member>
+        <member name="P:Microsoft.SegmentRelevance.ScopeLib.AddRandomNumberProcessor.AllowColumnPruning">
+            <summary>Allows Column Pruning</summary>
+        </member>
+        <member name="P:Microsoft.SegmentRelevance.ScopeLib.AddRandomNumberProcessor.RowLevelProcessor">
+            <summary>Rows are processed independently</summary>
+        </member>
+        <member name="P:Microsoft.SegmentRelevance.ScopeLib.AddRandomNumberProcessor.RunSingleThreaded">
+            <summary>Thread-safe</summary>
+        </member>
+        <member name="T:Microsoft.SegmentRelevance.ScopeLib.AddRandomNumberProcessor.Args">
+            <summary>Container for parsed Arguments</summary>
+        </member>
+        <member name="M:Microsoft.SegmentRelevance.ScopeLib.AddRandomNumberProcessor.ParseArgs(System.String[])">
+            <summary>
+            Parses supplied args.  Wraps any exceptions into a consistent usage exception.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SegmentRelevance.ScopeLib.AddRandomNumberProcessor.ParseArgsInternal(System.String[])">
+            <summary>Parses args into Args instance.</summary>
+        </member>
+        <member name="T:Microsoft.SegmentRelevance.ScopeLib.AddRandomNumberProcessor.O">
+            <summary>Explicitly referenced output columns</summary>
+        </member>
+        <member name="M:Microsoft.SegmentRelevance.ScopeLib.AddRandomNumberProcessor.Produces(System.String[],System.String[],ScopeRuntime.Schema)">
+            <summary>
+            Validates args and input &amp; forms output schema.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SegmentRelevance.ScopeLib.AddRandomNumberProcessor.Process(ScopeRuntime.RowSet,ScopeRuntime.Row,System.String[])">
+            <summary>
+            Adds a random number (double or integer) in a new 'Rand' column
+            </summary>
+        </member>
+        <member name="T:Microsoft.SegmentRelevance.ScopeLib.ColumnArgs">
+            <summary>
+            Stores common Args and Args parsing functions for Column* UDOs
+            </summary>
+        </member>
+        <member name="T:Microsoft.SegmentRelevance.ScopeLib.ColumnArgs.EscapeMode">
+            <summary>
+            Options for (un)escaping during extract/output.
+            </summary>
+        </member>
+        <member name="T:Microsoft.SegmentRelevance.ScopeLib.ColumnArgs.EscapeDirection">
+            <summary>
+            Specified whether input is being escaped (output) or unescaped (input)
+            </summary>
+        </member>
+        <member name="M:Microsoft.SegmentRelevance.ScopeLib.ColumnArgs.Resolve(System.Int32)">
+            <summary>
+            Resolves Input/Output columns with PruneColumns (if any).
+            </summary>
+        </member>
+        <member name="M:Microsoft.SegmentRelevance.ScopeLib.ColumnArgs.ParseColumns(System.String[],System.Int32@,System.Int32)">
+            <summary>
+            Method called by ColumnExtractor to parse columns.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SegmentRelevance.ScopeLib.ColumnArgs.ParseColumns(System.String[],System.Int32@,ScopeRuntime.Schema,System.Boolean)">
+            <summary>
+            Method called by ColumnOutputter to parse columns.  Columns cannot be specified by index.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SegmentRelevance.ScopeLib.ColumnArgs.ParsePruneColumns(System.String[],System.Int32@,ScopeRuntime.Schema,System.Boolean)">
+            <summary>
+            Parses a Prune Column list - specified by column names only.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SegmentRelevance.ScopeLib.ColumnArgs.ParseCols(System.String,System.Int32)">
+            <summary>
+            Parses columns specification - single ('3') and range ('2..4').
+            Output list maintains the input order.
+            </summary>
+        </member>
+        <member name="T:Microsoft.SegmentRelevance.ScopeLib.ColumnExtractor">
+            <summary>
+            Superset of DefaultTextExtractor.  Additional functionality:
+            <list type="bullet">
+             <item>Specify column indices using 0-based indexing <c>("-cols", "0, 2, 5..8")</c></item>
+             <item>Extract error information for malformed rows <c>("-silent", "-debug")</c></item>
+             <item>Specify MaxBadRowRatio / RowSet <c>("-silent", "0.01") // Ignore upto 1% of malformed rows / RowSet.</c></item>
+             <item>Granular unescape settings <c>("-unescape", "NewLine") //Only unescape \r and \n, leave delimiter escaped.</c></item>
+             <item>Read schema (header) from a RESOURCE'd file <c>("-schemaFile", @In_Schema, "-ds", ",")</c></item>
+            </list>
+            <b>Args</b>: <i>[-cols {columns}] [-d {delimiter}] [-silent [maxBadRowRatio]] [-schemaFile {schemaFile}] [-ds {schemaDelimiter}] [-debug] [-unescape [unescapeMode]] [-e {encoding}] [-unquote]</i><br/>
+            </summary>
+            <remarks>
+            <br/>
+            <b>ColumnExtractor-specific Args</b>
+            <list type="bullet">
+             <item><i>-cols</i>: Comma-separated list of 0-based column indexes (or ranges) of the requested columns.</item>
+             <item><i>-schemaFile</i>: Name of file containing {schemaDelimiter}-separated column names and optionally types in Scope Schema format.</item>
+             <item><i>-silent</i>: Ignore malformed rows.  Fail if BadRows/TotalRows > MaxBadRowRatio for this RowSet.
+              <list><item><i>maxBadRowRatio</i>: Defaults to 1 (i.e., ignore all).</item></list>
+             </item>
+             <item><i>-debug</i>: Populates UdoLog with RowStatus=Error into the last column supplied.
+               <list type="bullet"><item>If debug is present, MaxBadRowRatio defaults to 1 if not specified (regardless of "-silent")</item></list>
+             </item>
+            </list>
+            <br/>
+            <b>DefaultTextExtractor-like Args</b>
+            <list type="bullet">
+             <item><i>-d</i>: Specify a column delimiter.  Default = '\t'.</item>
+             <item><i>-ds</i>: Specify a schema column delimiter.  Default = {column delimiter}.</item>
+             <item><i>-silent</i>: Shortcut for ("-silent", "1").  Unlike DefaultTextExtractor, format errors are also ignored.</item>
+             <item><i>-unescape</i>: (DTE calls this -escape) Makes a subset of the following substitutions:
+              <list type="bullet">
+               <item><i>unescapeMode</i>: Specify which characters to unescape.  Defaults to <i>All</i> (unless -unquote is specified - see remarks below)
+                <list type="bullet">
+                 <item> <i>Null</i>: #NULL# -> assigns null to the column value.</item>
+                 <item> <i>Delimiter</i>: #TAB# -> {delimiter}</item>
+                 <item> <i>NewLine</i>: #R# -> \r, #N# --> \n</item>
+                 <item> <i>Hash</i>: #HASH# -> #</item>
+                 <item> <i>All</i>: All of the above</item>
+                 <item> <i>None</i>: None of the above</item>
+                </list>
+               </item>
+              </list>
+              If <i>-unescape</i> is not specified, default behaviour is to not unescape anything.  Note that this is inconsistent
+              with ColumnOutputter's default behaviour (but consistent with DefaultTextExtractor).
+             </item>
+             <item><i>-e</i>: [Rare] Specify the encoding of the input file.  Case-sensitive value should match a constant name from System.Text.Encoding.</item>
+             <item><i>-unquote</i>: (DTE calls this <i>-quoting</i>) Interprets CSV-style quoted columns.
+              A CSV-style quoted column is surrounded by quotes and lists all characters verbatim (including the delimiter) except quotes which are escaped by another quote.<br/>
+              Example with ("-d", ",", "-unquote")
+              <list type="bullet">
+               <item> <i>""</i> -> {empty string}  (no contents)</item>
+               <item> <i>"a,b,c"</i> -> <i>a,b,c</i>  (delimiter taken verbatim)</item>
+               <item> <i>"a""bc"</i> -> <i>a"bc</i>  (escaped quote)</item>
+               <item> <i>"a"bc"</i> -> <i>ERROR</i>  (invalid format)</item>
+              </list>
+              The presence of <i>-unquote</i> changes the behaviour of <i>-unescape</i>
+             </item>
+            </list>
+            <b>Using <i>-unescape</i> with/without -unquote</b>
+            <list type="table">
+             <listheader>
+              <term>-unescape usage</term>
+              <term>UnescapeMode without <i>-unquote</i></term>
+              <term>UnescapeMode with <i>-unquote</i></term>
+             </listheader>
+             <item>
+              <term>Not specified</term>
+              <term>None</term>
+              <term>None</term>
+             </item>
+             <item>
+              <term>-unescape</term>
+              <term>All (<b>Delimiter</b> , Hash, NewLine , Null)</term>
+              <term>Hash , NewLine , Null (All <b>except Delimiter</b>)</term>
+             </item>
+             <item>
+              <term>-unescape {UnescapeMode}</term>
+              <term>{UnescapeMode}</term>
+              <term>{UnescapeMode}</term>
+             </item>
+            </list>
+            </remarks>
+            <example>
+              <code>
+                #region ColumnSpecification
+                EXTRACT C2, C3, C4, C6:int FROM @In_MyFile USING ColumnExtractor("-cols", "1..3, 5");
+                #endregion ColumnSpecification
+                
+                #region SchemaSpecification
+                // Determine column ordering from schemaFile
+                RESOURCE @"/somePath/SomeFile.tsv"; // C0\tC1\t...\tC10
+                EXTRACT C2, C3, C4, C6:int FROM @In_MyFile USING ColumnExtractor("-schemaFile", "SomeFile.tsv");
+                
+                RESOURCE @"/somePath/SomeFile.csv"; // C0,C1,...,C10
+                EXTRACT C2, C3, C4, C6:int FROM @In_MyFile USING ColumnExtractor("-schemaFile", "SomeFile.csv", "-ds", ",");
+                
+                // Reads entire schema from schemaFile
+                RESOURCE @"/somePath/SomeFile.csv"; // C0,C1,...,C10
+                EXTRACT * FROM @In_MyFile USING ColumnExtractor("-schemaFile", "SomeFile.csv", "-ds", ",");
+                #endregion SchemaSpecification
+                
+                #region ErrorHandling
+                EXTRACT C3, C6:int FROM @In_MyErrorProneFile USING ColumnExtractor("-cols", "2,5", "-silent", "0.01");
+                EXTRACT C3, C6:int, Error FROM @In_MyErrorProneFile USING ColumnExtractor("-cols", "2,5", "-silent", "0.01", "-debug");
+                #endregion ErrorHandling
+                
+                #region Delimiter
+                EXTRACT C3, C1:int FROM @In_MyCommaSeparatedFile USING ColumnExtractor("-cols", "2,0", "-d", ",");
+                #endregion Delimiter
+                
+                #region Unescape
+                // Unescape everything
+                EXTRACT C3, C1:int FROM @In_Data USING ColumnExtractor("-cols", "2,0", "-unescape");
+                EXTRACT C3, C1:int FROM @In_Data USING ColumnExtractor("-cols", "2,0", "-unescape", "All");
+                // Unescape, DTO's default
+                EXTRACT C3, C1:int FROM @In_Data USING ColumnExtractor("-cols", "2,0");
+                EXTRACT C3, C1:int FROM @In_Data USING ColumnExtractor("-cols", "2,0", "-unescape", "Delimiter, NewLine");
+                // Unescape none (this is DefaultTextExtractor's default behaviour).
+                EXTRACT C3, C1:int FROM @In_Data USING ColumnExtractor("-cols", "2,0", "-unescape", "None");
+                #endregion Unescape
+            
+                #region Unquote
+                // Unquote - default
+                EXTRACT C3, C1:int FROM @In_Data USING ColumnExtractor("-cols", "2,0", "-unquote");
+                EXTRACT C3, C1:int FROM @In_Data USING ColumnExtractor("-cols", "2,0", "-unquote", "-unescape", "None");
+                // Unquote, -unescape
+                EXTRACT C3, C1:int FROM @In_Data USING ColumnExtractor("-cols", "2,0", "-unquote", "-unescape");
+                EXTRACT C3, C1:int FROM @In_Data USING ColumnExtractor("-cols", "2,0", "-unquote", "-unescape", "Hash, NewLine, Null");
+                // Unquote, Unescape specified
+                EXTRACT C3, C1:int FROM @In_Data USING ColumnExtractor("-cols", "2,0", "-unquote", "-unescape", "Delimiter, NewLine");
+                #endregion Unquote
+              </code>
+              <code>
+                // Standard ScopeLib header (point to your location)
+                REFERENCE "Relevance.ScopeLib.dll";
+                RESOURCE "Relevance.ScopeLib.pdb",
+                         "Relevance.ScopeLib.xml";
+                USING Microsoft.SegmentRelevance.ScopeLib;
+              </code>
+            </example>
+            <exception cref="T:System.ArgumentException">
+              Thrown during script compilation, Args are malformed:
+              <list type="bullet">
+                <item>unescapeMode is invalid</item>
+                <item>encoding is invalid</item>
+                <item>schemaFile and cols are both specified</item>
+                <item>Unrecognized args</item>
+              </list>
+            </exception>
+        </member>
+        <member name="T:Microsoft.SegmentRelevance.ScopeLib.ColumnExtractor.Args">
+            <summary>
+            Container for parsed Arguments
+            </summary>
+        </member>
+        <member name="M:Microsoft.SegmentRelevance.ScopeLib.ColumnExtractor.Args.Parse(System.String[],System.Int32@,System.Int32)">
+            <summary>
+            Delegates to common colArgs parser methods
+            </summary>
+        </member>
+        <member name="M:Microsoft.SegmentRelevance.ScopeLib.ColumnExtractor.ParseArgs(System.String[],System.String[]@)">
+            <summary>
+            Parses supplied args.  Wraps any exceptions into a consistent usage exception.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SegmentRelevance.ScopeLib.ColumnExtractor.ParseArgsInternal(System.String[],System.String[]@)">
+            <summary>
+            Parses args into myArgs instance.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SegmentRelevance.ScopeLib.ColumnExtractor.RunSingleThreaded">
+            <summary>
+            This extractor can be run multi-threaded.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SegmentRelevance.ScopeLib.ColumnExtractor.Produces(System.String[],System.String[])">
+            <summary>
+            Compile-time validates the args.  Constructs an output schema with indicated columns, and a Log column if "-debug" is specified.
+            </summary>
+            <param name="columns"></param>
+            <param name="args"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.SegmentRelevance.ScopeLib.ColumnExtractor.Extract(System.IO.StreamReader,ScopeRuntime.Row,System.String[])">
+            <summary>
+            Parses input into Row objects.  Specified options given through args are followed.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SegmentRelevance.ScopeLib.ColumnExtractor.AssignOutput(ScopeRuntime.Row,Microsoft.SegmentRelevance.ScopeLib.ColumnExtractor.Args,System.String)">
+            <summary>
+            Splits line and assigns appropriate split indices to output.
+            Fails instantly or returns false if there is an error, and populates the log column on failure if indicated.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SegmentRelevance.ScopeLib.ColumnExtractor.FailOutput(ScopeRuntime.Row,Microsoft.SegmentRelevance.ScopeLib.ColumnExtractor.Args,System.String,System.String,System.Exception)">
+            <summary>
+            Fails instantly if there is no error tolerance, otherwise populates the Log column of output.
+            </summary>
+        </member>
+        <member name="T:Microsoft.SegmentRelevance.ScopeLib.ColumnExtractor.StringIterator">
+            <summary>
+            Parses and returns each requested input column in order.
+            Pre: myArgs.InputCols must be in ascending order.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SegmentRelevance.ScopeLib.ColumnExtractor.StringIterator.ParseEscapedCharArray(System.String,System.Int32,System.Boolean)">
+            <summary>
+            Unescapes a string segment.  Copied (and slightly modified) from DefaultTextExtractor.
+            </summary>
+        </member>
+        <member name="T:Microsoft.SegmentRelevance.ScopeLib.ColumnProcessor">
+            <summary>
+            Syntactical shortcut to remove/rename/add/select indicated columns from the input schema.
+            Useful as a generic SchemaAdjuster or to make small adjustments to large schemas.<br/>
+            <br/>
+            <b>Args</b>: <i>[-prune {pruneColList}] [-rename {renameColList}] [-add {addColList}] [-produce {produceColList}] [-skipValidation]</i><br/>
+            </summary>
+            <remarks>
+            <b>Args</b>: <i>[-prune {pruneColList}] [-rename {renameColList}] [-add {addColList}] [-produce {produceColList}] [-skipValidation]</i><br/>
+             <list type="bullet">
+              <item><i>-prune</i><br/>
+                    Remove specified comma separated columns from the input.  Column names may be specified as Regular Expressions</item>
+              <item><i>-rename</i><br/>
+                    Rename specified comma separated columns from the input.
+               <list type="bullet"><item><i>renameColList</i> - {oldName:newName} comma-separated pairs.  Column names may be specified as Regular Expressions</item></list></item>
+              <item><i>-add</i><br/>
+                    Add specified comma separated columns to the output in the order specified.  Reuse input column value if present and -skipValidation is specified.<br/>
+                    Follows C#'s implicit type promotion rules (see http://msdn.microsoft.com/en-us/library/y5b434w4.aspx) if existing input column (say <c>int</c>) mismatches with add specification (say <c>long</c>); promoting to <c>string</c> and to same nullable type is always allowed.
+               <list type="bullet"><item><i>addColList</i> - {name[:type[:defaultValue]]} comma-separated tuples.  If unspecified, defaultValue = <c>default({type})</c>, type = <c>string</c>.</item></list></item><br/>
+              <item><i>-produce</i><br/>
+                    Only keep specified comma separated columns from the output in the order specified.  Column names may be specified as Regular Expressions</item>
+              <item><i>-skipValidation</i><br/>
+                    Only use in a SchemaAdjuster scenario.  Disables the compile-time validation that columns must exist (not exist for add) in the schema
+               <list type="bullet">
+                <item><i>pruneColList, renameColList, produceColList</i> - specified columns must already exist in the schema</item>
+                <item><i>addColList</i> - specified cols must not exist yet in the schema</item>
+               </list>
+              </item>
+             </list>
+             <b>Note:</b> Output schema is resolved in the operand order: -prune, -rename, -add, -produce.<br/>
+             <b>Note:</b> Regex specifications automatically do full matches.  So ".*Avg" matches "DwellTimeAvg" but not "DwellTimeAvgInSeconds"
+            </remarks>
+            <example>
+             <code>
+              /// #REGION JoinRowsetsWithIdenticalColumns
+              // Joining large-schema rowsets with identical key names
+              data1 = SELECT Key, X, Y, Z FROM @In_File USING DefaultTextExtractor;
+              // data2Raw is a rowset with schema Key, and several other non-conflicting columns with data1;
+              data2 = PROCESS data2Raw USING ColumnProcessor("-rename", "Key:D2Key");
+              
+              joined = 
+                SELECT data1.*, data2.*
+                FROM data1
+                    INNER JOIN data2 ON data1.Key == data2.D2Key;
+              final = PROCESS joined USING ColumnProcessor("-prune", "D2Key");
+              /// #ENDREGION JoinRowsetsWithIdenticalColumns
+            
+            
+              /// #REGION Prune-ColumnExtractor
+              // Pretty typical use case.
+              data = SELECT A, B, C, D, E, F, Log FROM @In_File USING ColumnExtractor("-debug");
+              badData = SELECT Log FROM Data WHERE NOT UdoLog.IsInfoOrLower(Log);
+              goodData = PROCESS Data USING ColumnProcessor("-prune", "Log") WHERE UdoLog.IsInfoOrLower(Log);
+              /// #ENDREGION Prune-ColumnExtractor
+            
+            
+              /// #REGION Regex
+              // Column name pattern-specific rename
+              renamed = PROCESS data USING ColumnProcessor("-rename", "Video_(.*)_Avg:Image_$1_Avg");
+              
+              // Remove all columns whose names end in 'Avg'
+              pruned = PROCESS data USING ColumnProcessor("-prune", ".*Avg");
+              /// #ENDREGION Regex
+             </code>
+              <code>
+                /// #REGION SchemaAdjuster
+                // Select a particular set of columns
+                SSTREAM @In_DataSS USING ColumnProcessor("-produce", @"A, B, C\d+", "-skipValidation");
+                
+                // Prune and rename some columns
+                SSTREAM @In_DataSS USING ColumnProcessor("-prune", @"C1\d*", "-rename", @"New_(C1\d*):$1", "-skipValidation");
+                
+                // Add columns with default values
+                SSTREAM @In_DataSS USING ColumnProcessor("-add", "B:int:50, C12:string", "-skipValidation");
+                
+                // Complex example - prune some columns, rename others, retain or add some columns, and select out a subset in a different order.
+                SSTREAM @In_DataSS USING ColumnProcessor("-prune", @"C1\d*", "-rename", @"New_(C1\d*):$1", "-add", "B:int:50, C12:string", "-produce", "C.*, B.*", "-skipValidation");
+                /// #ENDREGION SchemaAdjuster
+              </code>
+              <code>
+                // Standard ScopeLib header (point to your location)
+                REFERENCE "Relevance.ScopeLib.dll";
+                RESOURCE "Relevance.ScopeLib.pdb",
+                         "Relevance.ScopeLib.xml";
+                USING Microsoft.SegmentRelevance.ScopeLib;
+              </code>
+            </example>
+            <exception cref="T:System.ArgumentException">
+              Thrown during script compilation, Args are malformed:<br/>
+              <b>Always</b><br/>
+              <list type="bullet">
+                <item>Specified output column name is invalid (doesn't consist solely of alphanumeric and '_' characters</item>
+                <item>Same column name is specified multiple times (eg: via two regexes that overlap)</item>
+                <item>Unrecognized args</item>
+              </list>
+              <b>SkipValidation = false</b><br/>
+              <list type="bullet">
+                <item>Specified column does not exist in schema</item>
+                <item>Specified column regex does not match any column</item>
+                <item>Specified add column conflicts with existing column in input schema</item>
+              </list>
+              <b>SkipValidation = true</b><br/>
+              <list type="bullet">
+                <item>Specified add column type isn't promotable from existing input schema column</item>
+              </list>
+            </exception>
+            <seealso cref="T:Microsoft.SegmentRelevance.ScopeLib.ColumnOutputter"/>
+        </member>
+        <member name="M:Microsoft.SegmentRelevance.ScopeLib.ColumnProcessor.ParseArgs(System.String[],ScopeRuntime.Schema,System.Boolean)">
+            <summary>
+            Parses supplied args.  Wraps any exceptions into a consistent usage exception.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SegmentRelevance.ScopeLib.ColumnProcessor.AllowColumnPruning">
+            <summary>
+            This Processor allows ColumnPruning.  SCOPE may prune input columns before passing Rows to this Processor.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SegmentRelevance.ScopeLib.ColumnProcessor.RowLevelProcessor">
+            <summary>
+            This is a RowLevelProcessor - each individual input row is sufficient to create an output row.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SegmentRelevance.ScopeLib.ColumnProcessor.RunSingleThreaded">
+            <summary>
+            This processor can be run multi-threaded.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SegmentRelevance.ScopeLib.ColumnProcessor.Produces(System.String[],System.String[],ScopeRuntime.Schema)">
+            <summary>
+            Initializes the output schema as [RenameIfNeeded(input schema - prune columns)].
+            </summary>
+        </member>
+        <member name="M:Microsoft.SegmentRelevance.ScopeLib.ColumnProcessor.Process(ScopeRuntime.RowSet,ScopeRuntime.Row,System.String[])">
+            <summary>
+            Copies all non-pruned columns from input to output.  Adds new columns with default values if specified.
+            </summary>
+        </member>
+        <member name="T:Microsoft.SegmentRelevance.ScopeLib.ColumnOutputter">
+            <summary>
+            Near-superset of DefaultTextOutputter.  Additional functionality:
+            <list type="bullet">
+             <item>Specify column names to prune from the output <c>("-prune", "OrderByCol")</c></item>
+             <item>Specify column names to keep from the output <c>("-cols", "ColA, ColB")</c></item>
+             <item>Granular esape settings <c>("-escape", "NewLine") //Escape \r &amp; \n, leave delimiter as is.</c></item>
+            </list>
+            <b>Args</b>: <i>[-cols {columns}] [-prune {pruneCols}] [-d {delimiter}] [-escape [escapeMode]] [-e {encoding}] [-quote]</i><br/>
+            </summary>
+            <remarks>
+            <br/>
+            <b>ColumnOutputter-specific Args</b>
+            <list type="bullet">
+             <item><i>-cols</i>: Comma-separated list of columns to keep from the output.</item>
+             <item><i>-prune</i>: Comma-separated list of columns to prune from the output.</item>
+            </list>
+            <br/>
+            <b>DefaultTextOutputter-like Args</b>
+            <list type="bullet">
+             <item><i>-d</i>: Specify a column delimiter.  Default = '\t'.</item>
+             <item><i>-escape</i>: Makes a subset of the following substitutions:
+              <list type="bullet">
+               <item><i>escapeMode</i>: Specify which characters to escape.  Defaults to <i>All</i> (unless <i>-quote</i> is specified, see remarks below)
+                <list type="bullet">
+                 <item> <i>Null</i>: null --> #NULL#</item>
+                 <item> <i>Delimiter</i>: {delimiter} --> #TAB#</item>
+                 <item> <i>NewLine</i>: \r --> #R#, \n --> #N#</item>
+                 <item> <i>Hash</i>: # --> #HASH#</item>
+                 <item> <i>All</i>: All of the above</item>
+                 <item> <i>None</i>: None of the above</item>
+                </list>
+               </item>
+              </list>
+              If <i>-escape</i> is not specified, default behavior is to escape Delimiter and NewLine.
+             </item>
+             <item><i>-e</i>: [Rare] Specify the encoding of the input file.  Case-sensitive value should match a constant name from System.Text.Encoding.</item>
+             <item><i>-quote</i>: (DTO calls this <i>-quoting</i>) Uses CSV-style quoting when columns contain delimiters.
+              A CSV-style quoted column is surrounded by quotes and lists all characters verbatim (including the delimiter) except quotes which are escaped by another quote.<br/>
+              Example with ("-d", ",", "-quote")
+              <list type="bullet">
+               <item> <i></i> -> ""  (no contents)</item>
+               <item> <i>a,b,c</i> -> <i>"a,b,c"</i>  (delimiter taken verbatim)</item>
+               <item> <i>a"bc</i> -> <i>"a""bc"</i>  (escaped quote)</item>
+              </list>
+              The presence of <i>-quote</i> changes the behaviour of <i>-escape</i>
+             </item>
+            </list>
+            <b>Using <i>-escape</i> with/without -quote</b>
+            <list type="table">
+             <listheader>
+              <term>-escape usage</term>
+              <term>EscapeMode without <i>-quote</i></term>
+              <term>EscapeMode with <i>-quote</i></term>
+             </listheader>
+             <item>
+              <term>Not specified</term>
+              <term><b>Delimiter</b>, NewLine</term>
+              <term>NewLine</term>
+             </item>
+             <item>
+              <term>-escape</term>
+              <term>All (<b>Delimiter</b> , Hash , NewLine , Null)</term>
+              <term>Hash , NewLine , Null (All <b>except Delimiter</b>)</term>
+             </item>
+             <item>
+              <term>-escape {escapeMode}</term>
+              <term>{escapeMode}</term>
+              <term>{escapeMode}</term>
+             </item>
+            </list>
+            </remarks>
+            <example>
+              <code>
+                // Typical use - order by a column but don't output it.
+                data = SELECT A, B, C, D ORDER BY D;
+                OUTPUT data TO @Out_File USING ColumnOutputter("-prune", "D");
+                
+                // Specifying a different delimiter
+                OUTPUT data TO @Out_CommaSeparatedFile USING ColumnOutputter("-d", ",");
+                
+                // Escape everything
+                OUTPUT data TO @Out_File USING ColumnOutputter("-escape");
+                OUTPUT data TO @Out_File USING ColumnOutputter("-escape", "All");
+                // Escape default
+                OUTPUT data TO @Out_File USING ColumnOutputter();
+                OUTPUT data TO @Out_File USING ColumnOutputter("-escape", "Delimiter, NewLine");
+                // Escape none.
+                OUTPUT data TO @Out_File USING ColumnOutputter("-escape", "None");
+                
+                // Quote, escape everything (except delimiter)
+                OUTPUT data TO @Out_File USING ColumnOutputter("-quote", "-escape");
+                OUTPUT data TO @Out_File USING ColumnOutputter("-quote", "-escape", "Hash, NewLine, Null");
+                // Escape default
+                OUTPUT data TO @Out_File USING ColumnOutputter("-quote");
+                OUTPUT data TO @Out_File USING ColumnOutputter("-quote", "-escape", "NewLine");
+              </code>
+              <code>
+                // Standard ScopeLib header (point to your location)
+                REFERENCE "Relevance.ScopeLib.dll";
+                RESOURCE "Relevance.ScopeLib.pdb",
+                         "Relevance.ScopeLib.xml";
+                USING Microsoft.SegmentRelevance.ScopeLib;
+              </code>
+            </example>
+            <exception cref="T:System.ArgumentException">
+              Thrown during script compilation, Args are malformed:
+              <list type="bullet">
+                <item>Specified column does not exist in input schema</item>
+                <item>Invalid escapeMode specified</item>
+                <item>Invalid encoding specified</item>
+                <item>Multi-character delimiter specified</item>
+                <item>Unrecognized args</item>
+              </list>
+            </exception>
+            <seealso cref="T:Microsoft.SegmentRelevance.ScopeLib.ColumnProcessor"/>
+        </member>
+        <member name="T:Microsoft.SegmentRelevance.ScopeLib.ColumnOutputter.Args">
+            <summary>
+            Container for parsed Arguments
+            </summary>
+        </member>
+        <member name="M:Microsoft.SegmentRelevance.ScopeLib.ColumnOutputter.ParseArgs(System.String[],ScopeRuntime.Schema,System.Boolean)">
+            <summary>
+            Parses supplied args.  Wraps any exceptions into a consistent usage exception.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SegmentRelevance.ScopeLib.ColumnOutputter.ParseArgsInternal(System.String[],ScopeRuntime.Schema,System.Boolean)">
+            <summary>
+            Parses args into myArgs instance.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SegmentRelevance.ScopeLib.ColumnOutputter.CheckInputs(System.String[],ScopeRuntime.Schema)">
+            <summary>
+            Validates no invalid column specification in args at compile-time
+            </summary>
+        </member>
+        <member name="M:Microsoft.SegmentRelevance.ScopeLib.ColumnOutputter.Output(ScopeRuntime.RowSet,System.IO.StreamWriter,System.String[])">
+            <summary>
+            Outputs string representations of input rows, pruning columns indicated in args.
+            </summary>
+        </member>
+        <member name="T:Microsoft.SegmentRelevance.ScopeLib.ColumnOutputter.EscapingWriter">
+            <summary>
+            Simple writer wrapper that obeys escapeMode.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SegmentRelevance.ScopeLib.Util.Hash.GetHashCode(System.IO.Stream)">
+            <summary>
+            Computes a well-distributed hashcode via an implementation of the Fnv alternate algorithm
+            See http://www.isthe.com/chongo/tech/comp/fnv/#FNV-1
+            </summary>
+        </member>
+        <member name="T:Microsoft.SegmentRelevance.ScopeLib.Util.LogEntry">
+            <summary>
+            Represents a TraceLevel and log string tuple.  Immutable.<br/>
+            Implementation Note: Should be an internal class, but UDT serialization requires public classes.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SegmentRelevance.ScopeLib.Util.LogEntry.TraceLevel">
+            <summary>
+            TraceLevel corresponding to this log entry.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SegmentRelevance.ScopeLib.Util.LogEntry.Log">
+            <summary>
+            The actual log entry
+            </summary>
+        </member>
+        <member name="M:Microsoft.SegmentRelevance.ScopeLib.Util.LogEntry.#ctor(System.Diagnostics.TraceLevel,System.String,System.Object[])">
+            <summary>
+            Creates an instance of this class.
+            </summary>
+            <param name="traceLevel"><see cref="P:Microsoft.SegmentRelevance.ScopeLib.Util.LogEntry.TraceLevel"/> associated with this entry.</param>
+            <param name="format">A composite format string.</param>
+            <param name="args">An object array that contains zero or more objects to format.</param>
+        </member>
+        <member name="T:Microsoft.SegmentRelevance.ScopeLib.Util.ComparisonComparer`1">
+            <summary>
+            Encapsulates a Comparison delegate into an IComparer.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SegmentRelevance.ScopeLib.Util.ComparisonComparer`1.#ctor(System.Func{`0,`0,System.Int32})">
+            <summary>
+            Declare a new ComparisonComparer.
+            </summary>
+            <param name="comparison">Delegate to use internally for comparison.</param>
+        </member>
+        <member name="M:Microsoft.SegmentRelevance.ScopeLib.Util.ComparisonComparer`1.Compare(`0,`0)">
+            <summary>
+            Implementation of <see cref="M:System.Collections.Generic.IComparer`1.Compare(`0,`0)"/>.  Delegates to comparison delegate.
+            </summary>
+            <param name="first">First item being compared.</param>
+            <param name="second">Second item being compared.</param>
+            <returns>comparison(first, second), where comparison is the delegate this class is initialized with.</returns>
+        </member>
+        <member name="T:Microsoft.SegmentRelevance.ScopeLib.Util.MaxHeap`1">
+            <summary>
+            Straightforward implementation of a binary MaxHeap.
+            A heap is most often used as a Priority Queue, so the interface matches that of a queue.
+            This class is internal to ScopeLib.  Its interface is not designed well enough for public consumption.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SegmentRelevance.ScopeLib.Util.MaxHeap`1.#ctor(System.Collections.Generic.IComparer{`0},System.Collections.Generic.List{`0})">
+            <summary>
+            Clears the current contents of the heap and builds a new heap with the given list.
+            </summary>
+            <param name="comparer">Comparer to use to compare heap elements</param>
+            <param name="list">Contents of the heap at the end of this method.</param>
+        </member>
+        <member name="P:Microsoft.SegmentRelevance.ScopeLib.Util.MaxHeap`1.Count">
+            <summary>
+            Number of items in the Heap
+            </summary>
+        </member>
+        <member name="M:Microsoft.SegmentRelevance.ScopeLib.Util.MaxHeap`1.Enqueue(`0)">
+            <summary>
+            Add an element to the heap
+            </summary>
+        </member>
+        <member name="M:Microsoft.SegmentRelevance.ScopeLib.Util.MaxHeap`1.Dequeue">
+            <summary>
+            Removes and returns the maximum element in the heap
+            </summary>
+        </member>
+        <member name="M:Microsoft.SegmentRelevance.ScopeLib.Util.MaxHeap`1.Peek">
+            <summary>
+            Returns the maximum element in the heap without removing it.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.SegmentRelevance.ScopeLib.Util.MaxHeap`1.ReplaceTop(`0)">
+            <summary>
+            Equivalent to heap.Pop();heap.Push(x) but more efficient for replace scenarios.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SegmentRelevance.ScopeLib.Util.MaxHeap`1.ToSortedList">
+            <summary>
+            Returns the elements in the heap in an ascending list.  The heap itself is unaffected.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.SegmentRelevance.ScopeLib.Util.MaxHeap`1.UpHeap(System.Int32)">
+            <summary>
+            Swaps current with parent until the heap property is assured (parent > children)
+            </summary>
+        </member>
+        <member name="M:Microsoft.SegmentRelevance.ScopeLib.Util.MaxHeap`1.DownHeap(System.Int32)">
+            <summary>
+            Swaps current with largest child until the heap property is assured (parent > children).
+            </summary>
+            <param name="i"></param>
+        </member>
+        <member name="T:Microsoft.SegmentRelevance.ScopeLib.Util.IndexedItem`1">
+            <summary>
+            Assosiates an item with an index.  Effectively a KeyValuePair&lt;int, T&gt;, but Scope cannot handle KeyValuePair.
+            This class is immutable.
+            </summary>
+            <typeparam name="T">Type being wrapped by the IndexedItem</typeparam>
+        </member>
+        <member name="M:Microsoft.SegmentRelevance.ScopeLib.Util.IndexedItem`1.#ctor(System.Int32,`0)">
+            <summary>
+            Create a new instance of IndexedItem with given parameters
+            </summary>
+            <param name="index">The index associated with this item.</param>
+            <param name="item">The item being wrapped.</param>
+        </member>
+        <member name="P:Microsoft.SegmentRelevance.ScopeLib.Util.IndexedItem`1.Index">
+            <summary>
+            Index associated with the wrapped item.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SegmentRelevance.ScopeLib.Util.IndexedItem`1.Item">
+            <summary>
+            The Item being wrapped.
+            </summary>
+        </member>
+        <member name="T:Microsoft.SegmentRelevance.ScopeLib.Util.LazySplitString">
+            <summary>
+            Represents a Lazily split string.  Supports indexed retrival of split entries, evaluating the split
+            only upto the latest requested index.
+            Split indexes are cached internally but retrieved results are not - every retrieval results in a .Substring call.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SegmentRelevance.ScopeLib.Util.LazySplitString.#ctor(System.String,System.StringSplitOptions)">
+            <summary>
+            Initialize some variables
+            </summary>
+            <param name="str">String being split</param>
+            <param name="options">StringSplitOptions for this call</param>
+        </member>
+        <member name="P:Microsoft.SegmentRelevance.ScopeLib.Util.LazySplitString.Item(System.Int32)">
+            <summary>
+            Splits the string upto index (if needed), and returns the indexed element.
+            This method will throw if there are not enough split entries.  If this is an issue, use GetValueOrDefault.
+            </summary>
+            <param name="index">Requested split entry index.</param>
+            <returns>Split entry at this index</returns>
+        </member>
+        <member name="M:Microsoft.SegmentRelevance.ScopeLib.Util.LazySplitString.GetValueOrDefault(System.Int32,System.String)">
+            <summary>
+            Returns the split entry at the requested index, or defaultValue if there aren't enough split entries
+            to satisfy the request.
+            </summary>
+            <param name="index">Requested split entry index.</param>
+            <param name="defaultValue">Value to return if not enough split entries exist to accomodate the request.</param>
+            <returns>Split entry at requested index if possible, defaultValue otherwise.</returns>
+        </member>
+        <member name="M:Microsoft.SegmentRelevance.ScopeLib.Util.LazySplitString.Count">
+            <summary>
+            Number of split entries from the original string.
+            Note: This is a potentially expensive operation as it processes delimiter indices for the entire string.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.SegmentRelevance.ScopeLib.Util.LazySplitString.ComputeAll">
+            <summary>
+            Computes split indices for the entire string.
+            </summary>
+        </member>
+        <member name="T:Microsoft.SegmentRelevance.ScopeLib.Util.Throw">
+            <summary>
+            Utility class to throw exceptions
+            </summary>
+        </member>
+        <member name="T:Microsoft.SegmentRelevance.ScopeLib.Util.TopNHeap`1">
+            <summary>
+            Implements a heap trimmed to N elements, in ascending order.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SegmentRelevance.ScopeLib.Util.TopNHeap`1.Count">
+            <summary>
+            Number of Items in TopNHeap.  This will never exceed n.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SegmentRelevance.ScopeLib.Util.TopNHeap`1.Enqueue(`0)">
+            <summary>
+            If Count &lt; N, adds x to the heap, else if x &lt; max element in the heap, replaces the max element with x.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SegmentRelevance.ScopeLib.Util.TopNHeap`1.Enqueue(`0,System.Lazy{`0})">
+            <summary>
+            If Count &lt; N, adds elementSelector.Value to the heap, 
+            else if x &lt; max element in the heap, replaces the max element with elementSelector(x).
+            This version is useful in scenarios where x can be used for comparison, but the value to be retained (if any)
+            is the result of a potentially expensive operation.  For example, Row.Clone();
+            Returns replaced item if any (including compareAgainst), otherwise default(T).
+            </summary>
+        </member>
+        <member name="T:Microsoft.SegmentRelevance.ScopeLib.PivotReducer">
+             <summary>
+             Converts rows to columns based on values of a Pivot column<br/>
+             SQL equivalency: <c>PIVOT(AGG(Value) FOR Pivot IN (pivotValues))</c> -> <c>PivotReducer("-pivotCol", "{pivotCol}", "-in", "{pivotValues})</c>
+             <br/>
+             <b>Args</b>: <i>-pivotCol {pivotColName} (-inCount {NumPivotValuesToTrack} | -in {PivotValuesToTrack}) -valueCols {valueColSpecs} -valueColsNames [{valueColsNamesSpecs}]</i><br/>
+             </summary>
+             <remarks>
+             <b>Args</b>: <i>-pivotCol {pivotColName} (-inCount {NumPivotValuesToTrack} | -in {PivotValuesToTrack}) -valueCols {valueColSpecs} -valueColsNames [{valueColsNamesSpecs}]</i>
+              <list type="bullet">
+               <item><i>-pivotCol</i><br/>
+                     The column whose distinct values are to be pivoted to become columns.<br/>
+                     Any type that implements <c>Equals</c> can be used as a pivot.</item>
+               <item><i>-inCount</i><br/>
+                     The # of distinct values of the Pivot column to convert to columns.  Columns will be named {ValueCol}_{Agg}_1 - {ValueCol}_{Agg}_N unless otherwise specified by -valueColsName
+                <list type="bullet"><item><i>numPivotValuesToTrack</i> - Number of distinct Pivot values to track.  The first N values encountered will be tracked to create columns</item></list></item>
+               <item><i>-in</i><br/>
+                     Comma-separated list of Pivot values (strings) to convert to columns.  Values are trimmed internally.<br/>
+                     These are the values that would would be listed in SQL's IN - from <c>PIVOT(AGG(Value) FOR Pivot IN (...))</c></item>
+               <item><i>-valueCols</i><br/>
+                     Specify the columns to aggregate in the pivoted cells.</item>
+                <list type="bullet">
+                 <item><i>valueColSpecs</i> - comma-separated ValueColName:AggType.<br/>
+                 <i>Supported Aggregations</i>
+                  <list type="bullet">
+                   <item><i>AVG</i> - Average of non-null values.  {(Nullable)? Numeric Type} -> <c>double?</c></item>
+                   <item><i>COUNT</i> - Count of non-null values.  {Type} --> <c>long</c></item>
+                   <item><i>FIRST</i> - Value from some (non-deterministic) row  {Type} -> Same {Type}</item>
+                   <item><i>LIST</i> - IEnumerable&lt;T&gt; of all values for built-in SCOPE types, IEnumerable&lt;object&gt; for UDTs</item>
+                   <item><i>MAX</i> - Max of non-null values.  {[Nullable] Numeric Type} -> {Nullable Same Type}</item>
+                   <item><i>MIN</i> - Min of non-null values.  {[Nullable] Numeric Type} -> {Nullable Same Type}</item>
+                   <item><i>SUM</i> - Sum of non-null values.  {[Nullable] Numeric Type} -> {Nullable Numeric Type}</item>
+                   <item><i>STDEV</i> - Sample Standard Deviation of non-null values.  {[Nullable] Numeric Type} -> <c>double?</c></item>
+                   <item><i>VAR</i> - Sample Variance of non-null values.  {[Nullable] Numeric Type} -> <c>double?</c></item>
+                  </list>
+                 </item>
+                </list>
+               <item><i>valueColsNames</i><br/>
+                     Specify the suffixes of pivoted output column names.  Columns will be named {ValueCol}_{Agg}_{Suffix}.</item>
+                <list type="bullet">
+                 <item><i>Unspecified</i> - Suffix = corresponding PivotValue from '-in'.  Ineligible with '-inCount'</item>
+                 <item><i>List</i> - Comma-separated list of suffixes.  Can be used with '-inCount' or '-in'</item>
+                 <item><i>RegexList</i> - Comma-separated list of {PivotValueRegexMap}.  Ineligible with '-inCount'
+                  <item><i>PivotValueRegexMap</i> - {pivotValueRegex:pivotedColNameSuffix} comma-separated pairs - optionally specified as regex replacements.
+                   All PivotValues must match some pair. 
+                  </item>
+                 </item>
+                </list>
+              </list>
+              <b>Usage Notes</b>
+              <list type="bullet">
+               <item><i>-in</i> - without PRESORT.  Example: <c>PivotReducer("-pivotCol", "Pivot", "-in", "AA, BB", "-valueCols", "Val:COUNT")</c></item>
+               <item><i>-inCount</i> - with PRESORT PivotCol.  Example: <c>PivotReducer("-pivotCol", "Pivot", "-inCount", "3", "-valueCols", "Val:SUM") PRESORT Pivot</c></item>
+               <item>PivotReducer returns <c>FIRST(nonValueCol)</c> for every column not in valueCols or pivotCol.<br/>
+               These should only be the reducer keys, so all columns except the reducer keys should be present in pivotCol or valueCols.
+               </item>
+              </list>
+              <b>Justification</b><br/>
+              <i><b>Note</b> - This reducer has been tested extensively but is quite complicated - report any bugs to scopelibdisc.</i><br/>
+              <i><b>Note</b> - This operator is not immediately intuitive - examples should be particularly helpful.</i><br/>
+              A pivot operation can be obtained via a list of CASE statements.  Using this reducer can be more convenient and succinct<br/><br/>
+             </remarks>
+             <example>
+              <code>
+               // Example 1 - http://msdn.microsoft.com/en-us/library/ms177410(v=SQL.105).aspx, BASIC PIVOT
+               /// #REGION SQL
+               -- Pivot table with one row and five columns
+               SELECT 'AverageCost' AS Cost_Sorted_By_Production_Days, [0], [1], [2], [3], [4]
+               FROM (
+                 SELECT DaysToManufacture, StandardCost 
+                 FROM Production.Product
+               ) AS SourceTable
+                 PIVOT (
+                     AVG(StandardCost)
+                     FOR DaysToManufacture IN ([0], [1], [2], [3], [4])
+                 ) AS PivotTable;
+               /// #ENDREGION SQL
+               
+               /// #REGION SCOPE
+               /// #REGION SCOPE.OldWay - explicit case statement
+               data = SELECT DaysToManufacture, StandardCost FROM product;
+               pivoted =
+                 SELECT 
+                     AVG(IF(DaysToManufacture == 0, StardardCost, (int?)null)) AS StandardCost_Avg_1
+                     , AVG(IF(DaysToManufacture == 1, StardardCost, (int?)null)) AS StandardCost_Avg_2
+                     , AVG(IF(DaysToManufacture == 2, StardardCost, (int?)null)) AS StandardCost_Avg_3
+                     , AVG(IF(DaysToManufacture == 3, StardardCost, (int?)null)) AS StandardCost_Avg_4
+                     , AVG(IF(DaysToManufacture == 4, StardardCost, (int?)null)) AS StandardCost_Avg_5
+                 FROM data
+               /// #ENDREGION SCOPE.OldWay
+             
+               /// #REGION SCOPE.NewWay - use PivotReducer
+               data = SELECT DaysToManufacture, StandardCost FROM product;
+               pivoted = 
+                   REDUCE data ALL 
+                   USING PivotReducer("-pivotCol", "DaysToManufacture", "-inCount", "5", "-valueCols", "StandardCost:AVG") 
+                   PRESORT DaysToManufacture;
+               /// #ENDREGION SCOPE.NewWay
+               /// #ENDREGION SCOPE
+              </code>
+            
+              <code>
+               // Example 2 - http://msdn.microsoft.com/en-us/library/ms177410(v=SQL.105).aspx, COMPLEX PIVOT
+               /// #REGION SQL
+               SELECT VendorID, [250] AS Emp1, [251] AS Emp2, [256] AS Emp3, [257] AS Emp4, [260] AS Emp5
+               FROM (
+                 SELECT PurchaseOrderID, EmployeeID, VendorID
+                 FROM Purchasing.PurchaseOrderHeader
+               ) p
+                 PIVOT
+                 (
+                   COUNT (PurchaseOrderID)
+                   FOR EmployeeID IN ( [250], [251], [256], [257], [260] )
+                 ) AS pvt
+               ORDER BY pvt.VendorID;
+               /// #ENDREGION SQL
+               
+               /// #REGION SCOPE
+               data = SELECT PurchaseOrderId, EmployeeId, VendorId FROM purchaseOrderHeader
+               pivoted = 
+                 REDUCE data 
+                 ON VendorId 
+                 USING PivotReducer("-pivotCol", "EmployeeId", "-in", "250, 251, 256, 257, 260", "-valueCols", "PurchaseOrderId:COUNT", "-valueColsNames", "Emp1, Emp2, Emp3, Emp4, Emp5");
+               /// #ENDREGION SCOPE
+               </code>
+            
+               <code>
+               // Example 3 - Pivot multiple &lt;Value Column, Aggregation&gt; tuples
+               data = SELECT Revenue, PurchaseOrderId, EmployeeId, VendorId FROM purchaseOrderHeader
+               pivoted = 
+                 REDUCE data 
+                 ON VendorId 
+                 USING PivotReducer("-pivotCol", "EmployeeId", "-in", "AA, BB", "-valueCols", "PurchaseOrderId:COUNT, Revenue:SUM, Revenue:AVG", "-valueColsNames")
+                 //PRODUCE VendorId, PurchaseOrderId_Count_AA, Revenue_Sum_AA, Revenue_Avg_AA, PurchaseOrderId_Count_BB, Revenue_Sum_BB, Revenue_Avg_BB
+                 ;
+               /// #ENDREGION SCOPE
+               </code>
+               
+               <code>
+               // Example 4 - Map pivoted column names from pivot values
+               data = SELECT Revenue, PurchaseOrderId, EmployeeId, VendorId FROM purchaseOrderHeader
+               pivoted = 
+                 REDUCE data 
+                 ON VendorId 
+                 USING PivotReducer("-pivotCol", "EmployeeId", "-in", "AA_1, BB_2", "-valueCols", "Revenue:Avg", "-valueColsNames", @"(.*)_\d+:$1")
+                 //PRODUCE VendorId, Revenue_Avg_AA, Revenue_Avg_BB 
+                 ;
+               pivoted = PROCESS USING ColumnProcessor("-rename", @".*_([^_]+):$1"); //PRODUCE VendorId, AA, BB
+               /// #ENDREGION SCOPE
+               </code>
+               
+               <code>
+                 // Standard ScopeLib header (point to your location)
+                 REFERENCE "Relevance.ScopeLib.dll";
+                 RESOURCE "Relevance.ScopeLib.pdb",
+                          "Relevance.ScopeLib.xml";
+                 USING Microsoft.SegmentRelevance.ScopeLib;
+               </code>
+             </example>
+             <exception cref="T:System.ArgumentException">
+               Thrown during script compilation, Args are malformed:
+               <list type="bullet">
+                 <item>Specified column does not exist in input schema</item>
+                 <item>Unrecognized args</item>
+               </list>
+             </exception>
+             <seealso cref="T:Microsoft.SegmentRelevance.ScopeLib.UnpivotProcessor"/>
+        </member>
+        <member name="M:Microsoft.SegmentRelevance.ScopeLib.PivotReducer.ParseArgs(System.String[],ScopeRuntime.Schema,System.Boolean)">
+            <summary>
+            Parses supplied args.  Wraps any exceptions into a consistent usage exception.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SegmentRelevance.ScopeLib.PivotReducer.AllowColumnPruning">
+            <summary>SCOPE may prune input columns before passing Rows to this Processor - the pivot column is not eligible.</summary>
+        </member>
+        <member name="P:Microsoft.SegmentRelevance.ScopeLib.PivotReducer.IsRecursive">
+            <summary>This reducer cannot be recursive since it alters schema</summary>
+        </member>
+        <member name="P:Microsoft.SegmentRelevance.ScopeLib.PivotReducer.RunSingleThreaded">
+            <summary>This processor can be run multi-threaded.</summary>
+        </member>
+        <member name="M:Microsoft.SegmentRelevance.ScopeLib.PivotReducer.Produces(System.String[],System.String[],ScopeRuntime.Schema)">
+            <summary>
+            Produces an output schema based on the input schema and args.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SegmentRelevance.ScopeLib.PivotReducer.Reduce(ScopeRuntime.RowSet,ScopeRuntime.Row,System.String[])">
+            <summary>
+            Pivots the input while respecting column pruning
+            </summary>
+        </member>
+        <member name="T:Microsoft.SegmentRelevance.ScopeLib.PivotReducer.Agg">
+            <summary>
+            aggregations supported by PivotReducer.
+            </summary>
+        </member>
+        <member name="T:Microsoft.SegmentRelevance.ScopeLib.PivotReducer.OutCol">
+            <summary>
+            Information about a pivoted output column
+            </summary>
+        </member>
+        <member name="P:Microsoft.SegmentRelevance.ScopeLib.PivotReducer.OutCol.OutputIndex">
+            <summary>Index of this column in the output schema</summary>
+        </member>
+        <member name="P:Microsoft.SegmentRelevance.ScopeLib.PivotReducer.OutCol.Suffix">
+            <summary>Suffix of the column name</summary>
+        </member>
+        <member name="P:Microsoft.SegmentRelevance.ScopeLib.PivotReducer.OutCol.ValueCol">
+            <summary>Corresponding input column and aggregation</summary>
+        </member>
+        <member name="T:Microsoft.SegmentRelevance.ScopeLib.PivotReducer.ValueCol">
+            <summary>
+            Represents all "ColName:AGG" from args.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SegmentRelevance.ScopeLib.PivotReducer.ValueCol.InputIndex">
+            <summary>Index of this column in the input schema</summary>
+        </member>
+        <member name="P:Microsoft.SegmentRelevance.ScopeLib.PivotReducer.ValueCol.InputClrType">
+            <summary>CLR Type of the input column as determined by SCOPE</summary>
+        </member>
+        <member name="P:Microsoft.SegmentRelevance.ScopeLib.PivotReducer.ValueCol.Agg">
+            <summary>Aggregation operation to perform to create output columns</summary>
+        </member>
+        <member name="P:Microsoft.SegmentRelevance.ScopeLib.PivotReducer.ValueCol.DefaultValue">
+            <summary>Default Value to assign for this column</summary>
+        </member>
+        <member name="T:Microsoft.SegmentRelevance.ScopeLib.PivotReducer.PivotManager">
+            <summary>
+            Maps each ValueCol to an AggManager
+            </summary>
+        </member>
+        <member name="T:Microsoft.SegmentRelevance.ScopeLib.PivotReducer.AggManager">
+            <summary>
+            For 1 ValueCol specification, maps each pivot value to an Aggregator instance.
+            Aggregator instances are created up from when inCount is specified.
+            They are created lazily when list of pivot values are specified.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SegmentRelevance.ScopeLib.PivotReducer.AggManager.GetAgg(System.Object)">
+            <summary>
+            Called when iterating through the input
+            </summary>
+        </member>
+        <member name="M:Microsoft.SegmentRelevance.ScopeLib.PivotReducer.AggManager.GetAgg(System.String)">
+            <summary>
+            Called to fill out the output
+            </summary>
+        </member>
+        <member name="T:Microsoft.SegmentRelevance.ScopeLib.UnpivotProcessor">
+            <summary>
+            Unpivots specified columns - converts columns to rows.<br/>
+            SQL equivalency: <c>UNPIVOT(Value FOR Pivot IN (cols))</c> --> <c>UnpivotProcessor("-notIn", "{colsComplement})</c> (or <c>UnpivotProcessor("-in", "{cols})</c>)
+            <br/>
+            <b>Args</b>: <i>[-pivotCol {pivotColName}][-valueCol {valueColName}][-notIn {colsToNotUnpivot} | -in {colsToUnpivot}]</i><br/>
+            </summary>
+            <remarks>
+            See http://msdn.microsoft.com/en-us/library/ms177410(v=SQL.105).aspx for SQL's UNPIVOT operator.<br/>
+            <b>Args</b>: <i>[-pivotCol {pivotColName}][-valueCol {valueColName}][-notIn {colsToNotUnpivot} | -in {colsToUnpivot}]</i><br/>
+             <list type="bullet">
+              <item><i>-pivotCol</i><br/>
+                    Specify the output Pivot column name.  Default = 'Pivot'.</item>
+              <item><i>-valueCol</i><br/>
+                    Specify the output Value column name.  Default = 'Value'.</item>
+              <item><i>-notIn</i><br/>
+                    Comma-separated list of columns to <b>not</b> unpivot.  Tends to be handier than <i>-in</i>.<br/>
+                    This are the columns that would <b>not</b> be listed in SQL's IN - from <c>UNPIVOT(Value FOR Pivot IN (...))</c>
+               <list type="bullet"><item><i>colsToNotUnpivot</i> - comma-separated column names</item></list></item>
+              <item><i>-in</i><br/>
+                    Comma-separated list of columns to unpivot.
+                    These are the columns that would would be listed in SQL's IN - from <c>UNPIVOT(Value FOR Pivot IN (...))</c>
+               <list type="bullet"><item><i>colsToNotUnpivot</i> - comma-separated column names</item></list></item>
+             </list>
+             <b>Justification</b><br/>
+             An Unpivot operation can be emulated with a series of UNION ALLs in SCOPE.  Reasons for using this processor:<br/>
+             <list type="bullet">
+              <item>SCOPE computes all aggregates independently (Example 1) which is less efficient than 
+                    computing all aggregates together and unpivoting them to get Name/Value pairs.</item>
+              <item>The processor may allow cleaner and more succinct code.</item>
+             </list>
+            </remarks>
+            <example>
+             <code>
+              // Example 1 - computing stats.
+              /// #REGION OldWay - farms out to 3 separate aggregations.
+              stats =
+                SELECT "PVs" AS Name, COUNT() AS Value FROM data
+                UNION ALL SELECT "PVsWithClicks" AS Name, COUNTIF(Clicks > 0) AS Value FROM data
+                UNION ALL SELECT "TotalClicks" AS Name, SUM(Clicks) AS Value FROM data
+                ;
+              /// #ENDREGION OldWay
+            
+              /// #REGION NewWay - computed in one aggregation stage.
+              aggStats =
+                SELECT
+                    COUNT() AS PVs
+                    , COUNTIF(Clicks > 0) AS PVsWithClicks
+                    , SUM(Clicks) AS TotalClicns
+                FROM data;
+              
+              stats = PROCESS aggStats USING UnpivotProcessor;
+              /// #ENDREGION NewWay
+             </code>
+             <code>
+              // Example 2 - http://msdn.microsoft.com/en-us/library/ms177410(v=SQL.105).aspx
+              /// #REGION SQL
+              // --Unpivot the table.
+              // SELECT VendorID, Employee, Orders
+              // FROM 
+              //    (SELECT VendorID, Emp1, Emp2, Emp3, Emp4, Emp5
+              //    FROM pvt) p
+              // UNPIVOT
+              //    (Orders FOR Employee IN 
+              //       (Emp1, Emp2, Emp3, Emp4, Emp5)
+              // )AS unpvt;
+              /// #ENDREGION SQL
+              
+              /// #REGION SCOPE
+              vendorOrders = SELECT VendorId, Emp1, Emp2, Emp3, Emp4, Emp5 FROM data;
+              employeeOrders = PROCESS vendor USING UnpivotProcessor("-valueCol", "Orders", "-pivotCol", "Employee", "-notIn", "VendorId");
+              /// #REGION SCOPE
+              </code>
+              <code>
+                // Standard ScopeLib header (point to your location)
+                REFERENCE "Relevance.ScopeLib.dll";
+                RESOURCE "Relevance.ScopeLib.pdb",
+                         "Relevance.ScopeLib.xml";
+                USING Microsoft.SegmentRelevance.ScopeLib;
+              </code>
+            </example>
+            <exception cref="T:System.ArgumentException">
+              Thrown during script compilation, Args are malformed:
+              <list type="bullet">
+                <item>Specified column does not exist in input schema</item>
+                <item>Unrecognized args</item>
+              </list>
+            </exception>
+            <seealso cref="T:Microsoft.SegmentRelevance.ScopeLib.PivotReducer"/>
+        </member>
+        <member name="M:Microsoft.SegmentRelevance.ScopeLib.UnpivotProcessor.ParseArgs(System.String[],ScopeRuntime.Schema,System.Boolean)">
+            <summary>
+            Parses supplied args.  Wraps any exceptions into a consistent usage exception.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SegmentRelevance.ScopeLib.UnpivotProcessor.AllowColumnPruning">
+            <summary>SCOPE may prune input columns before passing Rows to this Processor - only columns not being unpivoted are eligible.</summary>
+        </member>
+        <member name="P:Microsoft.SegmentRelevance.ScopeLib.UnpivotProcessor.RowLevelProcessor">
+            <summary>This is a RowLevelProcessor - each individual input row is sufficient to create an output row.</summary>
+        </member>
+        <member name="P:Microsoft.SegmentRelevance.ScopeLib.UnpivotProcessor.RunSingleThreaded">
+            <summary>This processor can be run multi-threaded.</summary>
+        </member>
+        <member name="M:Microsoft.SegmentRelevance.ScopeLib.UnpivotProcessor.Produces(System.String[],System.String[],ScopeRuntime.Schema)">
+            <summary>
+            Initializes the output schema as [input schema - indicated columns].
+            </summary>
+        </member>
+        <member name="M:Microsoft.SegmentRelevance.ScopeLib.UnpivotProcessor.Process(ScopeRuntime.RowSet,ScopeRuntime.Row,System.String[])">
+            <summary>
+            Unpivots the input while respecting column pruning
+            </summary>
+        </member>
+        <member name="T:Microsoft.SegmentRelevance.ScopeLib.CumulativeSumReducer">
+            <summary>
+            Appends columns 'Cumulative{InputColToSum}' containing the cumulative sums of the desired input columns.
+            
+            <para>
+            <b>Args</b>: <i>{InputColumnsToSum}</i>
+            </para>
+            </summary>
+            <remarks>
+            <b>Args</b>: <i>{InputColumnsToSum}</i><br/>
+            <br/>
+            <list type="bullet">
+              <item><i>{InputColumnsToSum}</i><br/>
+                    Comma-separated list of {InputColSpec} to compute cumulative sum for.  {InputColSpec} format:<br/>
+                    <list type="bullet">
+                      <item>{InputColName} - Computes cumulative sum in a new column named Cumulative{InputColName}</item>
+                      <item>{InputColName}:{OutputColName} - Computes cumulative sum in a new column named {OutputColName}</item>
+                    </list>
+                    {ColumnToSum} Type-> CumulativeSum Type mapping:<br/>
+                    <list type="bullet">
+                      <item>decimal -> decimal</item>
+                      <item>float/double -> double</item>
+                      <item>short/int/long -> long</item>
+                      <item>ushort/uint/ulong -> ulong</item>
+                    </list>
+            </item></list>
+            <br/>
+            <b>Notes</b><br/>
+            <list type="bullet">
+              <item>This class can be used (potentially in conjunction with <see cref="T:Microsoft.SegmentRelevance.ScopeLib.AddRandomNumberProcessor"/>) to assign unique (sequential) Ids to rows - see ScopeLib Samples for example scripts.</item>
+              <item><i>This class will be obsolete if and when windowing functions are added to SCOPE.</i></item>
+            </list>
+            </remarks>
+            <example>
+              <code>
+                // Output Schema is Query, Clicks, Time, CumulativeClicks, ImpressionsSoFar
+                // CumulativeClicks contains cumulative clicks, and ImpressionsSoFar contains cumulative Impressions.
+                data = SELECT Query, Clicks, Impressions, Date FROM input;
+                cs = REDUCE data ON Query USING CumulativeSumReducer("Clicks, Impressions:ImpressionsSoFar") PRESORT Date;
+              </code>
+              <code>
+                // Standard ScopeLib header (point to your location)
+                REFERENCE "Relevance.ScopeLib.dll";
+                RESOURCE "Relevance.ScopeLib.pdb",
+                         "Relevance.ScopeLib.xml";
+                USING Microsoft.SegmentRelevance.ScopeLib;
+              </code>
+            </example>
+            <exception cref="T:System.ArgumentException">
+              Thrown during script compilation, Args are malformed:
+              <list type="bullet">
+                <item>Specified column does not exist in input schema</item>
+                <item>Unrecognized args</item>
+              </list>
+            </exception>
+        </member>
+        <member name="M:Microsoft.SegmentRelevance.ScopeLib.CumulativeSumReducer.ParseArgs(System.String[],ScopeRuntime.Schema,System.Boolean)">
+            <summary>Parses args and wraps any exception with usage info.</summary>
+        </member>
+        <member name="M:Microsoft.SegmentRelevance.ScopeLib.CumulativeSumReducer.ParseArgsInternal(System.String[],ScopeRuntime.Schema,System.Boolean)">
+            <summary>Parses args into Args instance.</summary>
+        </member>
+        <member name="M:Microsoft.SegmentRelevance.ScopeLib.CumulativeSumReducer.Reduce(ScopeRuntime.RowSet,ScopeRuntime.Row,System.String[])">
+            <summary>
+            Adds CumulativeSum to each row in the input in order.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SegmentRelevance.ScopeLib.CumulativeSumReducer.AllowColumnPruning">
+            <summary>Reducer permits column pruning</summary>
+        </member>
+        <member name="P:Microsoft.SegmentRelevance.ScopeLib.CumulativeSumReducer.IsRecursive">
+            <summary>Reducer does not filter, and thus isn't recursive (no benefit)</summary>
+        </member>
+        <member name="P:Microsoft.SegmentRelevance.ScopeLib.CumulativeSumReducer.RunSingleThreaded">
+            <summary>Reducer is thread-safe</summary>
+        </member>
+        <member name="M:Microsoft.SegmentRelevance.ScopeLib.CumulativeSumReducer.Produces(System.String[],System.String[],ScopeRuntime.Schema)">
+            <summary>
+            Adds a CumulativeSum column to the input schema.  Compile-time validates the usage.
+            </summary>
+        </member>
+        <member name="T:Microsoft.SegmentRelevance.ScopeLib.ScopeRandom">
+            <summary>
+            Random class for use with SCOPE - adheres to SCOPE's vertex determinism requirement while providing means to avoid correlation.
+            </summary>
+            <remarks>
+            ScopeRandom allows augmenting the random seed via Row instances.<br/>
+            SCOPE's vertex determinism mandates static initial seeds, which can cause correlation.  Correlation should be avoided by augmenting the initial static seed with one or more rows from the input to your UDO.<br/>
+            This class is deliberately not thread-safe (any multi-threaded access implies disallowed non-determinism)<br/>
+            <i><b>Note:</b> Using this class directly should be rare.  Most random sampling tasks can be satisfied by <see cref="T:Microsoft.SegmentRelevance.ScopeLib.TopNReducer"/> in "-random" mode; barring that, by <see cref="T:Microsoft.SegmentRelevance.ScopeLib.AddRandomNumberProcessor"/></i>
+            </remarks>
+            <example>
+             <code>
+            /// &lt;summary&gt;
+            /// Adds a column Random with a random double to the input.
+            /// ARGS: {Seed}
+            /// - int seed to initialize the random variable.
+            /// &lt;/summary&gt;
+            public class AddRandomNumberProcessor : Processor
+            {
+                // Column indices for output schema
+                private static class O
+                {
+                    public static int Random = -1;
+                    
+                    private static void Init(Schema input)
+                    {
+                        this.Random = input.Count;
+                    }
+                }
+                
+                #region Args
+                private int ParseArgs(string[] args, Schema input)
+                {
+                    return Int32.Parse(args[0]);
+                }
+                #endregion Args
+                
+                public override Schema Produces(string[] columns, string[] args, Schema input)
+                {
+                    // Compile-time validate the args
+                    ParseArgs(args);
+                    
+                    var schema = input.CloneWithSource();
+                    schema.Add(new ColumnInfo("Random", typeof(double));
+                    O.Init(schema);
+                    
+                    return schema;
+                }
+                
+                public IEnumerable&lt;Row%gt; Process(RowSet input, Row output, string[] args)
+                {
+                    O.Init(output.Schema);
+                    var seed = ParseArgs(args);
+                    var rand = new ScopeRandom(seed);
+                    bool first = true;
+                    foreach (var row in input.Rows)
+                    {
+                        if (first)
+                        {
+                            first = false;
+                            rand.<see cref="M:Microsoft.SegmentRelevance.ScopeLib.ScopeRandom.AugmentSeed(ScopeRuntime.Row)"/>(row);
+                        }
+                        
+                        input.CopyTo(output);
+                        output[O.Random].Set(rand.NextDouble());
+                        
+                        yield return output;
+                    }
+                }
+            }
+             </code>
+            </example>
+        </member>
+        <member name="M:Microsoft.SegmentRelevance.ScopeLib.ScopeRandom.#ctor(System.Int32)">
+            <summary>
+            Initialize the Random Number Generator with a static seed.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SegmentRelevance.ScopeLib.ScopeRandom.Next">
+            <summary>
+            Returns a random number between 0 (inclusive) and Int32.MaxValue (exclusive)
+            </summary>
+        </member>
+        <member name="M:Microsoft.SegmentRelevance.ScopeLib.ScopeRandom.Next(System.Int32)">
+            <summary>
+            Returns a random number between 0 (inclusive) and maxValue (exclusive)
+            </summary>
+        </member>
+        <member name="M:Microsoft.SegmentRelevance.ScopeLib.ScopeRandom.Next(System.Int32,System.Int32)">
+            <summary>
+            Returns a random number between minValue (inclusive) and maxValue (exclusive)
+            </summary>
+        </member>
+        <member name="M:Microsoft.SegmentRelevance.ScopeLib.ScopeRandom.NextDouble">
+            <summary>
+            Returns a random double between 0.0 and 1.0
+            </summary>
+        </member>
+        <member name="M:Microsoft.SegmentRelevance.ScopeLib.ScopeRandom.NextBytes(System.Byte[])">
+            <summary>
+            Fills the elements of a specified array of bytes with random numbers.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SegmentRelevance.ScopeLib.ScopeRandom.AugmentSeed(ScopeRuntime.Row)">
+            <summary>
+            Uses the contents of the given row to update the internal random seed.
+            <b>Important</b>: Default behaviour is to use GetHashCode() on each column.
+            All column types must implement GetHashCode() such that row.GetHashCode() == row.Serialize().DeSerialize().GetHashCode().
+            </summary>
+        </member>
+        <member name="T:Microsoft.SegmentRelevance.ScopeLib.UdoLogger">
+            <summary>
+            Used to populate debugging logs, if any.  Call ToLog() to get an immutable UDT object with debug information.
+            This class is not thread-safe.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SegmentRelevance.ScopeLib.UdoLogger.AutoReset">
+            <summary>
+            Indicates whether the UdoLogger is set to automatically clear the log buffer after every <see cref="M:Microsoft.SegmentRelevance.ScopeLib.UdoLogger.ToLog(System.String,System.Diagnostics.TraceLevel,System.String)"/> call.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SegmentRelevance.ScopeLib.UdoLogger.#ctor(System.Diagnostics.TraceLevel,System.Boolean)">
+            <summary>
+            Construct a new UdoLogger
+            </summary>
+            <param name="cutoff">Only log items as or more important than cutoff.</param>
+            <param name="autoReset">Clean the log buffer after every ToLog() call.  True by default.</param>
+        </member>
+        <member name="M:Microsoft.SegmentRelevance.ScopeLib.UdoLogger.Log(System.Diagnostics.TraceLevel,System.String,System.Object[])">
+            <summary>
+            Log at the given TraceLevel.
+            </summary>
+            <param name="traceLevel">The <see cref="T:System.Diagnostics.TraceLevel"/> to log at.</param>
+            <param name="format">A composite format string.</param>
+            <param name="args">An object array that contains zero or more objects to format.</param>
+        </member>
+        <member name="M:Microsoft.SegmentRelevance.ScopeLib.UdoLogger.Verbose(System.String,System.Object[])">
+            <summary>
+            Log at <see cref="F:System.Diagnostics.TraceLevel.Verbose"/>.
+            </summary>
+            <param name="format">A composite format string.</param>
+            <param name="args">An object array that contains zero or more objects to format.</param>
+        </member>
+        <member name="M:Microsoft.SegmentRelevance.ScopeLib.UdoLogger.Info(System.String,System.Object[])">
+            <summary>
+            Log at <see cref="F:System.Diagnostics.TraceLevel.Info"/>.
+            </summary>
+            <param name="format">A composite format string.</param>
+            <param name="args">An object array that contains zero or more objects to format.</param>
+        </member>
+        <member name="M:Microsoft.SegmentRelevance.ScopeLib.UdoLogger.Warning(System.String,System.Object[])">
+            <summary>
+            Log at <see cref="F:System.Diagnostics.TraceLevel.Warning"/>.
+            </summary>
+            <param name="format">A composite format string.</param>
+            <param name="args">An object array that contains zero or more objects to format.</param>
+        </member>
+        <member name="M:Microsoft.SegmentRelevance.ScopeLib.UdoLogger.Error(System.String,System.Object[])">
+            <summary>
+            Log at <see cref="F:System.Diagnostics.TraceLevel.Error"/>.
+            </summary>
+            <param name="format">A composite format string.</param>
+            <param name="args">An object array that contains zero or more objects to format.</param>
+        </member>
+        <member name="M:Microsoft.SegmentRelevance.ScopeLib.UdoLogger.Reset">
+            <summary>
+            Resets the logger.  Use this method to start a new logging session (typically after calling <see cref="M:Microsoft.SegmentRelevance.ScopeLib.UdoLogger.ToLog(System.String,System.Diagnostics.TraceLevel,System.String)"/>)
+            when UdoLogger is initialized with AutoReset = false;
+            </summary>
+        </member>
+        <member name="M:Microsoft.SegmentRelevance.ScopeLib.UdoLogger.GetLog">
+            <summary>
+            Retrieves the log buffer.  In AutoReset mode, clears the buffer.
+            </summary>
+            <returns>Buffered logs.</returns>
+        </member>
+        <member name="M:Microsoft.SegmentRelevance.ScopeLib.UdoLogger.ToLog(System.String,System.Diagnostics.TraceLevel,System.String)">
+            <summary>
+            Flushes the log buffer to a UdoLog object.  If autoReset is true, clears the log buffer.
+            </summary>
+            <param name="id">Short description identifying the log.  A UDO should produce relatively few of these.</param>
+            <param name="rowStatus">Status of the row - Error, Warning, or Info.  Used to flag rows for removal or review.</param>
+            <param name="rawRow">Input row for extractors.</param>
+            <returns>A UdoLog object containing the log buffer and additional supplied data</returns>
+        </member>
+        <member name="M:Microsoft.SegmentRelevance.ScopeLib.UdoLogger.ToLog(System.String,System.Diagnostics.TraceLevel,Microsoft.SegmentRelevance.ScopeLib.UdoLog.RowSerializationSettings,ScopeRuntime.Row[])">
+            <summary>
+            Flushes the log buffer to a UdoLog object.  If autoReset is true, clears the log buffer.
+            </summary>
+            <param name="id">Short description identifying the log.  A UDO should produce relatively few of these.</param>
+            <param name="rowStatus">Status of the row - Error, Warning, or Info.  Used to flag rows for removal or review.</param>
+            <param name="rowSerializationSettings">Settings to use when internally serializing the row.</param>
+            <param name="inputRows">Input source rows being logged for.</param>
+            <returns>A UdoLog object containing the log buffer and additional supplied data</returns>
+        </member>
+        <member name="T:Microsoft.SegmentRelevance.ScopeLib.UdoLog">
+            <summary>
+            Represents logging information from a UDO.  This class is immutable.
+            </summary>
+        </member>
+        <member name="T:Microsoft.SegmentRelevance.ScopeLib.UdoLog.RowSerializationSettings">
+            <summary>
+            Settings to use when serializing a Row to string.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SegmentRelevance.ScopeLib.UdoLog.RowSerializationSettings.Default">
+            <summary>
+            Default settings instance.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SegmentRelevance.ScopeLib.UdoLog.RowSerializationSettings.#ctor">
+            <summary>
+            Declares a default settings instance.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SegmentRelevance.ScopeLib.UdoLog.RowSerializationSettings.Delimiter">
+            <summary>
+            The delimiter used to serialize Row columns.  Note that this is really just a char.  Default = "\t"
+            </summary>
+        </member>
+        <member name="P:Microsoft.SegmentRelevance.ScopeLib.UdoLog.RowSerializationSettings.DoubleToFloat">
+            <summary>
+            Whether to convert Double to Float for efficient storage.  Default = false;
+            </summary>
+        </member>
+        <member name="P:Microsoft.SegmentRelevance.ScopeLib.UdoLog.RowSerializationSettings.Escape">
+            <summary>
+            Whether to escape existing Delimiter/\r/\n/null instances.
+            See http://sharepoint/sites/cosmos/Cosmos%20User%20Documentation/DefaultTextExtractor.aspx for more information.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SegmentRelevance.ScopeLib.UdoLog.IsWarningOrLower(Microsoft.SegmentRelevance.ScopeLib.UdoLog)">
+            <summary>
+            Returns true if udoLog is null or has a RowStatus of Warning or less important (Info etc).
+            </summary>
+            <param name="udoLog">UdoLog object being analyzed</param>
+            <returns>Whether udoLog is null of has a RowStatus of Warning or less important.</returns>
+        </member>
+        <member name="M:Microsoft.SegmentRelevance.ScopeLib.UdoLog.IsInfoOrLower(Microsoft.SegmentRelevance.ScopeLib.UdoLog)">
+            <summary>
+            Returns true if udoLog is null or has a RowStatus of Info or less important.
+            </summary>
+            <param name="udoLog">UdoLog object being analyzed</param>
+            <returns>Whether udoLog is null of has a RowStatus of Info or less important.</returns>
+        </member>
+        <member name="P:Microsoft.SegmentRelevance.ScopeLib.UdoLog.RowStatus">
+            <summary>
+            Status of the Row of which this instace is a column.  Used to filter good/bad rows.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SegmentRelevance.ScopeLib.UdoLog.Id">
+            <summary>
+            Generic description.  This property is used for aggregating stats so should not have a large variety.
+            Example - for exceptions, use ExceptionType.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SegmentRelevance.ScopeLib.UdoLog.RawRows">
+            <summary>
+            The input(s) that caused the error, serialized as a string.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SegmentRelevance.ScopeLib.UdoLog.#ctor(System.String,System.Diagnostics.TraceLevel,System.Collections.Generic.List{Microsoft.SegmentRelevance.ScopeLib.Util.LogEntry},System.String)">
+            <summary>
+            Overload for Extractors.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SegmentRelevance.ScopeLib.UdoLog.#ctor(System.String,System.Diagnostics.TraceLevel,System.Collections.Generic.List{Microsoft.SegmentRelevance.ScopeLib.Util.LogEntry},Microsoft.SegmentRelevance.ScopeLib.UdoLog.RowSerializationSettings,ScopeRuntime.Row[])">
+            <summary>
+            Overload for non-Extractor UDOs, which can pass in the input row directly.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SegmentRelevance.ScopeLib.UdoLog.GetLogs(System.Diagnostics.TraceLevel)">
+            <summary>
+            Retrieves stored logs (if any) at the given or more important TraceLevel.
+            </summary>
+            <param name="traceLevel">Logs at traceLevel or more important are retrieved.  Default = TraceLevel.Verbose (returns all logs)</param>
+            <returns>All logs at traceLevel or more important.</returns>
+        </member>
+        <member name="M:Microsoft.SegmentRelevance.ScopeLib.UdoLog.Equals(System.Object)">
+            <summary>
+            Returns whether this instance equals the given object
+            </summary>
+            <param name="obj">Object being tested for equality with this.</param>
+            <returns>True if this <see cref="M:Microsoft.SegmentRelevance.ScopeLib.UdoLog.Equals(Microsoft.SegmentRelevance.ScopeLib.UdoLog)"/> obj.</returns>
+        </member>
+        <member name="M:Microsoft.SegmentRelevance.ScopeLib.UdoLog.Equals(Microsoft.SegmentRelevance.ScopeLib.UdoLog)">
+            <summary>
+            Returns true if this is considered Equal to other.
+            Currently only uses Id for equality.  This may be made more strict in the future.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SegmentRelevance.ScopeLib.UdoLog.GetHashCode">
+            <summary>
+            Returns a hashcode for this UdoLog instance.
+            </summary>
+        </member>
+        <member name="T:Microsoft.SegmentRelevance.ScopeLib.Extensions">
+            <summary>
+            Useful Scope-specific extensions.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SegmentRelevance.ScopeLib.Extensions.Index``1(System.Collections.Generic.IEnumerable{``0},System.Int32)">
+            <summary>
+            Applies startIndex-based indexing to the given IEnumerable.
+            </summary>
+            <typeparam name="T">Generic type of IEnumerable instance</typeparam>
+            <param name="source">Source IEnumerable</param>
+            <param name="startIndex">Number to start indexing at.  Defaults to 0-based indexing</param>
+            <returns>An IndexedItem with properties Position (int) and Item (T).</returns>
+        </member>
+        <member name="M:Microsoft.SegmentRelevance.ScopeLib.Extensions.Unindex``1(System.Collections.Generic.IEnumerable{Microsoft.SegmentRelevance.ScopeLib.Util.IndexedItem{``0}})">
+            <summary>
+            Extracts the underlying Items from a list of IEnumerable&lt;IndexedItem&lt;T&gt;&gt;
+            </summary>
+            <typeparam name="T">Generic type of IEnumerable instance</typeparam>
+            <param name="source">Source IEnumerable</param>
+            <returns>The wrapped Item without the accompanying index.</returns>
+            <example>
+             <code>
+             </code>
+            </example>
+        </member>
+        <member name="M:Microsoft.SegmentRelevance.ScopeLib.Extensions.SplitEnum(System.String,System.Char[])">
+            <summary>
+            Memory-efficient functional equivalent of string.Split that computes and returns split values on demand.
+            Results in a perf improvement if you do not need all split entries.
+            </summary>
+            <param name="str">Source string being split</param>
+            <param name="separator">Set of charactors to split by</param>
+            <returns>An IEnumerable containing each split value, in order.</returns>
+        </member>
+        <member name="M:Microsoft.SegmentRelevance.ScopeLib.Extensions.SplitEnum(System.String,System.Char[],System.StringSplitOptions)">
+            <summary>
+            Memory-efficient functional equivalent of string.Split that computes and returns split values on demand.
+            Results in a perf improvement if you do not need all split entries.
+            </summary>
+            <param name="str">Source string being split</param>
+            <param name="separator">Array of charactors to split by</param>
+            <param name="options">Specify whether to ignore empty split values.  Defaults to including empty values.</param>
+            <returns>An IEnumerable containing each split value, in order.</returns>
+        </member>
+        <member name="M:Microsoft.SegmentRelevance.ScopeLib.Extensions.SplitEnum(System.String,System.String[])">
+            <summary>
+            Memory-efficient functional equivalent of string.Split that computes and returns split values on demand.
+            Results in a perf improvement if you do not need all split entries.
+            </summary>
+            <param name="str">Source string being split</param>
+            <param name="separator">Set of strings to split by</param>
+            <returns>An IEnumerable containing each split value, in order.</returns>
+        </member>
+        <member name="M:Microsoft.SegmentRelevance.ScopeLib.Extensions.SplitEnum(System.String,System.String[],System.StringSplitOptions)">
+            <summary>
+            Memory-efficient functional equivalent of string.Split that computes and returns split values on demand.
+            Results in a perf improvement if you do not need all split entries.
+            Note: Behaviour is currently inconsistent with string.Split if any separator entry is null or empty.
+            </summary>
+            <param name="str">Source string being split</param>
+            <param name="separator">Array of strings to split by</param>
+            <param name="options">Specify whether to ignore empty split values.  Defaults to including empty values.</param>
+            <returns>An IEnumerable containing each split value, in order.</returns>
+        </member>
+        <member name="M:Microsoft.SegmentRelevance.ScopeLib.Extensions.SplitEnumKeepEmptyEntries(System.String,System.String[])">
+            <summary>
+            Optimized implmentation for streamed splitting of a string while keeping empty entries.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SegmentRelevance.ScopeLib.Extensions.SplitEnumRemoveEmptyEntries(System.String,System.String[])">
+            <summary>
+            Optimized implmentation for streamed splitting of a string while trimming empty entries.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SegmentRelevance.ScopeLib.Extensions.SplitIndexed(System.String,System.Char[])">
+            <summary>
+            Memory-efficient functional equivalent of string.Split that lazily computes requested delimiter indices on demand.
+            Internally maintains a list of delimiter indices, but does not cache requested split entries themselves.
+            Results in a perf improvement if you do not need all split entries, but need access by index.
+            </summary>
+            <param name="str">Source string being split</param>
+            <param name="separator">Set of charactors to split by</param>
+            <returns>A LazySplitString instance allowing access to split entries by index.</returns>
+        </member>
+        <member name="M:Microsoft.SegmentRelevance.ScopeLib.Extensions.SplitIndexed(System.String,System.Char[],System.StringSplitOptions)">
+            <summary>
+            Memory-efficient functional equivalent of string.Split that lazily computes requested delimiter indices on demand.
+            Internally maintains a list of delimiter indices, but does not cache requested split entries themselves.
+            Results in a perf improvement if you do not need all split entries, but need access by index.
+            </summary>
+            <param name="str">Source string being split</param>
+            <param name="separator">Array of charactors to split by</param>
+            <param name="options">Specify whether to ignore empty split values.  Defaults to including empty values.</param>
+            <returns>A LazySplitString instance allowing access to split entries by index.</returns>
+        </member>
+        <member name="M:Microsoft.SegmentRelevance.ScopeLib.Extensions.SplitIndexed(System.String,System.String[])">
+            <summary>
+            Memory-efficient functional equivalent of string.Split that lazily computes requested delimiter indices on demand.
+            Internally maintains a list of delimiter indices, but does not cache requested split entries themselves.
+            Results in a perf improvement if you do not need all split entries, but need access by index.
+            </summary>
+            <param name="str">Source string being split</param>
+            <param name="separator">Set of strings to split by</param>
+            <returns>A LazySplitString instance allowing access to split entries by index.</returns>
+        </member>
+        <member name="M:Microsoft.SegmentRelevance.ScopeLib.Extensions.SplitIndexed(System.String,System.String[],System.StringSplitOptions)">
+            <summary>
+            Memory-efficient functional equivalent of string.Split that lazily computes requested delimiter indices on demand.
+            Internally maintains a list of delimiter indices, but does not cache requested split entries themselves.
+            Results in a perf improvement if you do not need all split entries, but need access by index.
+            </summary>
+            <param name="str">Source string being split</param>
+            <param name="separator">Array of strings to split by</param>
+            <param name="options">Specify whether to ignore empty split values.  Defaults to including empty values.</param>
+            <returns>A LazySplitString instance allowing access to split entries by index.</returns>
+        </member>
+        <member name="T:Microsoft.SegmentRelevance.ScopeLib.TopNReducer">
+             <summary>
+             Returns the Top N requested columns per reducer key based on the input mode.  Recursive reducer.
+             
+             <para>
+             <b>Args</b>: <i>{{N} | {NCol}} [-first | -presort {colList} | -random {seed} -weightCol {weightColumn}]</i>
+             </para>
+             </summary>
+             
+             <remarks>
+             <b>Args</b>: <i>{{N} | {NCol}} [-first | -presort {colList} | -random {seed} -weightCol {weightColumn}]</i>
+             <list type="bullet">
+               <item><i>N</i><br/>
+                        The number of rows to return.</item>
+               <item><i>NCol</i><br/>
+                        (Rare) When N is not available at compile-time, name of the column containing the number of rows to return - assumed to be constant over the dataset.</item>
+               <item><i>-first</i><br/>
+                        Return first N rows (per ReducerKeys) in whatever order they are input.  [O(Min(N, M)) time, O(1) memory]</item>
+               <item><i>-presort {colList}</i><br/>
+                        Sort rows (per ReducerKeys) by given sort columns, and return TopN.  [O(MlogN) time (O(M) if N >= M), O(Min(N, M)) memory]
+               <list type="bullet"><item>colList - Comma-separated non-empty list of "{colName}[:asc|desc]"</item></list></item>
+               <item><i>-random {seed} -weightCol {weightColumn}</i><br/>
+                        Return uniformly sampled Top N rows from all rows corresponding to reducer key (see Notes).  [same perf as presort]
+                 <list type="bullet">
+                   <item><i>seed</i> - initial value to seed the random selection.<br/>
+                         Recommendation: <c>#DECLARE Seed string = ((int)DateTime.Now.Ticks).ToString();</c>.</item>
+                   <item><i>weightColumn</i> - column of type double corresponding to initial weights of the rows.  Values must be &gt; double.Epsilon.<br/>
+                                               This column is overwritten by the algorithm and should not be reused.</item>
+                 </list>
+               </item>
+             </list>
+              <i>Notes</i>
+              <list type="bullet">
+               <item>Identical scripts run on the same input with the same Seed may NOT return the same output rows!<br/>
+                     Seed is mandated at the script level to allow randomness while adhering to Scope's requirement of deterministic UDOs.</item>
+               <item>Perfect random sampling in a recursive Reducer is technically impossible due to the Scope's requirement of deterministic UDOs.<br/>
+                     In practice, randomness is only adversely affected if there is high row repetition inter-reducerKeys.</item>
+              </list>
+             <b>Presort mode</b><br/>
+              <list type="bullet">
+               <item>This mode internally uses a priority queue implementation, thereby providing<br/>
+               <list type="bullet">
+                <item>Constant memory</item>
+                <item>O(mlogn) runtime vs normal O(mlogm)</item>
+                <item>Recursive reducer implementation (which Scope's PRESORT precludes)</item>
+               </list>
+               <item>Scope's PRESORT can outperform TopNReducer's "-presort" in rare cases - when m is not >> n and the script later benefits 
+               from the PRESORT order - eg: REDUCE PRESORT, SELECT * ORDER BY (reduce key, presort key).</item>
+              </item> 
+             </list>
+             <b>Notes</b>
+             <list type="bullet">
+             <item><i>{N} [[-first] | -presort]</i> modes are obsolete now that SCOPE has windowing functions - specifically ROW_NUMBER() .<br/>
+                          <i>{N | NCol} "-random"</i> modes remain applicable.</item>
+             </list>
+             </remarks>
+             <example>
+              <code>
+               // Any 20 corresponding rows for each distinct Key.
+               data = REDUCE ON Key USING TopNReducer("20");
+               // Better native Scope way
+               data = SELECT *, ROW_NUMBER() OVER (PARTITION BY Key) AS RN HAVING RN &lt;= 20;
+               PROCESS USING ColumnProcessor("-prune", "RN");
+               
+               // Top 20 corresponding rows for each distinct Key, presorted by certain columns
+               data = REDUCE ON Key USING TopNReducer("20", "-presort", "Col1:asc, Col2:desc, Col3");
+               // Better native Scope way
+               data = SELECT *, ROW_NUMBER() OVER (PARTITION BY Key ORDER BY Col1, Col2 DESC, Col3) AS RN HAVING RN &lt;= 20;
+               PROCESS USING ColumnProcessor("-prune", "RN");
+               
+               // 20 weight-stratified randomly sampled corresponding rows for each distinct Key.
+               data = REDUCE ON Key USING TopNReducer("20", "-random", @Seed, "-weightCol", "Weight"); // PRE: [#DECLARE Seed string = ((int)DateTime.Now.Ticks).ToString();]
+            
+               // Read "N" from a column in the input (so N can be dynamically determined in the script and vary per key).
+               data = SELECT data.Key, sampleSizes.SampleSize FROM data INNER JOIN sampleSizes ON data.Key == sampleSizes.Key;
+               sample = REDUCE ON Key USING TopNReducer("SampleSize");
+               // Better native Scope way
+               data = SELECT *, ROW_NUMBER() OVER () AS RN HAVING RN &lt;= SampleSize;
+               PROCESS USING ColumnProcessor("-prune", "RN");
+              </code>
+              <b>Note</b>: All scenarios can be run with <i>REDUCE data ALL</i> to sample from the entire rowset - native SCOPE is preferred for <i>{N} [[-first] | [-presort]]</i> in this case.
+               <code>
+                 // Standard ScopeLib header (point to your location)
+                 REFERENCE "Relevance.ScopeLib.dll";
+                 RESOURCE "Relevance.ScopeLib.pdb",
+                          "Relevance.ScopeLib.xml";
+                 USING Microsoft.SegmentRelevance.ScopeLib;
+               </code>
+             </example>
+             <exception cref="T:System.ArgumentException">
+               Thrown during script compilation, Args are malformed:
+               <list type="bullet">
+                 <item>N is not an integer or input schema column name</item>
+                 <item>Specified input column names do not exist.</item>
+                 <item>WeightCol is not of type double</item>
+                 <item>Unrecognized args</item>
+               </list>
+             </exception>
+             <seealso cref="T:Microsoft.SegmentRelevance.ScopeLib.AddRandomNumberProcessor"/>
+             <seealso cref="T:Microsoft.SegmentRelevance.ScopeLib.ScopeRandom"/>
+        </member>
+        <member name="P:Microsoft.SegmentRelevance.ScopeLib.TopNReducer.AllowColumnPruning">
+            <summary>
+            This reducer does not allow column pruning, as the restrictions on recursive reducers preclude column pruning.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SegmentRelevance.ScopeLib.TopNReducer.IsRecursive">
+            <summary>
+            This reducer is recursive.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SegmentRelevance.ScopeLib.TopNReducer.RunSingleThreaded">
+            <summary>
+            This reducer can be run multi-threaded.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SegmentRelevance.ScopeLib.TopNReducer.ParseArgs(System.String[],ScopeRuntime.Schema)">
+            <summary>
+            Parses supplied args.  Wraps any exceptions into a consistent usage exception.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SegmentRelevance.ScopeLib.TopNReducer.ParseArgsInternal(System.String[],ScopeRuntime.Schema)">
+            <summary>
+            Parses supplied args and performs appropriate setup
+            </summary>
+        </member>
+        <member name="M:Microsoft.SegmentRelevance.ScopeLib.TopNReducer.ValidateIdenticalSchema(ScopeRuntime.Schema,ScopeRuntime.Schema)">
+            <summary>
+            Validates input schema is identical to output schema. This is a requirement for recursive reducers.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SegmentRelevance.ScopeLib.TopNReducer.Produces(System.String[],System.String[],ScopeRuntime.Schema)">
+            <summary>
+            Clones the input schema with source.  Compile-time validates the args usage.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SegmentRelevance.ScopeLib.TopNReducer.Reduce(ScopeRuntime.RowSet,ScopeRuntime.Row,System.String[])">
+            <summary>
+            Returns Top N input rows based on the requested mode.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SegmentRelevance.ScopeLib.TopNReducer.ReduceAny(System.Collections.Generic.IEnumerable{ScopeRuntime.Row},ScopeRuntime.Row,Microsoft.SegmentRelevance.ScopeLib.TopNReducer.Args)">
+            <summary>
+            Copies and returns the first n rows from  the input.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SegmentRelevance.ScopeLib.TopNReducer.ReducePresort(ScopeRuntime.RowSet,ScopeRuntime.Row,Microsoft.SegmentRelevance.ScopeLib.TopNReducer.Args)">
+            <summary>
+            Returns the top N elements sorted by presort columns specified in args.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SegmentRelevance.ScopeLib.TopNReducer.PresortComparison(ScopeRuntime.Row,ScopeRuntime.Row,System.Collections.Generic.List{System.Collections.Generic.KeyValuePair{System.Int32,Microsoft.SegmentRelevance.ScopeLib.TopNReducer.SortDirection}})">
+            <summary>
+            Comparison function for Presort mode - Compares first and second per each Sort Column (as needed).
+            </summary>
+        </member>
+        <member name="M:Microsoft.SegmentRelevance.ScopeLib.TopNReducer.AddToHeap(Microsoft.SegmentRelevance.ScopeLib.Util.TopNHeap{Microsoft.SegmentRelevance.ScopeLib.Util.IndexedItem{ScopeRuntime.Row}},Microsoft.SegmentRelevance.ScopeLib.Util.IndexedItem{ScopeRuntime.Row},Microsoft.SegmentRelevance.ScopeLib.ScopeRandom,Microsoft.SegmentRelevance.ScopeLib.TopNReducer.Args)">
+            <summary>
+            Generates a new key if this item hasn't been weighted before.  Attemp-adds to the TopN heap.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SegmentRelevance.ScopeLib.TopNReducer.ReduceRandom(ScopeRuntime.RowSet,ScopeRuntime.Row,Microsoft.SegmentRelevance.ScopeLib.TopNReducer.Args)">
+            <summary>
+            Implements distributed uniform sampling via weighted reservoir sampling (http://gregable.com/2007/10/reservoir-sampling.html)
+            The random seed used internally is based on user-supplied seed AND the content of the 1st and N+1th rows.
+            Thus the random seed may be weak, depending on the row contents.
+            </summary>
+        </member>
+    </members>
+</doc>

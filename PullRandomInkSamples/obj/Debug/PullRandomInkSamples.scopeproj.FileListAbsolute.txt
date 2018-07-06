@@ -1,0 +1,4 @@
+C:\Users\elmarron\dev\InkDisplay\PullRandomInkSamples\obj\Debug\PullRandomInkSamples.scopeprojAssemblyReference.cache
+C:\Users\elmarron\dev\InkDisplay\PullRandomInkSamples\obj\Debug\PullRandomInkSamples.scopeproj.CoreCompileInputs.cache
+C:\Users\elmarron\dev\InkDisplay\PullRandomInkSamples\bin\Debug\Algebra.xml
+C:\Users\elmarron\dev\InkDisplay\PullRandomInkSamples\obj\Debug\Algebra.xml

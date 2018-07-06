@@ -1,0 +1,16 @@
+# Version: 1
+# Fields: Name,Type
+EventName,String
+CurrentTimeStamp,CurrentTimeStamp
+Machine,String
+timestamp,UInt64
+tag,UInt32
+id,Int64
+parentId,Int64
+previousId,Int64
+duration,Int64
+status,UInt32
+size,UInt64
+offset,UInt64
+target,String
+#EOF

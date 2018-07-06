@@ -1,0 +1,72 @@
+﻿{
+"CompilerPlanStart":"7\/6\/2018 2:54:30 PM"
+},
+{
+"Settings":"-c++ -pdb Full -On ReflectStageToScript -Off Sirius -Off PolarisScaleUp -On EnableScopeDml -On EnableSStreamContractV4 -buckets 1 -ClientVersion 10.2.2.0"
+},
+{
+"statementText":"REFERENCE @\"C:\\Program Files (x86)\\Reference Assemblies\\Microsoft\\Framework\\.NETFramework\\v4.5\\Syste"
+,
+{
+"NodeName":"ReferenceStatement"
+}}
+,
+{
+"statementText":"\/\/Script GUID:1b713f35-9537-4598-ac74-2e9f774479de\/\/Used for tracking historyUSING System"
+,
+{
+"NodeName":"UsingStatement"
+}}
+,
+{
+"statementText":"REFERENCE @ScopeLibDll"
+,
+{
+"NodeName":"ReferenceStatement"
+}}
+,
+{
+"statementText":"RESOURCE @ScopeLibPdb,         @ScopeLibXml"
+,
+{
+"NodeName":"ResourceStatement"
+}}
+,
+{
+"statementText":"USING Microsoft.SegmentRelevance.ScopeLib"
+,
+{
+"NodeName":"UsingStatement"
+}}
+,
+{
+"statementText":"  SSTREAM SPARSE              STREAMSET @InputDir             PATTERN @\"LogInkFromCandidates_%Y_"
+,
+{
+"NodeName":"QueryStatement"
+}}
+,
+{
+"statementText":" SELECT RowGuid,           RecognizedText,           RecognizedText.Length AS RecoLength,     "
+,
+{
+"NodeName":"QueryStatement"
+}}
+,
+{
+"statementText":" REDUCE englishInkSamples ON RowGuid USING TopNReducer(\"20\", \"-random\", @Seed, \"-weightCol\", \"Weig"
+,
+{
+"NodeName":"QueryStatement"
+}}
+,
+{
+"statementText":"\/\/ Outputs:OUTPUT sampleTO @OutputPath USING DefaultTextOutputter()"
+,
+{
+"NodeName":"OutputStatement"
+}}
+,
+{
+"CompilerPlanEnd":"7\/6\/2018 2:54:30 PM"
+}

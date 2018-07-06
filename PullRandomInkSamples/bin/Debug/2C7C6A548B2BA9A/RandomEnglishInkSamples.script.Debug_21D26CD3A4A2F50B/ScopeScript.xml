@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScopeScript>
+  <preScript><![CDATA[
+USING Microsoft.Analytics.Interfaces;
+USING System;
+USING System.Collections.Generic;
+USING System.Text;
+USING System.Reflection;
+USING System.IO;
+USING System.Text.RegularExpressions;
+USING System.Threading;
+USING System.Runtime.Serialization;
+USING System.Linq;
+USING Microsoft.SCOPE.Types;
+USING ScopeRuntime;
+USING Microsoft.SegmentRelevance.ScopeLib;
+
+REFERENCE @"System.Windows.dll";
+REFERENCE @"C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\Common7\IDE\Extensions\Microsoft\ScopeStudio\2.4.4000.3\ScopeStudioDebugRuntime.dll";
+REFERENCE @"C:\Users\elmarron\dev\ScopeLib\Relevance.ScopeLib.dll";
+RESOURCE @"C:\Users\elmarron\dev\ScopeLib\Relevance.ScopeLib.pdb";
+RESOURCE @"C:\Users\elmarron\dev\ScopeLib\Relevance.ScopeLib.xml";
+]]></preScript>
+  <ScopeVertices>
+    <ScopeVertex id="SV1_Extract" ScopeScriptEndPoint="true">
+      <input id="GetSStream_0" />
+      <output id="SV1_Extract_out0" schema="RowGuid:Guid,RecognizedText:string,RecoLength:int,InkIsf:string,Weight:double" scopeLabel="_var_100008_REDUCE" /><![CDATA[_var_100001_GET_SSTREAM = SSTREAM @"C:\Users\elmarron\dev\LocalSamples\LogInkFromCandidates\/LogInkFromCandidates_2018_07_01.ss";
+_var_100002_FILTER = SELECT RowGuid, InputLanguage, RecognizedText, InkIsf FROM _var_100001_GET_SSTREAM WHERE InputLanguage == "en-us";
+_var_100003_TRANSFORM = SELECT RowGuid AS RowGuid, RecognizedText AS RecognizedText, InkIsf AS InkIsf FROM _var_100002_FILTER;
+_var_100004_PROCESS = PROCESS _var_100003_TRANSFORM PRODUCE RowGuid, RecognizedText, InkIsf USING ScopeOptimizedClass_1(@"-produce", @"RowGuid, InputLanguage, RecognizedText, WritingRectRight, InkIsf", @"-skipValidation");
+_var_100005_LSORT = SELECT RowGuid, RecognizedText, InkIsf FROM _var_100004_PROCESS ORDER BY RowGuid;
+_var_100006_TRANSFORM = SELECT RecognizedText.Length AS RecoLength, 1.0 AS Weight, RowGuid AS RowGuid, RecognizedText AS RecognizedText, InkIsf AS InkIsf FROM _var_100005_LSORT;
+_var_100007_TRANSFORM = SELECT RowGuid AS RowGuid, RecognizedText AS RecognizedText, RecoLength AS RecoLength, InkIsf AS InkIsf, Weight AS Weight FROM _var_100006_TRANSFORM;
+_var_100008_REDUCE = REDUCE _var_100007_TRANSFORM ON RowGuid PRODUCE RowGuid, RecognizedText, RecoLength, InkIsf, Weight USING Microsoft.SegmentRelevance.ScopeLib.TopNReducer(@"20", @"-random", @"1881736468", @"-weightCol", @"Weight");
+]]></ScopeVertex>
+    <ScopeVertex id="SV2_Extract" ScopeScriptEndPoint="true">
+      <input id="GetSStream_6" />
+      <output id="SV2_Extract_out0" schema="RowGuid:Guid,RecognizedText:string,RecoLength:int,InkIsf:string,Weight:double" scopeLabel="_var_100016_REDUCE" /><![CDATA[_var_100009_GET_SSTREAM = SSTREAM @"C:\Users\elmarron\dev\LocalSamples\LogInkFromCandidates\/LogInkFromCandidates_2018_07_02.ss";
+_var_100010_FILTER = SELECT RowGuid, InputLanguage, RecognizedText, InkIsf FROM _var_100009_GET_SSTREAM WHERE InputLanguage == "en-us";
+_var_100011_TRANSFORM = SELECT RowGuid AS RowGuid, RecognizedText AS RecognizedText, InkIsf AS InkIsf FROM _var_100010_FILTER;
+_var_100012_PROCESS = PROCESS _var_100011_TRANSFORM PRODUCE RowGuid, RecognizedText, InkIsf USING ScopeOptimizedClass_2(@"-produce", @"RowGuid, InputLanguage, RecognizedText, WritingRectRight, InkIsf", @"-skipValidation");
+_var_100013_LSORT = SELECT RowGuid, RecognizedText, InkIsf FROM _var_100012_PROCESS ORDER BY RowGuid;
+_var_100014_TRANSFORM = SELECT RecognizedText.Length AS RecoLength, 1.0 AS Weight, RowGuid AS RowGuid, RecognizedText AS RecognizedText, InkIsf AS InkIsf FROM _var_100013_LSORT;
+_var_100015_TRANSFORM = SELECT RowGuid AS RowGuid, RecognizedText AS RecognizedText, RecoLength AS RecoLength, InkIsf AS InkIsf, Weight AS Weight FROM _var_100014_TRANSFORM;
+_var_100016_REDUCE = REDUCE _var_100015_TRANSFORM ON RowGuid PRODUCE RowGuid, RecognizedText, RecoLength, InkIsf, Weight USING Microsoft.SegmentRelevance.ScopeLib.TopNReducer(@"20", @"-random", @"1881736468", @"-weightCol", @"Weight");
+]]></ScopeVertex>
+    <ScopeVertex id="SV3_Extract" ScopeScriptEndPoint="true">
+      <input id="GetSStream_12" />
+      <output id="SV3_Extract_out0" schema="RowGuid:Guid,RecognizedText:string,RecoLength:int,InkIsf:string,Weight:double" scopeLabel="_var_100024_REDUCE" /><![CDATA[_var_100017_GET_SSTREAM = SSTREAM @"C:\Users\elmarron\dev\LocalSamples\LogInkFromCandidates\/LogInkFromCandidates_2018_07_03.ss";
+_var_100018_FILTER = SELECT RowGuid, InputLanguage, RecognizedText, InkIsf FROM _var_100017_GET_SSTREAM WHERE InputLanguage == "en-us";
+_var_100019_TRANSFORM = SELECT RowGuid AS RowGuid, RecognizedText AS RecognizedText, InkIsf AS InkIsf FROM _var_100018_FILTER;
+_var_100020_LSORT = SELECT RowGuid, RecognizedText, InkIsf FROM _var_100019_TRANSFORM ORDER BY RowGuid;
+_var_100021_PROCESS = PROCESS _var_100020_LSORT PRODUCE RowGuid, RecognizedText, InkIsf USING ScopeOptimizedClass_3(@"-produce", @"RowGuid, InputLanguage, RecognizedText, WritingRectRight, InkIsf", @"-skipValidation");
+_var_100022_TRANSFORM = SELECT RecognizedText.Length AS RecoLength, 1.0 AS Weight, RowGuid AS RowGuid, RecognizedText AS RecognizedText, InkIsf AS InkIsf FROM _var_100021_PROCESS;
+_var_100023_TRANSFORM = SELECT RowGuid AS RowGuid, RecognizedText AS RecognizedText, RecoLength AS RecoLength, InkIsf AS InkIsf, Weight AS Weight FROM _var_100022_TRANSFORM;
+_var_100024_REDUCE = REDUCE _var_100023_TRANSFORM ON RowGuid PRODUCE RowGuid, RecognizedText, RecoLength, InkIsf, Weight USING Microsoft.SegmentRelevance.ScopeLib.TopNReducer(@"20", @"-random", @"1881736468", @"-weightCol", @"Weight");
+]]></ScopeVertex>
+    <ScopeVertex id="SV4_Extract" ScopeScriptEndPoint="true">
+      <input id="GetSStream_18" />
+      <output id="SV4_Extract_out0" schema="RowGuid:Guid,RecognizedText:string,RecoLength:int,InkIsf:string,Weight:double" scopeLabel="_var_100032_REDUCE" /><![CDATA[_var_100025_GET_SSTREAM = SSTREAM @"C:\Users\elmarron\dev\LocalSamples\LogInkFromCandidates\/LogInkFromCandidates_2018_07_04.ss";
+_var_100026_FILTER = SELECT RowGuid, InputLanguage, RecognizedText, InkIsf FROM _var_100025_GET_SSTREAM WHERE InputLanguage == "en-us";
+_var_100027_TRANSFORM = SELECT RowGuid AS RowGuid, RecognizedText AS RecognizedText, InkIsf AS InkIsf FROM _var_100026_FILTER;
+_var_100028_PROCESS = PROCESS _var_100027_TRANSFORM PRODUCE RowGuid, RecognizedText, InkIsf USING ScopeOptimizedClass_4(@"-produce", @"RowGuid, InputLanguage, RecognizedText, WritingRectRight, InkIsf", @"-skipValidation");
+_var_100029_LSORT = SELECT RowGuid, RecognizedText, InkIsf FROM _var_100028_PROCESS ORDER BY RowGuid;
+_var_100030_TRANSFORM = SELECT RecognizedText.Length AS RecoLength, 1.0 AS Weight, RowGuid AS RowGuid, RecognizedText AS RecognizedText, InkIsf AS InkIsf FROM _var_100029_LSORT;
+_var_100031_TRANSFORM = SELECT RowGuid AS RowGuid, RecognizedText AS RecognizedText, RecoLength AS RecoLength, InkIsf AS InkIsf, Weight AS Weight FROM _var_100030_TRANSFORM;
+_var_100032_REDUCE = REDUCE _var_100031_TRANSFORM ON RowGuid PRODUCE RowGuid, RecognizedText, RecoLength, InkIsf, Weight USING Microsoft.SegmentRelevance.ScopeLib.TopNReducer(@"20", @"-random", @"1881736468", @"-weightCol", @"Weight");
+]]></ScopeVertex>
+    <ScopeVertex id="SV5_Extract" ScopeScriptEndPoint="true">
+      <input id="GetSStream_24" />
+      <output id="SV5_Extract_out0" schema="RowGuid:Guid,RecognizedText:string,RecoLength:int,InkIsf:string,Weight:double" scopeLabel="_var_100040_REDUCE" /><![CDATA[_var_100033_GET_SSTREAM = SSTREAM @"C:\Users\elmarron\dev\LocalSamples\LogInkFromCandidates\/LogInkFromCandidates_2018_07_05.ss";
+_var_100034_FILTER = SELECT RowGuid, InputLanguage, RecognizedText, InkIsf FROM _var_100033_GET_SSTREAM WHERE InputLanguage == "en-us";
+_var_100035_TRANSFORM = SELECT RowGuid AS RowGuid, RecognizedText AS RecognizedText, InkIsf AS InkIsf FROM _var_100034_FILTER;
+_var_100036_PROCESS = PROCESS _var_100035_TRANSFORM PRODUCE RowGuid, RecognizedText, InkIsf USING ScopeOptimizedClass_5(@"-produce", @"RowGuid, InputLanguage, RecognizedText, WritingRectRight, InkIsf", @"-skipValidation");
+_var_100037_LSORT = SELECT RowGuid, RecognizedText, InkIsf FROM _var_100036_PROCESS ORDER BY RowGuid;
+_var_100038_TRANSFORM = SELECT RecognizedText.Length AS RecoLength, 1.0 AS Weight, RowGuid AS RowGuid, RecognizedText AS RecognizedText, InkIsf AS InkIsf FROM _var_100037_LSORT;
+_var_100039_TRANSFORM = SELECT RowGuid AS RowGuid, RecognizedText AS RecognizedText, RecoLength AS RecoLength, InkIsf AS InkIsf, Weight AS Weight FROM _var_100038_TRANSFORM;
+_var_100040_REDUCE = REDUCE _var_100039_TRANSFORM ON RowGuid PRODUCE RowGuid, RecognizedText, RecoLength, InkIsf, Weight USING Microsoft.SegmentRelevance.ScopeLib.TopNReducer(@"20", @"-random", @"1881736468", @"-weightCol", @"Weight");
+]]></ScopeVertex>
+    <ScopeVertex id="SV6_Combine" ScopeScriptEndPoint="true">
+      <input id="SV1_Extract_out0" />
+      <input id="SV2_Extract_out0" />
+      <input id="SV3_Extract_out0" />
+      <input id="SV4_Extract_out0" />
+      <input id="SV5_Extract_out0" />
+      <output id="SV6_Combine_out0" schema="RowGuid:Guid,RecognizedText:string,RecoLength:int,InkIsf:string,Weight:double" scopeLabel="" /><![CDATA[_var_100041_UNIONALL = SELECT RowGuid, RecognizedText, RecoLength, InkIsf, Weight FROM _var_100008_REDUCE UNION ALL SELECT RowGuid, RecognizedText, RecoLength, InkIsf, Weight FROM _var_100016_REDUCE UNION ALL SELECT RowGuid, RecognizedText, RecoLength, InkIsf, Weight FROM _var_100024_REDUCE UNION ALL SELECT RowGuid, RecognizedText, RecoLength, InkIsf, Weight FROM _var_100032_REDUCE UNION ALL SELECT RowGuid, RecognizedText, RecoLength, InkIsf, Weight FROM _var_100040_REDUCE;
+_var_100042_REDUCE = REDUCE _var_100041_UNIONALL ON RowGuid PRODUCE RowGuid, RecognizedText, RecoLength, InkIsf, Weight USING Microsoft.SegmentRelevance.ScopeLib.TopNReducer(@"20", @"-random", @"1881736468", @"-weightCol", @"Weight");
+OUTPUT _var_100042_REDUCE TO @"C:\Users\elmarron\dev\LocalSamples\2018\07\RandomEnglishInkSamples_2018_07_01.tsv" USING ScopeRuntime.DefaultTextOutputter();
+]]></ScopeVertex>
+  </ScopeVertices>
+  <postScript><![CDATA[#CS
+
+#ENDCS]]></postScript>
+</ScopeScript>
