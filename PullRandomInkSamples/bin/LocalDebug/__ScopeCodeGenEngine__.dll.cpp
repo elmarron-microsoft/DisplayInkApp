@@ -41,22 +41,22 @@ UID_Process_2 = 5,
 UID_Process_2_Data0 = 6,
 UID_Process_3 = 7,
 UID_Process_3_Data0 = 8,
-UID_Process_4 = 9,
-UID_Process_4_Data0 = 10,
+UID_GetSStream_4 = 9,
+UID_GetSStream_4_Data0 = 10,
 UID_Process_5 = 11,
-UID_SV1_Extract_out0 = 12,
-UID_GetSStream_6 = 13,
-UID_GetSStream_6_Data0 = 14,
+UID_Process_5_Data0 = 12,
+UID_Process_6 = 13,
+UID_Process_6_Data0 = 14,
 UID_Process_7 = 15,
 UID_Process_7_Data0 = 16,
-UID_Process_8 = 17,
-UID_Process_8_Data0 = 18,
+UID_GetSStream_8 = 17,
+UID_GetSStream_8_Data0 = 18,
 UID_Process_9 = 19,
 UID_Process_9_Data0 = 20,
 UID_Process_10 = 21,
 UID_Process_10_Data0 = 22,
 UID_Process_11 = 23,
-UID_SV2_Extract_out0 = 24,
+UID_Process_11_Data0 = 24,
 UID_GetSStream_12 = 25,
 UID_GetSStream_12_Data0 = 26,
 UID_Process_13 = 27,
@@ -65,44 +65,18 @@ UID_Process_14 = 29,
 UID_Process_14_Data0 = 30,
 UID_Process_15 = 31,
 UID_Process_15_Data0 = 32,
-UID_Process_16 = 33,
-UID_Process_16_Data0 = 34,
+UID_GetSStream_16 = 33,
+UID_GetSStream_16_Data0 = 34,
 UID_Process_17 = 35,
-UID_SV3_Extract_out0 = 36,
-UID_GetSStream_18 = 37,
-UID_GetSStream_18_Data0 = 38,
+UID_Process_17_Data0 = 36,
+UID_Process_18 = 37,
+UID_Process_18_Data0 = 38,
 UID_Process_19 = 39,
 UID_Process_19_Data0 = 40,
-UID_Process_20 = 41,
-UID_Process_20_Data0 = 42,
-UID_Process_21 = 43,
-UID_Process_21_Data0 = 44,
-UID_Process_22 = 45,
-UID_Process_22_Data0 = 46,
-UID_Process_23 = 47,
-UID_SV4_Extract_out0 = 48,
-UID_GetSStream_24 = 49,
-UID_GetSStream_24_Data0 = 50,
-UID_Process_25 = 51,
-UID_Process_25_Data0 = 52,
-UID_Process_26 = 53,
-UID_Process_26_Data0 = 54,
-UID_Process_27 = 55,
-UID_Process_27_Data0 = 56,
-UID_Process_28 = 57,
-UID_Process_28_Data0 = 58,
-UID_Process_29 = 59,
-UID_SV5_Extract_out0 = 60,
-UID_Aggregate_30 = 61,
-UID_Aggregate_30_Data0 = 62,
-UID_Process_31 = 63,
-UID_Process_31_Data0 = 64,
-UID_SV6_Combine_out0 = 65,
-UID_Process_3_Prefix,
-UID_Process_9_Prefix,
-UID_Process_14_Prefix,
-UID_Process_21_Prefix,
-UID_Process_27_Prefix
+UID_Aggregate_20 = 41,
+UID_Aggregate_20_Data0 = 42,
+UID_SV1_Extract_Combine_out0 = 43,
+UID_ParallelUnionAll_Aggregate_20
 };
 // All of the templates will throw a CS1591 warning because we 
 // have /doc turned on in the CSharp compiler.
@@ -269,19 +243,18 @@ UID_Process_27_Prefix
         }
     };
 
-    class Process_4_Data0
+    class Process_3_Data0
     {
     public:
         ScopeGuid m_RowGuid;
         FString m_RecognizedText;
-        int m_RecoLength;
         FString m_InkIsf;
         double m_Weight;
-        Process_4_Data0();
-        Process_4_Data0(const Process_4_Data0 & c, IncrementalAllocator * alloc);
+        Process_3_Data0();
+        Process_3_Data0(const Process_3_Data0 & c, IncrementalAllocator * alloc);
 
         template <typename Allocator>
-        Process_4_Data0(const Process_4_Data0 & c, FixedArrayTypeMemoryManager<Allocator> * mmng);
+        Process_3_Data0(const Process_3_Data0 & c, FixedArrayTypeMemoryManager<Allocator> * mmng);
 
         template <typename Allocator>
         void Delete(FixedArrayTypeMemoryManager<Allocator> * mmng);
@@ -297,11 +270,11 @@ UID_Process_27_Prefix
         bool IsScopeCEPCTI() const { return false; }
         void ResetScopeCEPStatus(ScopeDateTime startTime, ScopeDateTime endTime, int type) { }
 
-        friend std::ostream& operator<<(std::ostream& os, const Process_4_Data0& row)
+        friend std::ostream& operator<<(std::ostream& os, const Process_3_Data0& row)
         {
 
             ScopeEngine::OutputRowContent(
-                std::string{ u8"RowGuid:Guid,RecognizedText:string,RecoLength:int,InkIsf:string,Weight:double" },
+                std::string{ u8"RowGuid:Guid,RecognizedText:string,InkIsf:string,Weight:double" },
                 reinterpret_cast<const char*>(&row),
                 os);
 
@@ -332,28 +305,6 @@ UID_Process_27_Prefix
     };
 
     template class ManagedRowFactory<Process_1_Data0>;    
-    template<>
-    struct ManagedRow<Process_4_Data0>
-    {
-        typedef ___Scope_Generated_Classes___::Row_193825B98C8C2D67 Row;
-
-        ManagedRow()
-        {
-            m_row.reset(gcnew Row());
-        }
-
-        Row^ get()
-        {
-            return m_row.get();
-        }
-        
-    private:
-    
-        ScopeTypedManagedHandle<Row^> m_row;
-        ManagedRow & operator=(ManagedRow &);
-    };
-
-    template class ManagedRowFactory<Process_4_Data0>;    
 
 #endif // defined(COMPILE_MANAGED)
 
@@ -595,250 +546,6 @@ UID_Process_27_Prefix
         }
     };
 
-// All of the templates will throw a CS1591 warning because we 
-// have /doc turned on in the CSharp compiler.
-// The only way to solve this is to move all of the templates to their own
-// project, and then turn off /doc.
-
-#if defined(COMPILE_NATIVE)
-    template<> 
-    class BinaryExtractPolicy<Process_4_Data0>
-    {
-    public:
-        static bool Deserialize(BinaryInputStream * input, Process_4_Data0 & row)
-        {
-            try
-            {
-                char b = 0;
-                input->Read(b);
-                if (b==0)
-                {
-                    input->Read(row.m_RowGuid);
-                    input->Read(row.m_RecognizedText);
-                    input->Read(row.m_RecoLength);
-                    input->Read(row.m_InkIsf);
-                    input->Read(row.m_Weight);
-                }
-                else
-                {
-                    char ___masking___[1];
-                    ___masking___[0] = b;
-                    input->Read(row.m_RowGuid);
-                    if ((___masking___[0] & 2 ) != 2)
-                    {
-                        input->Read(row.m_RecognizedText);
-                    }
-                    else
-                    {
-                        row.m_RecognizedText.SetNull();
-                    }
-                    input->Read(row.m_RecoLength);
-                    if ((___masking___[0] & 4 ) != 4)
-                    {
-                        input->Read(row.m_InkIsf);
-                    }
-                    else
-                    {
-                        row.m_InkIsf.SetNull();
-                    }
-                    input->Read(row.m_Weight);
-                }
-            }
-            catch (ScopeStreamException &) 
-            {
-                // we reach the end of file
-                return false;
-            }
-
-            return true;
-        }
-    };
-#endif // defined(COMPILE_NATIVE)
-
-    template<> 
-    class BinaryOutputPolicy<Process_4_Data0>
-    {
-    public:
-    
-        static void SerializeHeader(BinaryOutputStream * output)
-        {
-            SCOPE_ASSERT(!"BinaryOutputPolicy::SerializeHeader method should not be invoked.");
-        }
-        
-        __declspec(noinline) static void Serialize(BinaryOutputStream * output, Process_4_Data0 & row)
-        {
-            SIZE_T rowStart =  output->GetOutputer().GetCurrentPosition();
-            char b = 0;
-            char ___masking___[1];
-            ___masking___[0] = 1;
-            bool hasNull = false;
-            if (row.m_RecognizedText.IsNull())
-            {
-                hasNull = true;
-                ___masking___[0] |= 2;
-            }
-            if (row.m_InkIsf.IsNull())
-            {
-                hasNull = true;
-                ___masking___[0] |= 4;
-            }
-            if (hasNull)
-            {
-                output->Write(___masking___[0]);
-            }
-            else
-            {
-                output->Write(b);
-            }
-            output->Write(row.m_RowGuid);
-            if (!row.m_RecognizedText.IsNull())
-            {
-                output->Write(row.m_RecognizedText);
-            }
-            output->Write(row.m_RecoLength);
-            if (!row.m_InkIsf.IsNull())
-            {
-                output->Write(row.m_InkIsf);
-            }
-            output->Write(row.m_Weight);
-            SIZE_T rowSize =  output->GetOutputer().GetCurrentPosition() - rowStart;
-            auto rowLimit = ScopeEngine::Configuration::GetGlobal().GetMaxOnDiskRowSize();
-            if (rowSize > rowLimit)
-            {
-                std::stringstream ss;
-                ss << row << std::endl;
-                throw RuntimeException(E_USER_ONDISKROW_TOO_BIG, {rowSize, rowLimit, ss.str()});
-            }
-        }
-        static void Serialize(DummyOutputStream * output, const Process_4_Data0 & row)
-        {
-            SCOPE_ASSERT(false); 
-        }
-            static void SerializeKeyForSS(MemoryOutputStream* output, const Process_4_Data0 & row)
-            {
-                STRUCTURED_DATA_ASSERT(false); // there is no partition key in the schema
-            }
-    };
-
-// All of the templates will throw a CS1591 warning because we 
-// have /doc turned on in the CSharp compiler.
-// The only way to solve this is to move all of the templates to their own
-// project, and then turn off /doc.
-
-#if defined(COMPILE_NATIVE)
-    template<> 
-    class BinaryExtractPolicy<Process_1_Data0>
-    {
-    public:
-        static bool Deserialize(BinaryInputStream * input, Process_1_Data0 & row)
-        {
-            try
-            {
-                char b = 0;
-                input->Read(b);
-                if (b==0)
-                {
-                    input->Read(row.m_RowGuid);
-                    input->Read(row.m_RecognizedText);
-                    input->Read(row.m_InkIsf);
-                }
-                else
-                {
-                    char ___masking___[1];
-                    ___masking___[0] = b;
-                    input->Read(row.m_RowGuid);
-                    if ((___masking___[0] & 2 ) != 2)
-                    {
-                        input->Read(row.m_RecognizedText);
-                    }
-                    else
-                    {
-                        row.m_RecognizedText.SetNull();
-                    }
-                    if ((___masking___[0] & 4 ) != 4)
-                    {
-                        input->Read(row.m_InkIsf);
-                    }
-                    else
-                    {
-                        row.m_InkIsf.SetNull();
-                    }
-                }
-            }
-            catch (ScopeStreamException &) 
-            {
-                // we reach the end of file
-                return false;
-            }
-
-            return true;
-        }
-    };
-#endif // defined(COMPILE_NATIVE)
-
-    template<> 
-    class BinaryOutputPolicy<Process_1_Data0>
-    {
-    public:
-    
-        static void SerializeHeader(BinaryOutputStream * output)
-        {
-            SCOPE_ASSERT(!"BinaryOutputPolicy::SerializeHeader method should not be invoked.");
-        }
-        
-        __declspec(noinline) static void Serialize(BinaryOutputStream * output, Process_1_Data0 & row)
-        {
-            SIZE_T rowStart =  output->GetOutputer().GetCurrentPosition();
-            char b = 0;
-            char ___masking___[1];
-            ___masking___[0] = 1;
-            bool hasNull = false;
-            if (row.m_RecognizedText.IsNull())
-            {
-                hasNull = true;
-                ___masking___[0] |= 2;
-            }
-            if (row.m_InkIsf.IsNull())
-            {
-                hasNull = true;
-                ___masking___[0] |= 4;
-            }
-            if (hasNull)
-            {
-                output->Write(___masking___[0]);
-            }
-            else
-            {
-                output->Write(b);
-            }
-            output->Write(row.m_RowGuid);
-            if (!row.m_RecognizedText.IsNull())
-            {
-                output->Write(row.m_RecognizedText);
-            }
-            if (!row.m_InkIsf.IsNull())
-            {
-                output->Write(row.m_InkIsf);
-            }
-            SIZE_T rowSize =  output->GetOutputer().GetCurrentPosition() - rowStart;
-            auto rowLimit = ScopeEngine::Configuration::GetGlobal().GetMaxOnDiskRowSize();
-            if (rowSize > rowLimit)
-            {
-                std::stringstream ss;
-                ss << row << std::endl;
-                throw RuntimeException(E_USER_ONDISKROW_TOO_BIG, {rowSize, rowLimit, ss.str()});
-            }
-        }
-        static void Serialize(DummyOutputStream * output, const Process_1_Data0 & row)
-        {
-            SCOPE_ASSERT(false); 
-        }
-            static void SerializeKeyForSS(MemoryOutputStream* output, const Process_1_Data0 & row)
-            {
-                STRUCTURED_DATA_ASSERT(false); // there is no partition key in the schema
-            }
-    };
-
 #pragma region Schema Constructors
 // All of the templates will throw a CS1591 warning because we 
 // have /doc turned on in the CSharp compiler.
@@ -884,12 +591,6 @@ UID_Process_27_Prefix
     INLINE Process_1_Data0::Process_1_Data0()
     {
     }
-    INLINE Process_1_Data0::Process_1_Data0(const Process_1_Data0 & c, IncrementalAllocator * alloc) :
-            m_RowGuid(c.m_RowGuid),
-            m_RecognizedText(c.m_RecognizedText, alloc),
-            m_InkIsf(c.m_InkIsf, alloc)
-    {
-    }
 
 // All of the templates will throw a CS1591 warning because we 
 // have /doc turned on in the CSharp compiler.
@@ -897,15 +598,82 @@ UID_Process_27_Prefix
 // project, and then turn off /doc.
 
 
-    INLINE Process_4_Data0::Process_4_Data0()
+    INLINE Process_3_Data0::Process_3_Data0()
     {
-        m_RecoLength = 0;
         m_Weight = 0.0;
+    }
+    INLINE Process_3_Data0::Process_3_Data0(const Process_3_Data0 & c, IncrementalAllocator * alloc) :
+            m_RowGuid(c.m_RowGuid),
+            m_RecognizedText(c.m_RecognizedText, alloc),
+            m_InkIsf(c.m_InkIsf, alloc)
+    {
+        m_Weight = c.m_Weight;
     }
 
 #pragma endregion Schema Constructors
-// SV1_EXTRACT SV2_EXTRACT SV3_EXTRACT SV4_EXTRACT SV5_EXTRACT 
-#pragma region shared code 
+#pragma hdrstop
+// All of the templates will throw a CS1591 warning because we 
+// have /doc turned on in the CSharp compiler.
+// The only way to solve this is to move all of the templates to their own
+// project, and then turn off /doc.
+
+
+#if defined(COMPILE_INIT_SHUTDOWN)
+#if defined(COMPILE_MANAGED)
+extern "C" __declspec(dllexport) void __stdcall InitVertexManaged(std::string * argv, int argc)
+{
+#if defined(FORCEMANAGEDDATETIMESER)
+    ScopeEngine::ScopeDateTime::ForceManagedSerialization = true;
+#endif
+    cli::array<String^>^ arguments = ScopeEngineManaged::GroupArguments(argv, argc);
+    ScopeEngineManaged::InitializeScopeEngineManaged(arguments);
+
+    // Register Debug Streams from command line arguments
+    ScopeRuntime::Global::DebugStreamManager->RegisterDebugStreams(arguments);
+    ScopeRuntime::ScopeTrace::AddListener(gcnew System::Diagnostics::ConsoleTraceListener());
+    ScopeRuntime::RuntimeConfiguration::Initialize(___Scope_Generated_Classes___::__UdtTypeTable__);
+}
+
+extern "C" __declspec(dllexport) void __stdcall ShutdownVertexManaged(CLRMemoryStat& stat)
+{
+    ScopeEngineManaged::FinalizeScopeEngineManaged(stat);
+    ScopeRuntime::ScopeTrace::RemoveAllListeners();
+    ScopeRuntime::Global::DebugStreamManager->FinalizeDebugStreams();
+}
+#endif //#if defined(COMPILE_MANAGED)
+
+#if defined(COMPILE_NATIVE)
+ScopeEngine::ScopeCEPCheckpointManager* g_scopeCEPCheckpointManager = NULL;
+
+extern "C" __declspec(dllexport) void __stdcall InitVertexNative(VertexExecutionInfo * vertexExecutionInfo)
+{
+#if defined(FORCEMANAGEDDATETIMESER)
+    ScopeEngine::ScopeDateTime::ForceManagedSerialization = true;
+#endif
+
+    ErrorManager::GetGlobal()->EnableJSON();
+}
+
+// All of the templates will throw a CS1591 warning because we 
+// have /doc turned on in the CSharp compiler.
+// The only way to solve this is to move all of the templates to their own
+// project, and then turn off /doc.
+
+
+
+// Add broadcast vertex code
+extern "C" __declspec(dllexport) void __stdcall SV_CopyThrough_execute(std::string * argv, int argc, InputFileInfo* inputs, int inputCnt, OutputFileInfo* outputs, int outputCnt, VertexExecutionInfo * vertexExecutionInfo)
+{
+    SCOPE_ASSERT(inputCnt == 1 && outputCnt == 1);
+    IOManager::CopyStream(IOManager::GetGlobal()->GetDevice(inputs[0].inputFileName), IOManager::GetGlobal()->GetDevice(outputs[0].outputFileName));
+}
+
+#endif //#if defined(COMPILE_NATIVE)
+
+
+#endif //#if defined(COMPILE_INIT_SHUTDOWN)
+#pragma region SV1_Extract_Combine
+#if defined(COMPILE_SV1_EXTRACT_COMBINE) || defined(COMPILE_ALL_VERTICES)
 // All of the templates will throw a CS1591 warning because we 
 // have /doc turned on in the CSharp compiler.
 // The only way to solve this is to move all of the templates to their own
@@ -1149,157 +917,6 @@ UID_Process_27_Prefix
 
 
 #endif // defined(COMPILE_NATIVE)
-#pragma endregion shared code 
-// SV1_EXTRACT SV2_EXTRACT SV3_EXTRACT SV4_EXTRACT SV5_EXTRACT 
-#pragma region shared code 
-// All of the templates will throw a CS1591 warning because we 
-// have /doc turned on in the CSharp compiler.
-// The only way to solve this is to move all of the templates to their own
-// project, and then turn off /doc.
-
-
-    template<> 
-    class KeyComparePolicy<Process_1_Data0,UID_Process_3>
-    {
-    public:
-        struct KeyStruct
-        {
-            ScopeGuid m_RowGuid;
-
-            KeyStruct(Process_1_Data0 & c) :
-                m_RowGuid(c.m_RowGuid)
-            {
-            }
-
-            KeyStruct(const Process_1_Data0 & c, IncrementalAllocator * alloc) :
-                m_RowGuid(const_cast<Process_1_Data0&>(c).m_RowGuid)
-            {
-            }
-
-            KeyStruct(KeyStruct & c) :
-                m_RowGuid(c.m_RowGuid)
-            {
-            }
-
-            KeyStruct(const KeyStruct & c, IncrementalAllocator * alloc) :
-                m_RowGuid(const_cast<KeyStruct&>(c).m_RowGuid)
-            {
-            }
-
-            KeyStruct() :
-                m_RowGuid()
-            {
-            }
-
-            friend std::ostream& operator<<(std::ostream& os, const KeyStruct& row)
-            {
-
-                ScopeEngine::OutputRowContent(
-                    std::string{ u8"RowGuid:Guid" },
-                    reinterpret_cast<const char*>(&row),
-                    os);
-
-                return os;
-            }
-        };
-
-        typedef KeyStruct KeyType;
-
-        static int Compare(Process_1_Data0 & row, KeyType & key)
-        {
-            int r = 0;
-            if ((r = ScopeTypeCompare(row.m_RowGuid, key.m_RowGuid)) != 0)
-                return r;
-            return r;
-        }
-
-        static int Compare(Process_1_Data0 * n1, Process_1_Data0 * n2)
-        {
-            int r = 0;
-            if ((r = ScopeTypeCompare((*n1).m_RowGuid, (*n2).m_RowGuid)) != 0)
-                return r;
-            return r;
-        }
-
-        // Key function for MKQsort algorithm
-        static __int64 Key(Process_1_Data0 * p, int depth)
-        {
-
-            return 0;
-        }
-
-        // End of Key function for MKQSort algorithm
-        static bool EofKey(Process_1_Data0 * p, int depth)
-        {
-            return true;
-        }
-    };
-
-
-#pragma endregion shared code 
-#pragma hdrstop
-// All of the templates will throw a CS1591 warning because we 
-// have /doc turned on in the CSharp compiler.
-// The only way to solve this is to move all of the templates to their own
-// project, and then turn off /doc.
-
-
-#if defined(COMPILE_INIT_SHUTDOWN)
-#if defined(COMPILE_MANAGED)
-extern "C" __declspec(dllexport) void __stdcall InitVertexManaged(std::string * argv, int argc)
-{
-#if defined(FORCEMANAGEDDATETIMESER)
-    ScopeEngine::ScopeDateTime::ForceManagedSerialization = true;
-#endif
-    cli::array<String^>^ arguments = ScopeEngineManaged::GroupArguments(argv, argc);
-    ScopeEngineManaged::InitializeScopeEngineManaged(arguments);
-
-    // Register Debug Streams from command line arguments
-    ScopeRuntime::Global::DebugStreamManager->RegisterDebugStreams(arguments);
-    ScopeRuntime::ScopeTrace::AddListener(gcnew System::Diagnostics::ConsoleTraceListener());
-    ScopeRuntime::RuntimeConfiguration::Initialize(___Scope_Generated_Classes___::__UdtTypeTable__);
-}
-
-extern "C" __declspec(dllexport) void __stdcall ShutdownVertexManaged(CLRMemoryStat& stat)
-{
-    ScopeEngineManaged::FinalizeScopeEngineManaged(stat);
-    ScopeRuntime::ScopeTrace::RemoveAllListeners();
-    ScopeRuntime::Global::DebugStreamManager->FinalizeDebugStreams();
-}
-#endif //#if defined(COMPILE_MANAGED)
-
-#if defined(COMPILE_NATIVE)
-ScopeEngine::ScopeCEPCheckpointManager* g_scopeCEPCheckpointManager = NULL;
-
-extern "C" __declspec(dllexport) void __stdcall InitVertexNative(VertexExecutionInfo * vertexExecutionInfo)
-{
-#if defined(FORCEMANAGEDDATETIMESER)
-    ScopeEngine::ScopeDateTime::ForceManagedSerialization = true;
-#endif
-
-    ErrorManager::GetGlobal()->EnableJSON();
-}
-
-// All of the templates will throw a CS1591 warning because we 
-// have /doc turned on in the CSharp compiler.
-// The only way to solve this is to move all of the templates to their own
-// project, and then turn off /doc.
-
-
-
-// Add broadcast vertex code
-extern "C" __declspec(dllexport) void __stdcall SV_CopyThrough_execute(std::string * argv, int argc, InputFileInfo* inputs, int inputCnt, OutputFileInfo* outputs, int outputCnt, VertexExecutionInfo * vertexExecutionInfo)
-{
-    SCOPE_ASSERT(inputCnt == 1 && outputCnt == 1);
-    IOManager::CopyStream(IOManager::GetGlobal()->GetDevice(inputs[0].inputFileName), IOManager::GetGlobal()->GetDevice(outputs[0].outputFileName));
-}
-
-#endif //#if defined(COMPILE_NATIVE)
-
-
-#endif //#if defined(COMPILE_INIT_SHUTDOWN)
-#pragma region SV1_Extract
-#if defined(COMPILE_SV1_EXTRACT) || defined(COMPILE_ALL_VERTICES)
 // All of the templates will throw a CS1591 warning because we 
 // have /doc turned on in the CSharp compiler.
 // The only way to solve this is to move all of the templates to their own
@@ -1516,30 +1133,21 @@ return true;
 // The only way to solve this is to move all of the templates to their own
 // project, and then turn off /doc.
 
-
-#if defined(COMPILE_MANAGED)
-#endif // defined(COMPILE_MANAGED)
-// All of the templates will throw a CS1591 warning because we 
-// have /doc turned on in the CSharp compiler.
-// The only way to solve this is to move all of the templates to their own
-// project, and then turn off /doc.
-
-    static const char * StringTable_Process_4 [] =
+    static const char * StringTable_Process_3 [] =
     {
         "RowGuid",
         "RecognizedText",
-        "RecognizedText.Length",
         "InkIsf",
         "1.0",
         "\"*** After Last Expression ***\"",
     };
 
     template<>
-    class RowTransformPolicy<Process_1_Data0, Process_4_Data0, UID_Process_4>
+    class RowTransformPolicy<Process_1_Data0, Process_3_Data0, UID_Process_3>
     {
     public:
 
-        static bool FilterTransformRow(Process_1_Data0 & input, Process_4_Data0 & output, IncrementalAllocator * alloc)
+        static bool FilterTransformRow(Process_1_Data0 & input, Process_3_Data0 & output, IncrementalAllocator * alloc)
         {
 
             int exceptionIndex = 0;
@@ -1549,8 +1157,6 @@ return true;
                     exceptionIndex++;
                     output.m_RecognizedText = input.m_RecognizedText;
                     exceptionIndex++;
-                    output.m_RecoLength = input.m_RecognizedText.Length();
-                    exceptionIndex++;
                     output.m_InkIsf = input.m_InkIsf;
                     exceptionIndex++;
                     output.m_Weight = 1.0;
@@ -1559,7 +1165,7 @@ return true;
                     }
                     catch(...)
                     {
-                        std::throw_with_nested(RuntimeExpressionException(StringTable_Process_4[exceptionIndex]));
+                        std::throw_with_nested(RuntimeExpressionException(StringTable_Process_3[exceptionIndex]));
                     }
     }
 
@@ -1592,335 +1198,9 @@ return true;
 // project, and then turn off /doc.
 
 
-    template<> 
-    class KeyComparePolicy<Process_4_Data0,UID_Process_5>
-    {
-    public:
-        struct KeyStruct
-        {
-            ScopeGuid m_RowGuid;
-
-            KeyStruct(Process_4_Data0 & c) :
-                m_RowGuid(c.m_RowGuid)
-            {
-            }
-
-            KeyStruct(const Process_4_Data0 & c, IncrementalAllocator * alloc) :
-                m_RowGuid(const_cast<Process_4_Data0&>(c).m_RowGuid)
-            {
-            }
-
-            KeyStruct(KeyStruct & c) :
-                m_RowGuid(c.m_RowGuid)
-            {
-            }
-
-            KeyStruct(const KeyStruct & c, IncrementalAllocator * alloc) :
-                m_RowGuid(const_cast<KeyStruct&>(c).m_RowGuid)
-            {
-            }
-
-            KeyStruct() :
-                m_RowGuid()
-            {
-            }
-
-            friend std::ostream& operator<<(std::ostream& os, const KeyStruct& row)
-            {
-
-                ScopeEngine::OutputRowContent(
-                    std::string{ u8"RowGuid:Guid" },
-                    reinterpret_cast<const char*>(&row),
-                    os);
-
-                return os;
-            }
-        };
-
-        typedef KeyStruct KeyType;
-
-        static int Compare(Process_4_Data0 & row, KeyType & key)
-        {
-            int r = 0;
-            if ((r = ScopeTypeCompare(row.m_RowGuid, key.m_RowGuid)) != 0)
-                return r;
-            return r;
-        }
-
-        static int Compare(Process_4_Data0 * n1, Process_4_Data0 * n2)
-        {
-            int r = 0;
-            if ((r = ScopeTypeCompare((*n1).m_RowGuid, (*n2).m_RowGuid)) != 0)
-                return r;
-            return r;
-        }
-
-    };
-
-
-// All of the templates will throw a CS1591 warning because we 
-// have /doc turned on in the CSharp compiler.
-// The only way to solve this is to move all of the templates to their own
-// project, and then turn off /doc.
-
-
-    template<>
-    class RowTransformPolicy<Process_4_Data0, Process_4_Data0, UID_Process_5>
-    {
-    public:
-
-        static bool FilterTransformRow(Process_4_Data0 & input, Process_4_Data0 & output, IncrementalAllocator * alloc)
-        {
-return true;
-}
-
-            #pragma warning(push)
-            #pragma warning(disable: 4100) // 'alloc': unreferenced formal parameter
-            static void InitializeStatics(IncrementalAllocator * alloc)
-            {
-            #pragma warning(pop)
-            }
-    
-            // get operator resource requirements
-            static OperatorRequirements GetOperatorRequirements()
-            {
-                return OperatorRequirements();
-            }
-        };
-    
-
-// All of the templates will throw a CS1591 warning because we 
-// have /doc turned on in the CSharp compiler.
-// The only way to solve this is to move all of the templates to their own
-// project, and then turn off /doc.
-
-
-#if defined(COMPILE_MANAGED)
-    template<>
-    struct ManagedUDO<UID_Process_5>
-    {
-        typedef ScopeRuntime::Reducer UDO;
-
-        ManagedUDO(std::string * argv, int argc)
-        {
-            try
-            {
-                m_udo.reset(___Scope_Generated_Classes___::__OperatorFactory__::Create_Process_5());
-                m_args.reset(gcnew Generic::List<String^>(ConvertArgsToArray(std::wstring{ L"20 -random 1881736468 -weightCol Weight" })));
-            }
-            catch (Exception ^ex)
-            {
-                ScopeEngineManaged::UserExceptionHelper::WrapUserException(___Scope_Generated_Classes___::__OperatorFactory__::Name_Process_5, "Constructor", ex);
-                throw;
-            }
-            auto curRow = gcnew ___Scope_Generated_Classes___::Row_193825B98C8C2D67();
-            m_udo->GetType()->GetField("_outputRow", BindingFlags::NonPublic | BindingFlags::Instance)->SetValue(m_udo.get(), curRow);
-            m_udo->GetType()->GetField("_outputSchema", BindingFlags::NonPublic | BindingFlags::Instance)->SetValue(m_udo.get(), m_udo->DefaultRow->Schema);
-        }
-
-
-        UDO^ get()
-        {
-            return m_udo.get();
-        }
-
-        Generic::List<String^>^ args()
-        {
-            return m_args.get();
-        }
-        cli::array<String^>^ ReadOnlyColumns_Output()
-        {
-            return nullptr;
-        }
-        
-        cli::array<String^>^ ReadOnlyColumns_Input()
-        {
-            return nullptr;
-        }
-
-    private:
-        ScopeTypedManagedHandle<UDO^> m_udo;
-        ScopeTypedManagedHandle<Generic::List<String^>^> m_args;
-        ManagedUDO & operator=(ManagedUDO &);
-    };
-    template<>
-    class InteropToManagedRowPolicy<Process_4_Data0, UID_Process_5>
-    {
-    public:
-        static void Marshal(Process_4_Data0& nativeRow, KeyComparePolicy<Process_4_Data0,UID_Process_5>::KeyType& nativeKey, ScopeRuntime::Row^% managedRow, InteropAllocator * alloc)
-        {
-            alloc->CopyToManagedColumn(nativeKey.m_RowGuid, managedRow[0], 0);
-            alloc->CopyToManagedColumn(nativeRow.m_RecognizedText, managedRow[1], 1);
-            alloc->CopyToManagedColumn(nativeRow.m_RecoLength, managedRow[2], 2);
-            alloc->CopyToManagedColumn(nativeRow.m_InkIsf, managedRow[3], 3);
-            alloc->CopyToManagedColumn(nativeRow.m_Weight, managedRow[4], 4);
-        }
-    };
-
-    template<>
-    class InteropToNativeRowPolicy<Process_4_Data0, UID_Process_5>
-    {
-    public:
-        static void Marshal(ScopeRuntime::Row^ managedRow, Process_4_Data0& nativeRow, IncrementalAllocator* alloc)
-        {
-            ScopeManagedInterop::CopyToNativeColumn(nativeRow.m_RowGuid, managedRow[0]->Guid, alloc);
-            ScopeManagedInterop::CopyToNativeColumn(nativeRow.m_RecognizedText, managedRow[1]->Binary, alloc);
-            ScopeManagedInterop::CopyToNativeColumn(nativeRow.m_RecoLength, managedRow[2]->Integer, alloc);
-            ScopeManagedInterop::CopyToNativeColumn(nativeRow.m_InkIsf, managedRow[3]->Binary, alloc);
-            ScopeManagedInterop::CopyToNativeColumn(nativeRow.m_Weight, managedRow[4]->Double, alloc);
-        }
-    };
-#endif // defined(COMPILE_MANAGED)
-// All of the templates will throw a CS1591 warning because we 
-// have /doc turned on in the CSharp compiler.
-// The only way to solve this is to move all of the templates to their own
-// project, and then turn off /doc.
-
-
-#if defined(COMPILE_NATIVE)
-    typedef SStreamExtractorV4<GetSStream_0_Data0, SStreamV3ExtractPolicy<GetSStream_0_Data0, UID_GetSStream_0, NullSchema>, UID_GetSStream_0, NullSchema, false> SStreamV3ExtractorType_SV1_Extract_GetSStream_0;
-    SStreamV3ExtractorType_SV1_Extract_GetSStream_0 * CreateExtractor_SV1_Extract_GetSStream_0(unique_ptr<SStreamV3ExtractorType_SV1_Extract_GetSStream_0> * extractor_ptr)
-    {
-        extractor_ptr->reset(new SStreamV3ExtractorType_SV1_Extract_GetSStream_0(0, "", UID_GetSStream_0));
-        return extractor_ptr->get();
-    }
-#endif // defined(COMPILE_NATIVE)
-// All of the templates will throw a CS1591 warning because we 
-// have /doc turned on in the CSharp compiler.
-// The only way to solve this is to move all of the templates to their own
-// project, and then turn off /doc.
-
-
-
-#if defined(COMPILE_NATIVE)
-namespace ScopeGeneratedClasses
-{
-    extern "C" __declspec(dllexport) void __stdcall SV1_Extract_execute(std::string * argv, int argc, InputFileInfo* inputs, int inputCnt, OutputFileInfo* outputs, int outputCnt, VertexExecutionInfo * vertexExecutionInfo)
-    {
-#ifdef USE_SSE4_2
-        // check CPUID to make sure this machine supports SSE4_2 instructions
-        // - this is incase we download a cluster vertex and try and debug it on a machine that doesn't support these instructions
-        int cpuInfo[4];
-        __cpuid(cpuInfo, 0x00000001);
-        //Array index | Bit range | Description 
-        // 2          | 20        | SSE4.2 extensions
-        if ((cpuInfo[2] & (1 << 20)) == 0)
-        {
-            throw RuntimeException(E_USER_ERROR, "Please recompile __ScopeCodeGenEngine__.dll without /DUSE_SSE4_2");
-            return;
-        }
-#endif
-
-        Configuration::Create(ET_Cosmos, GetCompilerSettings(), vertexExecutionInfo);
-        SIZE_T x_inputBufSize, x_outputBufSize, x_inputVirtualMemoryLimit;
-        int    x_inputBufCnt, x_outputBufCnt;
-        
-        MemoryManager::CalculateIOBufferSize(inputCnt, outputCnt, MemoryManager::x_vertexMemoryLimit, MemoryManager::x_vertexReserveMemory, x_inputBufSize, x_inputBufCnt, x_outputBufSize, x_outputBufCnt, x_inputVirtualMemoryLimit, false);
-
-        const bool IsNativeOnlyVertex = false;
-        unique_ptr<SStreamV3ExtractorType_SV1_Extract_GetSStream_0> extractor_0_ptr;
-        SStreamV3ExtractorType_SV1_Extract_GetSStream_0 * extractor_0 = CreateExtractor_SV1_Extract_GetSStream_0(&extractor_0_ptr);
-        ULONG extractor_0_count = 1;
-
-        // Define the type of the operator
-        typedef FilterTransformer<SStreamV3ExtractorType_SV1_Extract_GetSStream_0, GetSStream_0_Data0, Process_1_Data0, UID_Process_1> FilterTransformerType_Process_1;
-        // Construct operator and initialize it.
-        unique_ptr<FilterTransformerType_Process_1> filterTransformer_Process_1_ptr (new FilterTransformerType_Process_1(extractor_0, UID_Process_1));
-        FilterTransformerType_Process_1 * filterTransformer_Process_1 = filterTransformer_Process_1_ptr.get();
-        ULONG filterTransformer_Process_1_count = 1;
-        // Construct operator and initialize it.
-        unique_ptr<OperatorDelegate<Process_1_Data0>> delegate_filterTransformer_Process_1_ptr (new OperatorDelegate<Process_1_Data0>(OperatorDelegate<Process_1_Data0>::FromOperator(filterTransformer_Process_1)));
-        OperatorDelegate<Process_1_Data0> * delegate_filterTransformer_Process_1 = delegate_filterTransformer_Process_1_ptr.get();
-        ULONG delegate_filterTransformer_Process_1_count = 1;
-        // Define the type of the operator
-        typedef ScopeProcessor<Process_1_Data0, Process_1_Data0> ProcessorType_Process_2;
-        // Construct operator and initialize it.
-        unique_ptr<ProcessorType_Process_2> processor_Process_2_ptr (new ProcessorType_Process_2(ScopeProcessorManagedFactory::Make<Process_1_Data0,Process_1_Data0,UID_Process_2>(delegate_filterTransformer_Process_1), delegate_filterTransformer_Process_1, UID_Process_2));
-        ProcessorType_Process_2 * processor_Process_2 = processor_Process_2_ptr.get();
-        ULONG processor_Process_2_count = 1;
-        // Construct operator and initialize it.
-        unique_ptr<OperatorDelegate<Process_1_Data0>> delegate_processor_Process_2_ptr (new OperatorDelegate<Process_1_Data0>(OperatorDelegate<Process_1_Data0>::FromOperator(processor_Process_2)));
-        OperatorDelegate<Process_1_Data0> * delegate_processor_Process_2 = delegate_processor_Process_2_ptr.get();
-        ULONG delegate_processor_Process_2_count = 1;
-        // Define sorter type
-        typedef Sorter<Process_1_Data0> SorterType_Process_3;
-        // Construct operator and initialize it.
-        unique_ptr<SorterType_Process_3> sorter_Process_3_ptr (new SorterType_Process_3(delegate_processor_Process_2, &StdSort<Process_1_Data0>::Sort<KeyComparePolicy<Process_1_Data0, UID_Process_3>, (sizeof(Process_1_Data0)<=CACHELINE_SIZE)>, ScopeLoserTreeDelegate<Process_1_Data0>::CreateDelegate<UID_Process_3>(), false, 2147483648 /*memoryQuota*/, UID_Process_3));
-        SorterType_Process_3 * sorter_Process_3 = sorter_Process_3_ptr.get();
-        ULONG sorter_Process_3_count = 1;
-        // Define the type of the operator
-        typedef FilterTransformer<SorterType_Process_3, Process_1_Data0, Process_4_Data0, UID_Process_4> FilterTransformerType_Process_4;
-        // Construct operator and initialize it.
-        unique_ptr<FilterTransformerType_Process_4> filterTransformer_Process_4_ptr (new FilterTransformerType_Process_4(sorter_Process_3, UID_Process_4));
-        FilterTransformerType_Process_4 * filterTransformer_Process_4 = filterTransformer_Process_4_ptr.get();
-        ULONG filterTransformer_Process_4_count = 1;
-        // Construct operator and initialize it.
-        unique_ptr<OperatorDelegate<Process_4_Data0>> delegate_filterTransformer_Process_4_ptr (new OperatorDelegate<Process_4_Data0>(OperatorDelegate<Process_4_Data0>::FromOperator(filterTransformer_Process_4)));
-        OperatorDelegate<Process_4_Data0> * delegate_filterTransformer_Process_4 = delegate_filterTransformer_Process_4_ptr.get();
-        ULONG delegate_filterTransformer_Process_4_count = 1;
-        // Define the type of the operator
-        typedef ScopeProcessor<Process_4_Data0, Process_4_Data0> ReducerType_Process_5;
-        // Construct operator and initialize it.
-        unique_ptr<ReducerType_Process_5> reducer_Process_5_ptr (new ReducerType_Process_5(ScopeReducerManagedFactory::Make<Process_4_Data0,Process_4_Data0,UID_Process_5>(delegate_filterTransformer_Process_4), delegate_filterTransformer_Process_4, UID_Process_5));
-        ReducerType_Process_5 * reducer_Process_5 = reducer_Process_5_ptr.get();
-        ULONG reducer_Process_5_count = 1;
-        // Define outputer type
-        typedef Outputer<ReducerType_Process_5, Process_4_Data0, BinaryOutputPolicy<Process_4_Data0>, BinaryOutputStream, false> OutputerType1_SV1_Extract;
-        // Construct operator and initialize it
-        unique_ptr<OutputerType1_SV1_Extract> outputer_SV1_Extract_out0_ptr(new OutputerType1_SV1_Extract(reducer_Process_5, outputs[0].outputFileName, false, x_outputBufSize, x_outputBufCnt, UID_SV1_Extract_out0));
-        OutputerType1_SV1_Extract * outputer_SV1_Extract_out0 = outputer_SV1_Extract_out0_ptr.get();
-        try
-        {
-            // Init operator chain
-            outputer_SV1_Extract_out0->Init();
-
-            // Execute the whole vertex by calling the GetNextRow on top operator
-            Process_4_Data0 row;
-            outputer_SV1_Extract_out0->GetNextRow(row);
-
-            // Close operator chain
-            outputer_SV1_Extract_out0->Close();
-        }
-        catch (const ExceptionWithStack& ex)
-        {
-            if (vertexExecutionInfo->m_reportStatusFunc != NULL)
-            {
-                ErrorManager::GetGlobal()->SetError(std::current_exception(), "VertexExecute");
-                vertexExecutionInfo->m_reportStatusFunc(vertexExecutionInfo->m_statusReportContext);
-            }
-            
-            std::cout << "Caught exception: " << ex.what() << std::endl << ex.GetStack() << std::endl;
-            throw;
-        }
-
-
-        // Write out execution stats
-        MemoryManager::GetGlobal()->WriteRuntimeStats(vertexExecutionInfo->m_statsRoot);
-        outputer_SV1_Extract_out0->WriteRuntimeStats(vertexExecutionInfo->m_statsRoot);
-    }
-}
-#endif // defined(COMPILE_NATIVE)
-
-#if defined(COMPILE_MANAGED)
-template ScopeProcessorManaged<Process_1_Data0, Process_1_Data0> * ScopeEngine::ScopeProcessorManagedFactory::Make<Process_1_Data0, Process_1_Data0, UID_Process_2>(OperatorDelegate<Process_1_Data0>*);
-template ScopeProcessorManaged<Process_4_Data0, Process_4_Data0> * ScopeEngine::ScopeReducerManagedFactory::Make<Process_4_Data0, Process_4_Data0, UID_Process_5>(OperatorDelegate<Process_4_Data0>*);
-#endif // defined(COMPILE_MANAGED)
-#if defined(COMPILE_NATIVE)
-#endif // defined(COMPILE_NATIVE)
-
-#endif
-#pragma endregion SV1_Extract
-#pragma region SV2_Extract
-#if defined(COMPILE_SV2_EXTRACT) || defined(COMPILE_ALL_VERTICES)
-// All of the templates will throw a CS1591 warning because we 
-// have /doc turned on in the CSharp compiler.
-// The only way to solve this is to move all of the templates to their own
-// project, and then turn off /doc.
-
-
 #if defined(COMPILE_NATIVE)
     template<> 
-    class RowComparePolicy<PartitionKeySchema_GetSStream_0, PartitionKeySchema_GetSStream_0, UID_GetSStream_6> 
+    class RowComparePolicy<PartitionKeySchema_GetSStream_0, PartitionKeySchema_GetSStream_0, UID_GetSStream_4> 
     {
     public:
         // compare key from left and right schema object
@@ -1943,7 +1223,7 @@ template ScopeProcessorManaged<Process_4_Data0, Process_4_Data0> * ScopeEngine::
 // The only way to solve this is to move all of the templates to their own
 // project, and then turn off /doc.
 
-    static const char * StringTable_Process_7 [] =
+    static const char * StringTable_Process_5 [] =
     {
         "InputLanguage == \"en-us\"",
         "RowGuid",
@@ -1953,7 +1233,7 @@ template ScopeProcessorManaged<Process_4_Data0, Process_4_Data0> * ScopeEngine::
     };
 
     template<>
-    class RowTransformPolicy<GetSStream_0_Data0, Process_1_Data0, UID_Process_7>
+    class RowTransformPolicy<GetSStream_0_Data0, Process_1_Data0, UID_Process_5>
     {
     public:
 
@@ -1980,7 +1260,7 @@ template ScopeProcessorManaged<Process_4_Data0, Process_4_Data0> * ScopeEngine::
                 }
                 catch(...)
                 {
-                    std::throw_with_nested(RuntimeExpressionException(StringTable_Process_7[exceptionIndex]));
+                    std::throw_with_nested(RuntimeExpressionException(StringTable_Process_5[exceptionIndex]));
                 }
 }
         static FString staticconstant_0;
@@ -2003,7 +1283,7 @@ template ScopeProcessorManaged<Process_4_Data0, Process_4_Data0> * ScopeEngine::
 #if defined(COMPILE_NATIVE)
 #pragma warning(push)
 #pragma warning(disable:4592)
-    FString RowTransformPolicy<GetSStream_0_Data0, Process_1_Data0, UID_Process_7>::staticconstant_0;
+    FString RowTransformPolicy<GetSStream_0_Data0, Process_1_Data0, UID_Process_5>::staticconstant_0;
 #pragma warning(pop)
 #endif // defined(COMPILE_NATIVE)
 
@@ -2022,7 +1302,7 @@ template ScopeProcessorManaged<Process_4_Data0, Process_4_Data0> * ScopeEngine::
 
 
     template<>
-    class RowTransformPolicy<Process_1_Data0, Process_1_Data0, UID_Process_8>
+    class RowTransformPolicy<Process_1_Data0, Process_1_Data0, UID_Process_6>
     {
     public:
 
@@ -2054,7 +1334,7 @@ return true;
 
 #if defined(COMPILE_MANAGED)
     template<>
-    struct ManagedUDO<UID_Process_8>
+    struct ManagedUDO<UID_Process_6>
     {
         typedef ScopeRuntime::Processor UDO;
 
@@ -2062,12 +1342,12 @@ return true;
         {
             try
             {
-                m_udo.reset(___Scope_Generated_Classes___::__OperatorFactory__::Create_Process_8());
+                m_udo.reset(___Scope_Generated_Classes___::__OperatorFactory__::Create_Process_6());
                 m_args.reset(gcnew Generic::List<String^>(ConvertArgsToArray(std::wstring{ L"-produce RowGuid,#_InputLanguage,#_RecognizedText,#_WritingRectRight,#_InkIsf -skipValidation" })));
             }
             catch (Exception ^ex)
             {
-                ScopeEngineManaged::UserExceptionHelper::WrapUserException(___Scope_Generated_Classes___::__OperatorFactory__::Name_Process_8, "Constructor", ex);
+                ScopeEngineManaged::UserExceptionHelper::WrapUserException(___Scope_Generated_Classes___::__OperatorFactory__::Name_Process_6, "Constructor", ex);
                 throw;
             }
             auto curRow = gcnew ___Scope_Generated_Classes___::Row_RowGuid_Guid_RecognizedText_String_InkIsf_String();
@@ -2101,7 +1381,7 @@ return true;
         ManagedUDO & operator=(ManagedUDO &);
     };
     template<>
-    class InteropToManagedRowPolicy<Process_1_Data0, UID_Process_8>
+    class InteropToManagedRowPolicy<Process_1_Data0, UID_Process_6>
     {
     public:
         static void Marshal(Process_1_Data0& nativeRow, ScopeRuntime::Row^% managedRow, InteropAllocator * alloc)
@@ -2112,7 +1392,7 @@ return true;
         }
     };
     template<>
-    class InteropToNativeRowPolicy<Process_1_Data0, UID_Process_8>
+    class InteropToNativeRowPolicy<Process_1_Data0, UID_Process_6>
     {
     public:
         static void Marshal(ScopeRuntime::Row^ managedRow, Process_1_Data0& nativeRow, IncrementalAllocator* alloc)
@@ -2128,30 +1408,21 @@ return true;
 // The only way to solve this is to move all of the templates to their own
 // project, and then turn off /doc.
 
-
-#if defined(COMPILE_MANAGED)
-#endif // defined(COMPILE_MANAGED)
-// All of the templates will throw a CS1591 warning because we 
-// have /doc turned on in the CSharp compiler.
-// The only way to solve this is to move all of the templates to their own
-// project, and then turn off /doc.
-
-    static const char * StringTable_Process_10 [] =
+    static const char * StringTable_Process_7 [] =
     {
         "RowGuid",
         "RecognizedText",
-        "RecognizedText.Length",
         "InkIsf",
         "1.0",
         "\"*** After Last Expression ***\"",
     };
 
     template<>
-    class RowTransformPolicy<Process_1_Data0, Process_4_Data0, UID_Process_10>
+    class RowTransformPolicy<Process_1_Data0, Process_3_Data0, UID_Process_7>
     {
     public:
 
-        static bool FilterTransformRow(Process_1_Data0 & input, Process_4_Data0 & output, IncrementalAllocator * alloc)
+        static bool FilterTransformRow(Process_1_Data0 & input, Process_3_Data0 & output, IncrementalAllocator * alloc)
         {
 
             int exceptionIndex = 0;
@@ -2161,8 +1432,6 @@ return true;
                     exceptionIndex++;
                     output.m_RecognizedText = input.m_RecognizedText;
                     exceptionIndex++;
-                    output.m_RecoLength = input.m_RecognizedText.Length();
-                    exceptionIndex++;
                     output.m_InkIsf = input.m_InkIsf;
                     exceptionIndex++;
                     output.m_Weight = 1.0;
@@ -2171,7 +1440,7 @@ return true;
                     }
                     catch(...)
                     {
-                        std::throw_with_nested(RuntimeExpressionException(StringTable_Process_10[exceptionIndex]));
+                        std::throw_with_nested(RuntimeExpressionException(StringTable_Process_7[exceptionIndex]));
                     }
     }
 
@@ -2204,71 +1473,94 @@ return true;
 // project, and then turn off /doc.
 
 
+#if defined(COMPILE_NATIVE)
     template<> 
-    class KeyComparePolicy<Process_4_Data0,UID_Process_11>
+    class RowComparePolicy<PartitionKeySchema_GetSStream_0, PartitionKeySchema_GetSStream_0, UID_GetSStream_8> 
     {
     public:
-        struct KeyStruct
+        // compare key from left and right schema object
+        static int Compare(const PartitionKeySchema_GetSStream_0 * left, const PartitionKeySchema_GetSStream_0 * right)
         {
-            ScopeGuid m_RowGuid;
-
-            KeyStruct(Process_4_Data0 & c) :
-                m_RowGuid(c.m_RowGuid)
-            {
-            }
-
-            KeyStruct(const Process_4_Data0 & c, IncrementalAllocator * alloc) :
-                m_RowGuid(const_cast<Process_4_Data0&>(c).m_RowGuid)
-            {
-            }
-
-            KeyStruct(KeyStruct & c) :
-                m_RowGuid(c.m_RowGuid)
-            {
-            }
-
-            KeyStruct(const KeyStruct & c, IncrementalAllocator * alloc) :
-                m_RowGuid(const_cast<KeyStruct&>(c).m_RowGuid)
-            {
-            }
-
-            KeyStruct() :
-                m_RowGuid()
-            {
-            }
-
-            friend std::ostream& operator<<(std::ostream& os, const KeyStruct& row)
-            {
-
-                ScopeEngine::OutputRowContent(
-                    std::string{ u8"RowGuid:Guid" },
-                    reinterpret_cast<const char*>(&row),
-                    os);
-
-                return os;
-            }
-        };
-
-        typedef KeyStruct KeyType;
-
-        static int Compare(Process_4_Data0 & row, KeyType & key)
-        {
-            int r = 0;
-            if ((r = ScopeTypeCompare(row.m_RowGuid, key.m_RowGuid)) != 0)
-                return r;
-            return r;
+            return 0;
         }
+    };
+#endif // defined(COMPILE_NATIVE)
+// All of the templates will throw a CS1591 warning because we 
+// have /doc turned on in the CSharp compiler.
+// The only way to solve this is to move all of the templates to their own
+// project, and then turn off /doc.
 
-        static int Compare(Process_4_Data0 * n1, Process_4_Data0 * n2)
-        {
-            int r = 0;
-            if ((r = ScopeTypeCompare((*n1).m_RowGuid, (*n2).m_RowGuid)) != 0)
-                return r;
-            return r;
-        }
 
+#if defined(COMPILE_MANAGED)
+#endif // defined(COMPILE_MANAGED)
+// All of the templates will throw a CS1591 warning because we 
+// have /doc turned on in the CSharp compiler.
+// The only way to solve this is to move all of the templates to their own
+// project, and then turn off /doc.
+
+    static const char * StringTable_Process_9 [] =
+    {
+        "InputLanguage == \"en-us\"",
+        "RowGuid",
+        "RecognizedText",
+        "InkIsf",
+        "\"*** After Last Expression ***\"",
     };
 
+    template<>
+    class RowTransformPolicy<GetSStream_0_Data0, Process_1_Data0, UID_Process_9>
+    {
+    public:
+
+        static bool FilterTransformRow(GetSStream_0_Data0 & input, Process_1_Data0 & output, IncrementalAllocator * alloc)
+        {
+
+            int exceptionIndex = 0;
+            try
+            {
+                if (input.m_InputLanguage == staticconstant_0)
+                {
+
+                    exceptionIndex++;
+                    output.m_RowGuid = input.m_RowGuid;
+                    exceptionIndex++;
+                    output.m_RecognizedText = input.m_RecognizedText;
+                    exceptionIndex++;
+                    output.m_InkIsf = input.m_InkIsf;
+                    exceptionIndex++;
+                    return true;
+                }
+            
+                return false;
+                }
+                catch(...)
+                {
+                    std::throw_with_nested(RuntimeExpressionException(StringTable_Process_9[exceptionIndex]));
+                }
+}
+        static FString staticconstant_0;
+
+            #pragma warning(push)
+            #pragma warning(disable: 4100) // 'alloc': unreferenced formal parameter
+            static void InitializeStatics(IncrementalAllocator * alloc)
+            {
+            #pragma warning(pop)
+                staticconstant_0 = FString("en-us", 5);
+            }
+    
+            // get operator resource requirements
+            static OperatorRequirements GetOperatorRequirements()
+            {
+                return OperatorRequirements();
+            }
+        };
+    
+#if defined(COMPILE_NATIVE)
+#pragma warning(push)
+#pragma warning(disable:4592)
+    FString RowTransformPolicy<GetSStream_0_Data0, Process_1_Data0, UID_Process_9>::staticconstant_0;
+#pragma warning(pop)
+#endif // defined(COMPILE_NATIVE)
 
 // All of the templates will throw a CS1591 warning because we 
 // have /doc turned on in the CSharp compiler.
@@ -2276,12 +1568,20 @@ return true;
 // project, and then turn off /doc.
 
 
+#if defined(COMPILE_MANAGED)
+#endif // defined(COMPILE_MANAGED)
+// All of the templates will throw a CS1591 warning because we 
+// have /doc turned on in the CSharp compiler.
+// The only way to solve this is to move all of the templates to their own
+// project, and then turn off /doc.
+
+
     template<>
-    class RowTransformPolicy<Process_4_Data0, Process_4_Data0, UID_Process_11>
+    class RowTransformPolicy<Process_1_Data0, Process_1_Data0, UID_Process_10>
     {
     public:
 
-        static bool FilterTransformRow(Process_4_Data0 & input, Process_4_Data0 & output, IncrementalAllocator * alloc)
+        static bool FilterTransformRow(Process_1_Data0 & input, Process_1_Data0 & output, IncrementalAllocator * alloc)
         {
 return true;
 }
@@ -2309,23 +1609,23 @@ return true;
 
 #if defined(COMPILE_MANAGED)
     template<>
-    struct ManagedUDO<UID_Process_11>
+    struct ManagedUDO<UID_Process_10>
     {
-        typedef ScopeRuntime::Reducer UDO;
+        typedef ScopeRuntime::Processor UDO;
 
         ManagedUDO(std::string * argv, int argc)
         {
             try
             {
-                m_udo.reset(___Scope_Generated_Classes___::__OperatorFactory__::Create_Process_11());
-                m_args.reset(gcnew Generic::List<String^>(ConvertArgsToArray(std::wstring{ L"20 -random 1881736468 -weightCol Weight" })));
+                m_udo.reset(___Scope_Generated_Classes___::__OperatorFactory__::Create_Process_10());
+                m_args.reset(gcnew Generic::List<String^>(ConvertArgsToArray(std::wstring{ L"-produce RowGuid,#_InputLanguage,#_RecognizedText,#_WritingRectRight,#_InkIsf -skipValidation" })));
             }
             catch (Exception ^ex)
             {
-                ScopeEngineManaged::UserExceptionHelper::WrapUserException(___Scope_Generated_Classes___::__OperatorFactory__::Name_Process_11, "Constructor", ex);
+                ScopeEngineManaged::UserExceptionHelper::WrapUserException(___Scope_Generated_Classes___::__OperatorFactory__::Name_Process_10, "Constructor", ex);
                 throw;
             }
-            auto curRow = gcnew ___Scope_Generated_Classes___::Row_193825B98C8C2D67();
+            auto curRow = gcnew ___Scope_Generated_Classes___::Row_RowGuid_Guid_RecognizedText_String_InkIsf_String();
             m_udo->GetType()->GetField("_outputRow", BindingFlags::NonPublic | BindingFlags::Instance)->SetValue(m_udo.get(), curRow);
             m_udo->GetType()->GetField("_outputSchema", BindingFlags::NonPublic | BindingFlags::Instance)->SetValue(m_udo.get(), m_udo->DefaultRow->Schema);
         }
@@ -2356,30 +1656,25 @@ return true;
         ManagedUDO & operator=(ManagedUDO &);
     };
     template<>
-    class InteropToManagedRowPolicy<Process_4_Data0, UID_Process_11>
+    class InteropToManagedRowPolicy<Process_1_Data0, UID_Process_10>
     {
     public:
-        static void Marshal(Process_4_Data0& nativeRow, KeyComparePolicy<Process_4_Data0,UID_Process_11>::KeyType& nativeKey, ScopeRuntime::Row^% managedRow, InteropAllocator * alloc)
+        static void Marshal(Process_1_Data0& nativeRow, ScopeRuntime::Row^% managedRow, InteropAllocator * alloc)
         {
-            alloc->CopyToManagedColumn(nativeKey.m_RowGuid, managedRow[0], 0);
+            alloc->CopyToManagedColumn(nativeRow.m_RowGuid, managedRow[0], 0);
             alloc->CopyToManagedColumn(nativeRow.m_RecognizedText, managedRow[1], 1);
-            alloc->CopyToManagedColumn(nativeRow.m_RecoLength, managedRow[2], 2);
-            alloc->CopyToManagedColumn(nativeRow.m_InkIsf, managedRow[3], 3);
-            alloc->CopyToManagedColumn(nativeRow.m_Weight, managedRow[4], 4);
+            alloc->CopyToManagedColumn(nativeRow.m_InkIsf, managedRow[2], 2);
         }
     };
-
     template<>
-    class InteropToNativeRowPolicy<Process_4_Data0, UID_Process_11>
+    class InteropToNativeRowPolicy<Process_1_Data0, UID_Process_10>
     {
     public:
-        static void Marshal(ScopeRuntime::Row^ managedRow, Process_4_Data0& nativeRow, IncrementalAllocator* alloc)
+        static void Marshal(ScopeRuntime::Row^ managedRow, Process_1_Data0& nativeRow, IncrementalAllocator* alloc)
         {
             ScopeManagedInterop::CopyToNativeColumn(nativeRow.m_RowGuid, managedRow[0]->Guid, alloc);
             ScopeManagedInterop::CopyToNativeColumn(nativeRow.m_RecognizedText, managedRow[1]->Binary, alloc);
-            ScopeManagedInterop::CopyToNativeColumn(nativeRow.m_RecoLength, managedRow[2]->Integer, alloc);
-            ScopeManagedInterop::CopyToNativeColumn(nativeRow.m_InkIsf, managedRow[3]->Binary, alloc);
-            ScopeManagedInterop::CopyToNativeColumn(nativeRow.m_Weight, managedRow[4]->Double, alloc);
+            ScopeManagedInterop::CopyToNativeColumn(nativeRow.m_InkIsf, managedRow[2]->Binary, alloc);
         }
     };
 #endif // defined(COMPILE_MANAGED)
@@ -2388,142 +1683,65 @@ return true;
 // The only way to solve this is to move all of the templates to their own
 // project, and then turn off /doc.
 
-
-#if defined(COMPILE_NATIVE)
-    typedef SStreamExtractorV4<GetSStream_0_Data0, SStreamV3ExtractPolicy<GetSStream_0_Data0, UID_GetSStream_0, NullSchema>, UID_GetSStream_0, NullSchema, false> SStreamV3ExtractorType_SV2_Extract_GetSStream_6;
-    SStreamV3ExtractorType_SV2_Extract_GetSStream_6 * CreateExtractor_SV2_Extract_GetSStream_6(unique_ptr<SStreamV3ExtractorType_SV2_Extract_GetSStream_6> * extractor_ptr)
+    static const char * StringTable_Process_11 [] =
     {
-        extractor_ptr->reset(new SStreamV3ExtractorType_SV2_Extract_GetSStream_6(6, "", UID_GetSStream_6));
-        return extractor_ptr->get();
+        "RowGuid",
+        "RecognizedText",
+        "InkIsf",
+        "1.0",
+        "\"*** After Last Expression ***\"",
+    };
+
+    template<>
+    class RowTransformPolicy<Process_1_Data0, Process_3_Data0, UID_Process_11>
+    {
+    public:
+
+        static bool FilterTransformRow(Process_1_Data0 & input, Process_3_Data0 & output, IncrementalAllocator * alloc)
+        {
+
+            int exceptionIndex = 0;
+            try
+            {
+                    output.m_RowGuid = input.m_RowGuid;
+                    exceptionIndex++;
+                    output.m_RecognizedText = input.m_RecognizedText;
+                    exceptionIndex++;
+                    output.m_InkIsf = input.m_InkIsf;
+                    exceptionIndex++;
+                    output.m_Weight = 1.0;
+                    exceptionIndex++;
+                    return true;
+                    }
+                    catch(...)
+                    {
+                        std::throw_with_nested(RuntimeExpressionException(StringTable_Process_11[exceptionIndex]));
+                    }
     }
-#endif // defined(COMPILE_NATIVE)
+
+            #pragma warning(push)
+            #pragma warning(disable: 4100) // 'alloc': unreferenced formal parameter
+            static void InitializeStatics(IncrementalAllocator * alloc)
+            {
+            #pragma warning(pop)
+            }
+    
+            // get operator resource requirements
+            static OperatorRequirements GetOperatorRequirements()
+            {
+                return OperatorRequirements();
+            }
+        };
+    
+
 // All of the templates will throw a CS1591 warning because we 
 // have /doc turned on in the CSharp compiler.
 // The only way to solve this is to move all of the templates to their own
 // project, and then turn off /doc.
 
 
-
-#if defined(COMPILE_NATIVE)
-namespace ScopeGeneratedClasses
-{
-    extern "C" __declspec(dllexport) void __stdcall SV2_Extract_execute(std::string * argv, int argc, InputFileInfo* inputs, int inputCnt, OutputFileInfo* outputs, int outputCnt, VertexExecutionInfo * vertexExecutionInfo)
-    {
-#ifdef USE_SSE4_2
-        // check CPUID to make sure this machine supports SSE4_2 instructions
-        // - this is incase we download a cluster vertex and try and debug it on a machine that doesn't support these instructions
-        int cpuInfo[4];
-        __cpuid(cpuInfo, 0x00000001);
-        //Array index | Bit range | Description 
-        // 2          | 20        | SSE4.2 extensions
-        if ((cpuInfo[2] & (1 << 20)) == 0)
-        {
-            throw RuntimeException(E_USER_ERROR, "Please recompile __ScopeCodeGenEngine__.dll without /DUSE_SSE4_2");
-            return;
-        }
-#endif
-
-        Configuration::Create(ET_Cosmos, GetCompilerSettings(), vertexExecutionInfo);
-        SIZE_T x_inputBufSize, x_outputBufSize, x_inputVirtualMemoryLimit;
-        int    x_inputBufCnt, x_outputBufCnt;
-        
-        MemoryManager::CalculateIOBufferSize(inputCnt, outputCnt, MemoryManager::x_vertexMemoryLimit, MemoryManager::x_vertexReserveMemory, x_inputBufSize, x_inputBufCnt, x_outputBufSize, x_outputBufCnt, x_inputVirtualMemoryLimit, false);
-
-        const bool IsNativeOnlyVertex = false;
-        unique_ptr<SStreamV3ExtractorType_SV2_Extract_GetSStream_6> extractor_0_ptr;
-        SStreamV3ExtractorType_SV2_Extract_GetSStream_6 * extractor_0 = CreateExtractor_SV2_Extract_GetSStream_6(&extractor_0_ptr);
-        ULONG extractor_0_count = 1;
-
-        // Define the type of the operator
-        typedef FilterTransformer<SStreamV3ExtractorType_SV2_Extract_GetSStream_6, GetSStream_0_Data0, Process_1_Data0, UID_Process_7> FilterTransformerType_Process_7;
-        // Construct operator and initialize it.
-        unique_ptr<FilterTransformerType_Process_7> filterTransformer_Process_7_ptr (new FilterTransformerType_Process_7(extractor_0, UID_Process_7));
-        FilterTransformerType_Process_7 * filterTransformer_Process_7 = filterTransformer_Process_7_ptr.get();
-        ULONG filterTransformer_Process_7_count = 1;
-        // Construct operator and initialize it.
-        unique_ptr<OperatorDelegate<Process_1_Data0>> delegate_filterTransformer_Process_7_ptr (new OperatorDelegate<Process_1_Data0>(OperatorDelegate<Process_1_Data0>::FromOperator(filterTransformer_Process_7)));
-        OperatorDelegate<Process_1_Data0> * delegate_filterTransformer_Process_7 = delegate_filterTransformer_Process_7_ptr.get();
-        ULONG delegate_filterTransformer_Process_7_count = 1;
-        // Define the type of the operator
-        typedef ScopeProcessor<Process_1_Data0, Process_1_Data0> ProcessorType_Process_8;
-        // Construct operator and initialize it.
-        unique_ptr<ProcessorType_Process_8> processor_Process_8_ptr (new ProcessorType_Process_8(ScopeProcessorManagedFactory::Make<Process_1_Data0,Process_1_Data0,UID_Process_8>(delegate_filterTransformer_Process_7), delegate_filterTransformer_Process_7, UID_Process_8));
-        ProcessorType_Process_8 * processor_Process_8 = processor_Process_8_ptr.get();
-        ULONG processor_Process_8_count = 1;
-        // Construct operator and initialize it.
-        unique_ptr<OperatorDelegate<Process_1_Data0>> delegate_processor_Process_8_ptr (new OperatorDelegate<Process_1_Data0>(OperatorDelegate<Process_1_Data0>::FromOperator(processor_Process_8)));
-        OperatorDelegate<Process_1_Data0> * delegate_processor_Process_8 = delegate_processor_Process_8_ptr.get();
-        ULONG delegate_processor_Process_8_count = 1;
-        // Define sorter type
-        typedef Sorter<Process_1_Data0> SorterType_Process_9;
-        // Construct operator and initialize it.
-        unique_ptr<SorterType_Process_9> sorter_Process_9_ptr (new SorterType_Process_9(delegate_processor_Process_8, &StdSort<Process_1_Data0>::Sort<KeyComparePolicy<Process_1_Data0, UID_Process_3>, (sizeof(Process_1_Data0)<=CACHELINE_SIZE)>, ScopeLoserTreeDelegate<Process_1_Data0>::CreateDelegate<UID_Process_3>(), false, 2147483648 /*memoryQuota*/, UID_Process_9));
-        SorterType_Process_9 * sorter_Process_9 = sorter_Process_9_ptr.get();
-        ULONG sorter_Process_9_count = 1;
-        // Define the type of the operator
-        typedef FilterTransformer<SorterType_Process_9, Process_1_Data0, Process_4_Data0, UID_Process_10> FilterTransformerType_Process_10;
-        // Construct operator and initialize it.
-        unique_ptr<FilterTransformerType_Process_10> filterTransformer_Process_10_ptr (new FilterTransformerType_Process_10(sorter_Process_9, UID_Process_10));
-        FilterTransformerType_Process_10 * filterTransformer_Process_10 = filterTransformer_Process_10_ptr.get();
-        ULONG filterTransformer_Process_10_count = 1;
-        // Construct operator and initialize it.
-        unique_ptr<OperatorDelegate<Process_4_Data0>> delegate_filterTransformer_Process_10_ptr (new OperatorDelegate<Process_4_Data0>(OperatorDelegate<Process_4_Data0>::FromOperator(filterTransformer_Process_10)));
-        OperatorDelegate<Process_4_Data0> * delegate_filterTransformer_Process_10 = delegate_filterTransformer_Process_10_ptr.get();
-        ULONG delegate_filterTransformer_Process_10_count = 1;
-        // Define the type of the operator
-        typedef ScopeProcessor<Process_4_Data0, Process_4_Data0> ReducerType_Process_11;
-        // Construct operator and initialize it.
-        unique_ptr<ReducerType_Process_11> reducer_Process_11_ptr (new ReducerType_Process_11(ScopeReducerManagedFactory::Make<Process_4_Data0,Process_4_Data0,UID_Process_11>(delegate_filterTransformer_Process_10), delegate_filterTransformer_Process_10, UID_Process_11));
-        ReducerType_Process_11 * reducer_Process_11 = reducer_Process_11_ptr.get();
-        ULONG reducer_Process_11_count = 1;
-        // Define outputer type
-        typedef Outputer<ReducerType_Process_11, Process_4_Data0, BinaryOutputPolicy<Process_4_Data0>, BinaryOutputStream, false> OutputerType1_SV2_Extract;
-        // Construct operator and initialize it
-        unique_ptr<OutputerType1_SV2_Extract> outputer_SV2_Extract_out0_ptr(new OutputerType1_SV2_Extract(reducer_Process_11, outputs[0].outputFileName, false, x_outputBufSize, x_outputBufCnt, UID_SV2_Extract_out0));
-        OutputerType1_SV2_Extract * outputer_SV2_Extract_out0 = outputer_SV2_Extract_out0_ptr.get();
-        try
-        {
-            // Init operator chain
-            outputer_SV2_Extract_out0->Init();
-
-            // Execute the whole vertex by calling the GetNextRow on top operator
-            Process_4_Data0 row;
-            outputer_SV2_Extract_out0->GetNextRow(row);
-
-            // Close operator chain
-            outputer_SV2_Extract_out0->Close();
-        }
-        catch (const ExceptionWithStack& ex)
-        {
-            if (vertexExecutionInfo->m_reportStatusFunc != NULL)
-            {
-                ErrorManager::GetGlobal()->SetError(std::current_exception(), "VertexExecute");
-                vertexExecutionInfo->m_reportStatusFunc(vertexExecutionInfo->m_statusReportContext);
-            }
-            
-            std::cout << "Caught exception: " << ex.what() << std::endl << ex.GetStack() << std::endl;
-            throw;
-        }
-
-
-        // Write out execution stats
-        MemoryManager::GetGlobal()->WriteRuntimeStats(vertexExecutionInfo->m_statsRoot);
-        outputer_SV2_Extract_out0->WriteRuntimeStats(vertexExecutionInfo->m_statsRoot);
-    }
-}
-#endif // defined(COMPILE_NATIVE)
-
 #if defined(COMPILE_MANAGED)
-template ScopeProcessorManaged<Process_1_Data0, Process_1_Data0> * ScopeEngine::ScopeProcessorManagedFactory::Make<Process_1_Data0, Process_1_Data0, UID_Process_8>(OperatorDelegate<Process_1_Data0>*);
-template ScopeProcessorManaged<Process_4_Data0, Process_4_Data0> * ScopeEngine::ScopeReducerManagedFactory::Make<Process_4_Data0, Process_4_Data0, UID_Process_11>(OperatorDelegate<Process_4_Data0>*);
 #endif // defined(COMPILE_MANAGED)
-#if defined(COMPILE_NATIVE)
-#endif // defined(COMPILE_NATIVE)
-
-#endif
-#pragma endregion SV2_Extract
-#pragma region SV3_Extract
-#if defined(COMPILE_SV3_EXTRACT) || defined(COMPILE_ALL_VERTICES)
 // All of the templates will throw a CS1591 warning because we 
 // have /doc turned on in the CSharp compiler.
 // The only way to solve this is to move all of the templates to their own
@@ -2633,16 +1851,8 @@ template ScopeProcessorManaged<Process_4_Data0, Process_4_Data0> * ScopeEngine::
 // project, and then turn off /doc.
 
 
-#if defined(COMPILE_MANAGED)
-#endif // defined(COMPILE_MANAGED)
-// All of the templates will throw a CS1591 warning because we 
-// have /doc turned on in the CSharp compiler.
-// The only way to solve this is to move all of the templates to their own
-// project, and then turn off /doc.
-
-
     template<>
-    class RowTransformPolicy<Process_1_Data0, Process_1_Data0, UID_Process_15>
+    class RowTransformPolicy<Process_1_Data0, Process_1_Data0, UID_Process_14>
     {
     public:
 
@@ -2674,7 +1884,7 @@ return true;
 
 #if defined(COMPILE_MANAGED)
     template<>
-    struct ManagedUDO<UID_Process_15>
+    struct ManagedUDO<UID_Process_14>
     {
         typedef ScopeRuntime::Processor UDO;
 
@@ -2682,12 +1892,12 @@ return true;
         {
             try
             {
-                m_udo.reset(___Scope_Generated_Classes___::__OperatorFactory__::Create_Process_15());
+                m_udo.reset(___Scope_Generated_Classes___::__OperatorFactory__::Create_Process_14());
                 m_args.reset(gcnew Generic::List<String^>(ConvertArgsToArray(std::wstring{ L"-produce RowGuid,#_InputLanguage,#_RecognizedText,#_WritingRectRight,#_InkIsf -skipValidation" })));
             }
             catch (Exception ^ex)
             {
-                ScopeEngineManaged::UserExceptionHelper::WrapUserException(___Scope_Generated_Classes___::__OperatorFactory__::Name_Process_15, "Constructor", ex);
+                ScopeEngineManaged::UserExceptionHelper::WrapUserException(___Scope_Generated_Classes___::__OperatorFactory__::Name_Process_14, "Constructor", ex);
                 throw;
             }
             auto curRow = gcnew ___Scope_Generated_Classes___::Row_RowGuid_Guid_RecognizedText_String_InkIsf_String();
@@ -2721,7 +1931,7 @@ return true;
         ManagedUDO & operator=(ManagedUDO &);
     };
     template<>
-    class InteropToManagedRowPolicy<Process_1_Data0, UID_Process_15>
+    class InteropToManagedRowPolicy<Process_1_Data0, UID_Process_14>
     {
     public:
         static void Marshal(Process_1_Data0& nativeRow, ScopeRuntime::Row^% managedRow, InteropAllocator * alloc)
@@ -2732,7 +1942,7 @@ return true;
         }
     };
     template<>
-    class InteropToNativeRowPolicy<Process_1_Data0, UID_Process_15>
+    class InteropToNativeRowPolicy<Process_1_Data0, UID_Process_14>
     {
     public:
         static void Marshal(ScopeRuntime::Row^ managedRow, Process_1_Data0& nativeRow, IncrementalAllocator* alloc)
@@ -2748,22 +1958,21 @@ return true;
 // The only way to solve this is to move all of the templates to their own
 // project, and then turn off /doc.
 
-    static const char * StringTable_Process_16 [] =
+    static const char * StringTable_Process_15 [] =
     {
         "RowGuid",
         "RecognizedText",
-        "RecognizedText.Length",
         "InkIsf",
         "1.0",
         "\"*** After Last Expression ***\"",
     };
 
     template<>
-    class RowTransformPolicy<Process_1_Data0, Process_4_Data0, UID_Process_16>
+    class RowTransformPolicy<Process_1_Data0, Process_3_Data0, UID_Process_15>
     {
     public:
 
-        static bool FilterTransformRow(Process_1_Data0 & input, Process_4_Data0 & output, IncrementalAllocator * alloc)
+        static bool FilterTransformRow(Process_1_Data0 & input, Process_3_Data0 & output, IncrementalAllocator * alloc)
         {
 
             int exceptionIndex = 0;
@@ -2773,8 +1982,6 @@ return true;
                     exceptionIndex++;
                     output.m_RecognizedText = input.m_RecognizedText;
                     exceptionIndex++;
-                    output.m_RecoLength = input.m_RecognizedText.Length();
-                    exceptionIndex++;
                     output.m_InkIsf = input.m_InkIsf;
                     exceptionIndex++;
                     output.m_Weight = 1.0;
@@ -2783,7 +1990,7 @@ return true;
                     }
                     catch(...)
                     {
-                        std::throw_with_nested(RuntimeExpressionException(StringTable_Process_16[exceptionIndex]));
+                        std::throw_with_nested(RuntimeExpressionException(StringTable_Process_15[exceptionIndex]));
                     }
     }
 
@@ -2816,71 +2023,94 @@ return true;
 // project, and then turn off /doc.
 
 
+#if defined(COMPILE_NATIVE)
     template<> 
-    class KeyComparePolicy<Process_4_Data0,UID_Process_17>
+    class RowComparePolicy<PartitionKeySchema_GetSStream_0, PartitionKeySchema_GetSStream_0, UID_GetSStream_16> 
     {
     public:
-        struct KeyStruct
+        // compare key from left and right schema object
+        static int Compare(const PartitionKeySchema_GetSStream_0 * left, const PartitionKeySchema_GetSStream_0 * right)
         {
-            ScopeGuid m_RowGuid;
-
-            KeyStruct(Process_4_Data0 & c) :
-                m_RowGuid(c.m_RowGuid)
-            {
-            }
-
-            KeyStruct(const Process_4_Data0 & c, IncrementalAllocator * alloc) :
-                m_RowGuid(const_cast<Process_4_Data0&>(c).m_RowGuid)
-            {
-            }
-
-            KeyStruct(KeyStruct & c) :
-                m_RowGuid(c.m_RowGuid)
-            {
-            }
-
-            KeyStruct(const KeyStruct & c, IncrementalAllocator * alloc) :
-                m_RowGuid(const_cast<KeyStruct&>(c).m_RowGuid)
-            {
-            }
-
-            KeyStruct() :
-                m_RowGuid()
-            {
-            }
-
-            friend std::ostream& operator<<(std::ostream& os, const KeyStruct& row)
-            {
-
-                ScopeEngine::OutputRowContent(
-                    std::string{ u8"RowGuid:Guid" },
-                    reinterpret_cast<const char*>(&row),
-                    os);
-
-                return os;
-            }
-        };
-
-        typedef KeyStruct KeyType;
-
-        static int Compare(Process_4_Data0 & row, KeyType & key)
-        {
-            int r = 0;
-            if ((r = ScopeTypeCompare(row.m_RowGuid, key.m_RowGuid)) != 0)
-                return r;
-            return r;
+            return 0;
         }
+    };
+#endif // defined(COMPILE_NATIVE)
+// All of the templates will throw a CS1591 warning because we 
+// have /doc turned on in the CSharp compiler.
+// The only way to solve this is to move all of the templates to their own
+// project, and then turn off /doc.
 
-        static int Compare(Process_4_Data0 * n1, Process_4_Data0 * n2)
-        {
-            int r = 0;
-            if ((r = ScopeTypeCompare((*n1).m_RowGuid, (*n2).m_RowGuid)) != 0)
-                return r;
-            return r;
-        }
 
+#if defined(COMPILE_MANAGED)
+#endif // defined(COMPILE_MANAGED)
+// All of the templates will throw a CS1591 warning because we 
+// have /doc turned on in the CSharp compiler.
+// The only way to solve this is to move all of the templates to their own
+// project, and then turn off /doc.
+
+    static const char * StringTable_Process_17 [] =
+    {
+        "InputLanguage == \"en-us\"",
+        "RowGuid",
+        "RecognizedText",
+        "InkIsf",
+        "\"*** After Last Expression ***\"",
     };
 
+    template<>
+    class RowTransformPolicy<GetSStream_0_Data0, Process_1_Data0, UID_Process_17>
+    {
+    public:
+
+        static bool FilterTransformRow(GetSStream_0_Data0 & input, Process_1_Data0 & output, IncrementalAllocator * alloc)
+        {
+
+            int exceptionIndex = 0;
+            try
+            {
+                if (input.m_InputLanguage == staticconstant_0)
+                {
+
+                    exceptionIndex++;
+                    output.m_RowGuid = input.m_RowGuid;
+                    exceptionIndex++;
+                    output.m_RecognizedText = input.m_RecognizedText;
+                    exceptionIndex++;
+                    output.m_InkIsf = input.m_InkIsf;
+                    exceptionIndex++;
+                    return true;
+                }
+            
+                return false;
+                }
+                catch(...)
+                {
+                    std::throw_with_nested(RuntimeExpressionException(StringTable_Process_17[exceptionIndex]));
+                }
+}
+        static FString staticconstant_0;
+
+            #pragma warning(push)
+            #pragma warning(disable: 4100) // 'alloc': unreferenced formal parameter
+            static void InitializeStatics(IncrementalAllocator * alloc)
+            {
+            #pragma warning(pop)
+                staticconstant_0 = FString("en-us", 5);
+            }
+    
+            // get operator resource requirements
+            static OperatorRequirements GetOperatorRequirements()
+            {
+                return OperatorRequirements();
+            }
+        };
+    
+#if defined(COMPILE_NATIVE)
+#pragma warning(push)
+#pragma warning(disable:4592)
+    FString RowTransformPolicy<GetSStream_0_Data0, Process_1_Data0, UID_Process_17>::staticconstant_0;
+#pragma warning(pop)
+#endif // defined(COMPILE_NATIVE)
 
 // All of the templates will throw a CS1591 warning because we 
 // have /doc turned on in the CSharp compiler.
@@ -2888,12 +2118,20 @@ return true;
 // project, and then turn off /doc.
 
 
+#if defined(COMPILE_MANAGED)
+#endif // defined(COMPILE_MANAGED)
+// All of the templates will throw a CS1591 warning because we 
+// have /doc turned on in the CSharp compiler.
+// The only way to solve this is to move all of the templates to their own
+// project, and then turn off /doc.
+
+
     template<>
-    class RowTransformPolicy<Process_4_Data0, Process_4_Data0, UID_Process_17>
+    class RowTransformPolicy<Process_1_Data0, Process_1_Data0, UID_Process_18>
     {
     public:
 
-        static bool FilterTransformRow(Process_4_Data0 & input, Process_4_Data0 & output, IncrementalAllocator * alloc)
+        static bool FilterTransformRow(Process_1_Data0 & input, Process_1_Data0 & output, IncrementalAllocator * alloc)
         {
 return true;
 }
@@ -2921,23 +2159,23 @@ return true;
 
 #if defined(COMPILE_MANAGED)
     template<>
-    struct ManagedUDO<UID_Process_17>
+    struct ManagedUDO<UID_Process_18>
     {
-        typedef ScopeRuntime::Reducer UDO;
+        typedef ScopeRuntime::Processor UDO;
 
         ManagedUDO(std::string * argv, int argc)
         {
             try
             {
-                m_udo.reset(___Scope_Generated_Classes___::__OperatorFactory__::Create_Process_17());
-                m_args.reset(gcnew Generic::List<String^>(ConvertArgsToArray(std::wstring{ L"20 -random 1881736468 -weightCol Weight" })));
+                m_udo.reset(___Scope_Generated_Classes___::__OperatorFactory__::Create_Process_18());
+                m_args.reset(gcnew Generic::List<String^>(ConvertArgsToArray(std::wstring{ L"-produce RowGuid,#_InputLanguage,#_RecognizedText,#_WritingRectRight,#_InkIsf -skipValidation" })));
             }
             catch (Exception ^ex)
             {
-                ScopeEngineManaged::UserExceptionHelper::WrapUserException(___Scope_Generated_Classes___::__OperatorFactory__::Name_Process_17, "Constructor", ex);
+                ScopeEngineManaged::UserExceptionHelper::WrapUserException(___Scope_Generated_Classes___::__OperatorFactory__::Name_Process_18, "Constructor", ex);
                 throw;
             }
-            auto curRow = gcnew ___Scope_Generated_Classes___::Row_193825B98C8C2D67();
+            auto curRow = gcnew ___Scope_Generated_Classes___::Row_RowGuid_Guid_RecognizedText_String_InkIsf_String();
             m_udo->GetType()->GetField("_outputRow", BindingFlags::NonPublic | BindingFlags::Instance)->SetValue(m_udo.get(), curRow);
             m_udo->GetType()->GetField("_outputSchema", BindingFlags::NonPublic | BindingFlags::Instance)->SetValue(m_udo.get(), m_udo->DefaultRow->Schema);
         }
@@ -2968,199 +2206,27 @@ return true;
         ManagedUDO & operator=(ManagedUDO &);
     };
     template<>
-    class InteropToManagedRowPolicy<Process_4_Data0, UID_Process_17>
+    class InteropToManagedRowPolicy<Process_1_Data0, UID_Process_18>
     {
     public:
-        static void Marshal(Process_4_Data0& nativeRow, KeyComparePolicy<Process_4_Data0,UID_Process_17>::KeyType& nativeKey, ScopeRuntime::Row^% managedRow, InteropAllocator * alloc)
+        static void Marshal(Process_1_Data0& nativeRow, ScopeRuntime::Row^% managedRow, InteropAllocator * alloc)
         {
-            alloc->CopyToManagedColumn(nativeKey.m_RowGuid, managedRow[0], 0);
+            alloc->CopyToManagedColumn(nativeRow.m_RowGuid, managedRow[0], 0);
             alloc->CopyToManagedColumn(nativeRow.m_RecognizedText, managedRow[1], 1);
-            alloc->CopyToManagedColumn(nativeRow.m_RecoLength, managedRow[2], 2);
-            alloc->CopyToManagedColumn(nativeRow.m_InkIsf, managedRow[3], 3);
-            alloc->CopyToManagedColumn(nativeRow.m_Weight, managedRow[4], 4);
+            alloc->CopyToManagedColumn(nativeRow.m_InkIsf, managedRow[2], 2);
         }
     };
-
     template<>
-    class InteropToNativeRowPolicy<Process_4_Data0, UID_Process_17>
+    class InteropToNativeRowPolicy<Process_1_Data0, UID_Process_18>
     {
     public:
-        static void Marshal(ScopeRuntime::Row^ managedRow, Process_4_Data0& nativeRow, IncrementalAllocator* alloc)
+        static void Marshal(ScopeRuntime::Row^ managedRow, Process_1_Data0& nativeRow, IncrementalAllocator* alloc)
         {
             ScopeManagedInterop::CopyToNativeColumn(nativeRow.m_RowGuid, managedRow[0]->Guid, alloc);
             ScopeManagedInterop::CopyToNativeColumn(nativeRow.m_RecognizedText, managedRow[1]->Binary, alloc);
-            ScopeManagedInterop::CopyToNativeColumn(nativeRow.m_RecoLength, managedRow[2]->Integer, alloc);
-            ScopeManagedInterop::CopyToNativeColumn(nativeRow.m_InkIsf, managedRow[3]->Binary, alloc);
-            ScopeManagedInterop::CopyToNativeColumn(nativeRow.m_Weight, managedRow[4]->Double, alloc);
+            ScopeManagedInterop::CopyToNativeColumn(nativeRow.m_InkIsf, managedRow[2]->Binary, alloc);
         }
     };
-#endif // defined(COMPILE_MANAGED)
-// All of the templates will throw a CS1591 warning because we 
-// have /doc turned on in the CSharp compiler.
-// The only way to solve this is to move all of the templates to their own
-// project, and then turn off /doc.
-
-
-#if defined(COMPILE_NATIVE)
-    typedef SStreamExtractorV4<GetSStream_0_Data0, SStreamV3ExtractPolicy<GetSStream_0_Data0, UID_GetSStream_0, NullSchema>, UID_GetSStream_0, NullSchema, false> SStreamV3ExtractorType_SV3_Extract_GetSStream_12;
-    SStreamV3ExtractorType_SV3_Extract_GetSStream_12 * CreateExtractor_SV3_Extract_GetSStream_12(unique_ptr<SStreamV3ExtractorType_SV3_Extract_GetSStream_12> * extractor_ptr)
-    {
-        extractor_ptr->reset(new SStreamV3ExtractorType_SV3_Extract_GetSStream_12(12, "", UID_GetSStream_12));
-        return extractor_ptr->get();
-    }
-#endif // defined(COMPILE_NATIVE)
-// All of the templates will throw a CS1591 warning because we 
-// have /doc turned on in the CSharp compiler.
-// The only way to solve this is to move all of the templates to their own
-// project, and then turn off /doc.
-
-
-
-#if defined(COMPILE_NATIVE)
-namespace ScopeGeneratedClasses
-{
-    extern "C" __declspec(dllexport) void __stdcall SV3_Extract_execute(std::string * argv, int argc, InputFileInfo* inputs, int inputCnt, OutputFileInfo* outputs, int outputCnt, VertexExecutionInfo * vertexExecutionInfo)
-    {
-#ifdef USE_SSE4_2
-        // check CPUID to make sure this machine supports SSE4_2 instructions
-        // - this is incase we download a cluster vertex and try and debug it on a machine that doesn't support these instructions
-        int cpuInfo[4];
-        __cpuid(cpuInfo, 0x00000001);
-        //Array index | Bit range | Description 
-        // 2          | 20        | SSE4.2 extensions
-        if ((cpuInfo[2] & (1 << 20)) == 0)
-        {
-            throw RuntimeException(E_USER_ERROR, "Please recompile __ScopeCodeGenEngine__.dll without /DUSE_SSE4_2");
-            return;
-        }
-#endif
-
-        Configuration::Create(ET_Cosmos, GetCompilerSettings(), vertexExecutionInfo);
-        SIZE_T x_inputBufSize, x_outputBufSize, x_inputVirtualMemoryLimit;
-        int    x_inputBufCnt, x_outputBufCnt;
-        
-        MemoryManager::CalculateIOBufferSize(inputCnt, outputCnt, MemoryManager::x_vertexMemoryLimit, MemoryManager::x_vertexReserveMemory, x_inputBufSize, x_inputBufCnt, x_outputBufSize, x_outputBufCnt, x_inputVirtualMemoryLimit, false);
-
-        const bool IsNativeOnlyVertex = false;
-        unique_ptr<SStreamV3ExtractorType_SV3_Extract_GetSStream_12> extractor_0_ptr;
-        SStreamV3ExtractorType_SV3_Extract_GetSStream_12 * extractor_0 = CreateExtractor_SV3_Extract_GetSStream_12(&extractor_0_ptr);
-        ULONG extractor_0_count = 1;
-
-        // Define the type of the operator
-        typedef FilterTransformer<SStreamV3ExtractorType_SV3_Extract_GetSStream_12, GetSStream_0_Data0, Process_1_Data0, UID_Process_13> FilterTransformerType_Process_13;
-        // Construct operator and initialize it.
-        unique_ptr<FilterTransformerType_Process_13> filterTransformer_Process_13_ptr (new FilterTransformerType_Process_13(extractor_0, UID_Process_13));
-        FilterTransformerType_Process_13 * filterTransformer_Process_13 = filterTransformer_Process_13_ptr.get();
-        ULONG filterTransformer_Process_13_count = 1;
-        // Construct operator and initialize it.
-        unique_ptr<OperatorDelegate<Process_1_Data0>> delegate_filterTransformer_Process_13_ptr (new OperatorDelegate<Process_1_Data0>(OperatorDelegate<Process_1_Data0>::FromOperator(filterTransformer_Process_13)));
-        OperatorDelegate<Process_1_Data0> * delegate_filterTransformer_Process_13 = delegate_filterTransformer_Process_13_ptr.get();
-        ULONG delegate_filterTransformer_Process_13_count = 1;
-        // Define sorter type
-        typedef Sorter<Process_1_Data0> SorterType_Process_14;
-        // Construct operator and initialize it.
-        unique_ptr<SorterType_Process_14> sorter_Process_14_ptr (new SorterType_Process_14(delegate_filterTransformer_Process_13, &StdSort<Process_1_Data0>::Sort<KeyComparePolicy<Process_1_Data0, UID_Process_3>, (sizeof(Process_1_Data0)<=CACHELINE_SIZE)>, ScopeLoserTreeDelegate<Process_1_Data0>::CreateDelegate<UID_Process_3>(), false, 2147483648 /*memoryQuota*/, UID_Process_14));
-        SorterType_Process_14 * sorter_Process_14 = sorter_Process_14_ptr.get();
-        ULONG sorter_Process_14_count = 1;
-        // Construct operator and initialize it.
-        unique_ptr<OperatorDelegate<Process_1_Data0>> delegate_sorter_Process_14_ptr (new OperatorDelegate<Process_1_Data0>(OperatorDelegate<Process_1_Data0>::FromOperator(sorter_Process_14)));
-        OperatorDelegate<Process_1_Data0> * delegate_sorter_Process_14 = delegate_sorter_Process_14_ptr.get();
-        ULONG delegate_sorter_Process_14_count = 1;
-        // Define the type of the operator
-        typedef ScopeProcessor<Process_1_Data0, Process_1_Data0> ProcessorType_Process_15;
-        // Construct operator and initialize it.
-        unique_ptr<ProcessorType_Process_15> processor_Process_15_ptr (new ProcessorType_Process_15(ScopeProcessorManagedFactory::Make<Process_1_Data0,Process_1_Data0,UID_Process_15>(delegate_sorter_Process_14), delegate_sorter_Process_14, UID_Process_15));
-        ProcessorType_Process_15 * processor_Process_15 = processor_Process_15_ptr.get();
-        ULONG processor_Process_15_count = 1;
-        // Define the type of the operator
-        typedef FilterTransformer<ProcessorType_Process_15, Process_1_Data0, Process_4_Data0, UID_Process_16> FilterTransformerType_Process_16;
-        // Construct operator and initialize it.
-        unique_ptr<FilterTransformerType_Process_16> filterTransformer_Process_16_ptr (new FilterTransformerType_Process_16(processor_Process_15, UID_Process_16));
-        FilterTransformerType_Process_16 * filterTransformer_Process_16 = filterTransformer_Process_16_ptr.get();
-        ULONG filterTransformer_Process_16_count = 1;
-        // Construct operator and initialize it.
-        unique_ptr<OperatorDelegate<Process_4_Data0>> delegate_filterTransformer_Process_16_ptr (new OperatorDelegate<Process_4_Data0>(OperatorDelegate<Process_4_Data0>::FromOperator(filterTransformer_Process_16)));
-        OperatorDelegate<Process_4_Data0> * delegate_filterTransformer_Process_16 = delegate_filterTransformer_Process_16_ptr.get();
-        ULONG delegate_filterTransformer_Process_16_count = 1;
-        // Define the type of the operator
-        typedef ScopeProcessor<Process_4_Data0, Process_4_Data0> ReducerType_Process_17;
-        // Construct operator and initialize it.
-        unique_ptr<ReducerType_Process_17> reducer_Process_17_ptr (new ReducerType_Process_17(ScopeReducerManagedFactory::Make<Process_4_Data0,Process_4_Data0,UID_Process_17>(delegate_filterTransformer_Process_16), delegate_filterTransformer_Process_16, UID_Process_17));
-        ReducerType_Process_17 * reducer_Process_17 = reducer_Process_17_ptr.get();
-        ULONG reducer_Process_17_count = 1;
-        // Define outputer type
-        typedef Outputer<ReducerType_Process_17, Process_4_Data0, BinaryOutputPolicy<Process_4_Data0>, BinaryOutputStream, false> OutputerType1_SV3_Extract;
-        // Construct operator and initialize it
-        unique_ptr<OutputerType1_SV3_Extract> outputer_SV3_Extract_out0_ptr(new OutputerType1_SV3_Extract(reducer_Process_17, outputs[0].outputFileName, false, x_outputBufSize, x_outputBufCnt, UID_SV3_Extract_out0));
-        OutputerType1_SV3_Extract * outputer_SV3_Extract_out0 = outputer_SV3_Extract_out0_ptr.get();
-        try
-        {
-            // Init operator chain
-            outputer_SV3_Extract_out0->Init();
-
-            // Execute the whole vertex by calling the GetNextRow on top operator
-            Process_4_Data0 row;
-            outputer_SV3_Extract_out0->GetNextRow(row);
-
-            // Close operator chain
-            outputer_SV3_Extract_out0->Close();
-        }
-        catch (const ExceptionWithStack& ex)
-        {
-            if (vertexExecutionInfo->m_reportStatusFunc != NULL)
-            {
-                ErrorManager::GetGlobal()->SetError(std::current_exception(), "VertexExecute");
-                vertexExecutionInfo->m_reportStatusFunc(vertexExecutionInfo->m_statusReportContext);
-            }
-            
-            std::cout << "Caught exception: " << ex.what() << std::endl << ex.GetStack() << std::endl;
-            throw;
-        }
-
-
-        // Write out execution stats
-        MemoryManager::GetGlobal()->WriteRuntimeStats(vertexExecutionInfo->m_statsRoot);
-        outputer_SV3_Extract_out0->WriteRuntimeStats(vertexExecutionInfo->m_statsRoot);
-    }
-}
-#endif // defined(COMPILE_NATIVE)
-
-#if defined(COMPILE_MANAGED)
-template ScopeProcessorManaged<Process_1_Data0, Process_1_Data0> * ScopeEngine::ScopeProcessorManagedFactory::Make<Process_1_Data0, Process_1_Data0, UID_Process_15>(OperatorDelegate<Process_1_Data0>*);
-template ScopeProcessorManaged<Process_4_Data0, Process_4_Data0> * ScopeEngine::ScopeReducerManagedFactory::Make<Process_4_Data0, Process_4_Data0, UID_Process_17>(OperatorDelegate<Process_4_Data0>*);
-#endif // defined(COMPILE_MANAGED)
-#if defined(COMPILE_NATIVE)
-#endif // defined(COMPILE_NATIVE)
-
-#endif
-#pragma endregion SV3_Extract
-#pragma region SV4_Extract
-#if defined(COMPILE_SV4_EXTRACT) || defined(COMPILE_ALL_VERTICES)
-// All of the templates will throw a CS1591 warning because we 
-// have /doc turned on in the CSharp compiler.
-// The only way to solve this is to move all of the templates to their own
-// project, and then turn off /doc.
-
-
-#if defined(COMPILE_NATIVE)
-    template<> 
-    class RowComparePolicy<PartitionKeySchema_GetSStream_0, PartitionKeySchema_GetSStream_0, UID_GetSStream_18> 
-    {
-    public:
-        // compare key from left and right schema object
-        static int Compare(const PartitionKeySchema_GetSStream_0 * left, const PartitionKeySchema_GetSStream_0 * right)
-        {
-            return 0;
-        }
-    };
-#endif // defined(COMPILE_NATIVE)
-// All of the templates will throw a CS1591 warning because we 
-// have /doc turned on in the CSharp compiler.
-// The only way to solve this is to move all of the templates to their own
-// project, and then turn off /doc.
-
-
-#if defined(COMPILE_MANAGED)
 #endif // defined(COMPILE_MANAGED)
 // All of the templates will throw a CS1591 warning because we 
 // have /doc turned on in the CSharp compiler.
@@ -3169,213 +2235,19 @@ template ScopeProcessorManaged<Process_4_Data0, Process_4_Data0> * ScopeEngine::
 
     static const char * StringTable_Process_19 [] =
     {
-        "InputLanguage == \"en-us\"",
         "RowGuid",
         "RecognizedText",
-        "InkIsf",
-        "\"*** After Last Expression ***\"",
-    };
-
-    template<>
-    class RowTransformPolicy<GetSStream_0_Data0, Process_1_Data0, UID_Process_19>
-    {
-    public:
-
-        static bool FilterTransformRow(GetSStream_0_Data0 & input, Process_1_Data0 & output, IncrementalAllocator * alloc)
-        {
-
-            int exceptionIndex = 0;
-            try
-            {
-                if (input.m_InputLanguage == staticconstant_0)
-                {
-
-                    exceptionIndex++;
-                    output.m_RowGuid = input.m_RowGuid;
-                    exceptionIndex++;
-                    output.m_RecognizedText = input.m_RecognizedText;
-                    exceptionIndex++;
-                    output.m_InkIsf = input.m_InkIsf;
-                    exceptionIndex++;
-                    return true;
-                }
-            
-                return false;
-                }
-                catch(...)
-                {
-                    std::throw_with_nested(RuntimeExpressionException(StringTable_Process_19[exceptionIndex]));
-                }
-}
-        static FString staticconstant_0;
-
-            #pragma warning(push)
-            #pragma warning(disable: 4100) // 'alloc': unreferenced formal parameter
-            static void InitializeStatics(IncrementalAllocator * alloc)
-            {
-            #pragma warning(pop)
-                staticconstant_0 = FString("en-us", 5);
-            }
-    
-            // get operator resource requirements
-            static OperatorRequirements GetOperatorRequirements()
-            {
-                return OperatorRequirements();
-            }
-        };
-    
-#if defined(COMPILE_NATIVE)
-#pragma warning(push)
-#pragma warning(disable:4592)
-    FString RowTransformPolicy<GetSStream_0_Data0, Process_1_Data0, UID_Process_19>::staticconstant_0;
-#pragma warning(pop)
-#endif // defined(COMPILE_NATIVE)
-
-// All of the templates will throw a CS1591 warning because we 
-// have /doc turned on in the CSharp compiler.
-// The only way to solve this is to move all of the templates to their own
-// project, and then turn off /doc.
-
-
-#if defined(COMPILE_MANAGED)
-#endif // defined(COMPILE_MANAGED)
-// All of the templates will throw a CS1591 warning because we 
-// have /doc turned on in the CSharp compiler.
-// The only way to solve this is to move all of the templates to their own
-// project, and then turn off /doc.
-
-
-    template<>
-    class RowTransformPolicy<Process_1_Data0, Process_1_Data0, UID_Process_20>
-    {
-    public:
-
-        static bool FilterTransformRow(Process_1_Data0 & input, Process_1_Data0 & output, IncrementalAllocator * alloc)
-        {
-return true;
-}
-
-            #pragma warning(push)
-            #pragma warning(disable: 4100) // 'alloc': unreferenced formal parameter
-            static void InitializeStatics(IncrementalAllocator * alloc)
-            {
-            #pragma warning(pop)
-            }
-    
-            // get operator resource requirements
-            static OperatorRequirements GetOperatorRequirements()
-            {
-                return OperatorRequirements();
-            }
-        };
-    
-
-// All of the templates will throw a CS1591 warning because we 
-// have /doc turned on in the CSharp compiler.
-// The only way to solve this is to move all of the templates to their own
-// project, and then turn off /doc.
-
-
-#if defined(COMPILE_MANAGED)
-    template<>
-    struct ManagedUDO<UID_Process_20>
-    {
-        typedef ScopeRuntime::Processor UDO;
-
-        ManagedUDO(std::string * argv, int argc)
-        {
-            try
-            {
-                m_udo.reset(___Scope_Generated_Classes___::__OperatorFactory__::Create_Process_20());
-                m_args.reset(gcnew Generic::List<String^>(ConvertArgsToArray(std::wstring{ L"-produce RowGuid,#_InputLanguage,#_RecognizedText,#_WritingRectRight,#_InkIsf -skipValidation" })));
-            }
-            catch (Exception ^ex)
-            {
-                ScopeEngineManaged::UserExceptionHelper::WrapUserException(___Scope_Generated_Classes___::__OperatorFactory__::Name_Process_20, "Constructor", ex);
-                throw;
-            }
-            auto curRow = gcnew ___Scope_Generated_Classes___::Row_RowGuid_Guid_RecognizedText_String_InkIsf_String();
-            m_udo->GetType()->GetField("_outputRow", BindingFlags::NonPublic | BindingFlags::Instance)->SetValue(m_udo.get(), curRow);
-            m_udo->GetType()->GetField("_outputSchema", BindingFlags::NonPublic | BindingFlags::Instance)->SetValue(m_udo.get(), m_udo->DefaultRow->Schema);
-        }
-
-
-        UDO^ get()
-        {
-            return m_udo.get();
-        }
-
-        Generic::List<String^>^ args()
-        {
-            return m_args.get();
-        }
-        cli::array<String^>^ ReadOnlyColumns_Output()
-        {
-            return nullptr;
-        }
-        
-        cli::array<String^>^ ReadOnlyColumns_Input()
-        {
-            return nullptr;
-        }
-
-    private:
-        ScopeTypedManagedHandle<UDO^> m_udo;
-        ScopeTypedManagedHandle<Generic::List<String^>^> m_args;
-        ManagedUDO & operator=(ManagedUDO &);
-    };
-    template<>
-    class InteropToManagedRowPolicy<Process_1_Data0, UID_Process_20>
-    {
-    public:
-        static void Marshal(Process_1_Data0& nativeRow, ScopeRuntime::Row^% managedRow, InteropAllocator * alloc)
-        {
-            alloc->CopyToManagedColumn(nativeRow.m_RowGuid, managedRow[0], 0);
-            alloc->CopyToManagedColumn(nativeRow.m_RecognizedText, managedRow[1], 1);
-            alloc->CopyToManagedColumn(nativeRow.m_InkIsf, managedRow[2], 2);
-        }
-    };
-    template<>
-    class InteropToNativeRowPolicy<Process_1_Data0, UID_Process_20>
-    {
-    public:
-        static void Marshal(ScopeRuntime::Row^ managedRow, Process_1_Data0& nativeRow, IncrementalAllocator* alloc)
-        {
-            ScopeManagedInterop::CopyToNativeColumn(nativeRow.m_RowGuid, managedRow[0]->Guid, alloc);
-            ScopeManagedInterop::CopyToNativeColumn(nativeRow.m_RecognizedText, managedRow[1]->Binary, alloc);
-            ScopeManagedInterop::CopyToNativeColumn(nativeRow.m_InkIsf, managedRow[2]->Binary, alloc);
-        }
-    };
-#endif // defined(COMPILE_MANAGED)
-// All of the templates will throw a CS1591 warning because we 
-// have /doc turned on in the CSharp compiler.
-// The only way to solve this is to move all of the templates to their own
-// project, and then turn off /doc.
-
-
-#if defined(COMPILE_MANAGED)
-#endif // defined(COMPILE_MANAGED)
-// All of the templates will throw a CS1591 warning because we 
-// have /doc turned on in the CSharp compiler.
-// The only way to solve this is to move all of the templates to their own
-// project, and then turn off /doc.
-
-    static const char * StringTable_Process_22 [] =
-    {
-        "RowGuid",
-        "RecognizedText",
-        "RecognizedText.Length",
         "InkIsf",
         "1.0",
         "\"*** After Last Expression ***\"",
     };
 
     template<>
-    class RowTransformPolicy<Process_1_Data0, Process_4_Data0, UID_Process_22>
+    class RowTransformPolicy<Process_1_Data0, Process_3_Data0, UID_Process_19>
     {
     public:
 
-        static bool FilterTransformRow(Process_1_Data0 & input, Process_4_Data0 & output, IncrementalAllocator * alloc)
+        static bool FilterTransformRow(Process_1_Data0 & input, Process_3_Data0 & output, IncrementalAllocator * alloc)
         {
 
             int exceptionIndex = 0;
@@ -3384,8 +2256,6 @@ return true;
                     output.m_RowGuid = input.m_RowGuid;
                     exceptionIndex++;
                     output.m_RecognizedText = input.m_RecognizedText;
-                    exceptionIndex++;
-                    output.m_RecoLength = input.m_RecognizedText.Length();
                     exceptionIndex++;
                     output.m_InkIsf = input.m_InkIsf;
                     exceptionIndex++;
@@ -3395,7 +2265,7 @@ return true;
                     }
                     catch(...)
                     {
-                        std::throw_with_nested(RuntimeExpressionException(StringTable_Process_22[exceptionIndex]));
+                        std::throw_with_nested(RuntimeExpressionException(StringTable_Process_19[exceptionIndex]));
                     }
     }
 
@@ -3427,1207 +2297,12 @@ return true;
 // The only way to solve this is to move all of the templates to their own
 // project, and then turn off /doc.
 
-
     template<> 
-    class KeyComparePolicy<Process_4_Data0,UID_Process_23>
-    {
-    public:
-        struct KeyStruct
-        {
-            ScopeGuid m_RowGuid;
-
-            KeyStruct(Process_4_Data0 & c) :
-                m_RowGuid(c.m_RowGuid)
-            {
-            }
-
-            KeyStruct(const Process_4_Data0 & c, IncrementalAllocator * alloc) :
-                m_RowGuid(const_cast<Process_4_Data0&>(c).m_RowGuid)
-            {
-            }
-
-            KeyStruct(KeyStruct & c) :
-                m_RowGuid(c.m_RowGuid)
-            {
-            }
-
-            KeyStruct(const KeyStruct & c, IncrementalAllocator * alloc) :
-                m_RowGuid(const_cast<KeyStruct&>(c).m_RowGuid)
-            {
-            }
-
-            KeyStruct() :
-                m_RowGuid()
-            {
-            }
-
-            friend std::ostream& operator<<(std::ostream& os, const KeyStruct& row)
-            {
-
-                ScopeEngine::OutputRowContent(
-                    std::string{ u8"RowGuid:Guid" },
-                    reinterpret_cast<const char*>(&row),
-                    os);
-
-                return os;
-            }
-        };
-
-        typedef KeyStruct KeyType;
-
-        static int Compare(Process_4_Data0 & row, KeyType & key)
-        {
-            int r = 0;
-            if ((r = ScopeTypeCompare(row.m_RowGuid, key.m_RowGuid)) != 0)
-                return r;
-            return r;
-        }
-
-        static int Compare(Process_4_Data0 * n1, Process_4_Data0 * n2)
-        {
-            int r = 0;
-            if ((r = ScopeTypeCompare((*n1).m_RowGuid, (*n2).m_RowGuid)) != 0)
-                return r;
-            return r;
-        }
-
-    };
-
-
-// All of the templates will throw a CS1591 warning because we 
-// have /doc turned on in the CSharp compiler.
-// The only way to solve this is to move all of the templates to their own
-// project, and then turn off /doc.
-
-
-    template<>
-    class RowTransformPolicy<Process_4_Data0, Process_4_Data0, UID_Process_23>
+    class TextOutputPolicy<Process_3_Data0, UID_SV1_Extract_Combine_out0>
     {
     public:
 
-        static bool FilterTransformRow(Process_4_Data0 & input, Process_4_Data0 & output, IncrementalAllocator * alloc)
-        {
-return true;
-}
-
-            #pragma warning(push)
-            #pragma warning(disable: 4100) // 'alloc': unreferenced formal parameter
-            static void InitializeStatics(IncrementalAllocator * alloc)
-            {
-            #pragma warning(pop)
-            }
-    
-            // get operator resource requirements
-            static OperatorRequirements GetOperatorRequirements()
-            {
-                return OperatorRequirements();
-            }
-        };
-    
-
-// All of the templates will throw a CS1591 warning because we 
-// have /doc turned on in the CSharp compiler.
-// The only way to solve this is to move all of the templates to their own
-// project, and then turn off /doc.
-
-
-#if defined(COMPILE_MANAGED)
-    template<>
-    struct ManagedUDO<UID_Process_23>
-    {
-        typedef ScopeRuntime::Reducer UDO;
-
-        ManagedUDO(std::string * argv, int argc)
-        {
-            try
-            {
-                m_udo.reset(___Scope_Generated_Classes___::__OperatorFactory__::Create_Process_23());
-                m_args.reset(gcnew Generic::List<String^>(ConvertArgsToArray(std::wstring{ L"20 -random 1881736468 -weightCol Weight" })));
-            }
-            catch (Exception ^ex)
-            {
-                ScopeEngineManaged::UserExceptionHelper::WrapUserException(___Scope_Generated_Classes___::__OperatorFactory__::Name_Process_23, "Constructor", ex);
-                throw;
-            }
-            auto curRow = gcnew ___Scope_Generated_Classes___::Row_193825B98C8C2D67();
-            m_udo->GetType()->GetField("_outputRow", BindingFlags::NonPublic | BindingFlags::Instance)->SetValue(m_udo.get(), curRow);
-            m_udo->GetType()->GetField("_outputSchema", BindingFlags::NonPublic | BindingFlags::Instance)->SetValue(m_udo.get(), m_udo->DefaultRow->Schema);
-        }
-
-
-        UDO^ get()
-        {
-            return m_udo.get();
-        }
-
-        Generic::List<String^>^ args()
-        {
-            return m_args.get();
-        }
-        cli::array<String^>^ ReadOnlyColumns_Output()
-        {
-            return nullptr;
-        }
-        
-        cli::array<String^>^ ReadOnlyColumns_Input()
-        {
-            return nullptr;
-        }
-
-    private:
-        ScopeTypedManagedHandle<UDO^> m_udo;
-        ScopeTypedManagedHandle<Generic::List<String^>^> m_args;
-        ManagedUDO & operator=(ManagedUDO &);
-    };
-    template<>
-    class InteropToManagedRowPolicy<Process_4_Data0, UID_Process_23>
-    {
-    public:
-        static void Marshal(Process_4_Data0& nativeRow, KeyComparePolicy<Process_4_Data0,UID_Process_23>::KeyType& nativeKey, ScopeRuntime::Row^% managedRow, InteropAllocator * alloc)
-        {
-            alloc->CopyToManagedColumn(nativeKey.m_RowGuid, managedRow[0], 0);
-            alloc->CopyToManagedColumn(nativeRow.m_RecognizedText, managedRow[1], 1);
-            alloc->CopyToManagedColumn(nativeRow.m_RecoLength, managedRow[2], 2);
-            alloc->CopyToManagedColumn(nativeRow.m_InkIsf, managedRow[3], 3);
-            alloc->CopyToManagedColumn(nativeRow.m_Weight, managedRow[4], 4);
-        }
-    };
-
-    template<>
-    class InteropToNativeRowPolicy<Process_4_Data0, UID_Process_23>
-    {
-    public:
-        static void Marshal(ScopeRuntime::Row^ managedRow, Process_4_Data0& nativeRow, IncrementalAllocator* alloc)
-        {
-            ScopeManagedInterop::CopyToNativeColumn(nativeRow.m_RowGuid, managedRow[0]->Guid, alloc);
-            ScopeManagedInterop::CopyToNativeColumn(nativeRow.m_RecognizedText, managedRow[1]->Binary, alloc);
-            ScopeManagedInterop::CopyToNativeColumn(nativeRow.m_RecoLength, managedRow[2]->Integer, alloc);
-            ScopeManagedInterop::CopyToNativeColumn(nativeRow.m_InkIsf, managedRow[3]->Binary, alloc);
-            ScopeManagedInterop::CopyToNativeColumn(nativeRow.m_Weight, managedRow[4]->Double, alloc);
-        }
-    };
-#endif // defined(COMPILE_MANAGED)
-// All of the templates will throw a CS1591 warning because we 
-// have /doc turned on in the CSharp compiler.
-// The only way to solve this is to move all of the templates to their own
-// project, and then turn off /doc.
-
-
-#if defined(COMPILE_NATIVE)
-    typedef SStreamExtractorV4<GetSStream_0_Data0, SStreamV3ExtractPolicy<GetSStream_0_Data0, UID_GetSStream_0, NullSchema>, UID_GetSStream_0, NullSchema, false> SStreamV3ExtractorType_SV4_Extract_GetSStream_18;
-    SStreamV3ExtractorType_SV4_Extract_GetSStream_18 * CreateExtractor_SV4_Extract_GetSStream_18(unique_ptr<SStreamV3ExtractorType_SV4_Extract_GetSStream_18> * extractor_ptr)
-    {
-        extractor_ptr->reset(new SStreamV3ExtractorType_SV4_Extract_GetSStream_18(18, "", UID_GetSStream_18));
-        return extractor_ptr->get();
-    }
-#endif // defined(COMPILE_NATIVE)
-// All of the templates will throw a CS1591 warning because we 
-// have /doc turned on in the CSharp compiler.
-// The only way to solve this is to move all of the templates to their own
-// project, and then turn off /doc.
-
-
-
-#if defined(COMPILE_NATIVE)
-namespace ScopeGeneratedClasses
-{
-    extern "C" __declspec(dllexport) void __stdcall SV4_Extract_execute(std::string * argv, int argc, InputFileInfo* inputs, int inputCnt, OutputFileInfo* outputs, int outputCnt, VertexExecutionInfo * vertexExecutionInfo)
-    {
-#ifdef USE_SSE4_2
-        // check CPUID to make sure this machine supports SSE4_2 instructions
-        // - this is incase we download a cluster vertex and try and debug it on a machine that doesn't support these instructions
-        int cpuInfo[4];
-        __cpuid(cpuInfo, 0x00000001);
-        //Array index | Bit range | Description 
-        // 2          | 20        | SSE4.2 extensions
-        if ((cpuInfo[2] & (1 << 20)) == 0)
-        {
-            throw RuntimeException(E_USER_ERROR, "Please recompile __ScopeCodeGenEngine__.dll without /DUSE_SSE4_2");
-            return;
-        }
-#endif
-
-        Configuration::Create(ET_Cosmos, GetCompilerSettings(), vertexExecutionInfo);
-        SIZE_T x_inputBufSize, x_outputBufSize, x_inputVirtualMemoryLimit;
-        int    x_inputBufCnt, x_outputBufCnt;
-        
-        MemoryManager::CalculateIOBufferSize(inputCnt, outputCnt, MemoryManager::x_vertexMemoryLimit, MemoryManager::x_vertexReserveMemory, x_inputBufSize, x_inputBufCnt, x_outputBufSize, x_outputBufCnt, x_inputVirtualMemoryLimit, false);
-
-        const bool IsNativeOnlyVertex = false;
-        unique_ptr<SStreamV3ExtractorType_SV4_Extract_GetSStream_18> extractor_0_ptr;
-        SStreamV3ExtractorType_SV4_Extract_GetSStream_18 * extractor_0 = CreateExtractor_SV4_Extract_GetSStream_18(&extractor_0_ptr);
-        ULONG extractor_0_count = 1;
-
-        // Define the type of the operator
-        typedef FilterTransformer<SStreamV3ExtractorType_SV4_Extract_GetSStream_18, GetSStream_0_Data0, Process_1_Data0, UID_Process_19> FilterTransformerType_Process_19;
-        // Construct operator and initialize it.
-        unique_ptr<FilterTransformerType_Process_19> filterTransformer_Process_19_ptr (new FilterTransformerType_Process_19(extractor_0, UID_Process_19));
-        FilterTransformerType_Process_19 * filterTransformer_Process_19 = filterTransformer_Process_19_ptr.get();
-        ULONG filterTransformer_Process_19_count = 1;
-        // Construct operator and initialize it.
-        unique_ptr<OperatorDelegate<Process_1_Data0>> delegate_filterTransformer_Process_19_ptr (new OperatorDelegate<Process_1_Data0>(OperatorDelegate<Process_1_Data0>::FromOperator(filterTransformer_Process_19)));
-        OperatorDelegate<Process_1_Data0> * delegate_filterTransformer_Process_19 = delegate_filterTransformer_Process_19_ptr.get();
-        ULONG delegate_filterTransformer_Process_19_count = 1;
-        // Define the type of the operator
-        typedef ScopeProcessor<Process_1_Data0, Process_1_Data0> ProcessorType_Process_20;
-        // Construct operator and initialize it.
-        unique_ptr<ProcessorType_Process_20> processor_Process_20_ptr (new ProcessorType_Process_20(ScopeProcessorManagedFactory::Make<Process_1_Data0,Process_1_Data0,UID_Process_20>(delegate_filterTransformer_Process_19), delegate_filterTransformer_Process_19, UID_Process_20));
-        ProcessorType_Process_20 * processor_Process_20 = processor_Process_20_ptr.get();
-        ULONG processor_Process_20_count = 1;
-        // Construct operator and initialize it.
-        unique_ptr<OperatorDelegate<Process_1_Data0>> delegate_processor_Process_20_ptr (new OperatorDelegate<Process_1_Data0>(OperatorDelegate<Process_1_Data0>::FromOperator(processor_Process_20)));
-        OperatorDelegate<Process_1_Data0> * delegate_processor_Process_20 = delegate_processor_Process_20_ptr.get();
-        ULONG delegate_processor_Process_20_count = 1;
-        // Define sorter type
-        typedef Sorter<Process_1_Data0> SorterType_Process_21;
-        // Construct operator and initialize it.
-        unique_ptr<SorterType_Process_21> sorter_Process_21_ptr (new SorterType_Process_21(delegate_processor_Process_20, &StdSort<Process_1_Data0>::Sort<KeyComparePolicy<Process_1_Data0, UID_Process_3>, (sizeof(Process_1_Data0)<=CACHELINE_SIZE)>, ScopeLoserTreeDelegate<Process_1_Data0>::CreateDelegate<UID_Process_3>(), false, 2147483648 /*memoryQuota*/, UID_Process_21));
-        SorterType_Process_21 * sorter_Process_21 = sorter_Process_21_ptr.get();
-        ULONG sorter_Process_21_count = 1;
-        // Define the type of the operator
-        typedef FilterTransformer<SorterType_Process_21, Process_1_Data0, Process_4_Data0, UID_Process_22> FilterTransformerType_Process_22;
-        // Construct operator and initialize it.
-        unique_ptr<FilterTransformerType_Process_22> filterTransformer_Process_22_ptr (new FilterTransformerType_Process_22(sorter_Process_21, UID_Process_22));
-        FilterTransformerType_Process_22 * filterTransformer_Process_22 = filterTransformer_Process_22_ptr.get();
-        ULONG filterTransformer_Process_22_count = 1;
-        // Construct operator and initialize it.
-        unique_ptr<OperatorDelegate<Process_4_Data0>> delegate_filterTransformer_Process_22_ptr (new OperatorDelegate<Process_4_Data0>(OperatorDelegate<Process_4_Data0>::FromOperator(filterTransformer_Process_22)));
-        OperatorDelegate<Process_4_Data0> * delegate_filterTransformer_Process_22 = delegate_filterTransformer_Process_22_ptr.get();
-        ULONG delegate_filterTransformer_Process_22_count = 1;
-        // Define the type of the operator
-        typedef ScopeProcessor<Process_4_Data0, Process_4_Data0> ReducerType_Process_23;
-        // Construct operator and initialize it.
-        unique_ptr<ReducerType_Process_23> reducer_Process_23_ptr (new ReducerType_Process_23(ScopeReducerManagedFactory::Make<Process_4_Data0,Process_4_Data0,UID_Process_23>(delegate_filterTransformer_Process_22), delegate_filterTransformer_Process_22, UID_Process_23));
-        ReducerType_Process_23 * reducer_Process_23 = reducer_Process_23_ptr.get();
-        ULONG reducer_Process_23_count = 1;
-        // Define outputer type
-        typedef Outputer<ReducerType_Process_23, Process_4_Data0, BinaryOutputPolicy<Process_4_Data0>, BinaryOutputStream, false> OutputerType1_SV4_Extract;
-        // Construct operator and initialize it
-        unique_ptr<OutputerType1_SV4_Extract> outputer_SV4_Extract_out0_ptr(new OutputerType1_SV4_Extract(reducer_Process_23, outputs[0].outputFileName, false, x_outputBufSize, x_outputBufCnt, UID_SV4_Extract_out0));
-        OutputerType1_SV4_Extract * outputer_SV4_Extract_out0 = outputer_SV4_Extract_out0_ptr.get();
-        try
-        {
-            // Init operator chain
-            outputer_SV4_Extract_out0->Init();
-
-            // Execute the whole vertex by calling the GetNextRow on top operator
-            Process_4_Data0 row;
-            outputer_SV4_Extract_out0->GetNextRow(row);
-
-            // Close operator chain
-            outputer_SV4_Extract_out0->Close();
-        }
-        catch (const ExceptionWithStack& ex)
-        {
-            if (vertexExecutionInfo->m_reportStatusFunc != NULL)
-            {
-                ErrorManager::GetGlobal()->SetError(std::current_exception(), "VertexExecute");
-                vertexExecutionInfo->m_reportStatusFunc(vertexExecutionInfo->m_statusReportContext);
-            }
-            
-            std::cout << "Caught exception: " << ex.what() << std::endl << ex.GetStack() << std::endl;
-            throw;
-        }
-
-
-        // Write out execution stats
-        MemoryManager::GetGlobal()->WriteRuntimeStats(vertexExecutionInfo->m_statsRoot);
-        outputer_SV4_Extract_out0->WriteRuntimeStats(vertexExecutionInfo->m_statsRoot);
-    }
-}
-#endif // defined(COMPILE_NATIVE)
-
-#if defined(COMPILE_MANAGED)
-template ScopeProcessorManaged<Process_1_Data0, Process_1_Data0> * ScopeEngine::ScopeProcessorManagedFactory::Make<Process_1_Data0, Process_1_Data0, UID_Process_20>(OperatorDelegate<Process_1_Data0>*);
-template ScopeProcessorManaged<Process_4_Data0, Process_4_Data0> * ScopeEngine::ScopeReducerManagedFactory::Make<Process_4_Data0, Process_4_Data0, UID_Process_23>(OperatorDelegate<Process_4_Data0>*);
-#endif // defined(COMPILE_MANAGED)
-#if defined(COMPILE_NATIVE)
-#endif // defined(COMPILE_NATIVE)
-
-#endif
-#pragma endregion SV4_Extract
-#pragma region SV5_Extract
-#if defined(COMPILE_SV5_EXTRACT) || defined(COMPILE_ALL_VERTICES)
-// All of the templates will throw a CS1591 warning because we 
-// have /doc turned on in the CSharp compiler.
-// The only way to solve this is to move all of the templates to their own
-// project, and then turn off /doc.
-
-
-#if defined(COMPILE_NATIVE)
-    template<> 
-    class RowComparePolicy<PartitionKeySchema_GetSStream_0, PartitionKeySchema_GetSStream_0, UID_GetSStream_24> 
-    {
-    public:
-        // compare key from left and right schema object
-        static int Compare(const PartitionKeySchema_GetSStream_0 * left, const PartitionKeySchema_GetSStream_0 * right)
-        {
-            return 0;
-        }
-    };
-#endif // defined(COMPILE_NATIVE)
-// All of the templates will throw a CS1591 warning because we 
-// have /doc turned on in the CSharp compiler.
-// The only way to solve this is to move all of the templates to their own
-// project, and then turn off /doc.
-
-
-#if defined(COMPILE_MANAGED)
-#endif // defined(COMPILE_MANAGED)
-// All of the templates will throw a CS1591 warning because we 
-// have /doc turned on in the CSharp compiler.
-// The only way to solve this is to move all of the templates to their own
-// project, and then turn off /doc.
-
-    static const char * StringTable_Process_25 [] =
-    {
-        "InputLanguage == \"en-us\"",
-        "RowGuid",
-        "RecognizedText",
-        "InkIsf",
-        "\"*** After Last Expression ***\"",
-    };
-
-    template<>
-    class RowTransformPolicy<GetSStream_0_Data0, Process_1_Data0, UID_Process_25>
-    {
-    public:
-
-        static bool FilterTransformRow(GetSStream_0_Data0 & input, Process_1_Data0 & output, IncrementalAllocator * alloc)
-        {
-
-            int exceptionIndex = 0;
-            try
-            {
-                if (input.m_InputLanguage == staticconstant_0)
-                {
-
-                    exceptionIndex++;
-                    output.m_RowGuid = input.m_RowGuid;
-                    exceptionIndex++;
-                    output.m_RecognizedText = input.m_RecognizedText;
-                    exceptionIndex++;
-                    output.m_InkIsf = input.m_InkIsf;
-                    exceptionIndex++;
-                    return true;
-                }
-            
-                return false;
-                }
-                catch(...)
-                {
-                    std::throw_with_nested(RuntimeExpressionException(StringTable_Process_25[exceptionIndex]));
-                }
-}
-        static FString staticconstant_0;
-
-            #pragma warning(push)
-            #pragma warning(disable: 4100) // 'alloc': unreferenced formal parameter
-            static void InitializeStatics(IncrementalAllocator * alloc)
-            {
-            #pragma warning(pop)
-                staticconstant_0 = FString("en-us", 5);
-            }
-    
-            // get operator resource requirements
-            static OperatorRequirements GetOperatorRequirements()
-            {
-                return OperatorRequirements();
-            }
-        };
-    
-#if defined(COMPILE_NATIVE)
-#pragma warning(push)
-#pragma warning(disable:4592)
-    FString RowTransformPolicy<GetSStream_0_Data0, Process_1_Data0, UID_Process_25>::staticconstant_0;
-#pragma warning(pop)
-#endif // defined(COMPILE_NATIVE)
-
-// All of the templates will throw a CS1591 warning because we 
-// have /doc turned on in the CSharp compiler.
-// The only way to solve this is to move all of the templates to their own
-// project, and then turn off /doc.
-
-
-#if defined(COMPILE_MANAGED)
-#endif // defined(COMPILE_MANAGED)
-// All of the templates will throw a CS1591 warning because we 
-// have /doc turned on in the CSharp compiler.
-// The only way to solve this is to move all of the templates to their own
-// project, and then turn off /doc.
-
-
-    template<>
-    class RowTransformPolicy<Process_1_Data0, Process_1_Data0, UID_Process_26>
-    {
-    public:
-
-        static bool FilterTransformRow(Process_1_Data0 & input, Process_1_Data0 & output, IncrementalAllocator * alloc)
-        {
-return true;
-}
-
-            #pragma warning(push)
-            #pragma warning(disable: 4100) // 'alloc': unreferenced formal parameter
-            static void InitializeStatics(IncrementalAllocator * alloc)
-            {
-            #pragma warning(pop)
-            }
-    
-            // get operator resource requirements
-            static OperatorRequirements GetOperatorRequirements()
-            {
-                return OperatorRequirements();
-            }
-        };
-    
-
-// All of the templates will throw a CS1591 warning because we 
-// have /doc turned on in the CSharp compiler.
-// The only way to solve this is to move all of the templates to their own
-// project, and then turn off /doc.
-
-
-#if defined(COMPILE_MANAGED)
-    template<>
-    struct ManagedUDO<UID_Process_26>
-    {
-        typedef ScopeRuntime::Processor UDO;
-
-        ManagedUDO(std::string * argv, int argc)
-        {
-            try
-            {
-                m_udo.reset(___Scope_Generated_Classes___::__OperatorFactory__::Create_Process_26());
-                m_args.reset(gcnew Generic::List<String^>(ConvertArgsToArray(std::wstring{ L"-produce RowGuid,#_InputLanguage,#_RecognizedText,#_WritingRectRight,#_InkIsf -skipValidation" })));
-            }
-            catch (Exception ^ex)
-            {
-                ScopeEngineManaged::UserExceptionHelper::WrapUserException(___Scope_Generated_Classes___::__OperatorFactory__::Name_Process_26, "Constructor", ex);
-                throw;
-            }
-            auto curRow = gcnew ___Scope_Generated_Classes___::Row_RowGuid_Guid_RecognizedText_String_InkIsf_String();
-            m_udo->GetType()->GetField("_outputRow", BindingFlags::NonPublic | BindingFlags::Instance)->SetValue(m_udo.get(), curRow);
-            m_udo->GetType()->GetField("_outputSchema", BindingFlags::NonPublic | BindingFlags::Instance)->SetValue(m_udo.get(), m_udo->DefaultRow->Schema);
-        }
-
-
-        UDO^ get()
-        {
-            return m_udo.get();
-        }
-
-        Generic::List<String^>^ args()
-        {
-            return m_args.get();
-        }
-        cli::array<String^>^ ReadOnlyColumns_Output()
-        {
-            return nullptr;
-        }
-        
-        cli::array<String^>^ ReadOnlyColumns_Input()
-        {
-            return nullptr;
-        }
-
-    private:
-        ScopeTypedManagedHandle<UDO^> m_udo;
-        ScopeTypedManagedHandle<Generic::List<String^>^> m_args;
-        ManagedUDO & operator=(ManagedUDO &);
-    };
-    template<>
-    class InteropToManagedRowPolicy<Process_1_Data0, UID_Process_26>
-    {
-    public:
-        static void Marshal(Process_1_Data0& nativeRow, ScopeRuntime::Row^% managedRow, InteropAllocator * alloc)
-        {
-            alloc->CopyToManagedColumn(nativeRow.m_RowGuid, managedRow[0], 0);
-            alloc->CopyToManagedColumn(nativeRow.m_RecognizedText, managedRow[1], 1);
-            alloc->CopyToManagedColumn(nativeRow.m_InkIsf, managedRow[2], 2);
-        }
-    };
-    template<>
-    class InteropToNativeRowPolicy<Process_1_Data0, UID_Process_26>
-    {
-    public:
-        static void Marshal(ScopeRuntime::Row^ managedRow, Process_1_Data0& nativeRow, IncrementalAllocator* alloc)
-        {
-            ScopeManagedInterop::CopyToNativeColumn(nativeRow.m_RowGuid, managedRow[0]->Guid, alloc);
-            ScopeManagedInterop::CopyToNativeColumn(nativeRow.m_RecognizedText, managedRow[1]->Binary, alloc);
-            ScopeManagedInterop::CopyToNativeColumn(nativeRow.m_InkIsf, managedRow[2]->Binary, alloc);
-        }
-    };
-#endif // defined(COMPILE_MANAGED)
-// All of the templates will throw a CS1591 warning because we 
-// have /doc turned on in the CSharp compiler.
-// The only way to solve this is to move all of the templates to their own
-// project, and then turn off /doc.
-
-
-#if defined(COMPILE_MANAGED)
-#endif // defined(COMPILE_MANAGED)
-// All of the templates will throw a CS1591 warning because we 
-// have /doc turned on in the CSharp compiler.
-// The only way to solve this is to move all of the templates to their own
-// project, and then turn off /doc.
-
-    static const char * StringTable_Process_28 [] =
-    {
-        "RowGuid",
-        "RecognizedText",
-        "RecognizedText.Length",
-        "InkIsf",
-        "1.0",
-        "\"*** After Last Expression ***\"",
-    };
-
-    template<>
-    class RowTransformPolicy<Process_1_Data0, Process_4_Data0, UID_Process_28>
-    {
-    public:
-
-        static bool FilterTransformRow(Process_1_Data0 & input, Process_4_Data0 & output, IncrementalAllocator * alloc)
-        {
-
-            int exceptionIndex = 0;
-            try
-            {
-                    output.m_RowGuid = input.m_RowGuid;
-                    exceptionIndex++;
-                    output.m_RecognizedText = input.m_RecognizedText;
-                    exceptionIndex++;
-                    output.m_RecoLength = input.m_RecognizedText.Length();
-                    exceptionIndex++;
-                    output.m_InkIsf = input.m_InkIsf;
-                    exceptionIndex++;
-                    output.m_Weight = 1.0;
-                    exceptionIndex++;
-                    return true;
-                    }
-                    catch(...)
-                    {
-                        std::throw_with_nested(RuntimeExpressionException(StringTable_Process_28[exceptionIndex]));
-                    }
-    }
-
-            #pragma warning(push)
-            #pragma warning(disable: 4100) // 'alloc': unreferenced formal parameter
-            static void InitializeStatics(IncrementalAllocator * alloc)
-            {
-            #pragma warning(pop)
-            }
-    
-            // get operator resource requirements
-            static OperatorRequirements GetOperatorRequirements()
-            {
-                return OperatorRequirements();
-            }
-        };
-    
-
-// All of the templates will throw a CS1591 warning because we 
-// have /doc turned on in the CSharp compiler.
-// The only way to solve this is to move all of the templates to their own
-// project, and then turn off /doc.
-
-
-#if defined(COMPILE_MANAGED)
-#endif // defined(COMPILE_MANAGED)
-// All of the templates will throw a CS1591 warning because we 
-// have /doc turned on in the CSharp compiler.
-// The only way to solve this is to move all of the templates to their own
-// project, and then turn off /doc.
-
-
-    template<> 
-    class KeyComparePolicy<Process_4_Data0,UID_Process_29>
-    {
-    public:
-        struct KeyStruct
-        {
-            ScopeGuid m_RowGuid;
-
-            KeyStruct(Process_4_Data0 & c) :
-                m_RowGuid(c.m_RowGuid)
-            {
-            }
-
-            KeyStruct(const Process_4_Data0 & c, IncrementalAllocator * alloc) :
-                m_RowGuid(const_cast<Process_4_Data0&>(c).m_RowGuid)
-            {
-            }
-
-            KeyStruct(KeyStruct & c) :
-                m_RowGuid(c.m_RowGuid)
-            {
-            }
-
-            KeyStruct(const KeyStruct & c, IncrementalAllocator * alloc) :
-                m_RowGuid(const_cast<KeyStruct&>(c).m_RowGuid)
-            {
-            }
-
-            KeyStruct() :
-                m_RowGuid()
-            {
-            }
-
-            friend std::ostream& operator<<(std::ostream& os, const KeyStruct& row)
-            {
-
-                ScopeEngine::OutputRowContent(
-                    std::string{ u8"RowGuid:Guid" },
-                    reinterpret_cast<const char*>(&row),
-                    os);
-
-                return os;
-            }
-        };
-
-        typedef KeyStruct KeyType;
-
-        static int Compare(Process_4_Data0 & row, KeyType & key)
-        {
-            int r = 0;
-            if ((r = ScopeTypeCompare(row.m_RowGuid, key.m_RowGuid)) != 0)
-                return r;
-            return r;
-        }
-
-        static int Compare(Process_4_Data0 * n1, Process_4_Data0 * n2)
-        {
-            int r = 0;
-            if ((r = ScopeTypeCompare((*n1).m_RowGuid, (*n2).m_RowGuid)) != 0)
-                return r;
-            return r;
-        }
-
-    };
-
-
-// All of the templates will throw a CS1591 warning because we 
-// have /doc turned on in the CSharp compiler.
-// The only way to solve this is to move all of the templates to their own
-// project, and then turn off /doc.
-
-
-    template<>
-    class RowTransformPolicy<Process_4_Data0, Process_4_Data0, UID_Process_29>
-    {
-    public:
-
-        static bool FilterTransformRow(Process_4_Data0 & input, Process_4_Data0 & output, IncrementalAllocator * alloc)
-        {
-return true;
-}
-
-            #pragma warning(push)
-            #pragma warning(disable: 4100) // 'alloc': unreferenced formal parameter
-            static void InitializeStatics(IncrementalAllocator * alloc)
-            {
-            #pragma warning(pop)
-            }
-    
-            // get operator resource requirements
-            static OperatorRequirements GetOperatorRequirements()
-            {
-                return OperatorRequirements();
-            }
-        };
-    
-
-// All of the templates will throw a CS1591 warning because we 
-// have /doc turned on in the CSharp compiler.
-// The only way to solve this is to move all of the templates to their own
-// project, and then turn off /doc.
-
-
-#if defined(COMPILE_MANAGED)
-    template<>
-    struct ManagedUDO<UID_Process_29>
-    {
-        typedef ScopeRuntime::Reducer UDO;
-
-        ManagedUDO(std::string * argv, int argc)
-        {
-            try
-            {
-                m_udo.reset(___Scope_Generated_Classes___::__OperatorFactory__::Create_Process_29());
-                m_args.reset(gcnew Generic::List<String^>(ConvertArgsToArray(std::wstring{ L"20 -random 1881736468 -weightCol Weight" })));
-            }
-            catch (Exception ^ex)
-            {
-                ScopeEngineManaged::UserExceptionHelper::WrapUserException(___Scope_Generated_Classes___::__OperatorFactory__::Name_Process_29, "Constructor", ex);
-                throw;
-            }
-            auto curRow = gcnew ___Scope_Generated_Classes___::Row_193825B98C8C2D67();
-            m_udo->GetType()->GetField("_outputRow", BindingFlags::NonPublic | BindingFlags::Instance)->SetValue(m_udo.get(), curRow);
-            m_udo->GetType()->GetField("_outputSchema", BindingFlags::NonPublic | BindingFlags::Instance)->SetValue(m_udo.get(), m_udo->DefaultRow->Schema);
-        }
-
-
-        UDO^ get()
-        {
-            return m_udo.get();
-        }
-
-        Generic::List<String^>^ args()
-        {
-            return m_args.get();
-        }
-        cli::array<String^>^ ReadOnlyColumns_Output()
-        {
-            return nullptr;
-        }
-        
-        cli::array<String^>^ ReadOnlyColumns_Input()
-        {
-            return nullptr;
-        }
-
-    private:
-        ScopeTypedManagedHandle<UDO^> m_udo;
-        ScopeTypedManagedHandle<Generic::List<String^>^> m_args;
-        ManagedUDO & operator=(ManagedUDO &);
-    };
-    template<>
-    class InteropToManagedRowPolicy<Process_4_Data0, UID_Process_29>
-    {
-    public:
-        static void Marshal(Process_4_Data0& nativeRow, KeyComparePolicy<Process_4_Data0,UID_Process_29>::KeyType& nativeKey, ScopeRuntime::Row^% managedRow, InteropAllocator * alloc)
-        {
-            alloc->CopyToManagedColumn(nativeKey.m_RowGuid, managedRow[0], 0);
-            alloc->CopyToManagedColumn(nativeRow.m_RecognizedText, managedRow[1], 1);
-            alloc->CopyToManagedColumn(nativeRow.m_RecoLength, managedRow[2], 2);
-            alloc->CopyToManagedColumn(nativeRow.m_InkIsf, managedRow[3], 3);
-            alloc->CopyToManagedColumn(nativeRow.m_Weight, managedRow[4], 4);
-        }
-    };
-
-    template<>
-    class InteropToNativeRowPolicy<Process_4_Data0, UID_Process_29>
-    {
-    public:
-        static void Marshal(ScopeRuntime::Row^ managedRow, Process_4_Data0& nativeRow, IncrementalAllocator* alloc)
-        {
-            ScopeManagedInterop::CopyToNativeColumn(nativeRow.m_RowGuid, managedRow[0]->Guid, alloc);
-            ScopeManagedInterop::CopyToNativeColumn(nativeRow.m_RecognizedText, managedRow[1]->Binary, alloc);
-            ScopeManagedInterop::CopyToNativeColumn(nativeRow.m_RecoLength, managedRow[2]->Integer, alloc);
-            ScopeManagedInterop::CopyToNativeColumn(nativeRow.m_InkIsf, managedRow[3]->Binary, alloc);
-            ScopeManagedInterop::CopyToNativeColumn(nativeRow.m_Weight, managedRow[4]->Double, alloc);
-        }
-    };
-#endif // defined(COMPILE_MANAGED)
-// All of the templates will throw a CS1591 warning because we 
-// have /doc turned on in the CSharp compiler.
-// The only way to solve this is to move all of the templates to their own
-// project, and then turn off /doc.
-
-
-#if defined(COMPILE_NATIVE)
-    typedef SStreamExtractorV4<GetSStream_0_Data0, SStreamV3ExtractPolicy<GetSStream_0_Data0, UID_GetSStream_0, NullSchema>, UID_GetSStream_0, NullSchema, false> SStreamV3ExtractorType_SV5_Extract_GetSStream_24;
-    SStreamV3ExtractorType_SV5_Extract_GetSStream_24 * CreateExtractor_SV5_Extract_GetSStream_24(unique_ptr<SStreamV3ExtractorType_SV5_Extract_GetSStream_24> * extractor_ptr)
-    {
-        extractor_ptr->reset(new SStreamV3ExtractorType_SV5_Extract_GetSStream_24(24, "", UID_GetSStream_24));
-        return extractor_ptr->get();
-    }
-#endif // defined(COMPILE_NATIVE)
-// All of the templates will throw a CS1591 warning because we 
-// have /doc turned on in the CSharp compiler.
-// The only way to solve this is to move all of the templates to their own
-// project, and then turn off /doc.
-
-
-
-#if defined(COMPILE_NATIVE)
-namespace ScopeGeneratedClasses
-{
-    extern "C" __declspec(dllexport) void __stdcall SV5_Extract_execute(std::string * argv, int argc, InputFileInfo* inputs, int inputCnt, OutputFileInfo* outputs, int outputCnt, VertexExecutionInfo * vertexExecutionInfo)
-    {
-#ifdef USE_SSE4_2
-        // check CPUID to make sure this machine supports SSE4_2 instructions
-        // - this is incase we download a cluster vertex and try and debug it on a machine that doesn't support these instructions
-        int cpuInfo[4];
-        __cpuid(cpuInfo, 0x00000001);
-        //Array index | Bit range | Description 
-        // 2          | 20        | SSE4.2 extensions
-        if ((cpuInfo[2] & (1 << 20)) == 0)
-        {
-            throw RuntimeException(E_USER_ERROR, "Please recompile __ScopeCodeGenEngine__.dll without /DUSE_SSE4_2");
-            return;
-        }
-#endif
-
-        Configuration::Create(ET_Cosmos, GetCompilerSettings(), vertexExecutionInfo);
-        SIZE_T x_inputBufSize, x_outputBufSize, x_inputVirtualMemoryLimit;
-        int    x_inputBufCnt, x_outputBufCnt;
-        
-        MemoryManager::CalculateIOBufferSize(inputCnt, outputCnt, MemoryManager::x_vertexMemoryLimit, MemoryManager::x_vertexReserveMemory, x_inputBufSize, x_inputBufCnt, x_outputBufSize, x_outputBufCnt, x_inputVirtualMemoryLimit, false);
-
-        const bool IsNativeOnlyVertex = false;
-        unique_ptr<SStreamV3ExtractorType_SV5_Extract_GetSStream_24> extractor_0_ptr;
-        SStreamV3ExtractorType_SV5_Extract_GetSStream_24 * extractor_0 = CreateExtractor_SV5_Extract_GetSStream_24(&extractor_0_ptr);
-        ULONG extractor_0_count = 1;
-
-        // Define the type of the operator
-        typedef FilterTransformer<SStreamV3ExtractorType_SV5_Extract_GetSStream_24, GetSStream_0_Data0, Process_1_Data0, UID_Process_25> FilterTransformerType_Process_25;
-        // Construct operator and initialize it.
-        unique_ptr<FilterTransformerType_Process_25> filterTransformer_Process_25_ptr (new FilterTransformerType_Process_25(extractor_0, UID_Process_25));
-        FilterTransformerType_Process_25 * filterTransformer_Process_25 = filterTransformer_Process_25_ptr.get();
-        ULONG filterTransformer_Process_25_count = 1;
-        // Construct operator and initialize it.
-        unique_ptr<OperatorDelegate<Process_1_Data0>> delegate_filterTransformer_Process_25_ptr (new OperatorDelegate<Process_1_Data0>(OperatorDelegate<Process_1_Data0>::FromOperator(filterTransformer_Process_25)));
-        OperatorDelegate<Process_1_Data0> * delegate_filterTransformer_Process_25 = delegate_filterTransformer_Process_25_ptr.get();
-        ULONG delegate_filterTransformer_Process_25_count = 1;
-        // Define the type of the operator
-        typedef ScopeProcessor<Process_1_Data0, Process_1_Data0> ProcessorType_Process_26;
-        // Construct operator and initialize it.
-        unique_ptr<ProcessorType_Process_26> processor_Process_26_ptr (new ProcessorType_Process_26(ScopeProcessorManagedFactory::Make<Process_1_Data0,Process_1_Data0,UID_Process_26>(delegate_filterTransformer_Process_25), delegate_filterTransformer_Process_25, UID_Process_26));
-        ProcessorType_Process_26 * processor_Process_26 = processor_Process_26_ptr.get();
-        ULONG processor_Process_26_count = 1;
-        // Construct operator and initialize it.
-        unique_ptr<OperatorDelegate<Process_1_Data0>> delegate_processor_Process_26_ptr (new OperatorDelegate<Process_1_Data0>(OperatorDelegate<Process_1_Data0>::FromOperator(processor_Process_26)));
-        OperatorDelegate<Process_1_Data0> * delegate_processor_Process_26 = delegate_processor_Process_26_ptr.get();
-        ULONG delegate_processor_Process_26_count = 1;
-        // Define sorter type
-        typedef Sorter<Process_1_Data0> SorterType_Process_27;
-        // Construct operator and initialize it.
-        unique_ptr<SorterType_Process_27> sorter_Process_27_ptr (new SorterType_Process_27(delegate_processor_Process_26, &StdSort<Process_1_Data0>::Sort<KeyComparePolicy<Process_1_Data0, UID_Process_3>, (sizeof(Process_1_Data0)<=CACHELINE_SIZE)>, ScopeLoserTreeDelegate<Process_1_Data0>::CreateDelegate<UID_Process_3>(), false, 2147483648 /*memoryQuota*/, UID_Process_27));
-        SorterType_Process_27 * sorter_Process_27 = sorter_Process_27_ptr.get();
-        ULONG sorter_Process_27_count = 1;
-        // Define the type of the operator
-        typedef FilterTransformer<SorterType_Process_27, Process_1_Data0, Process_4_Data0, UID_Process_28> FilterTransformerType_Process_28;
-        // Construct operator and initialize it.
-        unique_ptr<FilterTransformerType_Process_28> filterTransformer_Process_28_ptr (new FilterTransformerType_Process_28(sorter_Process_27, UID_Process_28));
-        FilterTransformerType_Process_28 * filterTransformer_Process_28 = filterTransformer_Process_28_ptr.get();
-        ULONG filterTransformer_Process_28_count = 1;
-        // Construct operator and initialize it.
-        unique_ptr<OperatorDelegate<Process_4_Data0>> delegate_filterTransformer_Process_28_ptr (new OperatorDelegate<Process_4_Data0>(OperatorDelegate<Process_4_Data0>::FromOperator(filterTransformer_Process_28)));
-        OperatorDelegate<Process_4_Data0> * delegate_filterTransformer_Process_28 = delegate_filterTransformer_Process_28_ptr.get();
-        ULONG delegate_filterTransformer_Process_28_count = 1;
-        // Define the type of the operator
-        typedef ScopeProcessor<Process_4_Data0, Process_4_Data0> ReducerType_Process_29;
-        // Construct operator and initialize it.
-        unique_ptr<ReducerType_Process_29> reducer_Process_29_ptr (new ReducerType_Process_29(ScopeReducerManagedFactory::Make<Process_4_Data0,Process_4_Data0,UID_Process_29>(delegate_filterTransformer_Process_28), delegate_filterTransformer_Process_28, UID_Process_29));
-        ReducerType_Process_29 * reducer_Process_29 = reducer_Process_29_ptr.get();
-        ULONG reducer_Process_29_count = 1;
-        // Define outputer type
-        typedef Outputer<ReducerType_Process_29, Process_4_Data0, BinaryOutputPolicy<Process_4_Data0>, BinaryOutputStream, false> OutputerType1_SV5_Extract;
-        // Construct operator and initialize it
-        unique_ptr<OutputerType1_SV5_Extract> outputer_SV5_Extract_out0_ptr(new OutputerType1_SV5_Extract(reducer_Process_29, outputs[0].outputFileName, false, x_outputBufSize, x_outputBufCnt, UID_SV5_Extract_out0));
-        OutputerType1_SV5_Extract * outputer_SV5_Extract_out0 = outputer_SV5_Extract_out0_ptr.get();
-        try
-        {
-            // Init operator chain
-            outputer_SV5_Extract_out0->Init();
-
-            // Execute the whole vertex by calling the GetNextRow on top operator
-            Process_4_Data0 row;
-            outputer_SV5_Extract_out0->GetNextRow(row);
-
-            // Close operator chain
-            outputer_SV5_Extract_out0->Close();
-        }
-        catch (const ExceptionWithStack& ex)
-        {
-            if (vertexExecutionInfo->m_reportStatusFunc != NULL)
-            {
-                ErrorManager::GetGlobal()->SetError(std::current_exception(), "VertexExecute");
-                vertexExecutionInfo->m_reportStatusFunc(vertexExecutionInfo->m_statusReportContext);
-            }
-            
-            std::cout << "Caught exception: " << ex.what() << std::endl << ex.GetStack() << std::endl;
-            throw;
-        }
-
-
-        // Write out execution stats
-        MemoryManager::GetGlobal()->WriteRuntimeStats(vertexExecutionInfo->m_statsRoot);
-        outputer_SV5_Extract_out0->WriteRuntimeStats(vertexExecutionInfo->m_statsRoot);
-    }
-}
-#endif // defined(COMPILE_NATIVE)
-
-#if defined(COMPILE_MANAGED)
-template ScopeProcessorManaged<Process_1_Data0, Process_1_Data0> * ScopeEngine::ScopeProcessorManagedFactory::Make<Process_1_Data0, Process_1_Data0, UID_Process_26>(OperatorDelegate<Process_1_Data0>*);
-template ScopeProcessorManaged<Process_4_Data0, Process_4_Data0> * ScopeEngine::ScopeReducerManagedFactory::Make<Process_4_Data0, Process_4_Data0, UID_Process_29>(OperatorDelegate<Process_4_Data0>*);
-#endif // defined(COMPILE_MANAGED)
-#if defined(COMPILE_NATIVE)
-#endif // defined(COMPILE_NATIVE)
-
-#endif
-#pragma endregion SV5_Extract
-#pragma region SV6_Combine
-#if defined(COMPILE_SV6_COMBINE) || defined(COMPILE_ALL_VERTICES)
-// All of the templates will throw a CS1591 warning because we 
-// have /doc turned on in the CSharp compiler.
-// The only way to solve this is to move all of the templates to their own
-// project, and then turn off /doc.
-
-
-    template<> 
-    class KeyComparePolicy<Process_4_Data0,UID_Aggregate_30>
-    {
-    public:
-        struct KeyStruct
-        {
-            ScopeGuid m_RowGuid;
-
-            KeyStruct(Process_4_Data0 & c) :
-                m_RowGuid(c.m_RowGuid)
-            {
-            }
-
-            KeyStruct(const Process_4_Data0 & c, IncrementalAllocator * alloc) :
-                m_RowGuid(const_cast<Process_4_Data0&>(c).m_RowGuid)
-            {
-            }
-
-            KeyStruct(KeyStruct & c) :
-                m_RowGuid(c.m_RowGuid)
-            {
-            }
-
-            KeyStruct(const KeyStruct & c, IncrementalAllocator * alloc) :
-                m_RowGuid(const_cast<KeyStruct&>(c).m_RowGuid)
-            {
-            }
-
-            KeyStruct() :
-                m_RowGuid()
-            {
-            }
-
-            friend std::ostream& operator<<(std::ostream& os, const KeyStruct& row)
-            {
-
-                ScopeEngine::OutputRowContent(
-                    std::string{ u8"RowGuid:Guid" },
-                    reinterpret_cast<const char*>(&row),
-                    os);
-
-                return os;
-            }
-        };
-
-        typedef KeyStruct KeyType;
-
-        static int Compare(Process_4_Data0 & row, KeyType & key)
-        {
-            int r = 0;
-            if ((r = ScopeTypeCompare(row.m_RowGuid, key.m_RowGuid)) != 0)
-                return r;
-            return r;
-        }
-
-        static int Compare(Process_4_Data0 * n1, Process_4_Data0 * n2)
-        {
-            int r = 0;
-            if ((r = ScopeTypeCompare((*n1).m_RowGuid, (*n2).m_RowGuid)) != 0)
-                return r;
-            return r;
-        }
-
-    };
-
-
-// All of the templates will throw a CS1591 warning because we 
-// have /doc turned on in the CSharp compiler.
-// The only way to solve this is to move all of the templates to their own
-// project, and then turn off /doc.
-
-
-    template<> 
-    class KeyComparePolicy<Process_4_Data0,UID_Process_31>
-    {
-    public:
-        struct KeyStruct
-        {
-            ScopeGuid m_RowGuid;
-
-            KeyStruct(Process_4_Data0 & c) :
-                m_RowGuid(c.m_RowGuid)
-            {
-            }
-
-            KeyStruct(const Process_4_Data0 & c, IncrementalAllocator * alloc) :
-                m_RowGuid(const_cast<Process_4_Data0&>(c).m_RowGuid)
-            {
-            }
-
-            KeyStruct(KeyStruct & c) :
-                m_RowGuid(c.m_RowGuid)
-            {
-            }
-
-            KeyStruct(const KeyStruct & c, IncrementalAllocator * alloc) :
-                m_RowGuid(const_cast<KeyStruct&>(c).m_RowGuid)
-            {
-            }
-
-            KeyStruct() :
-                m_RowGuid()
-            {
-            }
-
-            friend std::ostream& operator<<(std::ostream& os, const KeyStruct& row)
-            {
-
-                ScopeEngine::OutputRowContent(
-                    std::string{ u8"RowGuid:Guid" },
-                    reinterpret_cast<const char*>(&row),
-                    os);
-
-                return os;
-            }
-        };
-
-        typedef KeyStruct KeyType;
-
-        static int Compare(Process_4_Data0 & row, KeyType & key)
-        {
-            int r = 0;
-            if ((r = ScopeTypeCompare(row.m_RowGuid, key.m_RowGuid)) != 0)
-                return r;
-            return r;
-        }
-
-        static int Compare(Process_4_Data0 * n1, Process_4_Data0 * n2)
-        {
-            int r = 0;
-            if ((r = ScopeTypeCompare((*n1).m_RowGuid, (*n2).m_RowGuid)) != 0)
-                return r;
-            return r;
-        }
-
-    };
-
-
-// All of the templates will throw a CS1591 warning because we 
-// have /doc turned on in the CSharp compiler.
-// The only way to solve this is to move all of the templates to their own
-// project, and then turn off /doc.
-
-
-    template<>
-    class RowTransformPolicy<Process_4_Data0, Process_4_Data0, UID_Process_31>
-    {
-    public:
-
-        static bool FilterTransformRow(Process_4_Data0 & input, Process_4_Data0 & output, IncrementalAllocator * alloc)
-        {
-return true;
-}
-
-            #pragma warning(push)
-            #pragma warning(disable: 4100) // 'alloc': unreferenced formal parameter
-            static void InitializeStatics(IncrementalAllocator * alloc)
-            {
-            #pragma warning(pop)
-            }
-    
-            // get operator resource requirements
-            static OperatorRequirements GetOperatorRequirements()
-            {
-                return OperatorRequirements();
-            }
-        };
-    
-
-// All of the templates will throw a CS1591 warning because we 
-// have /doc turned on in the CSharp compiler.
-// The only way to solve this is to move all of the templates to their own
-// project, and then turn off /doc.
-
-
-#if defined(COMPILE_MANAGED)
-    template<>
-    struct ManagedUDO<UID_Process_31>
-    {
-        typedef ScopeRuntime::Reducer UDO;
-
-        ManagedUDO(std::string * argv, int argc)
-        {
-            try
-            {
-                m_udo.reset(___Scope_Generated_Classes___::__OperatorFactory__::Create_Process_31());
-                m_args.reset(gcnew Generic::List<String^>(ConvertArgsToArray(std::wstring{ L"20 -random 1881736468 -weightCol Weight" })));
-            }
-            catch (Exception ^ex)
-            {
-                ScopeEngineManaged::UserExceptionHelper::WrapUserException(___Scope_Generated_Classes___::__OperatorFactory__::Name_Process_31, "Constructor", ex);
-                throw;
-            }
-            auto curRow = gcnew ___Scope_Generated_Classes___::Row_193825B98C8C2D67();
-            m_udo->GetType()->GetField("_outputRow", BindingFlags::NonPublic | BindingFlags::Instance)->SetValue(m_udo.get(), curRow);
-            m_udo->GetType()->GetField("_outputSchema", BindingFlags::NonPublic | BindingFlags::Instance)->SetValue(m_udo.get(), m_udo->DefaultRow->Schema);
-        }
-
-
-        UDO^ get()
-        {
-            return m_udo.get();
-        }
-
-        Generic::List<String^>^ args()
-        {
-            return m_args.get();
-        }
-        cli::array<String^>^ ReadOnlyColumns_Output()
-        {
-            return nullptr;
-        }
-        
-        cli::array<String^>^ ReadOnlyColumns_Input()
-        {
-            return nullptr;
-        }
-
-    private:
-        ScopeTypedManagedHandle<UDO^> m_udo;
-        ScopeTypedManagedHandle<Generic::List<String^>^> m_args;
-        ManagedUDO & operator=(ManagedUDO &);
-    };
-    template<>
-    class InteropToManagedRowPolicy<Process_4_Data0, UID_Process_31>
-    {
-    public:
-        static void Marshal(Process_4_Data0& nativeRow, KeyComparePolicy<Process_4_Data0,UID_Process_31>::KeyType& nativeKey, ScopeRuntime::Row^% managedRow, InteropAllocator * alloc)
-        {
-            alloc->CopyToManagedColumn(nativeKey.m_RowGuid, managedRow[0], 0);
-            alloc->CopyToManagedColumn(nativeRow.m_RecognizedText, managedRow[1], 1);
-            alloc->CopyToManagedColumn(nativeRow.m_RecoLength, managedRow[2], 2);
-            alloc->CopyToManagedColumn(nativeRow.m_InkIsf, managedRow[3], 3);
-            alloc->CopyToManagedColumn(nativeRow.m_Weight, managedRow[4], 4);
-        }
-    };
-
-    template<>
-    class InteropToNativeRowPolicy<Process_4_Data0, UID_Process_31>
-    {
-    public:
-        static void Marshal(ScopeRuntime::Row^ managedRow, Process_4_Data0& nativeRow, IncrementalAllocator* alloc)
-        {
-            ScopeManagedInterop::CopyToNativeColumn(nativeRow.m_RowGuid, managedRow[0]->Guid, alloc);
-            ScopeManagedInterop::CopyToNativeColumn(nativeRow.m_RecognizedText, managedRow[1]->Binary, alloc);
-            ScopeManagedInterop::CopyToNativeColumn(nativeRow.m_RecoLength, managedRow[2]->Integer, alloc);
-            ScopeManagedInterop::CopyToNativeColumn(nativeRow.m_InkIsf, managedRow[3]->Binary, alloc);
-            ScopeManagedInterop::CopyToNativeColumn(nativeRow.m_Weight, managedRow[4]->Double, alloc);
-        }
-    };
-#endif // defined(COMPILE_MANAGED)
-// All of the templates will throw a CS1591 warning because we 
-// have /doc turned on in the CSharp compiler.
-// The only way to solve this is to move all of the templates to their own
-// project, and then turn off /doc.
-
-    template<> 
-    class TextOutputPolicy<Process_4_Data0, UID_SV6_Combine_out0>
-    {
-    public:
-
-        static void Serialize(TextOutputStream<TextOutputStreamTraitsConst<'\t', '\0', false, true, false, false, false, Default, false, CharFormat_uint16>, CosmosOutput> * output, Process_4_Data0 & row)
+        static void Serialize(TextOutputStream<TextOutputStreamTraitsConst<',', '\0', false, true, false, false, false, Default, false, CharFormat_uint16>, CosmosOutput> * output, Process_3_Data0 & row)
         {
             output->Write<ScopeGuid,false>(row.m_RowGuid);
             output->WriteDelimiter();
@@ -4635,8 +2310,6 @@ return true;
             {
                 output->Write<FString,false>(row.m_RecognizedText);
             }
-            output->WriteDelimiter();
-            output->Write<int,false>(row.m_RecoLength);
             output->WriteDelimiter();
             if (!row.m_InkIsf.IsNull())
             {
@@ -4647,7 +2320,7 @@ return true;
             output->WriteNewLine();
         }
 
-        static void SerializeHeader(TextOutputStream<TextOutputStreamTraitsConst<'\t', '\0', false, true, false, false, false, Default, false, CharFormat_uint16>, CosmosOutput> * output)
+        static void SerializeHeader(TextOutputStream<TextOutputStreamTraitsConst<',', '\0', false, true, false, false, false, Default, false, CharFormat_uint16>, CosmosOutput> * output)
         {
             SCOPE_ASSERT(!"TextOutputPolicy::SerializeHeader method should not be invoked.");
         }
@@ -4667,11 +2340,81 @@ return true;
 // project, and then turn off /doc.
 
 
+#if defined(COMPILE_NATIVE)
+    typedef SStreamExtractorV4<GetSStream_0_Data0, SStreamV3ExtractPolicy<GetSStream_0_Data0, UID_GetSStream_0, NullSchema>, UID_GetSStream_0, NullSchema, false> SStreamV3ExtractorType_SV1_Extract_Combine_GetSStream_0;
+    SStreamV3ExtractorType_SV1_Extract_Combine_GetSStream_0 * CreateExtractor_SV1_Extract_Combine_GetSStream_0(unique_ptr<SStreamV3ExtractorType_SV1_Extract_Combine_GetSStream_0> * extractor_ptr)
+    {
+        extractor_ptr->reset(new SStreamV3ExtractorType_SV1_Extract_Combine_GetSStream_0(0, "", UID_GetSStream_0));
+        return extractor_ptr->get();
+    }
+#endif // defined(COMPILE_NATIVE)
+// All of the templates will throw a CS1591 warning because we 
+// have /doc turned on in the CSharp compiler.
+// The only way to solve this is to move all of the templates to their own
+// project, and then turn off /doc.
+
+
+#if defined(COMPILE_NATIVE)
+    typedef SStreamExtractorV4<GetSStream_0_Data0, SStreamV3ExtractPolicy<GetSStream_0_Data0, UID_GetSStream_0, NullSchema>, UID_GetSStream_0, NullSchema, false> SStreamV3ExtractorType_SV1_Extract_Combine_GetSStream_4;
+    SStreamV3ExtractorType_SV1_Extract_Combine_GetSStream_4 * CreateExtractor_SV1_Extract_Combine_GetSStream_4(unique_ptr<SStreamV3ExtractorType_SV1_Extract_Combine_GetSStream_4> * extractor_ptr)
+    {
+        extractor_ptr->reset(new SStreamV3ExtractorType_SV1_Extract_Combine_GetSStream_4(4, "", UID_GetSStream_4));
+        return extractor_ptr->get();
+    }
+#endif // defined(COMPILE_NATIVE)
+// All of the templates will throw a CS1591 warning because we 
+// have /doc turned on in the CSharp compiler.
+// The only way to solve this is to move all of the templates to their own
+// project, and then turn off /doc.
+
+
+#if defined(COMPILE_NATIVE)
+    typedef SStreamExtractorV4<GetSStream_0_Data0, SStreamV3ExtractPolicy<GetSStream_0_Data0, UID_GetSStream_0, NullSchema>, UID_GetSStream_0, NullSchema, false> SStreamV3ExtractorType_SV1_Extract_Combine_GetSStream_8;
+    SStreamV3ExtractorType_SV1_Extract_Combine_GetSStream_8 * CreateExtractor_SV1_Extract_Combine_GetSStream_8(unique_ptr<SStreamV3ExtractorType_SV1_Extract_Combine_GetSStream_8> * extractor_ptr)
+    {
+        extractor_ptr->reset(new SStreamV3ExtractorType_SV1_Extract_Combine_GetSStream_8(8, "", UID_GetSStream_8));
+        return extractor_ptr->get();
+    }
+#endif // defined(COMPILE_NATIVE)
+// All of the templates will throw a CS1591 warning because we 
+// have /doc turned on in the CSharp compiler.
+// The only way to solve this is to move all of the templates to their own
+// project, and then turn off /doc.
+
+
+#if defined(COMPILE_NATIVE)
+    typedef SStreamExtractorV4<GetSStream_0_Data0, SStreamV3ExtractPolicy<GetSStream_0_Data0, UID_GetSStream_0, NullSchema>, UID_GetSStream_0, NullSchema, false> SStreamV3ExtractorType_SV1_Extract_Combine_GetSStream_12;
+    SStreamV3ExtractorType_SV1_Extract_Combine_GetSStream_12 * CreateExtractor_SV1_Extract_Combine_GetSStream_12(unique_ptr<SStreamV3ExtractorType_SV1_Extract_Combine_GetSStream_12> * extractor_ptr)
+    {
+        extractor_ptr->reset(new SStreamV3ExtractorType_SV1_Extract_Combine_GetSStream_12(12, "", UID_GetSStream_12));
+        return extractor_ptr->get();
+    }
+#endif // defined(COMPILE_NATIVE)
+// All of the templates will throw a CS1591 warning because we 
+// have /doc turned on in the CSharp compiler.
+// The only way to solve this is to move all of the templates to their own
+// project, and then turn off /doc.
+
+
+#if defined(COMPILE_NATIVE)
+    typedef SStreamExtractorV4<GetSStream_0_Data0, SStreamV3ExtractPolicy<GetSStream_0_Data0, UID_GetSStream_0, NullSchema>, UID_GetSStream_0, NullSchema, false> SStreamV3ExtractorType_SV1_Extract_Combine_GetSStream_16;
+    SStreamV3ExtractorType_SV1_Extract_Combine_GetSStream_16 * CreateExtractor_SV1_Extract_Combine_GetSStream_16(unique_ptr<SStreamV3ExtractorType_SV1_Extract_Combine_GetSStream_16> * extractor_ptr)
+    {
+        extractor_ptr->reset(new SStreamV3ExtractorType_SV1_Extract_Combine_GetSStream_16(16, "", UID_GetSStream_16));
+        return extractor_ptr->get();
+    }
+#endif // defined(COMPILE_NATIVE)
+// All of the templates will throw a CS1591 warning because we 
+// have /doc turned on in the CSharp compiler.
+// The only way to solve this is to move all of the templates to their own
+// project, and then turn off /doc.
+
+
 
 #if defined(COMPILE_NATIVE)
 namespace ScopeGeneratedClasses
 {
-    extern "C" __declspec(dllexport) void __stdcall SV6_Combine_execute(std::string * argv, int argc, InputFileInfo* inputs, int inputCnt, OutputFileInfo* outputs, int outputCnt, VertexExecutionInfo * vertexExecutionInfo)
+    extern "C" __declspec(dllexport) void __stdcall SV1_Extract_Combine_execute(std::string * argv, int argc, InputFileInfo* inputs, int inputCnt, OutputFileInfo* outputs, int outputCnt, VertexExecutionInfo * vertexExecutionInfo)
     {
 #ifdef USE_SSE4_2
         // check CPUID to make sure this machine supports SSE4_2 instructions
@@ -4694,71 +2437,184 @@ namespace ScopeGeneratedClasses
         MemoryManager::CalculateIOBufferSize(inputCnt, outputCnt, MemoryManager::x_vertexMemoryLimit, MemoryManager::x_vertexReserveMemory, x_inputBufSize, x_inputBufCnt, x_outputBufSize, x_outputBufCnt, x_inputVirtualMemoryLimit, false);
 
         const bool IsNativeOnlyVertex = false;
-        // Define extractor type and construct object
-        typedef Extractor<Process_4_Data0, BinaryExtractPolicy<Process_4_Data0>, BinaryInputStream> ExtractorType1_SV6_Combine;        
-        unique_ptr<ExtractorType1_SV6_Combine> extractor_0_ptr= make_unique<ExtractorType1_SV6_Combine>(inputs[0], false, x_inputBufSize, x_inputBufCnt, x_inputVirtualMemoryLimit, UID_SV1_Extract_out0);
-        ExtractorType1_SV6_Combine * extractor_0 = extractor_0_ptr.get();
+        unique_ptr<SStreamV3ExtractorType_SV1_Extract_Combine_GetSStream_0> extractor_0_ptr;
+        SStreamV3ExtractorType_SV1_Extract_Combine_GetSStream_0 * extractor_0 = CreateExtractor_SV1_Extract_Combine_GetSStream_0(&extractor_0_ptr);
         ULONG extractor_0_count = 1;
-        // Define extractor type and construct object
-        typedef Extractor<Process_4_Data0, BinaryExtractPolicy<Process_4_Data0>, BinaryInputStream> ExtractorType2_SV6_Combine;        
-        unique_ptr<ExtractorType2_SV6_Combine> extractor_1_ptr= make_unique<ExtractorType2_SV6_Combine>(inputs[1], false, x_inputBufSize, x_inputBufCnt, x_inputVirtualMemoryLimit, UID_SV2_Extract_out0);
-        ExtractorType2_SV6_Combine * extractor_1 = extractor_1_ptr.get();
+
+        unique_ptr<SStreamV3ExtractorType_SV1_Extract_Combine_GetSStream_4> extractor_1_ptr;
+        SStreamV3ExtractorType_SV1_Extract_Combine_GetSStream_4 * extractor_1 = CreateExtractor_SV1_Extract_Combine_GetSStream_4(&extractor_1_ptr);
         ULONG extractor_1_count = 1;
-        // Define extractor type and construct object
-        typedef Extractor<Process_4_Data0, BinaryExtractPolicy<Process_4_Data0>, BinaryInputStream> ExtractorType3_SV6_Combine;        
-        unique_ptr<ExtractorType3_SV6_Combine> extractor_2_ptr= make_unique<ExtractorType3_SV6_Combine>(inputs[2], false, x_inputBufSize, x_inputBufCnt, x_inputVirtualMemoryLimit, UID_SV3_Extract_out0);
-        ExtractorType3_SV6_Combine * extractor_2 = extractor_2_ptr.get();
+
+        unique_ptr<SStreamV3ExtractorType_SV1_Extract_Combine_GetSStream_8> extractor_2_ptr;
+        SStreamV3ExtractorType_SV1_Extract_Combine_GetSStream_8 * extractor_2 = CreateExtractor_SV1_Extract_Combine_GetSStream_8(&extractor_2_ptr);
         ULONG extractor_2_count = 1;
-        // Define extractor type and construct object
-        typedef Extractor<Process_4_Data0, BinaryExtractPolicy<Process_4_Data0>, BinaryInputStream> ExtractorType4_SV6_Combine;        
-        unique_ptr<ExtractorType4_SV6_Combine> extractor_3_ptr= make_unique<ExtractorType4_SV6_Combine>(inputs[3], false, x_inputBufSize, x_inputBufCnt, x_inputVirtualMemoryLimit, UID_SV4_Extract_out0);
-        ExtractorType4_SV6_Combine * extractor_3 = extractor_3_ptr.get();
+
+        unique_ptr<SStreamV3ExtractorType_SV1_Extract_Combine_GetSStream_12> extractor_3_ptr;
+        SStreamV3ExtractorType_SV1_Extract_Combine_GetSStream_12 * extractor_3 = CreateExtractor_SV1_Extract_Combine_GetSStream_12(&extractor_3_ptr);
         ULONG extractor_3_count = 1;
-        // Define extractor type and construct object
-        typedef Extractor<Process_4_Data0, BinaryExtractPolicy<Process_4_Data0>, BinaryInputStream> ExtractorType5_SV6_Combine;        
-        unique_ptr<ExtractorType5_SV6_Combine> extractor_4_ptr= make_unique<ExtractorType5_SV6_Combine>(inputs[4], false, x_inputBufSize, x_inputBufCnt, x_inputVirtualMemoryLimit, UID_SV5_Extract_out0);
-        ExtractorType5_SV6_Combine * extractor_4 = extractor_4_ptr.get();
+
+        unique_ptr<SStreamV3ExtractorType_SV1_Extract_Combine_GetSStream_16> extractor_4_ptr;
+        SStreamV3ExtractorType_SV1_Extract_Combine_GetSStream_16 * extractor_4 = CreateExtractor_SV1_Extract_Combine_GetSStream_16(&extractor_4_ptr);
         ULONG extractor_4_count = 1;
+
+        // Define the type of the operator
+        typedef FilterTransformer<SStreamV3ExtractorType_SV1_Extract_Combine_GetSStream_0, GetSStream_0_Data0, Process_1_Data0, UID_Process_1> FilterTransformerType_Process_1;
+        // Construct operator and initialize it.
+        unique_ptr<FilterTransformerType_Process_1> filterTransformer_Process_1_ptr (new FilterTransformerType_Process_1(extractor_0, UID_Process_1));
+        FilterTransformerType_Process_1 * filterTransformer_Process_1 = filterTransformer_Process_1_ptr.get();
+        ULONG filterTransformer_Process_1_count = 1;
+        // Construct operator and initialize it.
+        unique_ptr<OperatorDelegate<Process_1_Data0>> delegate_filterTransformer_Process_1_ptr (new OperatorDelegate<Process_1_Data0>(OperatorDelegate<Process_1_Data0>::FromOperator(filterTransformer_Process_1)));
+        OperatorDelegate<Process_1_Data0> * delegate_filterTransformer_Process_1 = delegate_filterTransformer_Process_1_ptr.get();
+        ULONG delegate_filterTransformer_Process_1_count = 1;
+        // Define the type of the operator
+        typedef ScopeProcessor<Process_1_Data0, Process_1_Data0> ProcessorType_Process_2;
+        // Construct operator and initialize it.
+        unique_ptr<ProcessorType_Process_2> processor_Process_2_ptr (new ProcessorType_Process_2(ScopeProcessorManagedFactory::Make<Process_1_Data0,Process_1_Data0,UID_Process_2>(delegate_filterTransformer_Process_1), delegate_filterTransformer_Process_1, UID_Process_2));
+        ProcessorType_Process_2 * processor_Process_2 = processor_Process_2_ptr.get();
+        ULONG processor_Process_2_count = 1;
+        // Define the type of the operator
+        typedef FilterTransformer<ProcessorType_Process_2, Process_1_Data0, Process_3_Data0, UID_Process_3> FilterTransformerType_Process_3;
+        // Construct operator and initialize it.
+        unique_ptr<FilterTransformerType_Process_3> filterTransformer_Process_3_ptr (new FilterTransformerType_Process_3(processor_Process_2, UID_Process_3));
+        FilterTransformerType_Process_3 * filterTransformer_Process_3 = filterTransformer_Process_3_ptr.get();
+        ULONG filterTransformer_Process_3_count = 1;
+        // Define the type of the operator
+        typedef FilterTransformer<SStreamV3ExtractorType_SV1_Extract_Combine_GetSStream_4, GetSStream_0_Data0, Process_1_Data0, UID_Process_5> FilterTransformerType_Process_5;
+        // Construct operator and initialize it.
+        unique_ptr<FilterTransformerType_Process_5> filterTransformer_Process_5_ptr (new FilterTransformerType_Process_5(extractor_1, UID_Process_5));
+        FilterTransformerType_Process_5 * filterTransformer_Process_5 = filterTransformer_Process_5_ptr.get();
+        ULONG filterTransformer_Process_5_count = 1;
+        // Construct operator and initialize it.
+        unique_ptr<OperatorDelegate<Process_1_Data0>> delegate_filterTransformer_Process_5_ptr (new OperatorDelegate<Process_1_Data0>(OperatorDelegate<Process_1_Data0>::FromOperator(filterTransformer_Process_5)));
+        OperatorDelegate<Process_1_Data0> * delegate_filterTransformer_Process_5 = delegate_filterTransformer_Process_5_ptr.get();
+        ULONG delegate_filterTransformer_Process_5_count = 1;
+        // Define the type of the operator
+        typedef ScopeProcessor<Process_1_Data0, Process_1_Data0> ProcessorType_Process_6;
+        // Construct operator and initialize it.
+        unique_ptr<ProcessorType_Process_6> processor_Process_6_ptr (new ProcessorType_Process_6(ScopeProcessorManagedFactory::Make<Process_1_Data0,Process_1_Data0,UID_Process_6>(delegate_filterTransformer_Process_5), delegate_filterTransformer_Process_5, UID_Process_6));
+        ProcessorType_Process_6 * processor_Process_6 = processor_Process_6_ptr.get();
+        ULONG processor_Process_6_count = 1;
+        // Define the type of the operator
+        typedef FilterTransformer<ProcessorType_Process_6, Process_1_Data0, Process_3_Data0, UID_Process_7> FilterTransformerType_Process_7;
+        // Construct operator and initialize it.
+        unique_ptr<FilterTransformerType_Process_7> filterTransformer_Process_7_ptr (new FilterTransformerType_Process_7(processor_Process_6, UID_Process_7));
+        FilterTransformerType_Process_7 * filterTransformer_Process_7 = filterTransformer_Process_7_ptr.get();
+        ULONG filterTransformer_Process_7_count = 1;
+        // Define the type of the operator
+        typedef FilterTransformer<SStreamV3ExtractorType_SV1_Extract_Combine_GetSStream_8, GetSStream_0_Data0, Process_1_Data0, UID_Process_9> FilterTransformerType_Process_9;
+        // Construct operator and initialize it.
+        unique_ptr<FilterTransformerType_Process_9> filterTransformer_Process_9_ptr (new FilterTransformerType_Process_9(extractor_2, UID_Process_9));
+        FilterTransformerType_Process_9 * filterTransformer_Process_9 = filterTransformer_Process_9_ptr.get();
+        ULONG filterTransformer_Process_9_count = 1;
+        // Construct operator and initialize it.
+        unique_ptr<OperatorDelegate<Process_1_Data0>> delegate_filterTransformer_Process_9_ptr (new OperatorDelegate<Process_1_Data0>(OperatorDelegate<Process_1_Data0>::FromOperator(filterTransformer_Process_9)));
+        OperatorDelegate<Process_1_Data0> * delegate_filterTransformer_Process_9 = delegate_filterTransformer_Process_9_ptr.get();
+        ULONG delegate_filterTransformer_Process_9_count = 1;
+        // Define the type of the operator
+        typedef ScopeProcessor<Process_1_Data0, Process_1_Data0> ProcessorType_Process_10;
+        // Construct operator and initialize it.
+        unique_ptr<ProcessorType_Process_10> processor_Process_10_ptr (new ProcessorType_Process_10(ScopeProcessorManagedFactory::Make<Process_1_Data0,Process_1_Data0,UID_Process_10>(delegate_filterTransformer_Process_9), delegate_filterTransformer_Process_9, UID_Process_10));
+        ProcessorType_Process_10 * processor_Process_10 = processor_Process_10_ptr.get();
+        ULONG processor_Process_10_count = 1;
+        // Define the type of the operator
+        typedef FilterTransformer<ProcessorType_Process_10, Process_1_Data0, Process_3_Data0, UID_Process_11> FilterTransformerType_Process_11;
+        // Construct operator and initialize it.
+        unique_ptr<FilterTransformerType_Process_11> filterTransformer_Process_11_ptr (new FilterTransformerType_Process_11(processor_Process_10, UID_Process_11));
+        FilterTransformerType_Process_11 * filterTransformer_Process_11 = filterTransformer_Process_11_ptr.get();
+        ULONG filterTransformer_Process_11_count = 1;
+        // Define the type of the operator
+        typedef FilterTransformer<SStreamV3ExtractorType_SV1_Extract_Combine_GetSStream_12, GetSStream_0_Data0, Process_1_Data0, UID_Process_13> FilterTransformerType_Process_13;
+        // Construct operator and initialize it.
+        unique_ptr<FilterTransformerType_Process_13> filterTransformer_Process_13_ptr (new FilterTransformerType_Process_13(extractor_3, UID_Process_13));
+        FilterTransformerType_Process_13 * filterTransformer_Process_13 = filterTransformer_Process_13_ptr.get();
+        ULONG filterTransformer_Process_13_count = 1;
+        // Construct operator and initialize it.
+        unique_ptr<OperatorDelegate<Process_1_Data0>> delegate_filterTransformer_Process_13_ptr (new OperatorDelegate<Process_1_Data0>(OperatorDelegate<Process_1_Data0>::FromOperator(filterTransformer_Process_13)));
+        OperatorDelegate<Process_1_Data0> * delegate_filterTransformer_Process_13 = delegate_filterTransformer_Process_13_ptr.get();
+        ULONG delegate_filterTransformer_Process_13_count = 1;
+        // Define the type of the operator
+        typedef ScopeProcessor<Process_1_Data0, Process_1_Data0> ProcessorType_Process_14;
+        // Construct operator and initialize it.
+        unique_ptr<ProcessorType_Process_14> processor_Process_14_ptr (new ProcessorType_Process_14(ScopeProcessorManagedFactory::Make<Process_1_Data0,Process_1_Data0,UID_Process_14>(delegate_filterTransformer_Process_13), delegate_filterTransformer_Process_13, UID_Process_14));
+        ProcessorType_Process_14 * processor_Process_14 = processor_Process_14_ptr.get();
+        ULONG processor_Process_14_count = 1;
+        // Define the type of the operator
+        typedef FilterTransformer<ProcessorType_Process_14, Process_1_Data0, Process_3_Data0, UID_Process_15> FilterTransformerType_Process_15;
+        // Construct operator and initialize it.
+        unique_ptr<FilterTransformerType_Process_15> filterTransformer_Process_15_ptr (new FilterTransformerType_Process_15(processor_Process_14, UID_Process_15));
+        FilterTransformerType_Process_15 * filterTransformer_Process_15 = filterTransformer_Process_15_ptr.get();
+        ULONG filterTransformer_Process_15_count = 1;
+        // Define the type of the operator
+        typedef FilterTransformer<SStreamV3ExtractorType_SV1_Extract_Combine_GetSStream_16, GetSStream_0_Data0, Process_1_Data0, UID_Process_17> FilterTransformerType_Process_17;
+        // Construct operator and initialize it.
+        unique_ptr<FilterTransformerType_Process_17> filterTransformer_Process_17_ptr (new FilterTransformerType_Process_17(extractor_4, UID_Process_17));
+        FilterTransformerType_Process_17 * filterTransformer_Process_17 = filterTransformer_Process_17_ptr.get();
+        ULONG filterTransformer_Process_17_count = 1;
+        // Construct operator and initialize it.
+        unique_ptr<OperatorDelegate<Process_1_Data0>> delegate_filterTransformer_Process_17_ptr (new OperatorDelegate<Process_1_Data0>(OperatorDelegate<Process_1_Data0>::FromOperator(filterTransformer_Process_17)));
+        OperatorDelegate<Process_1_Data0> * delegate_filterTransformer_Process_17 = delegate_filterTransformer_Process_17_ptr.get();
+        ULONG delegate_filterTransformer_Process_17_count = 1;
+        // Define the type of the operator
+        typedef ScopeProcessor<Process_1_Data0, Process_1_Data0> ProcessorType_Process_18;
+        // Construct operator and initialize it.
+        unique_ptr<ProcessorType_Process_18> processor_Process_18_ptr (new ProcessorType_Process_18(ScopeProcessorManagedFactory::Make<Process_1_Data0,Process_1_Data0,UID_Process_18>(delegate_filterTransformer_Process_17), delegate_filterTransformer_Process_17, UID_Process_18));
+        ProcessorType_Process_18 * processor_Process_18 = processor_Process_18_ptr.get();
+        ULONG processor_Process_18_count = 1;
+        // Define the type of the operator
+        typedef FilterTransformer<ProcessorType_Process_18, Process_1_Data0, Process_3_Data0, UID_Process_19> FilterTransformerType_Process_19;
+        // Construct operator and initialize it.
+        unique_ptr<FilterTransformerType_Process_19> filterTransformer_Process_19_ptr (new FilterTransformerType_Process_19(processor_Process_18, UID_Process_19));
+        FilterTransformerType_Process_19 * filterTransformer_Process_19 = filterTransformer_Process_19_ptr.get();
+        ULONG filterTransformer_Process_19_count = 1;
         // Construct combined operator and initialize it
-        unique_ptr<OperatorDelegate<Process_4_Data0>> delegate_6CE40C304A3C6FA5_array[5];
-        delegate_6CE40C304A3C6FA5_array[0].reset(new OperatorDelegate<Process_4_Data0>(extractor_0));
-        delegate_6CE40C304A3C6FA5_array[1].reset(new OperatorDelegate<Process_4_Data0>(extractor_1));
-        delegate_6CE40C304A3C6FA5_array[2].reset(new OperatorDelegate<Process_4_Data0>(extractor_2));
-        delegate_6CE40C304A3C6FA5_array[3].reset(new OperatorDelegate<Process_4_Data0>(extractor_3));
-        delegate_6CE40C304A3C6FA5_array[4].reset(new OperatorDelegate<Process_4_Data0>(extractor_4));
-        OperatorDelegate<Process_4_Data0> ** delegate_6CE40C304A3C6FA5 = (OperatorDelegate<Process_4_Data0> **)delegate_6CE40C304A3C6FA5_array;
+        unique_ptr<OperatorDelegate<Process_3_Data0>> delegate_20A4E0AC96E6325_array[5];
+        delegate_20A4E0AC96E6325_array[0].reset(new OperatorDelegate<Process_3_Data0>(filterTransformer_Process_3));
+        delegate_20A4E0AC96E6325_array[1].reset(new OperatorDelegate<Process_3_Data0>(filterTransformer_Process_7));
+        delegate_20A4E0AC96E6325_array[2].reset(new OperatorDelegate<Process_3_Data0>(filterTransformer_Process_11));
+        delegate_20A4E0AC96E6325_array[3].reset(new OperatorDelegate<Process_3_Data0>(filterTransformer_Process_15));
+        delegate_20A4E0AC96E6325_array[4].reset(new OperatorDelegate<Process_3_Data0>(filterTransformer_Process_19));
+        OperatorDelegate<Process_3_Data0> ** delegate_20A4E0AC96E6325 = (OperatorDelegate<Process_3_Data0> **)delegate_20A4E0AC96E6325_array;
         // Define the type of the operator
-        typedef Merger<OperatorDelegate<Process_4_Data0>, Process_4_Data0, ScopeLoserTree<OperatorDelegate<Process_4_Data0>, Process_4_Data0, UID_Aggregate_30>, UID_Aggregate_30> AggregateType_Aggregate_30;
-        // Construct operator object and initialize it
-        unique_ptr<AggregateType_Aggregate_30> aggregate_Aggregate_30_ptr(new AggregateType_Aggregate_30(delegate_6CE40C304A3C6FA5 + 0, 5, UID_Aggregate_30));
-        AggregateType_Aggregate_30 * aggregate_Aggregate_30 = aggregate_Aggregate_30_ptr.get();
-        ULONG aggregate_Aggregate_30_count = 1; 
-        // Construct operator and initialize it.
-        unique_ptr<OperatorDelegate<Process_4_Data0>> delegate_aggregate_Aggregate_30_ptr (new OperatorDelegate<Process_4_Data0>(OperatorDelegate<Process_4_Data0>::FromOperator(aggregate_Aggregate_30)));
-        OperatorDelegate<Process_4_Data0> * delegate_aggregate_Aggregate_30 = delegate_aggregate_Aggregate_30_ptr.get();
-        ULONG delegate_aggregate_Aggregate_30_count = 1;
-        // Define the type of the operator
-        typedef ScopeProcessor<Process_4_Data0, Process_4_Data0> ReducerType_Process_31;
-        // Construct operator and initialize it.
-        unique_ptr<ReducerType_Process_31> reducer_Process_31_ptr (new ReducerType_Process_31(ScopeReducerManagedFactory::Make<Process_4_Data0,Process_4_Data0,UID_Process_31>(delegate_aggregate_Aggregate_30), delegate_aggregate_Aggregate_30, UID_Process_31));
-        ReducerType_Process_31 * reducer_Process_31 = reducer_Process_31_ptr.get();
-        ULONG reducer_Process_31_count = 1;
+        typedef Merger<OperatorDelegate<Process_3_Data0>, Process_3_Data0, ScopeUnionAll<OperatorDelegate<Process_3_Data0>, Process_3_Data0>, UID_Aggregate_20> AggregateType_Aggregate_20;
+        ULONG unionall_groupSize_Aggregate_20 = 5 > (ULONG)IOManager::x_readThrottlingLimit ? (ULONG)sqrt((float)5):5;
+        ULONG unionall_groupNum_Aggregate_20 = (ULONG)(5 + unionall_groupSize_Aggregate_20 -1) / unionall_groupSize_Aggregate_20;
+
+        // Allocate union all pointer array
+        unique_ptr<unique_ptr<AggregateType_Aggregate_20>[]> unionall_Aggregate_20_array(new unique_ptr<AggregateType_Aggregate_20>[unionall_groupNum_Aggregate_20]);
+        
+        // Construct merger objects
+        for (ULONG i = 0, operatorStartOffset = 0; i < unionall_groupNum_Aggregate_20; i++, operatorStartOffset += unionall_groupSize_Aggregate_20)
+        {
+            ULONG operatorNum = min(5 - operatorStartOffset, unionall_groupSize_Aggregate_20);
+
+            unionall_Aggregate_20_array[i].reset(new AggregateType_Aggregate_20(delegate_20A4E0AC96E6325 + operatorStartOffset, operatorNum, UID_Aggregate_20));
+        }
+
+        // Construct a local typed variable for merger array      
+        AggregateType_Aggregate_20 ** aggregate_Aggregate_20 = (AggregateType_Aggregate_20 **)unionall_Aggregate_20_array.get();
+        ULONG aggregate_Aggregate_20_count = unionall_groupNum_Aggregate_20;
+        // Merge streams N->1
+        typedef ParallelUnionAll<AggregateType_Aggregate_20, Process_3_Data0, IsNativeOnlyVertex> UnionAllType_Aggregate_20_SV1_Extract_Combine_out0_connector;
+        unique_ptr<UnionAllType_Aggregate_20_SV1_Extract_Combine_out0_connector> unionall_Aggregate_20_SV1_Extract_Combine_out0_connector_ptr(new UnionAllType_Aggregate_20_SV1_Extract_Combine_out0_connector(aggregate_Aggregate_20,aggregate_Aggregate_20_count,false,UID_ParallelUnionAll_Aggregate_20));
+        UnionAllType_Aggregate_20_SV1_Extract_Combine_out0_connector * unionall_Aggregate_20_SV1_Extract_Combine_out0_connector = unionall_Aggregate_20_SV1_Extract_Combine_out0_connector_ptr.get();
+        ULONG unionall_Aggregate_20_SV1_Extract_Combine_out0_connector_count = 1;
         // Define outputer type
-        typedef Outputer<ReducerType_Process_31, Process_4_Data0, TextOutputPolicy<Process_4_Data0, UID_SV6_Combine_out0>, TextOutputStream<TextOutputStreamTraitsConst<'\t', '\0', false, true, false, false, false, Default, false, CharFormat_uint16>, CosmosOutput>, false> OutputerType6_SV6_Combine;
+        typedef Outputer<UnionAllType_Aggregate_20_SV1_Extract_Combine_out0_connector, Process_3_Data0, TextOutputPolicy<Process_3_Data0, UID_SV1_Extract_Combine_out0>, TextOutputStream<TextOutputStreamTraitsConst<',', '\0', false, true, false, false, false, Default, false, CharFormat_uint16>, CosmosOutput>, false> OutputerType1_SV1_Extract_Combine;
         // Construct operator and initialize it
-        unique_ptr<OutputerType6_SV6_Combine> outputer_SV6_Combine_out0_ptr(new OutputerType6_SV6_Combine(reducer_Process_31, outputs[0].outputFileName, false, x_outputBufSize, x_outputBufCnt, OutputStreamParameters('\t', "\r\n", '\0', static_cast<const char*>(__nullptr), false, true, false, false, NULL, Default, false, CharFormat_uint16), UID_SV6_Combine_out0));
-        OutputerType6_SV6_Combine * outputer_SV6_Combine_out0 = outputer_SV6_Combine_out0_ptr.get();
+        unique_ptr<OutputerType1_SV1_Extract_Combine> outputer_SV1_Extract_Combine_out0_ptr(new OutputerType1_SV1_Extract_Combine(unionall_Aggregate_20_SV1_Extract_Combine_out0_connector, outputs[0].outputFileName, false, x_outputBufSize, x_outputBufCnt, OutputStreamParameters(',', "\r\n", '\0', static_cast<const char*>(__nullptr), false, true, false, false, NULL, Default, false, CharFormat_uint16), UID_SV1_Extract_Combine_out0));
+        OutputerType1_SV1_Extract_Combine * outputer_SV1_Extract_Combine_out0 = outputer_SV1_Extract_Combine_out0_ptr.get();
         try
         {
             // Init operator chain
-            outputer_SV6_Combine_out0->Init();
+            outputer_SV1_Extract_Combine_out0->Init();
 
             // Execute the whole vertex by calling the GetNextRow on top operator
-            Process_4_Data0 row;
-            outputer_SV6_Combine_out0->GetNextRow(row);
+            Process_3_Data0 row;
+            outputer_SV1_Extract_Combine_out0->GetNextRow(row);
 
             // Close operator chain
-            outputer_SV6_Combine_out0->Close();
+            outputer_SV1_Extract_Combine_out0->Close();
         }
         catch (const ExceptionWithStack& ex)
         {
@@ -4775,17 +2631,21 @@ namespace ScopeGeneratedClasses
 
         // Write out execution stats
         MemoryManager::GetGlobal()->WriteRuntimeStats(vertexExecutionInfo->m_statsRoot);
-        outputer_SV6_Combine_out0->WriteRuntimeStats(vertexExecutionInfo->m_statsRoot);
+        outputer_SV1_Extract_Combine_out0->WriteRuntimeStats(vertexExecutionInfo->m_statsRoot);
     }
 }
 #endif // defined(COMPILE_NATIVE)
 
 #if defined(COMPILE_MANAGED)
-template ScopeProcessorManaged<Process_4_Data0, Process_4_Data0> * ScopeEngine::ScopeReducerManagedFactory::Make<Process_4_Data0, Process_4_Data0, UID_Process_31>(OperatorDelegate<Process_4_Data0>*);
+template ScopeProcessorManaged<Process_1_Data0, Process_1_Data0> * ScopeEngine::ScopeProcessorManagedFactory::Make<Process_1_Data0, Process_1_Data0, UID_Process_2>(OperatorDelegate<Process_1_Data0>*);
+template ScopeProcessorManaged<Process_1_Data0, Process_1_Data0> * ScopeEngine::ScopeProcessorManagedFactory::Make<Process_1_Data0, Process_1_Data0, UID_Process_6>(OperatorDelegate<Process_1_Data0>*);
+template ScopeProcessorManaged<Process_1_Data0, Process_1_Data0> * ScopeEngine::ScopeProcessorManagedFactory::Make<Process_1_Data0, Process_1_Data0, UID_Process_10>(OperatorDelegate<Process_1_Data0>*);
+template ScopeProcessorManaged<Process_1_Data0, Process_1_Data0> * ScopeEngine::ScopeProcessorManagedFactory::Make<Process_1_Data0, Process_1_Data0, UID_Process_14>(OperatorDelegate<Process_1_Data0>*);
+template ScopeProcessorManaged<Process_1_Data0, Process_1_Data0> * ScopeEngine::ScopeProcessorManagedFactory::Make<Process_1_Data0, Process_1_Data0, UID_Process_18>(OperatorDelegate<Process_1_Data0>*);
 #endif // defined(COMPILE_MANAGED)
 #if defined(COMPILE_NATIVE)
 #endif // defined(COMPILE_NATIVE)
 
 #endif
-#pragma endregion SV6_Combine
+#pragma endregion SV1_Extract_Combine
 // Empty footer

@@ -31,13 +31,17 @@
     <AppXManifest Include="C:\Users\elmarron\dev\InkDisplay\App2\bin\x86\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-07-06T18:38:43.146</Modified>
+      <Modified>2018-07-09T23:24:21.377</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\elmarron\dev\InkDisplay\App2\bin\x86\Debug\App2.exe">
       <PackagePath>entrypoint\App2.exe</PackagePath>
-      <Modified>2018-07-06T18:38:41.021</Modified>
+      <Modified>2018-07-09T23:24:20.684</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\elmarron\.nuget\packages\csv\1.0.31\lib\netstandard1.0\Csv.dll">
+      <PackagePath>Csv.dll</PackagePath>
+      <Modified>2018-03-29T21:12:40.000</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\elmarron\.nuget\packages\log4net\2.0.8\lib\netstandard1.3\log4net.dll">
       <PackagePath>log4net.dll</PackagePath>
@@ -319,9 +323,9 @@
       <PackagePath>System.Net.Http.Rtc.dll</PackagePath>
       <Modified>2016-06-12T06:13:56.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Program Files %28x86%29\Microsoft SDKs\UWPNuGetPackages\system.net.nameresolution\4.0.0\runtimes\win\lib\netcore50\System.Net.NameResolution.dll">
+    <AppxPackagedFile Include="C:\Users\elmarron\.nuget\packages\system.net.nameresolution\4.3.0\runtimes\win\lib\netcore50\System.Net.NameResolution.dll">
       <PackagePath>System.Net.NameResolution.dll</PackagePath>
-      <Modified>2016-06-12T06:13:58.000</Modified>
+      <Modified>2016-11-05T11:56:26.000</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Microsoft SDKs\UWPNuGetPackages\system.net.networkinformation\4.1.0\runtimes\win\lib\netcore50\System.Net.NetworkInformation.dll">
       <PackagePath>System.Net.NetworkInformation.dll</PackagePath>
@@ -559,15 +563,15 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\elmarron\dev\InkDisplay\App2\bin\x86\Debug\App2.xr.xml">
       <PackagePath>App2.xr.xml</PackagePath>
-      <Modified>2018-07-05T22:39:48.982</Modified>
+      <Modified>2018-07-09T22:10:33.184</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\elmarron\dev\InkDisplay\App2\bin\x86\Debug\App.xbf">
       <PackagePath>App.xbf</PackagePath>
-      <Modified>2018-07-06T18:38:40.828</Modified>
+      <Modified>2018-07-09T17:28:18.125</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\elmarron\dev\InkDisplay\App2\bin\x86\Debug\MainPage.xbf">
       <PackagePath>MainPage.xbf</PackagePath>
-      <Modified>2018-07-06T18:38:40.829</Modified>
+      <Modified>2018-07-09T22:10:33.196</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Windows Kits\10\UnionMetadata\10.0.17134.0\Windows.winmd">
       <PackagePath>WinMetadata\Windows.winmd</PackagePath>
@@ -576,11 +580,11 @@
     <AppxPackagedFile Include="C:\Users\elmarron\dev\InkDisplay\App2\bin\x86\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-07-06T18:38:42.709</Modified>
+      <Modified>2018-07-09T21:38:38.475</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\elmarron\dev\InkDisplay\App2\bin\x86\Debug\Core\App2.exe">
       <PackagePath>App2.exe</PackagePath>
-      <Modified>2018-07-06T18:38:43.137</Modified>
+      <Modified>2018-07-09T23:24:21.368</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>

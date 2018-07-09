@@ -23,13 +23,14 @@ public class ___Scope_Generated_Classes___
 #region ==BEGIN USER CODE==
 #endregion ==END USER CODE==
 
-	public class Row_RowGuid_Guid_InputLanguage_String_RecognizedText_String_InkIsf_String : Row
+	public class Row_C6F520BA34048429 : Row
 	{
 		private static readonly System.Tuple<string,ColumnDataType,Type,ColumnDataCtor>[] _columnTable = 
 		{
 			new System.Tuple<string,ColumnDataType,Type,ColumnDataCtor>("RowGuid", ColumnDataType.Guid, typeof(System.Guid), null),
 			new System.Tuple<string,ColumnDataType,Type,ColumnDataCtor>("InputLanguage", ColumnDataType.String, typeof(System.String), null),
-			new System.Tuple<string,ColumnDataType,Type,ColumnDataCtor>("RecognizedText", ColumnDataType.String, typeof(System.String), null),
+			new System.Tuple<string,ColumnDataType,Type,ColumnDataCtor>("Branch", ColumnDataType.String, typeof(System.String), null),
+			new System.Tuple<string,ColumnDataType,Type,ColumnDataCtor>("FinalText", ColumnDataType.String, typeof(System.String), null),
 			new System.Tuple<string,ColumnDataType,Type,ColumnDataCtor>("InkIsf", ColumnDataType.String, typeof(System.String), null),
 		};
 		ScopeRuntime.GuidColumnData s0_RowGuid;
@@ -52,14 +53,24 @@ public class ___Scope_Generated_Classes___
 				_columns[1] = value;
 			}
 		}
-		ScopeRuntime.StringColumnData s0_RecognizedText;
-		public ScopeRuntime.StringColumnData RecognizedText
+		ScopeRuntime.StringColumnData s0_Branch;
+		public ScopeRuntime.StringColumnData Branch
 		{
-			get { return s0_RecognizedText; }
+			get { return s0_Branch; }
 			set
 			{
-				s0_RecognizedText = value;
+				s0_Branch = value;
 				_columns[2] = value;
+			}
+		}
+		ScopeRuntime.StringColumnData s0_FinalText;
+		public ScopeRuntime.StringColumnData FinalText
+		{
+			get { return s0_FinalText; }
+			set
+			{
+				s0_FinalText = value;
+				_columns[3] = value;
 			}
 		}
 		ScopeRuntime.StringColumnData s0_InkIsf;
@@ -69,18 +80,18 @@ public class ___Scope_Generated_Classes___
 			set
 			{
 				s0_InkIsf = value;
-				_columns[3] = value;
+				_columns[4] = value;
 			}
 		}
-		public Row_RowGuid_Guid_InputLanguage_String_RecognizedText_String_InkIsf_String(Schema schema, ColumnData[] columns) : base(schema, columns) { }
-		public Row_RowGuid_Guid_InputLanguage_String_RecognizedText_String_InkIsf_String(Schema schema) : base(schema)
+		public Row_C6F520BA34048429(Schema schema, ColumnData[] columns) : base(schema, columns) { }
+		public Row_C6F520BA34048429(Schema schema) : base(schema)
 		{
 			for (int i = 0; i < _columns.Length; ++i)
 			{
 				this[i] = _columns[i];
 			}
 		}
-		public Row_RowGuid_Guid_InputLanguage_String_RecognizedText_String_InkIsf_String() : base(BuildSchema(), BuildColumnData())
+		public Row_C6F520BA34048429() : base(BuildSchema(), BuildColumnData())
 		{
 			for (int i = 0; i < _columns.Length; ++i)
 			{
@@ -122,9 +133,12 @@ public class ___Scope_Generated_Classes___
 						s0_InputLanguage = (ScopeRuntime.StringColumnData)value;
 						break;
 					case 2:
-						s0_RecognizedText = (ScopeRuntime.StringColumnData)value;
+						s0_Branch = (ScopeRuntime.StringColumnData)value;
 						break;
 					case 3:
+						s0_FinalText = (ScopeRuntime.StringColumnData)value;
+						break;
+					case 4:
 						s0_InkIsf = (ScopeRuntime.StringColumnData)value;
 						break;
 				}
@@ -141,15 +155,20 @@ public class ___Scope_Generated_Classes___
 				hasNull = true;
 				___masking___[0] |= (byte)(1 << 1);
 			}
-			if (s0_RecognizedText.IsNull())
+			if (s0_Branch.IsNull())
 			{
 				hasNull = true;
 				___masking___[0] |= (byte)(1 << 2);
 			}
-			if (s0_InkIsf.IsNull())
+			if (s0_FinalText.IsNull())
 			{
 				hasNull = true;
 				___masking___[0] |= (byte)(1 << 3);
+			}
+			if (s0_InkIsf.IsNull())
+			{
+				hasNull = true;
+				___masking___[0] |= (byte)(1 << 4);
 			}
 			if (hasNull)
 			{
@@ -164,9 +183,13 @@ public class ___Scope_Generated_Classes___
 			{
 				s0_InputLanguage.Serialize(writer);
 			}
-			if (!s0_RecognizedText.IsNull())
+			if (!s0_Branch.IsNull())
 			{
-				s0_RecognizedText.Serialize(writer);
+				s0_Branch.Serialize(writer);
+			}
+			if (!s0_FinalText.IsNull())
+			{
+				s0_FinalText.Serialize(writer);
 			}
 			if (!s0_InkIsf.IsNull())
 			{
@@ -182,7 +205,8 @@ public class ___Scope_Generated_Classes___
 			{
 				s0_RowGuid.Deserialize(reader);
 				s0_InputLanguage.Deserialize(reader);
-				s0_RecognizedText.Deserialize(reader);
+				s0_Branch.Deserialize(reader);
+				s0_FinalText.Deserialize(reader);
 				s0_InkIsf.Deserialize(reader);
 			}
 			else
@@ -199,13 +223,21 @@ public class ___Scope_Generated_Classes___
 				}
 				if ((___masking___[0] & 4) != 4)
 				{
-					s0_RecognizedText.Deserialize(reader);
+					s0_Branch.Deserialize(reader);
 				}
 				else
 				{
-					s0_RecognizedText.SetNull();
+					s0_Branch.SetNull();
 				}
 				if ((___masking___[0] & 8) != 8)
+				{
+					s0_FinalText.Deserialize(reader);
+				}
+				else
+				{
+					s0_FinalText.SetNull();
+				}
+				if ((___masking___[0] & 16) != 16)
 				{
 					s0_InkIsf.Deserialize(reader);
 				}
@@ -218,12 +250,12 @@ public class ___Scope_Generated_Classes___
 	}
 
 
-	public class Row_RowGuid_Guid_RecognizedText_String_InkIsf_String : Row
+	public class Row_RowGuid_Guid_FinalText_String_InkIsf_String : Row
 	{
 		private static readonly System.Tuple<string,ColumnDataType,Type,ColumnDataCtor>[] _columnTable = 
 		{
 			new System.Tuple<string,ColumnDataType,Type,ColumnDataCtor>("RowGuid", ColumnDataType.Guid, typeof(System.Guid), null),
-			new System.Tuple<string,ColumnDataType,Type,ColumnDataCtor>("RecognizedText", ColumnDataType.String, typeof(System.String), null),
+			new System.Tuple<string,ColumnDataType,Type,ColumnDataCtor>("FinalText", ColumnDataType.String, typeof(System.String), null),
 			new System.Tuple<string,ColumnDataType,Type,ColumnDataCtor>("InkIsf", ColumnDataType.String, typeof(System.String), null),
 		};
 		ScopeRuntime.GuidColumnData s0_RowGuid;
@@ -236,13 +268,13 @@ public class ___Scope_Generated_Classes___
 				_columns[0] = value;
 			}
 		}
-		ScopeRuntime.StringColumnData s0_RecognizedText;
-		public ScopeRuntime.StringColumnData RecognizedText
+		ScopeRuntime.StringColumnData s0_FinalText;
+		public ScopeRuntime.StringColumnData FinalText
 		{
-			get { return s0_RecognizedText; }
+			get { return s0_FinalText; }
 			set
 			{
-				s0_RecognizedText = value;
+				s0_FinalText = value;
 				_columns[1] = value;
 			}
 		}
@@ -256,15 +288,15 @@ public class ___Scope_Generated_Classes___
 				_columns[2] = value;
 			}
 		}
-		public Row_RowGuid_Guid_RecognizedText_String_InkIsf_String(Schema schema, ColumnData[] columns) : base(schema, columns) { }
-		public Row_RowGuid_Guid_RecognizedText_String_InkIsf_String(Schema schema) : base(schema)
+		public Row_RowGuid_Guid_FinalText_String_InkIsf_String(Schema schema, ColumnData[] columns) : base(schema, columns) { }
+		public Row_RowGuid_Guid_FinalText_String_InkIsf_String(Schema schema) : base(schema)
 		{
 			for (int i = 0; i < _columns.Length; ++i)
 			{
 				this[i] = _columns[i];
 			}
 		}
-		public Row_RowGuid_Guid_RecognizedText_String_InkIsf_String() : base(BuildSchema(), BuildColumnData())
+		public Row_RowGuid_Guid_FinalText_String_InkIsf_String() : base(BuildSchema(), BuildColumnData())
 		{
 			for (int i = 0; i < _columns.Length; ++i)
 			{
@@ -303,7 +335,7 @@ public class ___Scope_Generated_Classes___
 						s0_RowGuid = (ScopeRuntime.GuidColumnData)value;
 						break;
 					case 1:
-						s0_RecognizedText = (ScopeRuntime.StringColumnData)value;
+						s0_FinalText = (ScopeRuntime.StringColumnData)value;
 						break;
 					case 2:
 						s0_InkIsf = (ScopeRuntime.StringColumnData)value;
@@ -317,7 +349,7 @@ public class ___Scope_Generated_Classes___
 			___masking___[0] = 1;
 
 			bool hasNull = false;
-			if (s0_RecognizedText.IsNull())
+			if (s0_FinalText.IsNull())
 			{
 				hasNull = true;
 				___masking___[0] |= (byte)(1 << 1);
@@ -336,9 +368,9 @@ public class ___Scope_Generated_Classes___
 				writer.Write( (byte) 0);
 			}
 			s0_RowGuid.Serialize(writer);
-			if (!s0_RecognizedText.IsNull())
+			if (!s0_FinalText.IsNull())
 			{
-				s0_RecognizedText.Serialize(writer);
+				s0_FinalText.Serialize(writer);
 			}
 			if (!s0_InkIsf.IsNull())
 			{
@@ -353,7 +385,7 @@ public class ___Scope_Generated_Classes___
 			if (firstByte == 0)
 			{
 				s0_RowGuid.Deserialize(reader);
-				s0_RecognizedText.Deserialize(reader);
+				s0_FinalText.Deserialize(reader);
 				s0_InkIsf.Deserialize(reader);
 			}
 			else
@@ -362,11 +394,11 @@ public class ___Scope_Generated_Classes___
 				s0_RowGuid.Deserialize(reader);
 				if ((___masking___[0] & 2) != 2)
 				{
-					s0_RecognizedText.Deserialize(reader);
+					s0_FinalText.Deserialize(reader);
 				}
 				else
 				{
-					s0_RecognizedText.SetNull();
+					s0_FinalText.SetNull();
 				}
 				if ((___masking___[0] & 4) != 4)
 				{
@@ -380,7 +412,7 @@ public class ___Scope_Generated_Classes___
 		}
 	}
 
-	public class ScopeOptimizedClass_1 : ConcurrentOrderPreservingProcessor<Microsoft.SegmentRelevance.ScopeLib.ColumnProcessor,Row_RowGuid_Guid_RecognizedText_String_InkIsf_String,Row_RowGuid_Guid_RecognizedText_String_InkIsf_String>
+	public class ScopeOptimizedClass_1 : ConcurrentOrderPreservingProcessor<Microsoft.SegmentRelevance.ScopeLib.ColumnProcessor,Row_RowGuid_Guid_FinalText_String_InkIsf_String,Row_RowGuid_Guid_FinalText_String_InkIsf_String>
 	{
 		public ScopeOptimizedClass_1() : base(false)
 		{
@@ -401,26 +433,15 @@ public class ___Scope_Generated_Classes___
 	}
 
 
-	public class Row_68CD688C73770774 : Row
+	public class Row_Weight_Double_RowGuid_Guid_FinalText_String_InkIsf_String : Row
 	{
 		private static readonly System.Tuple<string,ColumnDataType,Type,ColumnDataCtor>[] _columnTable = 
 		{
-			new System.Tuple<string,ColumnDataType,Type,ColumnDataCtor>("RecoLength", ColumnDataType.Integer, typeof(System.Int32), null),
 			new System.Tuple<string,ColumnDataType,Type,ColumnDataCtor>("Weight", ColumnDataType.Double, typeof(System.Double), null),
 			new System.Tuple<string,ColumnDataType,Type,ColumnDataCtor>("RowGuid", ColumnDataType.Guid, typeof(System.Guid), null),
-			new System.Tuple<string,ColumnDataType,Type,ColumnDataCtor>("RecognizedText", ColumnDataType.String, typeof(System.String), null),
+			new System.Tuple<string,ColumnDataType,Type,ColumnDataCtor>("FinalText", ColumnDataType.String, typeof(System.String), null),
 			new System.Tuple<string,ColumnDataType,Type,ColumnDataCtor>("InkIsf", ColumnDataType.String, typeof(System.String), null),
 		};
-		ScopeRuntime.IntegerColumnData s0_RecoLength;
-		public ScopeRuntime.IntegerColumnData RecoLength
-		{
-			get { return s0_RecoLength; }
-			set
-			{
-				s0_RecoLength = value;
-				_columns[0] = value;
-			}
-		}
 		ScopeRuntime.DoubleColumnData s0_Weight;
 		public ScopeRuntime.DoubleColumnData Weight
 		{
@@ -428,7 +449,7 @@ public class ___Scope_Generated_Classes___
 			set
 			{
 				s0_Weight = value;
-				_columns[1] = value;
+				_columns[0] = value;
 			}
 		}
 		ScopeRuntime.GuidColumnData s0_RowGuid;
@@ -438,17 +459,17 @@ public class ___Scope_Generated_Classes___
 			set
 			{
 				s0_RowGuid = value;
-				_columns[2] = value;
+				_columns[1] = value;
 			}
 		}
-		ScopeRuntime.StringColumnData s0_RecognizedText;
-		public ScopeRuntime.StringColumnData RecognizedText
+		ScopeRuntime.StringColumnData s0_FinalText;
+		public ScopeRuntime.StringColumnData FinalText
 		{
-			get { return s0_RecognizedText; }
+			get { return s0_FinalText; }
 			set
 			{
-				s0_RecognizedText = value;
-				_columns[3] = value;
+				s0_FinalText = value;
+				_columns[2] = value;
 			}
 		}
 		ScopeRuntime.StringColumnData s0_InkIsf;
@@ -458,18 +479,18 @@ public class ___Scope_Generated_Classes___
 			set
 			{
 				s0_InkIsf = value;
-				_columns[4] = value;
+				_columns[3] = value;
 			}
 		}
-		public Row_68CD688C73770774(Schema schema, ColumnData[] columns) : base(schema, columns) { }
-		public Row_68CD688C73770774(Schema schema) : base(schema)
+		public Row_Weight_Double_RowGuid_Guid_FinalText_String_InkIsf_String(Schema schema, ColumnData[] columns) : base(schema, columns) { }
+		public Row_Weight_Double_RowGuid_Guid_FinalText_String_InkIsf_String(Schema schema) : base(schema)
 		{
 			for (int i = 0; i < _columns.Length; ++i)
 			{
 				this[i] = _columns[i];
 			}
 		}
-		public Row_68CD688C73770774() : base(BuildSchema(), BuildColumnData())
+		public Row_Weight_Double_RowGuid_Guid_FinalText_String_InkIsf_String() : base(BuildSchema(), BuildColumnData())
 		{
 			for (int i = 0; i < _columns.Length; ++i)
 			{
@@ -505,18 +526,15 @@ public class ___Scope_Generated_Classes___
 				switch (index)
 				{
 					case 0:
-						s0_RecoLength = (ScopeRuntime.IntegerColumnData)value;
-						break;
-					case 1:
 						s0_Weight = (ScopeRuntime.DoubleColumnData)value;
 						break;
-					case 2:
+					case 1:
 						s0_RowGuid = (ScopeRuntime.GuidColumnData)value;
 						break;
-					case 3:
-						s0_RecognizedText = (ScopeRuntime.StringColumnData)value;
+					case 2:
+						s0_FinalText = (ScopeRuntime.StringColumnData)value;
 						break;
-					case 4:
+					case 3:
 						s0_InkIsf = (ScopeRuntime.StringColumnData)value;
 						break;
 				}
@@ -528,7 +546,7 @@ public class ___Scope_Generated_Classes___
 			___masking___[0] = 1;
 
 			bool hasNull = false;
-			if (s0_RecognizedText.IsNull())
+			if (s0_FinalText.IsNull())
 			{
 				hasNull = true;
 				___masking___[0] |= (byte)(1 << 1);
@@ -546,12 +564,11 @@ public class ___Scope_Generated_Classes___
 			{
 				writer.Write( (byte) 0);
 			}
-			s0_RecoLength.Serialize(writer);
 			s0_Weight.Serialize(writer);
 			s0_RowGuid.Serialize(writer);
-			if (!s0_RecognizedText.IsNull())
+			if (!s0_FinalText.IsNull())
 			{
-				s0_RecognizedText.Serialize(writer);
+				s0_FinalText.Serialize(writer);
 			}
 			if (!s0_InkIsf.IsNull())
 			{
@@ -565,25 +582,23 @@ public class ___Scope_Generated_Classes___
 			byte firstByte = reader.ReadByte();
 			if (firstByte == 0)
 			{
-				s0_RecoLength.Deserialize(reader);
 				s0_Weight.Deserialize(reader);
 				s0_RowGuid.Deserialize(reader);
-				s0_RecognizedText.Deserialize(reader);
+				s0_FinalText.Deserialize(reader);
 				s0_InkIsf.Deserialize(reader);
 			}
 			else
 			{
 				___masking___[0] = firstByte;
-				s0_RecoLength.Deserialize(reader);
 				s0_Weight.Deserialize(reader);
 				s0_RowGuid.Deserialize(reader);
 				if ((___masking___[0] & 2) != 2)
 				{
-					s0_RecognizedText.Deserialize(reader);
+					s0_FinalText.Deserialize(reader);
 				}
 				else
 				{
-					s0_RecognizedText.SetNull();
+					s0_FinalText.SetNull();
 				}
 				if ((___masking___[0] & 4) != 4)
 				{
@@ -597,273 +612,7 @@ public class ___Scope_Generated_Classes___
 		}
 	}
 
-
-	public class Row_193825B98C8C2D67 : Row
-	{
-		private static readonly System.Tuple<string,ColumnDataType,Type,ColumnDataCtor>[] _columnTable = 
-		{
-			new System.Tuple<string,ColumnDataType,Type,ColumnDataCtor>("RowGuid", ColumnDataType.Guid, typeof(System.Guid), null),
-			new System.Tuple<string,ColumnDataType,Type,ColumnDataCtor>("RecognizedText", ColumnDataType.String, typeof(System.String), null),
-			new System.Tuple<string,ColumnDataType,Type,ColumnDataCtor>("RecoLength", ColumnDataType.Integer, typeof(System.Int32), null),
-			new System.Tuple<string,ColumnDataType,Type,ColumnDataCtor>("InkIsf", ColumnDataType.String, typeof(System.String), null),
-			new System.Tuple<string,ColumnDataType,Type,ColumnDataCtor>("Weight", ColumnDataType.Double, typeof(System.Double), null),
-		};
-		ScopeRuntime.GuidColumnData s0_RowGuid;
-		public ScopeRuntime.GuidColumnData RowGuid
-		{
-			get { return s0_RowGuid; }
-			set
-			{
-				s0_RowGuid = value;
-				_columns[0] = value;
-			}
-		}
-		ScopeRuntime.StringColumnData s0_RecognizedText;
-		public ScopeRuntime.StringColumnData RecognizedText
-		{
-			get { return s0_RecognizedText; }
-			set
-			{
-				s0_RecognizedText = value;
-				_columns[1] = value;
-			}
-		}
-		ScopeRuntime.IntegerColumnData s0_RecoLength;
-		public ScopeRuntime.IntegerColumnData RecoLength
-		{
-			get { return s0_RecoLength; }
-			set
-			{
-				s0_RecoLength = value;
-				_columns[2] = value;
-			}
-		}
-		ScopeRuntime.StringColumnData s0_InkIsf;
-		public ScopeRuntime.StringColumnData InkIsf
-		{
-			get { return s0_InkIsf; }
-			set
-			{
-				s0_InkIsf = value;
-				_columns[3] = value;
-			}
-		}
-		ScopeRuntime.DoubleColumnData s0_Weight;
-		public ScopeRuntime.DoubleColumnData Weight
-		{
-			get { return s0_Weight; }
-			set
-			{
-				s0_Weight = value;
-				_columns[4] = value;
-			}
-		}
-		public Row_193825B98C8C2D67(Schema schema, ColumnData[] columns) : base(schema, columns) { }
-		public Row_193825B98C8C2D67(Schema schema) : base(schema)
-		{
-			for (int i = 0; i < _columns.Length; ++i)
-			{
-				this[i] = _columns[i];
-			}
-		}
-		public Row_193825B98C8C2D67() : base(BuildSchema(), BuildColumnData())
-		{
-			for (int i = 0; i < _columns.Length; ++i)
-			{
-				this[i] = _columns[i];
-			}
-		}
-		private static Schema BuildSchema()
-		{
-			Schema schema = new Schema();
-			for (int i = 0; i < _columnTable.Length; ++i)
-			{
-				schema.Add(new ScopeRuntime.ColumnInfo(_columnTable[i].Item1, _columnTable[i].Item3));
-			}
-			return schema;
-		}
-		private static ColumnData[] BuildColumnData()
-		{
-			ColumnData[] columnData = new ColumnData[_columnTable.Length];
-			for (int i = 0; i < _columnTable.Length; ++i)
-			{
-				columnData[i] = _columnTable[i].Item4 != null ? _columnTable[i].Item4() : ColumnDataFactory.Create(_columnTable[i].Item2);
-			}
-			return columnData;
-		}
-		public override ColumnData this[int index]
-		{
-			get { return _columns[index]; }
-			set
-			{
-				_columns[index] = value;
-
-				//  We also need to reset the property
-				switch (index)
-				{
-					case 0:
-						s0_RowGuid = (ScopeRuntime.GuidColumnData)value;
-						break;
-					case 1:
-						s0_RecognizedText = (ScopeRuntime.StringColumnData)value;
-						break;
-					case 2:
-						s0_RecoLength = (ScopeRuntime.IntegerColumnData)value;
-						break;
-					case 3:
-						s0_InkIsf = (ScopeRuntime.StringColumnData)value;
-						break;
-					case 4:
-						s0_Weight = (ScopeRuntime.DoubleColumnData)value;
-						break;
-				}
-			}
-		}
-		public override void Serialize(BinaryWriter writer)
-		{
-			byte[] ___masking___ = new byte[1];
-			___masking___[0] = 1;
-
-			bool hasNull = false;
-			if (s0_RecognizedText.IsNull())
-			{
-				hasNull = true;
-				___masking___[0] |= (byte)(1 << 1);
-			}
-			if (s0_InkIsf.IsNull())
-			{
-				hasNull = true;
-				___masking___[0] |= (byte)(1 << 2);
-			}
-			if (hasNull)
-			{
-				writer.Write(___masking___[0]);
-			}
-			else
-			{
-				writer.Write( (byte) 0);
-			}
-			s0_RowGuid.Serialize(writer);
-			if (!s0_RecognizedText.IsNull())
-			{
-				s0_RecognizedText.Serialize(writer);
-			}
-			s0_RecoLength.Serialize(writer);
-			if (!s0_InkIsf.IsNull())
-			{
-				s0_InkIsf.Serialize(writer);
-			}
-			s0_Weight.Serialize(writer);
-		}
-
-		public override void Deserialize(BinaryReader reader)
-		{
-			byte[] ___masking___ = new byte[1];
-			byte firstByte = reader.ReadByte();
-			if (firstByte == 0)
-			{
-				s0_RowGuid.Deserialize(reader);
-				s0_RecognizedText.Deserialize(reader);
-				s0_RecoLength.Deserialize(reader);
-				s0_InkIsf.Deserialize(reader);
-				s0_Weight.Deserialize(reader);
-			}
-			else
-			{
-				___masking___[0] = firstByte;
-				s0_RowGuid.Deserialize(reader);
-				if ((___masking___[0] & 2) != 2)
-				{
-					s0_RecognizedText.Deserialize(reader);
-				}
-				else
-				{
-					s0_RecognizedText.SetNull();
-				}
-				s0_RecoLength.Deserialize(reader);
-				if ((___masking___[0] & 4) != 4)
-				{
-					s0_InkIsf.Deserialize(reader);
-				}
-				else
-				{
-					s0_InkIsf.SetNull();
-				}
-				s0_Weight.Deserialize(reader);
-			}
-		}
-	}
-
-
-	public class ScopeRowComparer_1 : IRowComparer
-	{
-		bool _isInitializedAlready = false;
-		Guid _RowGuid;
-		#region IRowComparer Members
-
-		public bool IsSameAsPrevious(Row inputRow)
-		{
-			if (!_isInitializedAlready)
-			{
-				_isInitializedAlready = true;
-				return false;
-			}
-			Row_193825B98C8C2D67 row = (Row_193825B98C8C2D67)inputRow;
-			if (ColumnDataComparer.Compare(row.RowGuid.Guid, _RowGuid) != 0)
-			{
-				return false;
-			}
-
-			return true;
-		}
-
-		public bool SetKey(Row inputRow)
-		{
-			if (inputRow == null)
-			{
-				return false;
-			}
-			else if (!IsSameAsPrevious(inputRow))
-			{
-				Row_193825B98C8C2D67 row = (Row_193825B98C8C2D67)inputRow;
-				_RowGuid = row.RowGuid.Guid;
-				return true;
-			}
-			else
-			{
-				return false;
-			}
-		}
-
-		#endregion
-	}
-	[ScopeAnnotation(@"OriginalClassName",@"Microsoft.SegmentRelevance.ScopeLib.TopNReducer")]
-	[ScopeAnnotation(@"OriginalAssemblyName",@"Relevance.ScopeLib.dll")]
-	public class ScopeReducer_1 : ScopeRuntime.Processor
-	{
-		public override IEnumerable<Row> Process(RowSet upstream, Row outputRow, string[] args)
-		{
-			var reducer = new Microsoft.SegmentRelevance.ScopeLib.TopNReducer();
-			reducer.Initialize(upstream.Schema, outputRow.Schema, args);
-			IEnumerator<Row> enumerator = upstream.Rows.GetEnumerator();
-			ScopeRowComparer_1 comparer = new ScopeRowComparer_1();
-			KeyEnumerator<Row_193825B98C8C2D67> key = new KeyEnumerator<Row_193825B98C8C2D67>();
-			key.Initialize(enumerator, comparer, upstream.Schema);
-			if (enumerator.MoveNext())
-			{
-				while (!key.IsDone && comparer.SetKey(enumerator.Current))
-				{
-					foreach (Row row in reducer.Reduce(key, outputRow, args))
-					{
-						yield return row;
-					}
-					key.Drain();
-				}
-			}
-		}
-	}
-
-	public class ScopeOptimizedClass_2 : ConcurrentOrderPreservingProcessor<Microsoft.SegmentRelevance.ScopeLib.ColumnProcessor,Row_RowGuid_Guid_RecognizedText_String_InkIsf_String,Row_RowGuid_Guid_RecognizedText_String_InkIsf_String>
+	public class ScopeOptimizedClass_2 : ConcurrentOrderPreservingProcessor<Microsoft.SegmentRelevance.ScopeLib.ColumnProcessor,Row_RowGuid_Guid_FinalText_String_InkIsf_String,Row_RowGuid_Guid_FinalText_String_InkIsf_String>
 	{
 		public ScopeOptimizedClass_2() : base(false)
 		{
@@ -883,7 +632,7 @@ public class ___Scope_Generated_Classes___
 		}
 	}
 
-	public class ScopeOptimizedClass_3 : ConcurrentOrderPreservingProcessor<Microsoft.SegmentRelevance.ScopeLib.ColumnProcessor,Row_RowGuid_Guid_RecognizedText_String_InkIsf_String,Row_RowGuid_Guid_RecognizedText_String_InkIsf_String>
+	public class ScopeOptimizedClass_3 : ConcurrentOrderPreservingProcessor<Microsoft.SegmentRelevance.ScopeLib.ColumnProcessor,Row_RowGuid_Guid_FinalText_String_InkIsf_String,Row_RowGuid_Guid_FinalText_String_InkIsf_String>
 	{
 		public ScopeOptimizedClass_3() : base(false)
 		{
@@ -903,7 +652,7 @@ public class ___Scope_Generated_Classes___
 		}
 	}
 
-	public class ScopeOptimizedClass_4 : ConcurrentOrderPreservingProcessor<Microsoft.SegmentRelevance.ScopeLib.ColumnProcessor,Row_RowGuid_Guid_RecognizedText_String_InkIsf_String,Row_RowGuid_Guid_RecognizedText_String_InkIsf_String>
+	public class ScopeOptimizedClass_4 : ConcurrentOrderPreservingProcessor<Microsoft.SegmentRelevance.ScopeLib.ColumnProcessor,Row_RowGuid_Guid_FinalText_String_InkIsf_String,Row_RowGuid_Guid_FinalText_String_InkIsf_String>
 	{
 		public ScopeOptimizedClass_4() : base(false)
 		{
@@ -923,7 +672,7 @@ public class ___Scope_Generated_Classes___
 		}
 	}
 
-	public class ScopeOptimizedClass_5 : ConcurrentOrderPreservingProcessor<Microsoft.SegmentRelevance.ScopeLib.ColumnProcessor,Row_RowGuid_Guid_RecognizedText_String_InkIsf_String,Row_RowGuid_Guid_RecognizedText_String_InkIsf_String>
+	public class ScopeOptimizedClass_5 : ConcurrentOrderPreservingProcessor<Microsoft.SegmentRelevance.ScopeLib.ColumnProcessor,Row_RowGuid_Guid_FinalText_String_InkIsf_String,Row_RowGuid_Guid_FinalText_String_InkIsf_String>
 	{
 		public ScopeOptimizedClass_5() : base(false)
 		{
@@ -943,6 +692,246 @@ public class ___Scope_Generated_Classes___
 		}
 	}
 
+	public class ScopeOptimizedClass_6 : ConcurrentOrderPreservingProcessor<Microsoft.SegmentRelevance.ScopeLib.ColumnProcessor,Row_RowGuid_Guid_FinalText_String_InkIsf_String,Row_RowGuid_Guid_FinalText_String_InkIsf_String>
+	{
+		public ScopeOptimizedClass_6() : base(false)
+		{
+			/* run concurrently */
+		}
+		public ScopeOptimizedClass_6(int totalConcurrentProcessors) : base(false, totalConcurrentProcessors)
+		{
+			/* run concurrently */
+		}
+		public ScopeOptimizedClass_6(int totalConcurrentProcessors, int? workerCount, int? initialUnitSize, ulong? managedMemoryLimit) : base(false, totalConcurrentProcessors, workerCount, initialUnitSize, managedMemoryLimit)
+		{
+			/* run concurrently */
+		}
+		protected override Microsoft.SegmentRelevance.ScopeLib.ColumnProcessor CreateProcessor()
+		{
+			return new Microsoft.SegmentRelevance.ScopeLib.ColumnProcessor();
+		}
+	}
+
+	public class ScopeOptimizedClass_7 : ConcurrentOrderPreservingProcessor<Microsoft.SegmentRelevance.ScopeLib.ColumnProcessor,Row_RowGuid_Guid_FinalText_String_InkIsf_String,Row_RowGuid_Guid_FinalText_String_InkIsf_String>
+	{
+		public ScopeOptimizedClass_7() : base(false)
+		{
+			/* run concurrently */
+		}
+		public ScopeOptimizedClass_7(int totalConcurrentProcessors) : base(false, totalConcurrentProcessors)
+		{
+			/* run concurrently */
+		}
+		public ScopeOptimizedClass_7(int totalConcurrentProcessors, int? workerCount, int? initialUnitSize, ulong? managedMemoryLimit) : base(false, totalConcurrentProcessors, workerCount, initialUnitSize, managedMemoryLimit)
+		{
+			/* run concurrently */
+		}
+		protected override Microsoft.SegmentRelevance.ScopeLib.ColumnProcessor CreateProcessor()
+		{
+			return new Microsoft.SegmentRelevance.ScopeLib.ColumnProcessor();
+		}
+	}
+
+	public class ScopeOptimizedClass_8 : ConcurrentOrderPreservingProcessor<Microsoft.SegmentRelevance.ScopeLib.ColumnProcessor,Row_RowGuid_Guid_FinalText_String_InkIsf_String,Row_RowGuid_Guid_FinalText_String_InkIsf_String>
+	{
+		public ScopeOptimizedClass_8() : base(false)
+		{
+			/* run concurrently */
+		}
+		public ScopeOptimizedClass_8(int totalConcurrentProcessors) : base(false, totalConcurrentProcessors)
+		{
+			/* run concurrently */
+		}
+		public ScopeOptimizedClass_8(int totalConcurrentProcessors, int? workerCount, int? initialUnitSize, ulong? managedMemoryLimit) : base(false, totalConcurrentProcessors, workerCount, initialUnitSize, managedMemoryLimit)
+		{
+			/* run concurrently */
+		}
+		protected override Microsoft.SegmentRelevance.ScopeLib.ColumnProcessor CreateProcessor()
+		{
+			return new Microsoft.SegmentRelevance.ScopeLib.ColumnProcessor();
+		}
+	}
+
+
+	public class Row_RowGuid_Guid_FinalText_String_InkIsf_String_Weight_Double : Row
+	{
+		private static readonly System.Tuple<string,ColumnDataType,Type,ColumnDataCtor>[] _columnTable = 
+		{
+			new System.Tuple<string,ColumnDataType,Type,ColumnDataCtor>("RowGuid", ColumnDataType.Guid, typeof(System.Guid), null),
+			new System.Tuple<string,ColumnDataType,Type,ColumnDataCtor>("FinalText", ColumnDataType.String, typeof(System.String), null),
+			new System.Tuple<string,ColumnDataType,Type,ColumnDataCtor>("InkIsf", ColumnDataType.String, typeof(System.String), null),
+			new System.Tuple<string,ColumnDataType,Type,ColumnDataCtor>("Weight", ColumnDataType.Double, typeof(System.Double), null),
+		};
+		ScopeRuntime.GuidColumnData s0_RowGuid;
+		public ScopeRuntime.GuidColumnData RowGuid
+		{
+			get { return s0_RowGuid; }
+			set
+			{
+				s0_RowGuid = value;
+				_columns[0] = value;
+			}
+		}
+		ScopeRuntime.StringColumnData s0_FinalText;
+		public ScopeRuntime.StringColumnData FinalText
+		{
+			get { return s0_FinalText; }
+			set
+			{
+				s0_FinalText = value;
+				_columns[1] = value;
+			}
+		}
+		ScopeRuntime.StringColumnData s0_InkIsf;
+		public ScopeRuntime.StringColumnData InkIsf
+		{
+			get { return s0_InkIsf; }
+			set
+			{
+				s0_InkIsf = value;
+				_columns[2] = value;
+			}
+		}
+		ScopeRuntime.DoubleColumnData s0_Weight;
+		public ScopeRuntime.DoubleColumnData Weight
+		{
+			get { return s0_Weight; }
+			set
+			{
+				s0_Weight = value;
+				_columns[3] = value;
+			}
+		}
+		public Row_RowGuid_Guid_FinalText_String_InkIsf_String_Weight_Double(Schema schema, ColumnData[] columns) : base(schema, columns) { }
+		public Row_RowGuid_Guid_FinalText_String_InkIsf_String_Weight_Double(Schema schema) : base(schema)
+		{
+			for (int i = 0; i < _columns.Length; ++i)
+			{
+				this[i] = _columns[i];
+			}
+		}
+		public Row_RowGuid_Guid_FinalText_String_InkIsf_String_Weight_Double() : base(BuildSchema(), BuildColumnData())
+		{
+			for (int i = 0; i < _columns.Length; ++i)
+			{
+				this[i] = _columns[i];
+			}
+		}
+		private static Schema BuildSchema()
+		{
+			Schema schema = new Schema();
+			for (int i = 0; i < _columnTable.Length; ++i)
+			{
+				schema.Add(new ScopeRuntime.ColumnInfo(_columnTable[i].Item1, _columnTable[i].Item3));
+			}
+			return schema;
+		}
+		private static ColumnData[] BuildColumnData()
+		{
+			ColumnData[] columnData = new ColumnData[_columnTable.Length];
+			for (int i = 0; i < _columnTable.Length; ++i)
+			{
+				columnData[i] = _columnTable[i].Item4 != null ? _columnTable[i].Item4() : ColumnDataFactory.Create(_columnTable[i].Item2);
+			}
+			return columnData;
+		}
+		public override ColumnData this[int index]
+		{
+			get { return _columns[index]; }
+			set
+			{
+				_columns[index] = value;
+
+				//  We also need to reset the property
+				switch (index)
+				{
+					case 0:
+						s0_RowGuid = (ScopeRuntime.GuidColumnData)value;
+						break;
+					case 1:
+						s0_FinalText = (ScopeRuntime.StringColumnData)value;
+						break;
+					case 2:
+						s0_InkIsf = (ScopeRuntime.StringColumnData)value;
+						break;
+					case 3:
+						s0_Weight = (ScopeRuntime.DoubleColumnData)value;
+						break;
+				}
+			}
+		}
+		public override void Serialize(BinaryWriter writer)
+		{
+			byte[] ___masking___ = new byte[1];
+			___masking___[0] = 1;
+
+			bool hasNull = false;
+			if (s0_FinalText.IsNull())
+			{
+				hasNull = true;
+				___masking___[0] |= (byte)(1 << 1);
+			}
+			if (s0_InkIsf.IsNull())
+			{
+				hasNull = true;
+				___masking___[0] |= (byte)(1 << 2);
+			}
+			if (hasNull)
+			{
+				writer.Write(___masking___[0]);
+			}
+			else
+			{
+				writer.Write( (byte) 0);
+			}
+			s0_RowGuid.Serialize(writer);
+			if (!s0_FinalText.IsNull())
+			{
+				s0_FinalText.Serialize(writer);
+			}
+			if (!s0_InkIsf.IsNull())
+			{
+				s0_InkIsf.Serialize(writer);
+			}
+			s0_Weight.Serialize(writer);
+		}
+
+		public override void Deserialize(BinaryReader reader)
+		{
+			byte[] ___masking___ = new byte[1];
+			byte firstByte = reader.ReadByte();
+			if (firstByte == 0)
+			{
+				s0_RowGuid.Deserialize(reader);
+				s0_FinalText.Deserialize(reader);
+				s0_InkIsf.Deserialize(reader);
+				s0_Weight.Deserialize(reader);
+			}
+			else
+			{
+				___masking___[0] = firstByte;
+				s0_RowGuid.Deserialize(reader);
+				if ((___masking___[0] & 2) != 2)
+				{
+					s0_FinalText.Deserialize(reader);
+				}
+				else
+				{
+					s0_FinalText.SetNull();
+				}
+				if ((___masking___[0] & 4) != 4)
+				{
+					s0_InkIsf.Deserialize(reader);
+				}
+				else
+				{
+					s0_InkIsf.SetNull();
+				}
+				s0_Weight.Deserialize(reader);
+			}
+		}
+	}
+
 
 	public static System.Type[] __UdtTypeTable__ =
 	{
@@ -951,61 +940,46 @@ public class ___Scope_Generated_Classes___
 
 	public static class __OperatorFactory__
 	{
-		public static ScopeRuntime.Processor Create_Process_3()
+		public static ScopeRuntime.Processor Create_Process_2()
 		{
-			return new ___Scope_Generated_Classes___.ScopeOptimizedClass_1(1, null, null, null);
+			return new ___Scope_Generated_Classes___.ScopeOptimizedClass_1(8, null, null, null);
 		}
-		public static string Name_Process_3 = "___Scope_Generated_Classes___.ScopeOptimizedClass_1";
-		public static ScopeRuntime.Reducer Create_Process_5()
+		public static string Name_Process_2 = "___Scope_Generated_Classes___.ScopeOptimizedClass_1";
+		public static ScopeRuntime.Processor Create_Process_6()
 		{
-			return new Microsoft.SegmentRelevance.ScopeLib.TopNReducer();
+			return new ___Scope_Generated_Classes___.ScopeOptimizedClass_2(8, null, null, null);
 		}
-		public static string Name_Process_5 = "___Scope_Generated_Classes___.ScopeReducer_1";
-		public static ScopeRuntime.Processor Create_Process_8()
+		public static string Name_Process_6 = "___Scope_Generated_Classes___.ScopeOptimizedClass_2";
+		public static ScopeRuntime.Processor Create_Process_10()
 		{
-			return new ___Scope_Generated_Classes___.ScopeOptimizedClass_2(1, null, null, null);
+			return new ___Scope_Generated_Classes___.ScopeOptimizedClass_3(8, null, null, null);
 		}
-		public static string Name_Process_8 = "___Scope_Generated_Classes___.ScopeOptimizedClass_2";
-		public static ScopeRuntime.Reducer Create_Process_11()
-		{
-			return new Microsoft.SegmentRelevance.ScopeLib.TopNReducer();
-		}
-		public static string Name_Process_11 = "___Scope_Generated_Classes___.ScopeReducer_1";
+		public static string Name_Process_10 = "___Scope_Generated_Classes___.ScopeOptimizedClass_3";
 		public static ScopeRuntime.Processor Create_Process_14()
 		{
-			return new ___Scope_Generated_Classes___.ScopeOptimizedClass_3(1, null, null, null);
+			return new ___Scope_Generated_Classes___.ScopeOptimizedClass_4(8, null, null, null);
 		}
-		public static string Name_Process_14 = "___Scope_Generated_Classes___.ScopeOptimizedClass_3";
-		public static ScopeRuntime.Reducer Create_Process_17()
+		public static string Name_Process_14 = "___Scope_Generated_Classes___.ScopeOptimizedClass_4";
+		public static ScopeRuntime.Processor Create_Process_18()
 		{
-			return new Microsoft.SegmentRelevance.ScopeLib.TopNReducer();
+			return new ___Scope_Generated_Classes___.ScopeOptimizedClass_5(8, null, null, null);
 		}
-		public static string Name_Process_17 = "___Scope_Generated_Classes___.ScopeReducer_1";
-		public static ScopeRuntime.Processor Create_Process_21()
+		public static string Name_Process_18 = "___Scope_Generated_Classes___.ScopeOptimizedClass_5";
+		public static ScopeRuntime.Processor Create_Process_22()
 		{
-			return new ___Scope_Generated_Classes___.ScopeOptimizedClass_4(1, null, null, null);
+			return new ___Scope_Generated_Classes___.ScopeOptimizedClass_6(8, null, null, null);
 		}
-		public static string Name_Process_21 = "___Scope_Generated_Classes___.ScopeOptimizedClass_4";
-		public static ScopeRuntime.Reducer Create_Process_23()
-		{
-			return new Microsoft.SegmentRelevance.ScopeLib.TopNReducer();
-		}
-		public static string Name_Process_23 = "___Scope_Generated_Classes___.ScopeReducer_1";
+		public static string Name_Process_22 = "___Scope_Generated_Classes___.ScopeOptimizedClass_6";
 		public static ScopeRuntime.Processor Create_Process_26()
 		{
-			return new ___Scope_Generated_Classes___.ScopeOptimizedClass_5(1, null, null, null);
+			return new ___Scope_Generated_Classes___.ScopeOptimizedClass_7(8, null, null, null);
 		}
-		public static string Name_Process_26 = "___Scope_Generated_Classes___.ScopeOptimizedClass_5";
-		public static ScopeRuntime.Reducer Create_Process_29()
+		public static string Name_Process_26 = "___Scope_Generated_Classes___.ScopeOptimizedClass_7";
+		public static ScopeRuntime.Processor Create_Process_30()
 		{
-			return new Microsoft.SegmentRelevance.ScopeLib.TopNReducer();
+			return new ___Scope_Generated_Classes___.ScopeOptimizedClass_8(8, null, null, null);
 		}
-		public static string Name_Process_29 = "___Scope_Generated_Classes___.ScopeReducer_1";
-		public static ScopeRuntime.Reducer Create_Process_31()
-		{
-			return new Microsoft.SegmentRelevance.ScopeLib.TopNReducer();
-		}
-		public static string Name_Process_31 = "___Scope_Generated_Classes___.ScopeReducer_1";
+		public static string Name_Process_30 = "___Scope_Generated_Classes___.ScopeOptimizedClass_8";
 	}
 }
 

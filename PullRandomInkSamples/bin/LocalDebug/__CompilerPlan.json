@@ -1,5 +1,5 @@
 ﻿{
-"CompilerPlanStart":"7\/6\/2018 2:55:04 PM"
+"CompilerPlanStart":"7\/9\/2018 2:35:33 PM"
 },
 {
 "Settings":"-c++ -pdb Full -debug -On ReflectStageToScript -Off Sirius -Off PolarisScaleUp -On EnableScopeDml -On EnableSStreamContractV4 -buckets 1 -ClientVersion 10.2.2.0"
@@ -54,26 +54,19 @@
 }}
 ,
 {
-"statementText":" SELECT RowGuid,           RecognizedText,           RecognizedText.Length AS RecoLength,     "
+"statementText":" SELECT RowGuid,           RecognizedText,           InkIsf,           ((double) 1.0) AS Weigh"
 ,
 {
 "NodeName":"QueryStatement"
 }}
 ,
 {
-"statementText":" REDUCE englishInkSamples ON RowGuid USING TopNReducer(\"20\", \"-random\", @Seed, \"-weightCol\", \"Weig"
-,
-{
-"NodeName":"QueryStatement"
-}}
-,
-{
-"statementText":"\/\/ Outputs:OUTPUT sampleTO @OutputPath USING DefaultTextOutputter()"
+"statementText":"\/\/sample = \/\/REDUCE englishInkSamples ON RowGuid USING TopNReducer(\"1000\", \"-random\", @Seed, \""
 ,
 {
 "NodeName":"OutputStatement"
 }}
 ,
 {
-"CompilerPlanEnd":"7\/6\/2018 2:55:05 PM"
+"CompilerPlanEnd":"7\/9\/2018 2:35:33 PM"
 }

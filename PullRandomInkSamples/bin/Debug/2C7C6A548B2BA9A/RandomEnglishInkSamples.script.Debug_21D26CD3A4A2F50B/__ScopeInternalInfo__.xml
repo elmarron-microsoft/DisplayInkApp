@@ -9,306 +9,246 @@
     <Join present="False" occurrence="0" />
     <GroupByAgg present="False" occurrence="0" />
     <UDProcessor present="True" occurrence="5" />
-    <UDReducer present="True" occurrence="6" />
+    <UDReducer present="False" occurrence="0" />
     <UDCombiner present="False" occurrence="0" />
     <UDMultiProcessor present="False" occurrence="0" />
     <Top present="False" occurrence="0" />
     <Costs>
       <ExtractCardinality>60723.88</ExtractCardinality>
       <InputSize>6072388</InputSize>
-      <OutputCardinality>12144.776</OutputCardinality>
+      <OutputCardinality>48579.104</OutputCardinality>
       <NumTable>5</NumTable>
       <DataTransferVolume>0</DataTransferVolume>
-      <Latency>13.2063631973085</Latency>
-      <TotalCost>21.8067386175691</TotalCost>
+      <Latency>39.6348215505397</Latency>
+      <TotalCost>45.2455702090738</TotalCost>
       <EstimatedNumEdges>0</EstimatedNumEdges>
     </Costs>
     <OptimizerTrees>
 <InputTree>
-    <LogOp Id="LogOp_Output" Table="C:/Users/elmarron/dev/LocalSamples/2018/07/RandomEnglishInkSamples_2018_07_01.tsv" XMode="All" Out="RowGuid,RecognizedText,RecoLength,InkIsf,Weight" Udf="DefaultTextOutputter">
+    <LogOp Id="LogOp_Output" Table="C:/Users/elmarron/dev/LocalSamples/2018/07/RandomEnglishInkSamples_2018_07_01.csv" XMode="All" Out="RowGuid,RecognizedText,InkIsf,Weight" Udf="DefaultTextOutputter">
       <OpInfo><TableGroupProperties Grp="Unknown" Remotable="False"/></OpInfo>
-      <LogOp Id="LogOp_Reduce" Udf="TopNReducer" ReduceType="Normal" Out="RowGuid,RecognizedText,RecoLength,InkIsf,Weight" By="RowGuid" UDMap="RowGuid:PT(RowGuid),RecognizedText:PT(RecognizedText),RecoLength:PT(RecoLength),InkIsf:PT(InkIsf)">
+      <LogOp Id="LogOp_Project" Remove="InputLanguage,WritingRectRight,__date">
         <OpInfo><TableGroupProperties Grp="Unknown" Remotable="False"/></OpInfo>
-        <LogOp Id="LogOp_Project" Remove="InputLanguage,WritingRectRight,__date">
+        <LogOp Id="LogOp_Select">
           <OpInfo><TableGroupProperties Grp="Unknown" Remotable="False"/></OpInfo>
-          <LogOp Id="LogOp_Select">
+          <LogOp Id="LogOp_UnionAll" Out="RowGuid,InputLanguage,RecognizedText,WritingRectRight,InkIsf,__date">
             <OpInfo><TableGroupProperties Grp="Unknown" Remotable="False"/></OpInfo>
-            <LogOp Id="LogOp_UnionAll" Out="RowGuid,InputLanguage,RecognizedText,WritingRectRight,InkIsf,__date">
-              <OpInfo><TableGroupProperties Grp="Unknown" Remotable="False"/></OpInfo>
-              <LogOp Id="LogOp_Project">
-                <OpInfo><TableGroupProperties Grp="Unknown" Remotable="False" Card="5654.25" AvgRowLength="12383"/></OpInfo>
-                <LogOp Id="LogOp_Process" Udf="ColumnProcessor" In="RowGuid,isLabeled,ModelHash,UserHash,DateId,CountryCode,InputLanguage,OsVer,Branch,OSUILocale,..." Out="RowGuid,InputLanguage,RecognizedText,WritingRectRight,InkIsf" UDMap="RowGuid:PT(RowGuid),InputLanguage:PT(InputLanguage),RecognizedText:PT(RecognizedText),WritingRectRight:PT(WritingRectRight),InkIsf:PT(InkIsf)">
-                  <OpInfo><TableGroupProperties Grp="Unknown" Remotable="False" Card="5654.25" AvgRowLength="12375"/></OpInfo>
-                  <LogOp Id="LogOp_Get" Table="C:\Users\elmarron\dev\LocalSamples\LogInkFromCandidates\/LogInkFromCandidates_2018_07_01.ss" XMode="Parallel" PartitionType="Range" Partitioning="Branch,InputLanguage" Partitions="2" PS="1:Base1" StreamId="8569d94e-81b6-4fe1-8087-af85d7d18556">
-                    <OpInfo><TableGroupProperties Grp="0.0" Remotable="False" Card="5654.25" AvgRowLength="12842"/></OpInfo>
-                  </LogOp>
+            <LogOp Id="LogOp_Project">
+              <OpInfo><TableGroupProperties Grp="Unknown" Remotable="False" Card="5654.25" AvgRowLength="12383"/></OpInfo>
+              <LogOp Id="LogOp_Process" Udf="ColumnProcessor" In="RowGuid,isLabeled,ModelHash,UserHash,DateId,CountryCode,InputLanguage,OsVer,Branch,OSUILocale,..." Out="RowGuid,InputLanguage,RecognizedText,WritingRectRight,InkIsf" UDMap="RowGuid:PT(RowGuid),InputLanguage:PT(InputLanguage),RecognizedText:PT(RecognizedText),WritingRectRight:PT(WritingRectRight),InkIsf:PT(InkIsf)">
+                <OpInfo><TableGroupProperties Grp="Unknown" Remotable="False" Card="5654.25" AvgRowLength="12375"/></OpInfo>
+                <LogOp Id="LogOp_Get" Table="C:\Users\elmarron\dev\LocalSamples\LogInkFromCandidates\/LogInkFromCandidates_2018_07_01.ss" XMode="Parallel" PartitionType="Range" Partitioning="Branch,InputLanguage" Partitions="2" PS="1:Base1" StreamId="8569d94e-81b6-4fe1-8087-af85d7d18556">
+                  <OpInfo><TableGroupProperties Grp="0.0" Remotable="False" Card="5654.25" AvgRowLength="12842"/></OpInfo>
                 </LogOp>
-                <AncOp Id="AncOp_PrjList"><OpInfo><ScalarGroupProperties Grp="Unknown"/></OpInfo>
-                  <AncOp Id="AncOp_PrjEl" Column="__date"><OpInfo><ScalarGroupProperties Grp="Unknown"/></OpInfo>
-                    <ScaOp Id="ScaOp_Const" TI="Date" Value="System.DateTime.FromBinary(636660000000000000L /* 2018-07-01T00:00:00.0000000 */)" Parameter="0"><OpInfo><ScalarGroupProperties Grp="Unknown"/></OpInfo>
-                    </ScaOp>
-                  </AncOp>
-                </AncOp>
               </LogOp>
-              <LogOp Id="LogOp_Project">
-                <OpInfo><TableGroupProperties Grp="Unknown" Remotable="False" Card="15025.3" AvgRowLength="11868"/></OpInfo>
-                <LogOp Id="LogOp_Process" Udf="ColumnProcessor" In="RowGuid,isLabeled,ModelHash,UserHash,DateId,CountryCode,InputLanguage,OsVer,Branch,OSUILocale,..." Out="RowGuid,InputLanguage,RecognizedText,WritingRectRight,InkIsf" UDMap="RowGuid:PT(RowGuid),InputLanguage:PT(InputLanguage),RecognizedText:PT(RecognizedText),WritingRectRight:PT(WritingRectRight),InkIsf:PT(InkIsf)">
-                  <OpInfo><TableGroupProperties Grp="Unknown" Remotable="False" Card="15025.3" AvgRowLength="11860"/></OpInfo>
-                  <LogOp Id="LogOp_Get" Table="C:\Users\elmarron\dev\LocalSamples\LogInkFromCandidates\/LogInkFromCandidates_2018_07_02.ss" XMode="Parallel" PartitionType="Range" Partitioning="Branch,InputLanguage" Partitions="2" PS="2:Base2" StreamId="8569d94e-81b6-4fe1-8087-af85d7d18556">
-                    <OpInfo><TableGroupProperties Grp="12.0" Remotable="False" Card="15025.3" AvgRowLength="12308"/></OpInfo>
-                  </LogOp>
-                </LogOp>
-                <AncOp Id="AncOp_PrjList"><OpInfo><ScalarGroupProperties Grp="Unknown"/></OpInfo>
-                  <AncOp Id="AncOp_PrjEl" Column="__date"><OpInfo><ScalarGroupProperties Grp="Unknown"/></OpInfo>
-                    <ScaOp Id="ScaOp_Const" TI="Date" Value="System.DateTime.FromBinary(636660864000000000L /* 2018-07-02T00:00:00.0000000 */)" Parameter="0"><OpInfo><ScalarGroupProperties Grp="Unknown"/></OpInfo>
-                    </ScaOp>
-                  </AncOp>
+              <AncOp Id="AncOp_PrjList"><OpInfo><ScalarGroupProperties Grp="Unknown"/></OpInfo>
+                <AncOp Id="AncOp_PrjEl" Column="__date"><OpInfo><ScalarGroupProperties Grp="Unknown"/></OpInfo>
+                  <ScaOp Id="ScaOp_Const" TI="Date" Value="System.DateTime.FromBinary(636660000000000000L /* 2018-07-01T00:00:00.0000000 */)" Parameter="0"><OpInfo><ScalarGroupProperties Grp="Unknown"/></OpInfo>
+                  </ScaOp>
                 </AncOp>
-              </LogOp>
-              <LogOp Id="LogOp_Project">
-                <OpInfo><TableGroupProperties Grp="Unknown" Remotable="False" Card="15488.3" AvgRowLength="11030"/></OpInfo>
-                <LogOp Id="LogOp_Process" Udf="ColumnProcessor" In="RowGuid,isLabeled,ModelHash,UserHash,DateId,CountryCode,InputLanguage,OsVer,Branch,OSUILocale,..." Out="RowGuid,InputLanguage,RecognizedText,WritingRectRight,InkIsf" UDMap="RowGuid:PT(RowGuid),InputLanguage:PT(InputLanguage),RecognizedText:PT(RecognizedText),WritingRectRight:PT(WritingRectRight),InkIsf:PT(InkIsf)">
-                  <OpInfo><TableGroupProperties Grp="Unknown" Remotable="False" Card="15488.3" AvgRowLength="11022"/></OpInfo>
-                  <LogOp Id="LogOp_Get" Table="C:\Users\elmarron\dev\LocalSamples\LogInkFromCandidates\/LogInkFromCandidates_2018_07_03.ss" XMode="Parallel" PartitionType="Range" Partitioning="Branch,InputLanguage" Partitions="2" PS="3:Base3" StreamId="8569d94e-81b6-4fe1-8087-af85d7d18556">
-                    <OpInfo><TableGroupProperties Grp="22.0" Remotable="False" Card="15488.3" AvgRowLength="11465"/></OpInfo>
-                  </LogOp>
-                </LogOp>
-                <AncOp Id="AncOp_PrjList"><OpInfo><ScalarGroupProperties Grp="Unknown"/></OpInfo>
-                  <AncOp Id="AncOp_PrjEl" Column="__date"><OpInfo><ScalarGroupProperties Grp="Unknown"/></OpInfo>
-                    <ScaOp Id="ScaOp_Const" TI="Date" Value="System.DateTime.FromBinary(636661728000000000L /* 2018-07-03T00:00:00.0000000 */)" Parameter="0"><OpInfo><ScalarGroupProperties Grp="Unknown"/></OpInfo>
-                    </ScaOp>
-                  </AncOp>
-                </AncOp>
-              </LogOp>
-              <LogOp Id="LogOp_Project">
-                <OpInfo><TableGroupProperties Grp="Unknown" Remotable="False" Card="9485.1" AvgRowLength="10418"/></OpInfo>
-                <LogOp Id="LogOp_Process" Udf="ColumnProcessor" In="RowGuid,isLabeled,ModelHash,UserHash,DateId,CountryCode,InputLanguage,OsVer,Branch,OSUILocale,..." Out="RowGuid,InputLanguage,RecognizedText,WritingRectRight,InkIsf" UDMap="RowGuid:PT(RowGuid),InputLanguage:PT(InputLanguage),RecognizedText:PT(RecognizedText),WritingRectRight:PT(WritingRectRight),InkIsf:PT(InkIsf)">
-                  <OpInfo><TableGroupProperties Grp="Unknown" Remotable="False" Card="9485.1" AvgRowLength="10410"/></OpInfo>
-                  <LogOp Id="LogOp_Get" Table="C:\Users\elmarron\dev\LocalSamples\LogInkFromCandidates\/LogInkFromCandidates_2018_07_04.ss" XMode="Parallel" PartitionType="Range" Partitioning="Branch,InputLanguage" Partitions="2" PS="4:Base4" StreamId="8569d94e-81b6-4fe1-8087-af85d7d18556">
-                    <OpInfo><TableGroupProperties Grp="32.0" Remotable="False" Card="9485.1" AvgRowLength="10896"/></OpInfo>
-                  </LogOp>
-                </LogOp>
-                <AncOp Id="AncOp_PrjList"><OpInfo><ScalarGroupProperties Grp="Unknown"/></OpInfo>
-                  <AncOp Id="AncOp_PrjEl" Column="__date"><OpInfo><ScalarGroupProperties Grp="Unknown"/></OpInfo>
-                    <ScaOp Id="ScaOp_Const" TI="Date" Value="System.DateTime.FromBinary(636662592000000000L /* 2018-07-04T00:00:00.0000000 */)" Parameter="0"><OpInfo><ScalarGroupProperties Grp="Unknown"/></OpInfo>
-                    </ScaOp>
-                  </AncOp>
-                </AncOp>
-              </LogOp>
-              <LogOp Id="LogOp_Project">
-                <OpInfo><TableGroupProperties Grp="Unknown" Remotable="False" Card="15070.9" AvgRowLength="8275"/></OpInfo>
-                <LogOp Id="LogOp_Process" Udf="ColumnProcessor" In="RowGuid,isLabeled,ModelHash,UserHash,DateId,CountryCode,InputLanguage,OsVer,Branch,OSUILocale,..." Out="RowGuid,InputLanguage,RecognizedText,WritingRectRight,InkIsf" UDMap="RowGuid:PT(RowGuid),InputLanguage:PT(InputLanguage),RecognizedText:PT(RecognizedText),WritingRectRight:PT(WritingRectRight),InkIsf:PT(InkIsf)">
-                  <OpInfo><TableGroupProperties Grp="Unknown" Remotable="False" Card="15070.9" AvgRowLength="8267"/></OpInfo>
-                  <LogOp Id="LogOp_Get" Table="C:\Users\elmarron\dev\LocalSamples\LogInkFromCandidates\/LogInkFromCandidates_2018_07_05.ss" XMode="Parallel" PartitionType="Range" Partitioning="Branch,InputLanguage" Partitions="2" PS="5:Base5" StreamId="8569d94e-81b6-4fe1-8087-af85d7d18556">
-                    <OpInfo><TableGroupProperties Grp="42.0" Remotable="False" Card="15070.9" AvgRowLength="8756"/></OpInfo>
-                  </LogOp>
-                </LogOp>
-                <AncOp Id="AncOp_PrjList"><OpInfo><ScalarGroupProperties Grp="Unknown"/></OpInfo>
-                  <AncOp Id="AncOp_PrjEl" Column="__date"><OpInfo><ScalarGroupProperties Grp="Unknown"/></OpInfo>
-                    <ScaOp Id="ScaOp_Const" TI="Date" Value="System.DateTime.FromBinary(636663456000000000L /* 2018-07-05T00:00:00.0000000 */)" Parameter="0"><OpInfo><ScalarGroupProperties Grp="Unknown"/></OpInfo>
-                    </ScaOp>
-                  </AncOp>
-                </AncOp>
-              </LogOp>
+              </AncOp>
             </LogOp>
-            <ScaOp Id="ScaOp_Comp" CompOp="x_cmpEq"><OpInfo><ScalarGroupProperties Grp="Unknown"/></OpInfo>
-              <ScaOp Id="ScaOp_Identifier" Column="InputLanguage"><OpInfo><ScalarGroupProperties Grp="Unknown"/></OpInfo>
-              </ScaOp>
-              <ScaOp Id="ScaOp_Const" TI="String,Nullable,Var" Value="&quot;en-us&quot;" Parameter="0"><OpInfo><ScalarGroupProperties Grp="2.0"/></OpInfo>
-              </ScaOp>
-            </ScaOp>
+            <LogOp Id="LogOp_Project">
+              <OpInfo><TableGroupProperties Grp="Unknown" Remotable="False" Card="15025.3" AvgRowLength="11868"/></OpInfo>
+              <LogOp Id="LogOp_Process" Udf="ColumnProcessor" In="RowGuid,isLabeled,ModelHash,UserHash,DateId,CountryCode,InputLanguage,OsVer,Branch,OSUILocale,..." Out="RowGuid,InputLanguage,RecognizedText,WritingRectRight,InkIsf" UDMap="RowGuid:PT(RowGuid),InputLanguage:PT(InputLanguage),RecognizedText:PT(RecognizedText),WritingRectRight:PT(WritingRectRight),InkIsf:PT(InkIsf)">
+                <OpInfo><TableGroupProperties Grp="Unknown" Remotable="False" Card="15025.3" AvgRowLength="11860"/></OpInfo>
+                <LogOp Id="LogOp_Get" Table="C:\Users\elmarron\dev\LocalSamples\LogInkFromCandidates\/LogInkFromCandidates_2018_07_02.ss" XMode="Parallel" PartitionType="Range" Partitioning="Branch,InputLanguage" Partitions="2" PS="2:Base2" StreamId="8569d94e-81b6-4fe1-8087-af85d7d18556">
+                  <OpInfo><TableGroupProperties Grp="10.0" Remotable="False" Card="15025.3" AvgRowLength="12308"/></OpInfo>
+                </LogOp>
+              </LogOp>
+              <AncOp Id="AncOp_PrjList"><OpInfo><ScalarGroupProperties Grp="Unknown"/></OpInfo>
+                <AncOp Id="AncOp_PrjEl" Column="__date"><OpInfo><ScalarGroupProperties Grp="Unknown"/></OpInfo>
+                  <ScaOp Id="ScaOp_Const" TI="Date" Value="System.DateTime.FromBinary(636660864000000000L /* 2018-07-02T00:00:00.0000000 */)" Parameter="0"><OpInfo><ScalarGroupProperties Grp="Unknown"/></OpInfo>
+                  </ScaOp>
+                </AncOp>
+              </AncOp>
+            </LogOp>
+            <LogOp Id="LogOp_Project">
+              <OpInfo><TableGroupProperties Grp="Unknown" Remotable="False" Card="15488.3" AvgRowLength="11030"/></OpInfo>
+              <LogOp Id="LogOp_Process" Udf="ColumnProcessor" In="RowGuid,isLabeled,ModelHash,UserHash,DateId,CountryCode,InputLanguage,OsVer,Branch,OSUILocale,..." Out="RowGuid,InputLanguage,RecognizedText,WritingRectRight,InkIsf" UDMap="RowGuid:PT(RowGuid),InputLanguage:PT(InputLanguage),RecognizedText:PT(RecognizedText),WritingRectRight:PT(WritingRectRight),InkIsf:PT(InkIsf)">
+                <OpInfo><TableGroupProperties Grp="Unknown" Remotable="False" Card="15488.3" AvgRowLength="11022"/></OpInfo>
+                <LogOp Id="LogOp_Get" Table="C:\Users\elmarron\dev\LocalSamples\LogInkFromCandidates\/LogInkFromCandidates_2018_07_03.ss" XMode="Parallel" PartitionType="Range" Partitioning="Branch,InputLanguage" Partitions="2" PS="3:Base3" StreamId="8569d94e-81b6-4fe1-8087-af85d7d18556">
+                  <OpInfo><TableGroupProperties Grp="18.0" Remotable="False" Card="15488.3" AvgRowLength="11465"/></OpInfo>
+                </LogOp>
+              </LogOp>
+              <AncOp Id="AncOp_PrjList"><OpInfo><ScalarGroupProperties Grp="Unknown"/></OpInfo>
+                <AncOp Id="AncOp_PrjEl" Column="__date"><OpInfo><ScalarGroupProperties Grp="Unknown"/></OpInfo>
+                  <ScaOp Id="ScaOp_Const" TI="Date" Value="System.DateTime.FromBinary(636661728000000000L /* 2018-07-03T00:00:00.0000000 */)" Parameter="0"><OpInfo><ScalarGroupProperties Grp="Unknown"/></OpInfo>
+                  </ScaOp>
+                </AncOp>
+              </AncOp>
+            </LogOp>
+            <LogOp Id="LogOp_Project">
+              <OpInfo><TableGroupProperties Grp="Unknown" Remotable="False" Card="9485.1" AvgRowLength="10418"/></OpInfo>
+              <LogOp Id="LogOp_Process" Udf="ColumnProcessor" In="RowGuid,isLabeled,ModelHash,UserHash,DateId,CountryCode,InputLanguage,OsVer,Branch,OSUILocale,..." Out="RowGuid,InputLanguage,RecognizedText,WritingRectRight,InkIsf" UDMap="RowGuid:PT(RowGuid),InputLanguage:PT(InputLanguage),RecognizedText:PT(RecognizedText),WritingRectRight:PT(WritingRectRight),InkIsf:PT(InkIsf)">
+                <OpInfo><TableGroupProperties Grp="Unknown" Remotable="False" Card="9485.1" AvgRowLength="10410"/></OpInfo>
+                <LogOp Id="LogOp_Get" Table="C:\Users\elmarron\dev\LocalSamples\LogInkFromCandidates\/LogInkFromCandidates_2018_07_04.ss" XMode="Parallel" PartitionType="Range" Partitioning="Branch,InputLanguage" Partitions="2" PS="4:Base4" StreamId="8569d94e-81b6-4fe1-8087-af85d7d18556">
+                  <OpInfo><TableGroupProperties Grp="26.0" Remotable="False" Card="9485.1" AvgRowLength="10896"/></OpInfo>
+                </LogOp>
+              </LogOp>
+              <AncOp Id="AncOp_PrjList"><OpInfo><ScalarGroupProperties Grp="Unknown"/></OpInfo>
+                <AncOp Id="AncOp_PrjEl" Column="__date"><OpInfo><ScalarGroupProperties Grp="Unknown"/></OpInfo>
+                  <ScaOp Id="ScaOp_Const" TI="Date" Value="System.DateTime.FromBinary(636662592000000000L /* 2018-07-04T00:00:00.0000000 */)" Parameter="0"><OpInfo><ScalarGroupProperties Grp="Unknown"/></OpInfo>
+                  </ScaOp>
+                </AncOp>
+              </AncOp>
+            </LogOp>
+            <LogOp Id="LogOp_Project">
+              <OpInfo><TableGroupProperties Grp="Unknown" Remotable="False" Card="15070.9" AvgRowLength="8275"/></OpInfo>
+              <LogOp Id="LogOp_Process" Udf="ColumnProcessor" In="RowGuid,isLabeled,ModelHash,UserHash,DateId,CountryCode,InputLanguage,OsVer,Branch,OSUILocale,..." Out="RowGuid,InputLanguage,RecognizedText,WritingRectRight,InkIsf" UDMap="RowGuid:PT(RowGuid),InputLanguage:PT(InputLanguage),RecognizedText:PT(RecognizedText),WritingRectRight:PT(WritingRectRight),InkIsf:PT(InkIsf)">
+                <OpInfo><TableGroupProperties Grp="Unknown" Remotable="False" Card="15070.9" AvgRowLength="8267"/></OpInfo>
+                <LogOp Id="LogOp_Get" Table="C:\Users\elmarron\dev\LocalSamples\LogInkFromCandidates\/LogInkFromCandidates_2018_07_05.ss" XMode="Parallel" PartitionType="Range" Partitioning="Branch,InputLanguage" Partitions="2" PS="5:Base5" StreamId="8569d94e-81b6-4fe1-8087-af85d7d18556">
+                  <OpInfo><TableGroupProperties Grp="34.0" Remotable="False" Card="15070.9" AvgRowLength="8756"/></OpInfo>
+                </LogOp>
+              </LogOp>
+              <AncOp Id="AncOp_PrjList"><OpInfo><ScalarGroupProperties Grp="Unknown"/></OpInfo>
+                <AncOp Id="AncOp_PrjEl" Column="__date"><OpInfo><ScalarGroupProperties Grp="Unknown"/></OpInfo>
+                  <ScaOp Id="ScaOp_Const" TI="Date" Value="System.DateTime.FromBinary(636663456000000000L /* 2018-07-05T00:00:00.0000000 */)" Parameter="0"><OpInfo><ScalarGroupProperties Grp="Unknown"/></OpInfo>
+                  </ScaOp>
+                </AncOp>
+              </AncOp>
+            </LogOp>
           </LogOp>
-          <AncOp Id="AncOp_PrjList"><OpInfo><ScalarGroupProperties Grp="Unknown"/></OpInfo>
-            <AncOp Id="AncOp_PrjEl" Column="RecoLength"><OpInfo><ScalarGroupProperties Grp="Unknown"/></OpInfo>
-              <ScaOp Id="ScaOp_Udf" Udf="RecognizedText.Length" UsedColumn="RecognizedText"><OpInfo><ScalarGroupProperties Grp="Unknown"/></OpInfo>
-              </ScaOp>
-            </AncOp>
-            <AncOp Id="AncOp_PrjEl" Column="Weight"><OpInfo><ScalarGroupProperties Grp="Unknown"/></OpInfo>
-              <ScaOp Id="ScaOp_Const" TI="Double" Value="1.0" Parameter="0"><OpInfo><ScalarGroupProperties Grp="8.0"/></OpInfo>
-              </ScaOp>
-            </AncOp>
-          </AncOp>
+          <ScaOp Id="ScaOp_Comp" CompOp="x_cmpEq"><OpInfo><ScalarGroupProperties Grp="Unknown"/></OpInfo>
+            <ScaOp Id="ScaOp_Identifier" Column="InputLanguage"><OpInfo><ScalarGroupProperties Grp="Unknown"/></OpInfo>
+            </ScaOp>
+            <ScaOp Id="ScaOp_Const" TI="String,Nullable,Var" Value="&quot;en-us&quot;" Parameter="0"><OpInfo><ScalarGroupProperties Grp="2.0"/></OpInfo>
+            </ScaOp>
+          </ScaOp>
         </LogOp>
+        <AncOp Id="AncOp_PrjList"><OpInfo><ScalarGroupProperties Grp="Unknown"/></OpInfo>
+          <AncOp Id="AncOp_PrjEl" Column="Weight"><OpInfo><ScalarGroupProperties Grp="Unknown"/></OpInfo>
+            <ScaOp Id="ScaOp_Const" TI="Double" Value="1.0" Parameter="0"><OpInfo><ScalarGroupProperties Grp="6.0"/></OpInfo>
+            </ScaOp>
+          </AncOp>
+        </AncOp>
       </LogOp>
     </LogOp>
 </InputTree>
 <OutputTree>
-    <PhyOp Id="PhyOp_Output" Table="C:/Users/elmarron/dev/LocalSamples/2018/07/RandomEnglishInkSamples_2018_07_01.tsv" XMode="Serial" Out="RowGuid,RecognizedText,RecoLength,InkIsf,Weight" Udf="DefaultTextOutputter">
-      <OpInfo><TableGroupProperties Grp="54.1" Remotable="False" Card="12144.8" AvgRowLength="10575" PrtnSkewFactor="1" HT="10194399464589562825:228::6:2922807073089414580" HTS="4306611930244998366"/><Costs TotalCosts="13.2064"/></OpInfo>
-      <PhyOp Id="PhyOp_Reduce" Udf="TopNReducer" ReduceType="Global" Bulk="False" On="RowGuid ASC" SortColumn="RowGuid ASC" UDMap="RowGuid:PT(RowGuid),RecognizedText:PT(RecognizedText),RecoLength:PT(RecoLength),InkIsf:PT(InkIsf)">
-        <OpInfo><TableGroupProperties Grp="53.2" Remotable="False" Card="12144.8" AvgRowLength="10575" PrtnSkewFactor="1" HT="2922807073089414580:26:0:5:12412124043777945695" HTS="116929498539624373"/><Costs TotalCosts="4.98505"/></OpInfo>
-        <PhyOp Id="PhyOp_UnionAll" Out="RowGuid,RecognizedText,RecoLength,InkIsf,Weight" SortColumn="RowGuid ASC">
-          <OpInfo><TableGroupProperties Grp="55.2" Remotable="False" Card="12144.8" AvgRowLength="10575" PrtnSkewFactor="1" HT="9588927163982605912:26:1:5:12412124043777945695" HTS="15811473664224200714"/><Costs TotalCosts="4.36566"/></OpInfo>
-          <PhyOp Id="PhyOp_Reduce" Udf="TopNReducer" ReduceType="Local" Bulk="False" On="RowGuid ASC" SortColumn="RowGuid ASC" UDMap="RowGuid:PT(RowGuid),RecognizedText:PT(RecognizedText),RecoLength:PT(RecoLength),InkIsf:PT(InkIsf)">
-            <OpInfo><TableGroupProperties Grp="56.1" Remotable="False" Card="1130.85" AvgRowLength="12374" PrtnSkewFactor="1" HT="2452402569063915757:26:1:4:4645166491786934402" HTS="13307182526356456423"/><Costs TotalCosts="1.12265"/></OpInfo>
-            <PhyOp Id="PhyOp_ComputeScalar">
-              <OpInfo><TableGroupProperties Grp="11.1" Remotable="False" Card="4523.4" AvgRowLength="12374" PrtnSkewFactor="1" HT="4645166491786934402:212::3:18398341882666773778" HTS="9709259563275582910"/><Costs TotalCosts="0.893653"/></OpInfo>
-              <PhyOp Id="PhyOp_Sort" SortColumn="RowGuid ASC">
-                <OpInfo><TableGroupProperties Grp="5.2" Remotable="False" Card="4523.4" AvgRowLength="12362" PrtnSkewFactor="1" HT="16747241512984473516:10::3:15799186161231504706" HTS="8123507473654640"/><Costs TotalCosts="0.8932"/></OpInfo>
-                <PhyOp Id="PhyOp_Process" Udf="ColumnProcessor" In="RowGuid,RecognizedText,InkIsf" Out="RowGuid,RecognizedText,InkIsf" UDMap="RowGuid:PT(RowGuid),RecognizedText:PT(RecognizedText),InkIsf:PT(InkIsf)">
-                  <OpInfo><TableGroupProperties Grp="5.3" Remotable="False" Card="4523.4" AvgRowLength="12362" PrtnSkewFactor="1" HT="16747241512984473516:10::3:15799186161231504706" HTS="8123507473654640"/><Costs TotalCosts="0.751494"/></OpInfo>
-                  <PhyOp Id="PhyOp_Filter">
-                    <OpInfo><TableGroupProperties Grp="4.3" Remotable="False" Card="4523.4" AvgRowLength="12362" PrtnSkewFactor="1" HT="15799186161231504706:35::2:17452778131072852646" HTS="15710024706706081191"/><Costs TotalCosts="0.524871"/></OpInfo>
-                    <PhyOp Id="PhyOp_Range" Table="C:\Users\elmarron\dev\LocalSamples\LogInkFromCandidates\/LogInkFromCandidates_2018_07_01.ss" XMode="Parallel" PartitionType="Range" Partitioning="Branch,InputLanguage" Partitions="2" PS="1:Base1" StreamId="8569d94e-81b6-4fe1-8087-af85d7d18556" Direction="ASC">
-                      <OpInfo><TableGroupProperties Grp="0.3" Remotable="False" Card="5654.25" AvgRowLength="12367" PrtnSkewFactor="1.22247" HT="6270473622725889364:197::0:0" HTS="5855059587132641864"/><Costs TotalCosts="0.522157"/></OpInfo>
-                    </PhyOp>
-                    <ScaOp Id="ScaOp_Comp" CompOp="x_cmpEq"><OpInfo><ScalarGroupProperties Grp="3.0"/></OpInfo>
-                      <ScaOp Id="ScaOp_Identifier" Column="InputLanguage"><OpInfo><ScalarGroupProperties Grp="1.0"/></OpInfo>
-                      </ScaOp>
-                      <ScaOp Id="ScaOp_Const" TI="String,Nullable,Var" Value="&quot;en-us&quot;" Parameter="0"><OpInfo><ScalarGroupProperties Grp="2.0"/></OpInfo>
-                      </ScaOp>
-                    </ScaOp>
-                  </PhyOp>
-                </PhyOp>
+    <PhyOp Id="PhyOp_Output" Table="C:/Users/elmarron/dev/LocalSamples/2018/07/RandomEnglishInkSamples_2018_07_01.csv" XMode="Serial" Out="RowGuid,RecognizedText,InkIsf,Weight" Udf="DefaultTextOutputter">
+      <OpInfo><TableGroupProperties Grp="43.1" Remotable="False" Card="48579.1" AvgRowLength="10571" PrtnSkewFactor="1" HT="9680644015655727340:228::5:5882681803920503836" HTS="15208933255086493318"/><Costs TotalCosts="39.6348"/></OpInfo>
+      <PhyOp Id="PhyOp_UnionAll" Out="RowGuid,InputLanguage,RecognizedText,WritingRectRight,InkIsf,__date,Weight">
+        <OpInfo><TableGroupProperties Grp="42.1" Remotable="False" Card="48579.1" AvgRowLength="10571" PrtnSkewFactor="1" HT="5882681803920503836:17::4:6410723665273578578" HTS="15766026516299757554"/><Costs TotalCosts="6.75928"/></OpInfo>
+        <PhyOp Id="PhyOp_ComputeScalar">
+          <OpInfo><TableGroupProperties Grp="9.1" Remotable="False" Card="4523.4" AvgRowLength="12370" PrtnSkewFactor="1" HT="8660842362538536362:212::3:14458928680472976070" HTS="12082219997592697134"/><Costs TotalCosts="0.751946"/></OpInfo>
+          <PhyOp Id="PhyOp_Process" Udf="ColumnProcessor" In="RowGuid,RecognizedText,InkIsf" Out="RowGuid,RecognizedText,InkIsf" UDMap="RowGuid:PT(RowGuid),RecognizedText:PT(RecognizedText),InkIsf:PT(InkIsf)">
+            <OpInfo><TableGroupProperties Grp="5.1" Remotable="False" Card="4523.4" AvgRowLength="12362" PrtnSkewFactor="1" HT="16747241512984473516:10::3:15799186161231504706" HTS="8123507473654640"/><Costs TotalCosts="0.751494"/></OpInfo>
+            <PhyOp Id="PhyOp_Filter">
+              <OpInfo><TableGroupProperties Grp="4.1" Remotable="False" Card="4523.4" AvgRowLength="12362" PrtnSkewFactor="1" HT="15799186161231504706:35::2:17452778131072852646" HTS="15710024706706081191"/><Costs TotalCosts="0.524871"/></OpInfo>
+              <PhyOp Id="PhyOp_Range" Table="C:\Users\elmarron\dev\LocalSamples\LogInkFromCandidates\/LogInkFromCandidates_2018_07_01.ss" XMode="Parallel" PartitionType="Range" Partitioning="Branch,InputLanguage" Partitions="2" PS="1:Base1" StreamId="8569d94e-81b6-4fe1-8087-af85d7d18556" Direction="ASC">
+                <OpInfo><TableGroupProperties Grp="0.1" Remotable="False" Card="5654.25" AvgRowLength="12367" PrtnSkewFactor="1.22247" HT="6270473622725889364:197::0:0" HTS="5855059587132641864"/><Costs TotalCosts="0.522157"/></OpInfo>
               </PhyOp>
-              <AncOp Id="AncOp_PrjList"><OpInfo><ScalarGroupProperties Grp="10.0"/></OpInfo>
-                <AncOp Id="AncOp_PrjEl" Column="RecoLength"><OpInfo><ScalarGroupProperties Grp="7.0"/></OpInfo>
-                  <ScaOp Id="ScaOp_Udf" Udf="RecognizedText.Length" UsedColumn="RecognizedText"><OpInfo><ScalarGroupProperties Grp="6.0"/></OpInfo>
-                  </ScaOp>
-                </AncOp>
-                <AncOp Id="AncOp_PrjEl" Column="Weight"><OpInfo><ScalarGroupProperties Grp="9.0"/></OpInfo>
-                  <ScaOp Id="ScaOp_Const" TI="Double" Value="1.0" Parameter="0"><OpInfo><ScalarGroupProperties Grp="8.0"/></OpInfo>
-                  </ScaOp>
-                </AncOp>
-              </AncOp>
+              <ScaOp Id="ScaOp_Comp" CompOp="x_cmpEq"><OpInfo><ScalarGroupProperties Grp="3.0"/></OpInfo>
+                <ScaOp Id="ScaOp_Identifier" Column="InputLanguage"><OpInfo><ScalarGroupProperties Grp="1.0"/></OpInfo>
+                </ScaOp>
+                <ScaOp Id="ScaOp_Const" TI="String,Nullable,Var" Value="&quot;en-us&quot;" Parameter="0"><OpInfo><ScalarGroupProperties Grp="2.0"/></OpInfo>
+                </ScaOp>
+              </ScaOp>
             </PhyOp>
           </PhyOp>
-          <PhyOp Id="PhyOp_Reduce" Udf="TopNReducer" ReduceType="Local" Bulk="False" On="RowGuid ASC" SortColumn="RowGuid ASC" UDMap="RowGuid:PT(RowGuid),RecognizedText:PT(RecognizedText),RecoLength:PT(RecoLength),InkIsf:PT(InkIsf)">
-            <OpInfo><TableGroupProperties Grp="57.1" Remotable="False" Card="3005.07" AvgRowLength="11859" PrtnSkewFactor="1" HT="2452402569063915757:26:1:4:4645166491786934402" HTS="16819328671043355632"/><Costs TotalCosts="2.89024"/></OpInfo>
-            <PhyOp Id="PhyOp_ComputeScalar">
-              <OpInfo><TableGroupProperties Grp="21.1" Remotable="False" Card="12020.3" AvgRowLength="11859" PrtnSkewFactor="1" HT="4645166491786934402:212::3:18398341882666773778" HTS="12601606249698478694"/><Costs TotalCosts="2.28172"/></OpInfo>
-              <PhyOp Id="PhyOp_Sort" SortColumn="RowGuid ASC">
-                <OpInfo><TableGroupProperties Grp="16.2" Remotable="False" Card="12020.3" AvgRowLength="11847" PrtnSkewFactor="1" HT="16747241512984473516:10::3:15799186161231504706" HTS="1898084113708408761"/><Costs TotalCosts="2.28051"/></OpInfo>
-                <PhyOp Id="PhyOp_Process" Udf="ColumnProcessor" In="RowGuid,RecognizedText,InkIsf" Out="RowGuid,RecognizedText,InkIsf" UDMap="RowGuid:PT(RowGuid),RecognizedText:PT(RecognizedText),InkIsf:PT(InkIsf)">
-                  <OpInfo><TableGroupProperties Grp="16.3" Remotable="False" Card="12020.3" AvgRowLength="11847" PrtnSkewFactor="1" HT="16747241512984473516:10::3:15799186161231504706" HTS="1898084113708408761"/><Costs TotalCosts="1.88387"/></OpInfo>
-                  <PhyOp Id="PhyOp_Filter">
-                    <OpInfo><TableGroupProperties Grp="15.3" Remotable="False" Card="12020.3" AvgRowLength="11847" PrtnSkewFactor="1" HT="15799186161231504706:35::2:17452778131072852646" HTS="7668516418513715792"/><Costs TotalCosts="1.28165"/></OpInfo>
-                    <PhyOp Id="PhyOp_Range" Table="C:\Users\elmarron\dev\LocalSamples\LogInkFromCandidates\/LogInkFromCandidates_2018_07_02.ss" XMode="Parallel" PartitionType="Range" Partitioning="Branch,InputLanguage" Partitions="2" PS="2:Base2" StreamId="8569d94e-81b6-4fe1-8087-af85d7d18556" Direction="ASC">
-                      <OpInfo><TableGroupProperties Grp="12.3" Remotable="False" Card="15025.3" AvgRowLength="11852" PrtnSkewFactor="1.12606" HT="6270473622725889364:197::0:0" HTS="2027410171022689614"/><Costs TotalCosts="1.27444"/></OpInfo>
-                    </PhyOp>
-                    <ScaOp Id="ScaOp_Comp" CompOp="x_cmpEq"><OpInfo><ScalarGroupProperties Grp="14.0"/></OpInfo>
-                      <ScaOp Id="ScaOp_Identifier" Column="InputLanguage"><OpInfo><ScalarGroupProperties Grp="13.0"/></OpInfo>
-                      </ScaOp>
-                      <ScaOp Id="ScaOp_Const" TI="String,Nullable,Var" Value="&quot;en-us&quot;" Parameter="0"><OpInfo><ScalarGroupProperties Grp="2.0"/></OpInfo>
-                      </ScaOp>
-                    </ScaOp>
-                  </PhyOp>
-                </PhyOp>
+          <AncOp Id="AncOp_PrjList"><OpInfo><ScalarGroupProperties Grp="8.0"/></OpInfo>
+            <AncOp Id="AncOp_PrjEl" Column="Weight"><OpInfo><ScalarGroupProperties Grp="7.0"/></OpInfo>
+              <ScaOp Id="ScaOp_Const" TI="Double" Value="1.0" Parameter="0"><OpInfo><ScalarGroupProperties Grp="6.0"/></OpInfo>
+              </ScaOp>
+            </AncOp>
+          </AncOp>
+        </PhyOp>
+        <PhyOp Id="PhyOp_ComputeScalar">
+          <OpInfo><TableGroupProperties Grp="17.1" Remotable="False" Card="12020.3" AvgRowLength="11855" PrtnSkewFactor="1" HT="8660842362538536362:212::3:14458928680472976070" HTS="10063498838572448309"/><Costs TotalCosts="1.88507"/></OpInfo>
+          <PhyOp Id="PhyOp_Process" Udf="ColumnProcessor" In="RowGuid,RecognizedText,InkIsf" Out="RowGuid,RecognizedText,InkIsf" UDMap="RowGuid:PT(RowGuid),RecognizedText:PT(RecognizedText),InkIsf:PT(InkIsf)">
+            <OpInfo><TableGroupProperties Grp="14.1" Remotable="False" Card="12020.3" AvgRowLength="11847" PrtnSkewFactor="1" HT="16747241512984473516:10::3:15799186161231504706" HTS="1898084113708408761"/><Costs TotalCosts="1.88387"/></OpInfo>
+            <PhyOp Id="PhyOp_Filter">
+              <OpInfo><TableGroupProperties Grp="13.1" Remotable="False" Card="12020.3" AvgRowLength="11847" PrtnSkewFactor="1" HT="15799186161231504706:35::2:17452778131072852646" HTS="7668516418513715792"/><Costs TotalCosts="1.28165"/></OpInfo>
+              <PhyOp Id="PhyOp_Range" Table="C:\Users\elmarron\dev\LocalSamples\LogInkFromCandidates\/LogInkFromCandidates_2018_07_02.ss" XMode="Parallel" PartitionType="Range" Partitioning="Branch,InputLanguage" Partitions="2" PS="2:Base2" StreamId="8569d94e-81b6-4fe1-8087-af85d7d18556" Direction="ASC">
+                <OpInfo><TableGroupProperties Grp="10.1" Remotable="False" Card="15025.3" AvgRowLength="11852" PrtnSkewFactor="1.12606" HT="6270473622725889364:197::0:0" HTS="2027410171022689614"/><Costs TotalCosts="1.27444"/></OpInfo>
               </PhyOp>
-              <AncOp Id="AncOp_PrjList"><OpInfo><ScalarGroupProperties Grp="20.0"/></OpInfo>
-                <AncOp Id="AncOp_PrjEl" Column="RecoLength"><OpInfo><ScalarGroupProperties Grp="18.0"/></OpInfo>
-                  <ScaOp Id="ScaOp_Udf" Udf="RecognizedText.Length" UsedColumn="RecognizedText"><OpInfo><ScalarGroupProperties Grp="17.0"/></OpInfo>
-                  </ScaOp>
-                </AncOp>
-                <AncOp Id="AncOp_PrjEl" Column="Weight"><OpInfo><ScalarGroupProperties Grp="19.0"/></OpInfo>
-                  <ScaOp Id="ScaOp_Const" TI="Double" Value="1.0" Parameter="0"><OpInfo><ScalarGroupProperties Grp="8.0"/></OpInfo>
-                  </ScaOp>
-                </AncOp>
-              </AncOp>
+              <ScaOp Id="ScaOp_Comp" CompOp="x_cmpEq"><OpInfo><ScalarGroupProperties Grp="12.0"/></OpInfo>
+                <ScaOp Id="ScaOp_Identifier" Column="InputLanguage"><OpInfo><ScalarGroupProperties Grp="11.0"/></OpInfo>
+                </ScaOp>
+                <ScaOp Id="ScaOp_Const" TI="String,Nullable,Var" Value="&quot;en-us&quot;" Parameter="0"><OpInfo><ScalarGroupProperties Grp="2.0"/></OpInfo>
+                </ScaOp>
+              </ScaOp>
             </PhyOp>
           </PhyOp>
-          <PhyOp Id="PhyOp_Reduce" Udf="TopNReducer" ReduceType="Local" Bulk="False" On="RowGuid ASC" SortColumn="RowGuid ASC" UDMap="RowGuid:PT(RowGuid),RecognizedText:PT(RecognizedText),RecoLength:PT(RecoLength),InkIsf:PT(InkIsf)">
-            <OpInfo><TableGroupProperties Grp="58.1" Remotable="False" Card="3097.67" AvgRowLength="11021" PrtnSkewFactor="1" HT="2452402569063915757:26:1:4:4645166491786934402" HTS="1659497708198490526"/><Costs TotalCosts="2.84762"/></OpInfo>
-            <PhyOp Id="PhyOp_ComputeScalar">
-              <OpInfo><TableGroupProperties Grp="31.1" Remotable="False" Card="12390.7" AvgRowLength="11021" PrtnSkewFactor="1" HT="4645166491786934402:212::3:18398341882666773778" HTS="7917437349179591043"/><Costs TotalCosts="2.22035"/></OpInfo>
-              <PhyOp Id="PhyOp_Process" Udf="ColumnProcessor" In="RowGuid,RecognizedText,InkIsf" Out="RowGuid,RecognizedText,InkIsf" UDMap="RowGuid:PT(RowGuid),RecognizedText:PT(RecognizedText),InkIsf:PT(InkIsf)">
-                <OpInfo><TableGroupProperties Grp="26.1" Remotable="False" Card="12390.7" AvgRowLength="11009" PrtnSkewFactor="1" HT="16747241512984473516:10::3:15799186161231504706" HTS="8283171150790364016"/><Costs TotalCosts="2.21911"/></OpInfo>
-                <PhyOp Id="PhyOp_Sort" SortColumn="RowGuid ASC">
-                  <OpInfo><TableGroupProperties Grp="25.2" Remotable="False" Card="12390.7" AvgRowLength="11009" PrtnSkewFactor="1" HT="15799186161231504706:35::2:17452778131072852646" HTS="5596591448942525629"/><Costs TotalCosts="1.59834"/></OpInfo>
-                  <PhyOp Id="PhyOp_Filter">
-                    <OpInfo><TableGroupProperties Grp="25.3" Remotable="False" Card="12390.7" AvgRowLength="11009" PrtnSkewFactor="1" HT="15799186161231504706:35::2:17452778131072852646" HTS="5596591448942525629"/><Costs TotalCosts="1.199"/></OpInfo>
-                    <PhyOp Id="PhyOp_Range" Table="C:\Users\elmarron\dev\LocalSamples\LogInkFromCandidates\/LogInkFromCandidates_2018_07_03.ss" XMode="Parallel" PartitionType="Range" Partitioning="Branch,InputLanguage" Partitions="2" PS="3:Base3" StreamId="8569d94e-81b6-4fe1-8087-af85d7d18556" Direction="ASC">
-                      <OpInfo><TableGroupProperties Grp="22.3" Remotable="False" Card="15488.3" AvgRowLength="11014" PrtnSkewFactor="1.02122" HT="6270473622725889364:197::0:0" HTS="399472806596864776"/><Costs TotalCosts="1.19157"/></OpInfo>
-                    </PhyOp>
-                    <ScaOp Id="ScaOp_Comp" CompOp="x_cmpEq"><OpInfo><ScalarGroupProperties Grp="24.0"/></OpInfo>
-                      <ScaOp Id="ScaOp_Identifier" Column="InputLanguage"><OpInfo><ScalarGroupProperties Grp="23.0"/></OpInfo>
-                      </ScaOp>
-                      <ScaOp Id="ScaOp_Const" TI="String,Nullable,Var" Value="&quot;en-us&quot;" Parameter="0"><OpInfo><ScalarGroupProperties Grp="2.0"/></OpInfo>
-                      </ScaOp>
-                    </ScaOp>
-                  </PhyOp>
-                </PhyOp>
+          <AncOp Id="AncOp_PrjList"><OpInfo><ScalarGroupProperties Grp="16.0"/></OpInfo>
+            <AncOp Id="AncOp_PrjEl" Column="Weight"><OpInfo><ScalarGroupProperties Grp="15.0"/></OpInfo>
+              <ScaOp Id="ScaOp_Const" TI="Double" Value="1.0" Parameter="0"><OpInfo><ScalarGroupProperties Grp="6.0"/></OpInfo>
+              </ScaOp>
+            </AncOp>
+          </AncOp>
+        </PhyOp>
+        <PhyOp Id="PhyOp_ComputeScalar">
+          <OpInfo><TableGroupProperties Grp="25.1" Remotable="False" Card="12390.7" AvgRowLength="11017" PrtnSkewFactor="1" HT="8660842362538536362:212::3:14458928680472976070" HTS="13317430958817223025"/><Costs TotalCosts="1.82102"/></OpInfo>
+          <PhyOp Id="PhyOp_Process" Udf="ColumnProcessor" In="RowGuid,RecognizedText,InkIsf" Out="RowGuid,RecognizedText,InkIsf" UDMap="RowGuid:PT(RowGuid),RecognizedText:PT(RecognizedText),InkIsf:PT(InkIsf)">
+            <OpInfo><TableGroupProperties Grp="22.1" Remotable="False" Card="12390.7" AvgRowLength="11009" PrtnSkewFactor="1" HT="16747241512984473516:10::3:15799186161231504706" HTS="8283171150790364016"/><Costs TotalCosts="1.81978"/></OpInfo>
+            <PhyOp Id="PhyOp_Filter">
+              <OpInfo><TableGroupProperties Grp="21.1" Remotable="False" Card="12390.7" AvgRowLength="11009" PrtnSkewFactor="1" HT="15799186161231504706:35::2:17452778131072852646" HTS="5596591448942525629"/><Costs TotalCosts="1.199"/></OpInfo>
+              <PhyOp Id="PhyOp_Range" Table="C:\Users\elmarron\dev\LocalSamples\LogInkFromCandidates\/LogInkFromCandidates_2018_07_03.ss" XMode="Parallel" PartitionType="Range" Partitioning="Branch,InputLanguage" Partitions="2" PS="3:Base3" StreamId="8569d94e-81b6-4fe1-8087-af85d7d18556" Direction="ASC">
+                <OpInfo><TableGroupProperties Grp="18.1" Remotable="False" Card="15488.3" AvgRowLength="11014" PrtnSkewFactor="1.02122" HT="6270473622725889364:197::0:0" HTS="399472806596864776"/><Costs TotalCosts="1.19157"/></OpInfo>
               </PhyOp>
-              <AncOp Id="AncOp_PrjList"><OpInfo><ScalarGroupProperties Grp="30.0"/></OpInfo>
-                <AncOp Id="AncOp_PrjEl" Column="RecoLength"><OpInfo><ScalarGroupProperties Grp="28.0"/></OpInfo>
-                  <ScaOp Id="ScaOp_Udf" Udf="RecognizedText.Length" UsedColumn="RecognizedText"><OpInfo><ScalarGroupProperties Grp="27.0"/></OpInfo>
-                  </ScaOp>
-                </AncOp>
-                <AncOp Id="AncOp_PrjEl" Column="Weight"><OpInfo><ScalarGroupProperties Grp="29.0"/></OpInfo>
-                  <ScaOp Id="ScaOp_Const" TI="Double" Value="1.0" Parameter="0"><OpInfo><ScalarGroupProperties Grp="8.0"/></OpInfo>
-                  </ScaOp>
-                </AncOp>
-              </AncOp>
+              <ScaOp Id="ScaOp_Comp" CompOp="x_cmpEq"><OpInfo><ScalarGroupProperties Grp="20.0"/></OpInfo>
+                <ScaOp Id="ScaOp_Identifier" Column="InputLanguage"><OpInfo><ScalarGroupProperties Grp="19.0"/></OpInfo>
+                </ScaOp>
+                <ScaOp Id="ScaOp_Const" TI="String,Nullable,Var" Value="&quot;en-us&quot;" Parameter="0"><OpInfo><ScalarGroupProperties Grp="2.0"/></OpInfo>
+                </ScaOp>
+              </ScaOp>
             </PhyOp>
           </PhyOp>
-          <PhyOp Id="PhyOp_Reduce" Udf="TopNReducer" ReduceType="Local" Bulk="False" On="RowGuid ASC" SortColumn="RowGuid ASC" UDMap="RowGuid:PT(RowGuid),RecognizedText:PT(RecognizedText),RecoLength:PT(RecoLength),InkIsf:PT(InkIsf)">
-            <OpInfo><TableGroupProperties Grp="59.1" Remotable="False" Card="1897.02" AvgRowLength="10409" PrtnSkewFactor="1" HT="2452402569063915757:26:1:4:4645166491786934402" HTS="14636521106755638459"/><Costs TotalCosts="1.76844"/></OpInfo>
-            <PhyOp Id="PhyOp_ComputeScalar">
-              <OpInfo><TableGroupProperties Grp="41.1" Remotable="False" Card="7588.08" AvgRowLength="10409" PrtnSkewFactor="1" HT="4645166491786934402:212::3:18398341882666773778" HTS="5721834988221803467"/><Costs TotalCosts="1.38429"/></OpInfo>
-              <PhyOp Id="PhyOp_Sort" SortColumn="RowGuid ASC">
-                <OpInfo><TableGroupProperties Grp="36.2" Remotable="False" Card="7588.08" AvgRowLength="10397" PrtnSkewFactor="1" HT="16747241512984473516:10::3:15799186161231504706" HTS="12174030673720941034"/><Costs TotalCosts="1.38353"/></OpInfo>
-                <PhyOp Id="PhyOp_Process" Udf="ColumnProcessor" In="RowGuid,RecognizedText,InkIsf" Out="RowGuid,RecognizedText,InkIsf" UDMap="RowGuid:PT(RowGuid),RecognizedText:PT(RecognizedText),InkIsf:PT(InkIsf)">
-                  <OpInfo><TableGroupProperties Grp="36.3" Remotable="False" Card="7588.08" AvgRowLength="10397" PrtnSkewFactor="1" HT="16747241512984473516:10::3:15799186161231504706" HTS="12174030673720941034"/><Costs TotalCosts="1.15196"/></OpInfo>
-                  <PhyOp Id="PhyOp_Filter">
-                    <OpInfo><TableGroupProperties Grp="35.3" Remotable="False" Card="7588.08" AvgRowLength="10397" PrtnSkewFactor="1" HT="15799186161231504706:35::2:17452778131072852646" HTS="10940839961743824021"/><Costs TotalCosts="0.771797"/></OpInfo>
-                    <PhyOp Id="PhyOp_Range" Table="C:\Users\elmarron\dev\LocalSamples\LogInkFromCandidates\/LogInkFromCandidates_2018_07_04.ss" XMode="Parallel" PartitionType="Range" Partitioning="Branch,InputLanguage" Partitions="2" PS="4:Base4" StreamId="8569d94e-81b6-4fe1-8087-af85d7d18556" Direction="ASC">
-                      <OpInfo><TableGroupProperties Grp="32.3" Remotable="False" Card="9485.1" AvgRowLength="10402" PrtnSkewFactor="1.07246" HT="6270473622725889364:197::0:0" HTS="11518889177848999215"/><Costs TotalCosts="0.767244"/></OpInfo>
-                    </PhyOp>
-                    <ScaOp Id="ScaOp_Comp" CompOp="x_cmpEq"><OpInfo><ScalarGroupProperties Grp="34.0"/></OpInfo>
-                      <ScaOp Id="ScaOp_Identifier" Column="InputLanguage"><OpInfo><ScalarGroupProperties Grp="33.0"/></OpInfo>
-                      </ScaOp>
-                      <ScaOp Id="ScaOp_Const" TI="String,Nullable,Var" Value="&quot;en-us&quot;" Parameter="0"><OpInfo><ScalarGroupProperties Grp="2.0"/></OpInfo>
-                      </ScaOp>
-                    </ScaOp>
-                  </PhyOp>
-                </PhyOp>
+          <AncOp Id="AncOp_PrjList"><OpInfo><ScalarGroupProperties Grp="24.0"/></OpInfo>
+            <AncOp Id="AncOp_PrjEl" Column="Weight"><OpInfo><ScalarGroupProperties Grp="23.0"/></OpInfo>
+              <ScaOp Id="ScaOp_Const" TI="Double" Value="1.0" Parameter="0"><OpInfo><ScalarGroupProperties Grp="6.0"/></OpInfo>
+              </ScaOp>
+            </AncOp>
+          </AncOp>
+        </PhyOp>
+        <PhyOp Id="PhyOp_ComputeScalar">
+          <OpInfo><TableGroupProperties Grp="33.1" Remotable="False" Card="7588.08" AvgRowLength="10405" PrtnSkewFactor="1" HT="8660842362538536362:212::3:14458928680472976070" HTS="18162915600016689163"/><Costs TotalCosts="1.15272"/></OpInfo>
+          <PhyOp Id="PhyOp_Process" Udf="ColumnProcessor" In="RowGuid,RecognizedText,InkIsf" Out="RowGuid,RecognizedText,InkIsf" UDMap="RowGuid:PT(RowGuid),RecognizedText:PT(RecognizedText),InkIsf:PT(InkIsf)">
+            <OpInfo><TableGroupProperties Grp="30.1" Remotable="False" Card="7588.08" AvgRowLength="10397" PrtnSkewFactor="1" HT="16747241512984473516:10::3:15799186161231504706" HTS="12174030673720941034"/><Costs TotalCosts="1.15196"/></OpInfo>
+            <PhyOp Id="PhyOp_Filter">
+              <OpInfo><TableGroupProperties Grp="29.1" Remotable="False" Card="7588.08" AvgRowLength="10397" PrtnSkewFactor="1" HT="15799186161231504706:35::2:17452778131072852646" HTS="10940839961743824021"/><Costs TotalCosts="0.771797"/></OpInfo>
+              <PhyOp Id="PhyOp_Range" Table="C:\Users\elmarron\dev\LocalSamples\LogInkFromCandidates\/LogInkFromCandidates_2018_07_04.ss" XMode="Parallel" PartitionType="Range" Partitioning="Branch,InputLanguage" Partitions="2" PS="4:Base4" StreamId="8569d94e-81b6-4fe1-8087-af85d7d18556" Direction="ASC">
+                <OpInfo><TableGroupProperties Grp="26.1" Remotable="False" Card="9485.1" AvgRowLength="10402" PrtnSkewFactor="1.07246" HT="6270473622725889364:197::0:0" HTS="11518889177848999215"/><Costs TotalCosts="0.767244"/></OpInfo>
               </PhyOp>
-              <AncOp Id="AncOp_PrjList"><OpInfo><ScalarGroupProperties Grp="40.0"/></OpInfo>
-                <AncOp Id="AncOp_PrjEl" Column="RecoLength"><OpInfo><ScalarGroupProperties Grp="38.0"/></OpInfo>
-                  <ScaOp Id="ScaOp_Udf" Udf="RecognizedText.Length" UsedColumn="RecognizedText"><OpInfo><ScalarGroupProperties Grp="37.0"/></OpInfo>
-                  </ScaOp>
-                </AncOp>
-                <AncOp Id="AncOp_PrjEl" Column="Weight"><OpInfo><ScalarGroupProperties Grp="39.0"/></OpInfo>
-                  <ScaOp Id="ScaOp_Const" TI="Double" Value="1.0" Parameter="0"><OpInfo><ScalarGroupProperties Grp="8.0"/></OpInfo>
-                  </ScaOp>
-                </AncOp>
-              </AncOp>
+              <ScaOp Id="ScaOp_Comp" CompOp="x_cmpEq"><OpInfo><ScalarGroupProperties Grp="28.0"/></OpInfo>
+                <ScaOp Id="ScaOp_Identifier" Column="InputLanguage"><OpInfo><ScalarGroupProperties Grp="27.0"/></OpInfo>
+                </ScaOp>
+                <ScaOp Id="ScaOp_Const" TI="String,Nullable,Var" Value="&quot;en-us&quot;" Parameter="0"><OpInfo><ScalarGroupProperties Grp="2.0"/></OpInfo>
+                </ScaOp>
+              </ScaOp>
             </PhyOp>
           </PhyOp>
-          <PhyOp Id="PhyOp_Reduce" Udf="TopNReducer" ReduceType="Local" Bulk="False" On="RowGuid ASC" SortColumn="RowGuid ASC" UDMap="RowGuid:PT(RowGuid),RecognizedText:PT(RecognizedText),RecoLength:PT(RecoLength),InkIsf:PT(InkIsf)">
-            <OpInfo><TableGroupProperties Grp="60.1" Remotable="False" Card="3014.17" AvgRowLength="8266" PrtnSkewFactor="1" HT="2452402569063915757:26:1:4:4645166491786934402" HTS="18057786610157345622"/><Costs TotalCosts="2.86166"/></OpInfo>
-            <PhyOp Id="PhyOp_ComputeScalar">
-              <OpInfo><TableGroupProperties Grp="51.1" Remotable="False" Card="12056.7" AvgRowLength="8266" PrtnSkewFactor="1" HT="4645166491786934402:212::3:18398341882666773778" HTS="12385375748266040162"/><Costs TotalCosts="2.25129"/></OpInfo>
-              <PhyOp Id="PhyOp_Sort" SortColumn="RowGuid ASC">
-                <OpInfo><TableGroupProperties Grp="46.2" Remotable="False" Card="12056.7" AvgRowLength="8254" PrtnSkewFactor="1" HT="16747241512984473516:10::3:15799186161231504706" HTS="11585951356662703160"/><Costs TotalCosts="2.25009"/></OpInfo>
-                <PhyOp Id="PhyOp_Process" Udf="ColumnProcessor" In="RowGuid,RecognizedText,InkIsf" Out="RowGuid,RecognizedText,InkIsf" UDMap="RowGuid:PT(RowGuid),RecognizedText:PT(RecognizedText),InkIsf:PT(InkIsf)">
-                  <OpInfo><TableGroupProperties Grp="46.3" Remotable="False" Card="12056.7" AvgRowLength="8254" PrtnSkewFactor="1" HT="16747241512984473516:10::3:15799186161231504706" HTS="11585951356662703160"/><Costs TotalCosts="1.89548"/></OpInfo>
-                  <PhyOp Id="PhyOp_Filter">
-                    <OpInfo><TableGroupProperties Grp="45.3" Remotable="False" Card="12056.7" AvgRowLength="8254" PrtnSkewFactor="1" HT="15799186161231504706:35::2:17452778131072852646" HTS="10473787930349326638"/><Costs TotalCosts="1.29144"/></OpInfo>
-                    <PhyOp Id="PhyOp_Range" Table="C:\Users\elmarron\dev\LocalSamples\LogInkFromCandidates\/LogInkFromCandidates_2018_07_05.ss" XMode="Parallel" PartitionType="Range" Partitioning="Branch,InputLanguage" Partitions="2" PS="5:Base5" StreamId="8569d94e-81b6-4fe1-8087-af85d7d18556" Direction="ASC">
-                      <OpInfo><TableGroupProperties Grp="42.3" Remotable="False" Card="15070.9" AvgRowLength="8259" PrtnSkewFactor="1.13127" HT="6270473622725889364:197::0:0" HTS="12877815760148777117"/><Costs TotalCosts="1.2842"/></OpInfo>
-                    </PhyOp>
-                    <ScaOp Id="ScaOp_Comp" CompOp="x_cmpEq"><OpInfo><ScalarGroupProperties Grp="44.0"/></OpInfo>
-                      <ScaOp Id="ScaOp_Identifier" Column="InputLanguage"><OpInfo><ScalarGroupProperties Grp="43.0"/></OpInfo>
-                      </ScaOp>
-                      <ScaOp Id="ScaOp_Const" TI="String,Nullable,Var" Value="&quot;en-us&quot;" Parameter="0"><OpInfo><ScalarGroupProperties Grp="2.0"/></OpInfo>
-                      </ScaOp>
-                    </ScaOp>
-                  </PhyOp>
-                </PhyOp>
+          <AncOp Id="AncOp_PrjList"><OpInfo><ScalarGroupProperties Grp="32.0"/></OpInfo>
+            <AncOp Id="AncOp_PrjEl" Column="Weight"><OpInfo><ScalarGroupProperties Grp="31.0"/></OpInfo>
+              <ScaOp Id="ScaOp_Const" TI="Double" Value="1.0" Parameter="0"><OpInfo><ScalarGroupProperties Grp="6.0"/></OpInfo>
+              </ScaOp>
+            </AncOp>
+          </AncOp>
+        </PhyOp>
+        <PhyOp Id="PhyOp_ComputeScalar">
+          <OpInfo><TableGroupProperties Grp="41.1" Remotable="False" Card="12056.7" AvgRowLength="8262" PrtnSkewFactor="1" HT="8660842362538536362:212::3:14458928680472976070" HTS="2559350377569758748"/><Costs TotalCosts="1.89668"/></OpInfo>
+          <PhyOp Id="PhyOp_Process" Udf="ColumnProcessor" In="RowGuid,RecognizedText,InkIsf" Out="RowGuid,RecognizedText,InkIsf" UDMap="RowGuid:PT(RowGuid),RecognizedText:PT(RecognizedText),InkIsf:PT(InkIsf)">
+            <OpInfo><TableGroupProperties Grp="38.1" Remotable="False" Card="12056.7" AvgRowLength="8254" PrtnSkewFactor="1" HT="16747241512984473516:10::3:15799186161231504706" HTS="11585951356662703160"/><Costs TotalCosts="1.89548"/></OpInfo>
+            <PhyOp Id="PhyOp_Filter">
+              <OpInfo><TableGroupProperties Grp="37.1" Remotable="False" Card="12056.7" AvgRowLength="8254" PrtnSkewFactor="1" HT="15799186161231504706:35::2:17452778131072852646" HTS="10473787930349326638"/><Costs TotalCosts="1.29144"/></OpInfo>
+              <PhyOp Id="PhyOp_Range" Table="C:\Users\elmarron\dev\LocalSamples\LogInkFromCandidates\/LogInkFromCandidates_2018_07_05.ss" XMode="Parallel" PartitionType="Range" Partitioning="Branch,InputLanguage" Partitions="2" PS="5:Base5" StreamId="8569d94e-81b6-4fe1-8087-af85d7d18556" Direction="ASC">
+                <OpInfo><TableGroupProperties Grp="34.1" Remotable="False" Card="15070.9" AvgRowLength="8259" PrtnSkewFactor="1.13127" HT="6270473622725889364:197::0:0" HTS="12877815760148777117"/><Costs TotalCosts="1.2842"/></OpInfo>
               </PhyOp>
-              <AncOp Id="AncOp_PrjList"><OpInfo><ScalarGroupProperties Grp="50.0"/></OpInfo>
-                <AncOp Id="AncOp_PrjEl" Column="RecoLength"><OpInfo><ScalarGroupProperties Grp="48.0"/></OpInfo>
-                  <ScaOp Id="ScaOp_Udf" Udf="RecognizedText.Length" UsedColumn="RecognizedText"><OpInfo><ScalarGroupProperties Grp="47.0"/></OpInfo>
-                  </ScaOp>
-                </AncOp>
-                <AncOp Id="AncOp_PrjEl" Column="Weight"><OpInfo><ScalarGroupProperties Grp="49.0"/></OpInfo>
-                  <ScaOp Id="ScaOp_Const" TI="Double" Value="1.0" Parameter="0"><OpInfo><ScalarGroupProperties Grp="8.0"/></OpInfo>
-                  </ScaOp>
-                </AncOp>
-              </AncOp>
+              <ScaOp Id="ScaOp_Comp" CompOp="x_cmpEq"><OpInfo><ScalarGroupProperties Grp="36.0"/></OpInfo>
+                <ScaOp Id="ScaOp_Identifier" Column="InputLanguage"><OpInfo><ScalarGroupProperties Grp="35.0"/></OpInfo>
+                </ScaOp>
+                <ScaOp Id="ScaOp_Const" TI="String,Nullable,Var" Value="&quot;en-us&quot;" Parameter="0"><OpInfo><ScalarGroupProperties Grp="2.0"/></OpInfo>
+                </ScaOp>
+              </ScaOp>
             </PhyOp>
           </PhyOp>
+          <AncOp Id="AncOp_PrjList"><OpInfo><ScalarGroupProperties Grp="40.0"/></OpInfo>
+            <AncOp Id="AncOp_PrjEl" Column="Weight"><OpInfo><ScalarGroupProperties Grp="39.0"/></OpInfo>
+              <ScaOp Id="ScaOp_Const" TI="Double" Value="1.0" Parameter="0"><OpInfo><ScalarGroupProperties Grp="6.0"/></OpInfo>
+              </ScaOp>
+            </AncOp>
+          </AncOp>
         </PhyOp>
       </PhyOp>
     </PhyOp>
@@ -316,81 +256,81 @@
 </OptimizerTrees>
   </OptimizerPlanInfo>
   <ScopeCounters>
-    <Counter Name="Overall" Value="11.5296612" Unit="second" Intervals="0" />
-    <Counter Name="VcClient" Value="0.1262213" Unit="second" Intervals="1" />
-    <Counter Name="ResourcesDownloading" Value="0.0023227" Unit="second" Intervals="1" />
-    <Counter Name="FrontEndRun" Value="3.758374" Unit="second" Intervals="1" />
-    <Counter Name="AstBuilder" Value="2.6506062" Unit="second" Intervals="1" />
-    <Counter Name="Preprocessing" Value="2.3433113" Unit="second" Intervals="1" />
-    <Counter Name="SyntaxVerifier" Value="0.1692841" Unit="second" Intervals="1" />
-    <Counter Name="DdlResolver" Value="0.0007883" Unit="second" Intervals="1" />
-    <Counter Name="ViewResolverPass" Value="0.0130688" Unit="second" Intervals="2" />
-    <Counter Name="ResourceReferencePass" Value="0.0268082" Unit="second" Intervals="1" />
-    <Counter Name="ReferenceLoading" Value="0.007862" Unit="second" Intervals="1" />
-    <Counter Name="InputOutputPass" Value="0.128227" Unit="second" Intervals="1" />
-    <Counter Name="CFE" Value="0.0564532" Unit="second" Intervals="1" />
-    <Counter Name="SStreamMetadataWait" Value="0.1541737" Unit="second" Intervals="1" />
-    <Counter Name="SStreamMetadataAsync" Value="0.7318396" Unit="second" Intervals="5" />
-    <Counter Name="BinderPass" Value="0.6113763" Unit="second" Intervals="1" />
-    <Counter Name="RoslynStartup" Value="0.0571183" Unit="second" Intervals="3" />
-    <Counter Name="UserCode" Value="0.0245533" Unit="second" Intervals="166" />
-    <Counter Name="ExpressionBinding" Value="0.3954353" Unit="second" Intervals="2" />
-    <Counter Name="OneColumnBinding" Value="0.0039475" Unit="second" Intervals="1" />
+    <Counter Name="Overall" Value="8.8102251" Unit="second" Intervals="0" />
+    <Counter Name="VcClient" Value="0.0603514" Unit="second" Intervals="1" />
+    <Counter Name="ResourcesDownloading" Value="0.001631" Unit="second" Intervals="1" />
+    <Counter Name="FrontEndRun" Value="2.835954" Unit="second" Intervals="1" />
+    <Counter Name="AstBuilder" Value="1.9587789" Unit="second" Intervals="1" />
+    <Counter Name="Preprocessing" Value="1.7399894" Unit="second" Intervals="1" />
+    <Counter Name="SyntaxVerifier" Value="0.1130313" Unit="second" Intervals="1" />
+    <Counter Name="DdlResolver" Value="0.0004687" Unit="second" Intervals="1" />
+    <Counter Name="ViewResolverPass" Value="0.0083606" Unit="second" Intervals="2" />
+    <Counter Name="ResourceReferencePass" Value="0.0278249" Unit="second" Intervals="1" />
+    <Counter Name="ReferenceLoading" Value="0.0057804" Unit="second" Intervals="1" />
+    <Counter Name="InputOutputPass" Value="0.0894145" Unit="second" Intervals="1" />
+    <Counter Name="CFE" Value="0.0429464" Unit="second" Intervals="1" />
+    <Counter Name="SStreamMetadataWait" Value="0.1333652" Unit="second" Intervals="1" />
+    <Counter Name="SStreamMetadataAsync" Value="0.6278012" Unit="second" Intervals="5" />
+    <Counter Name="BinderPass" Value="0.4778768" Unit="second" Intervals="1" />
+    <Counter Name="RoslynStartup" Value="0.0467132" Unit="second" Intervals="3" />
+    <Counter Name="UserCode" Value="0.0536481" Unit="second" Intervals="97" />
+    <Counter Name="ExpressionBinding" Value="0.2907329" Unit="second" Intervals="3" />
+    <Counter Name="OneColumnBinding" Value="0.0026178" Unit="second" Intervals="1" />
     <Counter Name="QualifiedColumnBinding" Value="0" Unit="second" Intervals="0" />
     <Counter Name="SimpleAggregateBinding" Value="0" Unit="second" Intervals="0" />
-    <Counter Name="RoslynFirstCall" Value="0.3092771" Unit="second" Intervals="1" />
-    <Counter Name="RoslynBinding" Value="0.067538" Unit="second" Intervals="1" />
-    <Counter Name="RoslynParsing" Value="0.0203304" Unit="second" Intervals="1" />
-    <Counter Name="RoslynPreSemantic" Value="0.002029" Unit="second" Intervals="1" />
-    <Counter Name="RoslynSemantic" Value="0.0368655" Unit="second" Intervals="1" />
-    <Counter Name="RoslynPostSemantic" Value="0.0082266" Unit="second" Intervals="1" />
-    <Counter Name="SemanticAnalyzerPass" Value="0.0759782" Unit="second" Intervals="1" />
-    <Counter Name="ErrorReporterPass" Value="0.0292036" Unit="second" Intervals="1" />
-    <Counter Name="GenerateOptTreePass" Value="0.1098322" Unit="second" Intervals="1" />
-    <Counter Name="OptimizerWait" Value="1.25E-05" Unit="second" Intervals="1" />
-    <Counter Name="Playback" Value="0.1879014" Unit="second" Intervals="2" />
-    <Counter Name="Optimizer" Value="0.7054674" Unit="second" Intervals="1" />
-    <Counter Name="CodeGeneration" Value="0.6817189" Unit="second" Intervals="1" />
-    <Counter Name="AlgebraAndManagedCodeGen" Value="0.2001674" Unit="second" Intervals="1" />
-    <Counter Name="ComputeSignature" Value="4.84E-05" Unit="second" Intervals="1" />
-    <Counter Name="PostProcessExecutionPlan" Value="0.0079532" Unit="second" Intervals="1" />
-    <Counter Name="CreateSplitersOrSpools" Value="0.0011754" Unit="second" Intervals="1" />
-    <Counter Name="ReplaceFusionPipelinesWithAdapters" Value="1.08E-05" Unit="second" Intervals="1" />
-    <Counter Name="CreateWhereSelectEnumerators" Value="0.0584147" Unit="second" Intervals="1" />
-    <Counter Name="ComputePayloadMetadata" Value="0.000392" Unit="second" Intervals="1" />
-    <Counter Name="SStreamStageProcessing" Value="0.0027509" Unit="second" Intervals="1" />
-    <Counter Name="ValidateStages" Value="0.0027076" Unit="second" Intervals="1" />
-    <Counter Name="CompileToAlgebra" Value="0.0524811" Unit="second" Intervals="1" />
-    <Counter Name="AnnotateIntermediateResults" Value="0.0022072" Unit="second" Intervals="1" />
-    <Counter Name="CreateCppReadyStage" Value="0.0108319" Unit="second" Intervals="1" />
-    <Counter Name="AdornAllWithMemoryModel" Value="0.0290596" Unit="second" Intervals="1" />
-    <Counter Name="SplitScopeVertices" Value="6.5E-06" Unit="second" Intervals="1" />
-    <Counter Name="EstimateMemorySize" Value="0.0217613" Unit="second" Intervals="1" />
-    <Counter Name="CalculateBubbles" Value="0.0002597" Unit="second" Intervals="1" />
-    <Counter Name="ManagedCodeEmission" Value="0.0184264" Unit="second" Intervals="1" />
-    <Counter Name="NativeCodeGeneration" Value="0.4606694" Unit="second" Intervals="1" />
-    <Counter Name="CodeCompiling" Value="5.4019088" Unit="second" Intervals="1" />
-    <Counter Name="EmitCompilationResult" Value="0.2846231" Unit="second" Intervals="1" />
-    <Counter Name="ASTSerialization" Value="0.051063" Unit="second" Intervals="1" />
+    <Counter Name="RoslynFirstCall" Value="0.2053993" Unit="second" Intervals="1" />
+    <Counter Name="RoslynBinding" Value="0.0759699" Unit="second" Intervals="2" />
+    <Counter Name="RoslynParsing" Value="0.0327272" Unit="second" Intervals="2" />
+    <Counter Name="RoslynPreSemantic" Value="0.0037476" Unit="second" Intervals="2" />
+    <Counter Name="RoslynSemantic" Value="0.0271184" Unit="second" Intervals="2" />
+    <Counter Name="RoslynPostSemantic" Value="0.0122052" Unit="second" Intervals="2" />
+    <Counter Name="SemanticAnalyzerPass" Value="0.069085" Unit="second" Intervals="1" />
+    <Counter Name="ErrorReporterPass" Value="0.0147127" Unit="second" Intervals="1" />
+    <Counter Name="GenerateOptTreePass" Value="0.0690952" Unit="second" Intervals="1" />
+    <Counter Name="OptimizerWait" Value="1.11E-05" Unit="second" Intervals="1" />
+    <Counter Name="Playback" Value="0.1516588" Unit="second" Intervals="2" />
+    <Counter Name="Optimizer" Value="0.5200214" Unit="second" Intervals="1" />
+    <Counter Name="CodeGeneration" Value="0.4958737" Unit="second" Intervals="1" />
+    <Counter Name="AlgebraAndManagedCodeGen" Value="0.1720893" Unit="second" Intervals="1" />
+    <Counter Name="ComputeSignature" Value="4.21E-05" Unit="second" Intervals="1" />
+    <Counter Name="PostProcessExecutionPlan" Value="0.007706" Unit="second" Intervals="1" />
+    <Counter Name="CreateSplitersOrSpools" Value="0.0006985" Unit="second" Intervals="1" />
+    <Counter Name="ReplaceFusionPipelinesWithAdapters" Value="5.1E-06" Unit="second" Intervals="1" />
+    <Counter Name="CreateWhereSelectEnumerators" Value="0.0447346" Unit="second" Intervals="1" />
+    <Counter Name="ComputePayloadMetadata" Value="0.0002799" Unit="second" Intervals="1" />
+    <Counter Name="SStreamStageProcessing" Value="0.002226" Unit="second" Intervals="1" />
+    <Counter Name="ValidateStages" Value="0.0021972" Unit="second" Intervals="1" />
+    <Counter Name="CompileToAlgebra" Value="0.0428506" Unit="second" Intervals="1" />
+    <Counter Name="AnnotateIntermediateResults" Value="0.0012496" Unit="second" Intervals="1" />
+    <Counter Name="CreateCppReadyStage" Value="0.0074055" Unit="second" Intervals="1" />
+    <Counter Name="AdornAllWithMemoryModel" Value="0.0344655" Unit="second" Intervals="1" />
+    <Counter Name="SplitScopeVertices" Value="3.7E-06" Unit="second" Intervals="1" />
+    <Counter Name="EstimateMemorySize" Value="0.0168307" Unit="second" Intervals="1" />
+    <Counter Name="CalculateBubbles" Value="0.0001702" Unit="second" Intervals="1" />
+    <Counter Name="ManagedCodeEmission" Value="0.0123118" Unit="second" Intervals="1" />
+    <Counter Name="NativeCodeGeneration" Value="0.309367" Unit="second" Intervals="1" />
+    <Counter Name="CodeCompiling" Value="4.2900176" Unit="second" Intervals="1" />
+    <Counter Name="EmitCompilationResult" Value="0.2281653" Unit="second" Intervals="1" />
+    <Counter Name="ASTSerialization" Value="0.0384113" Unit="second" Intervals="1" />
     <Counter Name="Table Files Read" Value="0" Unit="count" />
-    <Counter Name="CQO - Init" Value="0.0181493734575926" Unit="second" />
-    <Counter Name="CQO - CopyIn" Value="0.114022108028957" Unit="second" />
-    <Counter Name="CQO - Search - Init" Value="6.98502410831178E-05" Unit="second" />
-    <Counter Name="CQO - Search - NNF" Value="0.000895508600988053" Unit="second" />
-    <Counter Name="CQO - Search - PreOptimization" Value="0.000417390828349732" Unit="second" />
-    <Counter Name="CQO - Search - Simplification" Value="0.00939899141953936" Unit="second" />
+    <Counter Name="CQO - Init" Value="0.0154505882245608" Unit="second" />
+    <Counter Name="CQO - CopyIn" Value="0.0842536458974815" Unit="second" />
+    <Counter Name="CQO - Search - Init" Value="4.76122051464517E-05" Unit="second" />
+    <Counter Name="CQO - Search - NNF" Value="0.000608694958010026" Unit="second" />
+    <Counter Name="CQO - Search - PreOptimization" Value="0.00033385564207482" Unit="second" />
+    <Counter Name="CQO - Search - Simplification" Value="0.00728808862370506" Unit="second" />
     <Counter Name="CQO - Search - Join Reordering" Value="2.85103024829052E-07" Unit="second" />
-    <Counter Name="CQO - Search - Expression Sharing" Value="0.00133000561082753" Unit="second" />
-    <Counter Name="CQO - Search - Optimization" Value="0.0178768149658561" Unit="second" />
-    <Counter Name="CQO - Search - Subtotal" Value="0.0534348642225355" Unit="second" />
-    <Counter Name="CQO - Showplan" Value="0.012985302368864" Unit="second" />
-    <Counter Name="CQO - Stage Generation" Value="0.287065959155" Unit="second" />
-    <Counter Name="CQO - PostOptimization" Value="0.00451432129514321" Unit="second" />
-    <Counter Name="Working Set" Value="363568" Unit="KB" />
-    <Counter Name="Peak Working Set" Value="479432" Unit="KB" />
-    <Counter Name="Private Memory" Value="350156" Unit="KB" />
-    <Counter Name="Virtual Memory" Value="1017976" Unit="KB" />
-    <Counter Name="Total CPU" Value="154.96875" Unit="second" />
-    <Counter Name="CQO - Total" Value="0.505357085836538" Unit="second" />
+    <Counter Name="CQO - Search - Expression Sharing" Value="0.000697361998731862" Unit="second" />
+    <Counter Name="CQO - Search - Optimization" Value="0.0103398314014752" Unit="second" />
+    <Counter Name="CQO - Search - Subtotal" Value="0.0384988869577911" Unit="second" />
+    <Counter Name="CQO - Showplan" Value="0.00887326144175459" Unit="second" />
+    <Counter Name="CQO - Stage Generation" Value="0.175281339664901" Unit="second" />
+    <Counter Name="CQO - PostOptimization" Value="0.0116384756795716" Unit="second" />
+    <Counter Name="Working Set" Value="160312" Unit="KB" />
+    <Counter Name="Peak Working Set" Value="385060" Unit="KB" />
+    <Counter Name="Private Memory" Value="308008" Unit="KB" />
+    <Counter Name="Virtual Memory" Value="958864" Unit="KB" />
+    <Counter Name="Total CPU" Value="36.578125" Unit="second" />
+    <Counter Name="CQO - Total" Value="0.353250915750916" Unit="second" />
   </ScopeCounters>
 </CSSRelatedInfo>

@@ -2,6 +2,18 @@
   "version": 3,
   "targets": {
     "UAP,Version=v10.0.10586": {
+      "Csv/1.0.31": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "1.6.0"
+        },
+        "compile": {
+          "lib/netstandard1.0/Csv.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.0/Csv.dll": {}
+        }
+      },
       "log4net/2.0.8": {
         "type": "package",
         "dependencies": {
@@ -360,6 +372,55 @@
         },
         "compile": {
           "ref/netstandard1.3/Microsoft.Win32.Primitives.dll": {}
+        }
+      },
+      "NETStandard.Library/1.6.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "1.0.1",
+          "Microsoft.Win32.Primitives": "4.0.1",
+          "System.AppContext": "4.1.0",
+          "System.Collections": "4.0.11",
+          "System.Collections.Concurrent": "4.0.12",
+          "System.Console": "4.0.0",
+          "System.Diagnostics.Debug": "4.0.11",
+          "System.Diagnostics.Tools": "4.0.1",
+          "System.Diagnostics.Tracing": "4.1.0",
+          "System.Globalization": "4.0.11",
+          "System.Globalization.Calendars": "4.0.1",
+          "System.IO": "4.1.0",
+          "System.IO.Compression": "4.1.0",
+          "System.IO.Compression.ZipFile": "4.0.1",
+          "System.IO.FileSystem": "4.0.1",
+          "System.IO.FileSystem.Primitives": "4.0.1",
+          "System.Linq": "4.1.0",
+          "System.Linq.Expressions": "4.1.0",
+          "System.Net.Http": "4.1.0",
+          "System.Net.Primitives": "4.0.11",
+          "System.Net.Sockets": "4.1.0",
+          "System.ObjectModel": "4.0.12",
+          "System.Reflection": "4.1.0",
+          "System.Reflection.Extensions": "4.0.1",
+          "System.Reflection.Primitives": "4.0.1",
+          "System.Resources.ResourceManager": "4.0.1",
+          "System.Runtime": "4.1.0",
+          "System.Runtime.Extensions": "4.1.0",
+          "System.Runtime.Handles": "4.0.1",
+          "System.Runtime.InteropServices": "4.1.0",
+          "System.Runtime.InteropServices.RuntimeInformation": "4.0.0",
+          "System.Runtime.Numerics": "4.0.1",
+          "System.Security.Cryptography.Algorithms": "4.2.0",
+          "System.Security.Cryptography.Encoding": "4.0.0",
+          "System.Security.Cryptography.Primitives": "4.0.0",
+          "System.Security.Cryptography.X509Certificates": "4.1.0",
+          "System.Text.Encoding": "4.0.11",
+          "System.Text.Encoding.Extensions": "4.0.11",
+          "System.Text.RegularExpressions": "4.1.0",
+          "System.Threading": "4.0.11",
+          "System.Threading.Tasks": "4.0.11",
+          "System.Threading.Timer": "4.0.1",
+          "System.Xml.ReaderWriter": "4.0.11",
+          "System.Xml.XDocument": "4.0.11"
         }
       },
       "Newtonsoft.Json/9.0.1": {
@@ -2420,6 +2481,18 @@
       }
     },
     "UAP,Version=v10.0.10586/win10-arm": {
+      "Csv/1.0.31": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "1.6.0"
+        },
+        "compile": {
+          "lib/netstandard1.0/Csv.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.0/Csv.dll": {}
+        }
+      },
       "log4net/2.0.8": {
         "type": "package",
         "dependencies": {
@@ -2727,6 +2800,55 @@
         },
         "compile": {
           "ref/netstandard1.3/Microsoft.Win32.Primitives.dll": {}
+        }
+      },
+      "NETStandard.Library/1.6.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "1.0.1",
+          "Microsoft.Win32.Primitives": "4.0.1",
+          "System.AppContext": "4.1.0",
+          "System.Collections": "4.0.11",
+          "System.Collections.Concurrent": "4.0.12",
+          "System.Console": "4.0.0",
+          "System.Diagnostics.Debug": "4.0.11",
+          "System.Diagnostics.Tools": "4.0.1",
+          "System.Diagnostics.Tracing": "4.1.0",
+          "System.Globalization": "4.0.11",
+          "System.Globalization.Calendars": "4.0.1",
+          "System.IO": "4.1.0",
+          "System.IO.Compression": "4.1.0",
+          "System.IO.Compression.ZipFile": "4.0.1",
+          "System.IO.FileSystem": "4.0.1",
+          "System.IO.FileSystem.Primitives": "4.0.1",
+          "System.Linq": "4.1.0",
+          "System.Linq.Expressions": "4.1.0",
+          "System.Net.Http": "4.1.0",
+          "System.Net.Primitives": "4.0.11",
+          "System.Net.Sockets": "4.1.0",
+          "System.ObjectModel": "4.0.12",
+          "System.Reflection": "4.1.0",
+          "System.Reflection.Extensions": "4.0.1",
+          "System.Reflection.Primitives": "4.0.1",
+          "System.Resources.ResourceManager": "4.0.1",
+          "System.Runtime": "4.1.0",
+          "System.Runtime.Extensions": "4.1.0",
+          "System.Runtime.Handles": "4.0.1",
+          "System.Runtime.InteropServices": "4.1.0",
+          "System.Runtime.InteropServices.RuntimeInformation": "4.0.0",
+          "System.Runtime.Numerics": "4.0.1",
+          "System.Security.Cryptography.Algorithms": "4.2.0",
+          "System.Security.Cryptography.Encoding": "4.0.0",
+          "System.Security.Cryptography.Primitives": "4.0.0",
+          "System.Security.Cryptography.X509Certificates": "4.1.0",
+          "System.Text.Encoding": "4.0.11",
+          "System.Text.Encoding.Extensions": "4.0.11",
+          "System.Text.RegularExpressions": "4.1.0",
+          "System.Threading": "4.0.11",
+          "System.Threading.Tasks": "4.0.11",
+          "System.Threading.Timer": "4.0.1",
+          "System.Xml.ReaderWriter": "4.0.11",
+          "System.Xml.XDocument": "4.0.11"
         }
       },
       "Newtonsoft.Json/9.0.1": {
@@ -3720,21 +3842,21 @@
           "runtimes/win/lib/netcore50/System.Net.Http.Rtc.dll": {}
         }
       },
-      "System.Net.NameResolution/4.0.0": {
+      "System.Net.NameResolution/4.3.0": {
         "type": "package",
         "dependencies": {
-          "Microsoft.NETCore.Platforms": "1.0.1",
-          "System.Collections": "4.0.11",
-          "System.Diagnostics.Tracing": "4.1.0",
-          "System.Globalization": "4.0.11",
-          "System.Net.Primitives": "4.0.11",
-          "System.Resources.ResourceManager": "4.0.1",
-          "System.Runtime": "4.1.0",
-          "System.Runtime.Extensions": "4.1.0",
-          "System.Runtime.Handles": "4.0.1",
-          "System.Runtime.InteropServices": "4.1.0",
-          "System.Threading": "4.0.11",
-          "System.Threading.Tasks": "4.0.11"
+          "Microsoft.NETCore.Platforms": "1.1.0",
+          "System.Collections": "4.3.0",
+          "System.Diagnostics.Tracing": "4.3.0",
+          "System.Globalization": "4.3.0",
+          "System.Net.Primitives": "4.3.0",
+          "System.Resources.ResourceManager": "4.3.0",
+          "System.Runtime": "4.3.0",
+          "System.Runtime.Extensions": "4.3.0",
+          "System.Runtime.Handles": "4.3.0",
+          "System.Runtime.InteropServices": "4.3.0",
+          "System.Threading": "4.3.0",
+          "System.Threading.Tasks": "4.3.0"
         },
         "compile": {
           "ref/netstandard1.3/System.Net.NameResolution.dll": {}
@@ -4898,6 +5020,18 @@
       }
     },
     "UAP,Version=v10.0.10586/win10-arm-aot": {
+      "Csv/1.0.31": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "1.6.0"
+        },
+        "compile": {
+          "lib/netstandard1.0/Csv.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.0/Csv.dll": {}
+        }
+      },
       "log4net/2.0.8": {
         "type": "package",
         "dependencies": {
@@ -5206,6 +5340,55 @@
         },
         "compile": {
           "ref/netstandard1.3/Microsoft.Win32.Primitives.dll": {}
+        }
+      },
+      "NETStandard.Library/1.6.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "1.0.1",
+          "Microsoft.Win32.Primitives": "4.0.1",
+          "System.AppContext": "4.1.0",
+          "System.Collections": "4.0.11",
+          "System.Collections.Concurrent": "4.0.12",
+          "System.Console": "4.0.0",
+          "System.Diagnostics.Debug": "4.0.11",
+          "System.Diagnostics.Tools": "4.0.1",
+          "System.Diagnostics.Tracing": "4.1.0",
+          "System.Globalization": "4.0.11",
+          "System.Globalization.Calendars": "4.0.1",
+          "System.IO": "4.1.0",
+          "System.IO.Compression": "4.1.0",
+          "System.IO.Compression.ZipFile": "4.0.1",
+          "System.IO.FileSystem": "4.0.1",
+          "System.IO.FileSystem.Primitives": "4.0.1",
+          "System.Linq": "4.1.0",
+          "System.Linq.Expressions": "4.1.0",
+          "System.Net.Http": "4.1.0",
+          "System.Net.Primitives": "4.0.11",
+          "System.Net.Sockets": "4.1.0",
+          "System.ObjectModel": "4.0.12",
+          "System.Reflection": "4.1.0",
+          "System.Reflection.Extensions": "4.0.1",
+          "System.Reflection.Primitives": "4.0.1",
+          "System.Resources.ResourceManager": "4.0.1",
+          "System.Runtime": "4.1.0",
+          "System.Runtime.Extensions": "4.1.0",
+          "System.Runtime.Handles": "4.0.1",
+          "System.Runtime.InteropServices": "4.1.0",
+          "System.Runtime.InteropServices.RuntimeInformation": "4.0.0",
+          "System.Runtime.Numerics": "4.0.1",
+          "System.Security.Cryptography.Algorithms": "4.2.0",
+          "System.Security.Cryptography.Encoding": "4.0.0",
+          "System.Security.Cryptography.Primitives": "4.0.0",
+          "System.Security.Cryptography.X509Certificates": "4.1.0",
+          "System.Text.Encoding": "4.0.11",
+          "System.Text.Encoding.Extensions": "4.0.11",
+          "System.Text.RegularExpressions": "4.1.0",
+          "System.Threading": "4.0.11",
+          "System.Threading.Tasks": "4.0.11",
+          "System.Threading.Timer": "4.0.1",
+          "System.Xml.ReaderWriter": "4.0.11",
+          "System.Xml.XDocument": "4.0.11"
         }
       },
       "Newtonsoft.Json/9.0.1": {
@@ -6234,21 +6417,21 @@
           "runtimes/win/lib/netcore50/System.Net.Http.Rtc.dll": {}
         }
       },
-      "System.Net.NameResolution/4.0.0": {
+      "System.Net.NameResolution/4.3.0": {
         "type": "package",
         "dependencies": {
-          "Microsoft.NETCore.Platforms": "1.0.1",
-          "System.Collections": "4.0.11",
-          "System.Diagnostics.Tracing": "4.1.0",
-          "System.Globalization": "4.0.11",
-          "System.Net.Primitives": "4.0.11",
-          "System.Resources.ResourceManager": "4.0.1",
-          "System.Runtime": "4.1.0",
-          "System.Runtime.Extensions": "4.1.0",
-          "System.Runtime.Handles": "4.0.1",
-          "System.Runtime.InteropServices": "4.1.0",
-          "System.Threading": "4.0.11",
-          "System.Threading.Tasks": "4.0.11"
+          "Microsoft.NETCore.Platforms": "1.1.0",
+          "System.Collections": "4.3.0",
+          "System.Diagnostics.Tracing": "4.3.0",
+          "System.Globalization": "4.3.0",
+          "System.Net.Primitives": "4.3.0",
+          "System.Resources.ResourceManager": "4.3.0",
+          "System.Runtime": "4.3.0",
+          "System.Runtime.Extensions": "4.3.0",
+          "System.Runtime.Handles": "4.3.0",
+          "System.Runtime.InteropServices": "4.3.0",
+          "System.Threading": "4.3.0",
+          "System.Threading.Tasks": "4.3.0"
         },
         "compile": {
           "ref/netstandard1.3/System.Net.NameResolution.dll": {}
@@ -7412,6 +7595,18 @@
       }
     },
     "UAP,Version=v10.0.10586/win10-arm64-aot": {
+      "Csv/1.0.31": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "1.6.0"
+        },
+        "compile": {
+          "lib/netstandard1.0/Csv.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.0/Csv.dll": {}
+        }
+      },
       "log4net/2.0.8": {
         "type": "package",
         "dependencies": {
@@ -7718,6 +7913,55 @@
         },
         "compile": {
           "ref/netstandard1.3/Microsoft.Win32.Primitives.dll": {}
+        }
+      },
+      "NETStandard.Library/1.6.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "1.0.1",
+          "Microsoft.Win32.Primitives": "4.0.1",
+          "System.AppContext": "4.1.0",
+          "System.Collections": "4.0.11",
+          "System.Collections.Concurrent": "4.0.12",
+          "System.Console": "4.0.0",
+          "System.Diagnostics.Debug": "4.0.11",
+          "System.Diagnostics.Tools": "4.0.1",
+          "System.Diagnostics.Tracing": "4.1.0",
+          "System.Globalization": "4.0.11",
+          "System.Globalization.Calendars": "4.0.1",
+          "System.IO": "4.1.0",
+          "System.IO.Compression": "4.1.0",
+          "System.IO.Compression.ZipFile": "4.0.1",
+          "System.IO.FileSystem": "4.0.1",
+          "System.IO.FileSystem.Primitives": "4.0.1",
+          "System.Linq": "4.1.0",
+          "System.Linq.Expressions": "4.1.0",
+          "System.Net.Http": "4.1.0",
+          "System.Net.Primitives": "4.0.11",
+          "System.Net.Sockets": "4.1.0",
+          "System.ObjectModel": "4.0.12",
+          "System.Reflection": "4.1.0",
+          "System.Reflection.Extensions": "4.0.1",
+          "System.Reflection.Primitives": "4.0.1",
+          "System.Resources.ResourceManager": "4.0.1",
+          "System.Runtime": "4.1.0",
+          "System.Runtime.Extensions": "4.1.0",
+          "System.Runtime.Handles": "4.0.1",
+          "System.Runtime.InteropServices": "4.1.0",
+          "System.Runtime.InteropServices.RuntimeInformation": "4.0.0",
+          "System.Runtime.Numerics": "4.0.1",
+          "System.Security.Cryptography.Algorithms": "4.2.0",
+          "System.Security.Cryptography.Encoding": "4.0.0",
+          "System.Security.Cryptography.Primitives": "4.0.0",
+          "System.Security.Cryptography.X509Certificates": "4.1.0",
+          "System.Text.Encoding": "4.0.11",
+          "System.Text.Encoding.Extensions": "4.0.11",
+          "System.Text.RegularExpressions": "4.1.0",
+          "System.Threading": "4.0.11",
+          "System.Threading.Tasks": "4.0.11",
+          "System.Threading.Timer": "4.0.1",
+          "System.Xml.ReaderWriter": "4.0.11",
+          "System.Xml.XDocument": "4.0.11"
         }
       },
       "Newtonsoft.Json/9.0.1": {
@@ -8102,10 +8346,10 @@
           "runtimes/aot/lib/netcore50/System.Runtime.Extensions.dll": {}
         }
       },
-      "runtime.win10-arm64.runtime.native.System.IO.Compression/4.3.1": {
+      "runtime.win10-arm64.runtime.native.System.IO.Compression/4.3.0": {
         "type": "package",
         "native": {
-          "runtimes/win10-arm64/native/clrcompression.dll": {}
+          "runtimes/win10-arm64/native/_._": {}
         }
       },
       "runtime.win7.System.Private.Uri/4.3.0": {
@@ -8728,21 +8972,21 @@
           "runtimes/win/lib/netcore50/System.Net.Http.Rtc.dll": {}
         }
       },
-      "System.Net.NameResolution/4.0.0": {
+      "System.Net.NameResolution/4.3.0": {
         "type": "package",
         "dependencies": {
-          "Microsoft.NETCore.Platforms": "1.0.1",
-          "System.Collections": "4.0.11",
-          "System.Diagnostics.Tracing": "4.1.0",
-          "System.Globalization": "4.0.11",
-          "System.Net.Primitives": "4.0.11",
-          "System.Resources.ResourceManager": "4.0.1",
-          "System.Runtime": "4.1.0",
-          "System.Runtime.Extensions": "4.1.0",
-          "System.Runtime.Handles": "4.0.1",
-          "System.Runtime.InteropServices": "4.1.0",
-          "System.Threading": "4.0.11",
-          "System.Threading.Tasks": "4.0.11"
+          "Microsoft.NETCore.Platforms": "1.1.0",
+          "System.Collections": "4.3.0",
+          "System.Diagnostics.Tracing": "4.3.0",
+          "System.Globalization": "4.3.0",
+          "System.Net.Primitives": "4.3.0",
+          "System.Resources.ResourceManager": "4.3.0",
+          "System.Runtime": "4.3.0",
+          "System.Runtime.Extensions": "4.3.0",
+          "System.Runtime.Handles": "4.3.0",
+          "System.Runtime.InteropServices": "4.3.0",
+          "System.Threading": "4.3.0",
+          "System.Threading.Tasks": "4.3.0"
         },
         "compile": {
           "ref/netstandard1.3/System.Net.NameResolution.dll": {}
@@ -9906,6 +10150,18 @@
       }
     },
     "UAP,Version=v10.0.10586/win10-x64": {
+      "Csv/1.0.31": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "1.6.0"
+        },
+        "compile": {
+          "lib/netstandard1.0/Csv.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.0/Csv.dll": {}
+        }
+      },
       "log4net/2.0.8": {
         "type": "package",
         "dependencies": {
@@ -10216,6 +10472,55 @@
         },
         "compile": {
           "ref/netstandard1.3/Microsoft.Win32.Primitives.dll": {}
+        }
+      },
+      "NETStandard.Library/1.6.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "1.0.1",
+          "Microsoft.Win32.Primitives": "4.0.1",
+          "System.AppContext": "4.1.0",
+          "System.Collections": "4.0.11",
+          "System.Collections.Concurrent": "4.0.12",
+          "System.Console": "4.0.0",
+          "System.Diagnostics.Debug": "4.0.11",
+          "System.Diagnostics.Tools": "4.0.1",
+          "System.Diagnostics.Tracing": "4.1.0",
+          "System.Globalization": "4.0.11",
+          "System.Globalization.Calendars": "4.0.1",
+          "System.IO": "4.1.0",
+          "System.IO.Compression": "4.1.0",
+          "System.IO.Compression.ZipFile": "4.0.1",
+          "System.IO.FileSystem": "4.0.1",
+          "System.IO.FileSystem.Primitives": "4.0.1",
+          "System.Linq": "4.1.0",
+          "System.Linq.Expressions": "4.1.0",
+          "System.Net.Http": "4.1.0",
+          "System.Net.Primitives": "4.0.11",
+          "System.Net.Sockets": "4.1.0",
+          "System.ObjectModel": "4.0.12",
+          "System.Reflection": "4.1.0",
+          "System.Reflection.Extensions": "4.0.1",
+          "System.Reflection.Primitives": "4.0.1",
+          "System.Resources.ResourceManager": "4.0.1",
+          "System.Runtime": "4.1.0",
+          "System.Runtime.Extensions": "4.1.0",
+          "System.Runtime.Handles": "4.0.1",
+          "System.Runtime.InteropServices": "4.1.0",
+          "System.Runtime.InteropServices.RuntimeInformation": "4.0.0",
+          "System.Runtime.Numerics": "4.0.1",
+          "System.Security.Cryptography.Algorithms": "4.2.0",
+          "System.Security.Cryptography.Encoding": "4.0.0",
+          "System.Security.Cryptography.Primitives": "4.0.0",
+          "System.Security.Cryptography.X509Certificates": "4.1.0",
+          "System.Text.Encoding": "4.0.11",
+          "System.Text.Encoding.Extensions": "4.0.11",
+          "System.Text.RegularExpressions": "4.1.0",
+          "System.Threading": "4.0.11",
+          "System.Threading.Tasks": "4.0.11",
+          "System.Threading.Timer": "4.0.1",
+          "System.Xml.ReaderWriter": "4.0.11",
+          "System.Xml.XDocument": "4.0.11"
         }
       },
       "Newtonsoft.Json/9.0.1": {
@@ -11215,21 +11520,21 @@
           "runtimes/win/lib/netcore50/System.Net.Http.Rtc.dll": {}
         }
       },
-      "System.Net.NameResolution/4.0.0": {
+      "System.Net.NameResolution/4.3.0": {
         "type": "package",
         "dependencies": {
-          "Microsoft.NETCore.Platforms": "1.0.1",
-          "System.Collections": "4.0.11",
-          "System.Diagnostics.Tracing": "4.1.0",
-          "System.Globalization": "4.0.11",
-          "System.Net.Primitives": "4.0.11",
-          "System.Resources.ResourceManager": "4.0.1",
-          "System.Runtime": "4.1.0",
-          "System.Runtime.Extensions": "4.1.0",
-          "System.Runtime.Handles": "4.0.1",
-          "System.Runtime.InteropServices": "4.1.0",
-          "System.Threading": "4.0.11",
-          "System.Threading.Tasks": "4.0.11"
+          "Microsoft.NETCore.Platforms": "1.1.0",
+          "System.Collections": "4.3.0",
+          "System.Diagnostics.Tracing": "4.3.0",
+          "System.Globalization": "4.3.0",
+          "System.Net.Primitives": "4.3.0",
+          "System.Resources.ResourceManager": "4.3.0",
+          "System.Runtime": "4.3.0",
+          "System.Runtime.Extensions": "4.3.0",
+          "System.Runtime.Handles": "4.3.0",
+          "System.Runtime.InteropServices": "4.3.0",
+          "System.Threading": "4.3.0",
+          "System.Threading.Tasks": "4.3.0"
         },
         "compile": {
           "ref/netstandard1.3/System.Net.NameResolution.dll": {}
@@ -12393,6 +12698,18 @@
       }
     },
     "UAP,Version=v10.0.10586/win10-x64-aot": {
+      "Csv/1.0.31": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "1.6.0"
+        },
+        "compile": {
+          "lib/netstandard1.0/Csv.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.0/Csv.dll": {}
+        }
+      },
       "log4net/2.0.8": {
         "type": "package",
         "dependencies": {
@@ -12704,6 +13021,55 @@
         },
         "compile": {
           "ref/netstandard1.3/Microsoft.Win32.Primitives.dll": {}
+        }
+      },
+      "NETStandard.Library/1.6.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "1.0.1",
+          "Microsoft.Win32.Primitives": "4.0.1",
+          "System.AppContext": "4.1.0",
+          "System.Collections": "4.0.11",
+          "System.Collections.Concurrent": "4.0.12",
+          "System.Console": "4.0.0",
+          "System.Diagnostics.Debug": "4.0.11",
+          "System.Diagnostics.Tools": "4.0.1",
+          "System.Diagnostics.Tracing": "4.1.0",
+          "System.Globalization": "4.0.11",
+          "System.Globalization.Calendars": "4.0.1",
+          "System.IO": "4.1.0",
+          "System.IO.Compression": "4.1.0",
+          "System.IO.Compression.ZipFile": "4.0.1",
+          "System.IO.FileSystem": "4.0.1",
+          "System.IO.FileSystem.Primitives": "4.0.1",
+          "System.Linq": "4.1.0",
+          "System.Linq.Expressions": "4.1.0",
+          "System.Net.Http": "4.1.0",
+          "System.Net.Primitives": "4.0.11",
+          "System.Net.Sockets": "4.1.0",
+          "System.ObjectModel": "4.0.12",
+          "System.Reflection": "4.1.0",
+          "System.Reflection.Extensions": "4.0.1",
+          "System.Reflection.Primitives": "4.0.1",
+          "System.Resources.ResourceManager": "4.0.1",
+          "System.Runtime": "4.1.0",
+          "System.Runtime.Extensions": "4.1.0",
+          "System.Runtime.Handles": "4.0.1",
+          "System.Runtime.InteropServices": "4.1.0",
+          "System.Runtime.InteropServices.RuntimeInformation": "4.0.0",
+          "System.Runtime.Numerics": "4.0.1",
+          "System.Security.Cryptography.Algorithms": "4.2.0",
+          "System.Security.Cryptography.Encoding": "4.0.0",
+          "System.Security.Cryptography.Primitives": "4.0.0",
+          "System.Security.Cryptography.X509Certificates": "4.1.0",
+          "System.Text.Encoding": "4.0.11",
+          "System.Text.Encoding.Extensions": "4.0.11",
+          "System.Text.RegularExpressions": "4.1.0",
+          "System.Threading": "4.0.11",
+          "System.Threading.Tasks": "4.0.11",
+          "System.Threading.Timer": "4.0.1",
+          "System.Xml.ReaderWriter": "4.0.11",
+          "System.Xml.XDocument": "4.0.11"
         }
       },
       "Newtonsoft.Json/9.0.1": {
@@ -13738,21 +14104,21 @@
           "runtimes/win/lib/netcore50/System.Net.Http.Rtc.dll": {}
         }
       },
-      "System.Net.NameResolution/4.0.0": {
+      "System.Net.NameResolution/4.3.0": {
         "type": "package",
         "dependencies": {
-          "Microsoft.NETCore.Platforms": "1.0.1",
-          "System.Collections": "4.0.11",
-          "System.Diagnostics.Tracing": "4.1.0",
-          "System.Globalization": "4.0.11",
-          "System.Net.Primitives": "4.0.11",
-          "System.Resources.ResourceManager": "4.0.1",
-          "System.Runtime": "4.1.0",
-          "System.Runtime.Extensions": "4.1.0",
-          "System.Runtime.Handles": "4.0.1",
-          "System.Runtime.InteropServices": "4.1.0",
-          "System.Threading": "4.0.11",
-          "System.Threading.Tasks": "4.0.11"
+          "Microsoft.NETCore.Platforms": "1.1.0",
+          "System.Collections": "4.3.0",
+          "System.Diagnostics.Tracing": "4.3.0",
+          "System.Globalization": "4.3.0",
+          "System.Net.Primitives": "4.3.0",
+          "System.Resources.ResourceManager": "4.3.0",
+          "System.Runtime": "4.3.0",
+          "System.Runtime.Extensions": "4.3.0",
+          "System.Runtime.Handles": "4.3.0",
+          "System.Runtime.InteropServices": "4.3.0",
+          "System.Threading": "4.3.0",
+          "System.Threading.Tasks": "4.3.0"
         },
         "compile": {
           "ref/netstandard1.3/System.Net.NameResolution.dll": {}
@@ -14916,6 +15282,18 @@
       }
     },
     "UAP,Version=v10.0.10586/win10-x86": {
+      "Csv/1.0.31": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "1.6.0"
+        },
+        "compile": {
+          "lib/netstandard1.0/Csv.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.0/Csv.dll": {}
+        }
+      },
       "log4net/2.0.8": {
         "type": "package",
         "dependencies": {
@@ -15226,6 +15604,55 @@
         },
         "compile": {
           "ref/netstandard1.3/Microsoft.Win32.Primitives.dll": {}
+        }
+      },
+      "NETStandard.Library/1.6.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "1.0.1",
+          "Microsoft.Win32.Primitives": "4.0.1",
+          "System.AppContext": "4.1.0",
+          "System.Collections": "4.0.11",
+          "System.Collections.Concurrent": "4.0.12",
+          "System.Console": "4.0.0",
+          "System.Diagnostics.Debug": "4.0.11",
+          "System.Diagnostics.Tools": "4.0.1",
+          "System.Diagnostics.Tracing": "4.1.0",
+          "System.Globalization": "4.0.11",
+          "System.Globalization.Calendars": "4.0.1",
+          "System.IO": "4.1.0",
+          "System.IO.Compression": "4.1.0",
+          "System.IO.Compression.ZipFile": "4.0.1",
+          "System.IO.FileSystem": "4.0.1",
+          "System.IO.FileSystem.Primitives": "4.0.1",
+          "System.Linq": "4.1.0",
+          "System.Linq.Expressions": "4.1.0",
+          "System.Net.Http": "4.1.0",
+          "System.Net.Primitives": "4.0.11",
+          "System.Net.Sockets": "4.1.0",
+          "System.ObjectModel": "4.0.12",
+          "System.Reflection": "4.1.0",
+          "System.Reflection.Extensions": "4.0.1",
+          "System.Reflection.Primitives": "4.0.1",
+          "System.Resources.ResourceManager": "4.0.1",
+          "System.Runtime": "4.1.0",
+          "System.Runtime.Extensions": "4.1.0",
+          "System.Runtime.Handles": "4.0.1",
+          "System.Runtime.InteropServices": "4.1.0",
+          "System.Runtime.InteropServices.RuntimeInformation": "4.0.0",
+          "System.Runtime.Numerics": "4.0.1",
+          "System.Security.Cryptography.Algorithms": "4.2.0",
+          "System.Security.Cryptography.Encoding": "4.0.0",
+          "System.Security.Cryptography.Primitives": "4.0.0",
+          "System.Security.Cryptography.X509Certificates": "4.1.0",
+          "System.Text.Encoding": "4.0.11",
+          "System.Text.Encoding.Extensions": "4.0.11",
+          "System.Text.RegularExpressions": "4.1.0",
+          "System.Threading": "4.0.11",
+          "System.Threading.Tasks": "4.0.11",
+          "System.Threading.Timer": "4.0.1",
+          "System.Xml.ReaderWriter": "4.0.11",
+          "System.Xml.XDocument": "4.0.11"
         }
       },
       "Newtonsoft.Json/9.0.1": {
@@ -16225,21 +16652,21 @@
           "runtimes/win/lib/netcore50/System.Net.Http.Rtc.dll": {}
         }
       },
-      "System.Net.NameResolution/4.0.0": {
+      "System.Net.NameResolution/4.3.0": {
         "type": "package",
         "dependencies": {
-          "Microsoft.NETCore.Platforms": "1.0.1",
-          "System.Collections": "4.0.11",
-          "System.Diagnostics.Tracing": "4.1.0",
-          "System.Globalization": "4.0.11",
-          "System.Net.Primitives": "4.0.11",
-          "System.Resources.ResourceManager": "4.0.1",
-          "System.Runtime": "4.1.0",
-          "System.Runtime.Extensions": "4.1.0",
-          "System.Runtime.Handles": "4.0.1",
-          "System.Runtime.InteropServices": "4.1.0",
-          "System.Threading": "4.0.11",
-          "System.Threading.Tasks": "4.0.11"
+          "Microsoft.NETCore.Platforms": "1.1.0",
+          "System.Collections": "4.3.0",
+          "System.Diagnostics.Tracing": "4.3.0",
+          "System.Globalization": "4.3.0",
+          "System.Net.Primitives": "4.3.0",
+          "System.Resources.ResourceManager": "4.3.0",
+          "System.Runtime": "4.3.0",
+          "System.Runtime.Extensions": "4.3.0",
+          "System.Runtime.Handles": "4.3.0",
+          "System.Runtime.InteropServices": "4.3.0",
+          "System.Threading": "4.3.0",
+          "System.Threading.Tasks": "4.3.0"
         },
         "compile": {
           "ref/netstandard1.3/System.Net.NameResolution.dll": {}
@@ -17403,6 +17830,18 @@
       }
     },
     "UAP,Version=v10.0.10586/win10-x86-aot": {
+      "Csv/1.0.31": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "1.6.0"
+        },
+        "compile": {
+          "lib/netstandard1.0/Csv.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.0/Csv.dll": {}
+        }
+      },
       "log4net/2.0.8": {
         "type": "package",
         "dependencies": {
@@ -17714,6 +18153,55 @@
         },
         "compile": {
           "ref/netstandard1.3/Microsoft.Win32.Primitives.dll": {}
+        }
+      },
+      "NETStandard.Library/1.6.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "1.0.1",
+          "Microsoft.Win32.Primitives": "4.0.1",
+          "System.AppContext": "4.1.0",
+          "System.Collections": "4.0.11",
+          "System.Collections.Concurrent": "4.0.12",
+          "System.Console": "4.0.0",
+          "System.Diagnostics.Debug": "4.0.11",
+          "System.Diagnostics.Tools": "4.0.1",
+          "System.Diagnostics.Tracing": "4.1.0",
+          "System.Globalization": "4.0.11",
+          "System.Globalization.Calendars": "4.0.1",
+          "System.IO": "4.1.0",
+          "System.IO.Compression": "4.1.0",
+          "System.IO.Compression.ZipFile": "4.0.1",
+          "System.IO.FileSystem": "4.0.1",
+          "System.IO.FileSystem.Primitives": "4.0.1",
+          "System.Linq": "4.1.0",
+          "System.Linq.Expressions": "4.1.0",
+          "System.Net.Http": "4.1.0",
+          "System.Net.Primitives": "4.0.11",
+          "System.Net.Sockets": "4.1.0",
+          "System.ObjectModel": "4.0.12",
+          "System.Reflection": "4.1.0",
+          "System.Reflection.Extensions": "4.0.1",
+          "System.Reflection.Primitives": "4.0.1",
+          "System.Resources.ResourceManager": "4.0.1",
+          "System.Runtime": "4.1.0",
+          "System.Runtime.Extensions": "4.1.0",
+          "System.Runtime.Handles": "4.0.1",
+          "System.Runtime.InteropServices": "4.1.0",
+          "System.Runtime.InteropServices.RuntimeInformation": "4.0.0",
+          "System.Runtime.Numerics": "4.0.1",
+          "System.Security.Cryptography.Algorithms": "4.2.0",
+          "System.Security.Cryptography.Encoding": "4.0.0",
+          "System.Security.Cryptography.Primitives": "4.0.0",
+          "System.Security.Cryptography.X509Certificates": "4.1.0",
+          "System.Text.Encoding": "4.0.11",
+          "System.Text.Encoding.Extensions": "4.0.11",
+          "System.Text.RegularExpressions": "4.1.0",
+          "System.Threading": "4.0.11",
+          "System.Threading.Tasks": "4.0.11",
+          "System.Threading.Timer": "4.0.1",
+          "System.Xml.ReaderWriter": "4.0.11",
+          "System.Xml.XDocument": "4.0.11"
         }
       },
       "Newtonsoft.Json/9.0.1": {
@@ -18748,21 +19236,21 @@
           "runtimes/win/lib/netcore50/System.Net.Http.Rtc.dll": {}
         }
       },
-      "System.Net.NameResolution/4.0.0": {
+      "System.Net.NameResolution/4.3.0": {
         "type": "package",
         "dependencies": {
-          "Microsoft.NETCore.Platforms": "1.0.1",
-          "System.Collections": "4.0.11",
-          "System.Diagnostics.Tracing": "4.1.0",
-          "System.Globalization": "4.0.11",
-          "System.Net.Primitives": "4.0.11",
-          "System.Resources.ResourceManager": "4.0.1",
-          "System.Runtime": "4.1.0",
-          "System.Runtime.Extensions": "4.1.0",
-          "System.Runtime.Handles": "4.0.1",
-          "System.Runtime.InteropServices": "4.1.0",
-          "System.Threading": "4.0.11",
-          "System.Threading.Tasks": "4.0.11"
+          "Microsoft.NETCore.Platforms": "1.1.0",
+          "System.Collections": "4.3.0",
+          "System.Diagnostics.Tracing": "4.3.0",
+          "System.Globalization": "4.3.0",
+          "System.Net.Primitives": "4.3.0",
+          "System.Resources.ResourceManager": "4.3.0",
+          "System.Runtime": "4.3.0",
+          "System.Runtime.Extensions": "4.3.0",
+          "System.Runtime.Handles": "4.3.0",
+          "System.Runtime.InteropServices": "4.3.0",
+          "System.Threading": "4.3.0",
+          "System.Threading.Tasks": "4.3.0"
         },
         "compile": {
           "ref/netstandard1.3/System.Net.NameResolution.dll": {}
@@ -19927,6 +20415,19 @@
     }
   },
   "libraries": {
+    "Csv/1.0.31": {
+      "sha512": "3EBPR5/S4GRZog19LI3F/cOKskccG79mjhNLG0WcZcp3IftpJQn0HikgGoCHg5fVuE5wgbgiY6rpAhk10g9A7Q==",
+      "type": "package",
+      "path": "csv/1.0.31",
+      "files": [
+        "csv.1.0.31.nupkg.sha512",
+        "csv.nuspec",
+        "lib/net40/Csv.dll",
+        "lib/net40/Csv.xml",
+        "lib/netstandard1.0/Csv.dll",
+        "lib/netstandard1.0/Csv.xml"
+      ]
+    },
     "log4net/2.0.8": {
       "sha512": "N41MQGHZImiCfn0cUuSBjZxrcNfIQCuCgQP0rpgB3J/NWponEh3lc1LxJEuIsPAR9Oc1jVvfkNNFCY1C5hf9LA==",
       "type": "package",
@@ -22655,6 +23156,17 @@
         "ref/xamarinwatchos10/_._"
       ]
     },
+    "NETStandard.Library/1.6.0": {
+      "sha512": "ypsCvIdCZ4IoYASJHt6tF2fMo7N30NLgV1EbmC+snO490OMl9FvVxmumw14rhReWU3j3g7BYudG6YCrchwHJlA==",
+      "type": "package",
+      "path": "netstandard.library/1.6.0",
+      "files": [
+        "ThirdPartyNotices.txt",
+        "dotnet_library_license.txt",
+        "netstandard.library.1.6.0.nupkg.sha512",
+        "netstandard.library.nuspec"
+      ]
+    },
     "Newtonsoft.Json/9.0.1": {
       "sha512": "U82mHQSKaIk+lpSVCbWYKNavmNH1i5xrExDEquU1i6I5pV6UMOqRnJRSlKO3cMPfcpp0RgDY+8jUXHdQ4IfXvw==",
       "type": "package",
@@ -23839,16 +24351,17 @@
         "runtimes/win10-arm/nativeassets/uap10.0.15138/clrcompression.dll"
       ]
     },
-    "runtime.win10-arm64.runtime.native.System.IO.Compression/4.3.1": {
-      "sha512": "w4OW1Ym47LA01gJvH7r6J2v/PrL5QccmNqQtEmhDgGU/iqHU0dWmVaAbWCttctdBzVFZ5hZ6u1BBssJXgmVj4A==",
+    "runtime.win10-arm64.runtime.native.System.IO.Compression/4.3.0": {
+      "sha512": "J85y2vTvDj8S/5xpwnxDh2w8woDqbWAN088LBal+rT2WVxwPeetofpEFbVVCv/q7DT+z4Rv8DTY9rrru7zu+Bw==",
       "type": "package",
-      "path": "runtime.win10-arm64.runtime.native.system.io.compression/4.3.1",
+      "path": "runtime.win10-arm64.runtime.native.system.io.compression/4.3.0",
       "files": [
+        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
-        "runtime.win10-arm64.runtime.native.system.io.compression.4.3.1.nupkg.sha512",
+        "runtime.win10-arm64.runtime.native.system.io.compression.4.3.0.nupkg.sha512",
         "runtime.win10-arm64.runtime.native.system.io.compression.nuspec",
-        "runtimes/win10-arm64/native/clrcompression.dll"
+        "runtimes/win10-arm64/native/_._"
       ]
     },
     "runtime.win10-x64-aot.Microsoft.NETCore.UniversalWindowsPlatform/6.0.1": {
@@ -27040,6 +27553,46 @@
         "runtimes/win/lib/netcore50/System.Net.NameResolution.dll",
         "runtimes/win/lib/netstandard1.3/System.Net.NameResolution.dll",
         "system.net.nameresolution.4.0.0.nupkg.sha512",
+        "system.net.nameresolution.nuspec"
+      ]
+    },
+    "System.Net.NameResolution/4.3.0": {
+      "sha512": "AFYl08R7MrsrEjqpQWTZWBadqXyTzNDaWpMqyxhb0d6sGhV6xMDKueuBXlLL30gz+DIRY6MpdgnHWlCh5wmq9w==",
+      "type": "package",
+      "path": "system.net.nameresolution/4.3.0",
+      "files": [
+        "ThirdPartyNotices.txt",
+        "dotnet_library_license.txt",
+        "lib/MonoAndroid10/_._",
+        "lib/MonoTouch10/_._",
+        "lib/net46/System.Net.NameResolution.dll",
+        "lib/xamarinios10/_._",
+        "lib/xamarinmac20/_._",
+        "lib/xamarintvos10/_._",
+        "lib/xamarinwatchos10/_._",
+        "ref/MonoAndroid10/_._",
+        "ref/MonoTouch10/_._",
+        "ref/net46/System.Net.NameResolution.dll",
+        "ref/netstandard1.3/System.Net.NameResolution.dll",
+        "ref/netstandard1.3/System.Net.NameResolution.xml",
+        "ref/netstandard1.3/de/System.Net.NameResolution.xml",
+        "ref/netstandard1.3/es/System.Net.NameResolution.xml",
+        "ref/netstandard1.3/fr/System.Net.NameResolution.xml",
+        "ref/netstandard1.3/it/System.Net.NameResolution.xml",
+        "ref/netstandard1.3/ja/System.Net.NameResolution.xml",
+        "ref/netstandard1.3/ko/System.Net.NameResolution.xml",
+        "ref/netstandard1.3/ru/System.Net.NameResolution.xml",
+        "ref/netstandard1.3/zh-hans/System.Net.NameResolution.xml",
+        "ref/netstandard1.3/zh-hant/System.Net.NameResolution.xml",
+        "ref/xamarinios10/_._",
+        "ref/xamarinmac20/_._",
+        "ref/xamarintvos10/_._",
+        "ref/xamarinwatchos10/_._",
+        "runtimes/unix/lib/netstandard1.3/System.Net.NameResolution.dll",
+        "runtimes/win/lib/net46/System.Net.NameResolution.dll",
+        "runtimes/win/lib/netcore50/System.Net.NameResolution.dll",
+        "runtimes/win/lib/netstandard1.3/System.Net.NameResolution.dll",
+        "system.net.nameresolution.4.3.0.nupkg.sha512",
         "system.net.nameresolution.nuspec"
       ]
     },
@@ -30722,6 +31275,7 @@
   },
   "projectFileDependencyGroups": {
     "UAP,Version=v10.0.10586": [
+      "Csv >= 1.0.31",
       "Microsoft.NETCore.UniversalWindowsPlatform >= 6.0.1",
       "XflowConfig >= 3.0.1806.18001"
     ]
@@ -30764,6 +31318,10 @@
     "frameworks": {
       "uap10.0.10586": {
         "dependencies": {
+          "Csv": {
+            "target": "Package",
+            "version": "[1.0.31, )"
+          },
           "Microsoft.NETCore.UniversalWindowsPlatform": {
             "target": "Package",
             "version": "[6.0.1, )"
@@ -30800,32 +31358,6 @@
     }
   },
   "logs": [
-    {
-      "code": "NU1603",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "runtime.native.System.IO.Compression 4.1.0 depends on runtime.win10-arm64.runtime.native.System.IO.Compression (>= 4.3.0) but runtime.win10-arm64.runtime.native.System.IO.Compression 4.3.0 was not found. An approximate best match of runtime.win10-arm64.runtime.native.System.IO.Compression 4.3.1 was resolved.",
-      "libraryId": "runtime.win10-arm64.runtime.native.System.IO.Compression",
-      "targetGraphs": [
-        "UAP,Version=v10.0.10586/win10-arm64-aot"
-      ]
-    },
-    {
-      "code": "NU1605",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Detected package downgrade: System.Net.NameResolution from 4.3.0 to 4.0.0. Reference the package directly from the project to select a different version. \r\n DisplayInkApp -> Microsoft.NETCore.UniversalWindowsPlatform 6.0.1 -> System.Net.Sockets 4.1.0 -> runtime.win.System.Net.Sockets 4.3.0 -> System.Net.NameResolution (>= 4.3.0) \r\n DisplayInkApp -> Microsoft.NETCore.UniversalWindowsPlatform 6.0.1 -> System.Net.NameResolution (>= 4.0.0)",
-      "libraryId": "System.Net.NameResolution",
-      "targetGraphs": [
-        "UAP,Version=v10.0.10586/win10-arm",
-        "UAP,Version=v10.0.10586/win10-arm-aot",
-        "UAP,Version=v10.0.10586/win10-arm64-aot",
-        "UAP,Version=v10.0.10586/win10-x64",
-        "UAP,Version=v10.0.10586/win10-x64-aot",
-        "UAP,Version=v10.0.10586/win10-x86",
-        "UAP,Version=v10.0.10586/win10-x86-aot"
-      ]
-    },
     {
       "code": "NU1605",
       "level": "Warning",
@@ -30878,8 +31410,8 @@
       "code": "NU1605",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Detected package downgrade: System.Net.NameResolution from 4.3.0 to 4.0.0. Reference the package directly from the project to select a different version. \r\n DisplayInkApp -> XflowConfig 3.0.1806.18001 -> log4net 2.0.8 -> System.Net.Sockets 4.1.0 -> runtime.win.System.Net.Sockets 4.3.0 -> System.Net.NameResolution (>= 4.3.0) \r\n DisplayInkApp -> XflowConfig 3.0.1806.18001 -> log4net 2.0.8 -> System.Net.NameResolution (>= 4.0.0)",
-      "libraryId": "System.Net.NameResolution",
+      "message": "Detected package downgrade: System.Net.Primitives from 4.3.0 to 4.0.11. Reference the package directly from the project to select a different version. \r\n DisplayInkApp -> XflowConfig 3.0.1806.18001 -> log4net 2.0.8 -> System.Net.Sockets 4.1.0 -> runtime.win.System.Net.Sockets 4.3.0 -> System.Net.Primitives (>= 4.3.0) \r\n DisplayInkApp -> XflowConfig 3.0.1806.18001 -> log4net 2.0.8 -> System.Net.Sockets 4.1.0 -> System.Net.Primitives (>= 4.0.11)",
+      "libraryId": "System.Net.Primitives",
       "targetGraphs": [
         "UAP,Version=v10.0.10586/win10-arm",
         "UAP,Version=v10.0.10586/win10-arm-aot",
@@ -30894,8 +31426,24 @@
       "code": "NU1605",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Detected package downgrade: System.Net.Primitives from 4.3.0 to 4.0.11. Reference the package directly from the project to select a different version. \r\n DisplayInkApp -> XflowConfig 3.0.1806.18001 -> log4net 2.0.8 -> System.Net.Sockets 4.1.0 -> runtime.win.System.Net.Sockets 4.3.0 -> System.Net.Primitives (>= 4.3.0) \r\n DisplayInkApp -> XflowConfig 3.0.1806.18001 -> log4net 2.0.8 -> System.Net.Sockets 4.1.0 -> System.Net.Primitives (>= 4.0.11)",
+      "message": "Detected package downgrade: System.Net.Primitives from 4.3.0 to 4.0.11. Reference the package directly from the project to select a different version. \r\n DisplayInkApp -> Csv 1.0.31 -> NETStandard.Library 1.6.0 -> System.Net.Sockets 4.1.0 -> runtime.win.System.Net.Sockets 4.3.0 -> System.Net.Primitives (>= 4.3.0) \r\n DisplayInkApp -> Csv 1.0.31 -> NETStandard.Library 1.6.0 -> System.Net.Primitives (>= 4.0.11)",
       "libraryId": "System.Net.Primitives",
+      "targetGraphs": [
+        "UAP,Version=v10.0.10586/win10-arm",
+        "UAP,Version=v10.0.10586/win10-arm-aot",
+        "UAP,Version=v10.0.10586/win10-arm64-aot",
+        "UAP,Version=v10.0.10586/win10-x64",
+        "UAP,Version=v10.0.10586/win10-x64-aot",
+        "UAP,Version=v10.0.10586/win10-x86",
+        "UAP,Version=v10.0.10586/win10-x86-aot"
+      ]
+    },
+    {
+      "code": "NU1605",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Detected package downgrade: System.Runtime.WindowsRuntime from 4.3.0 to 4.0.11. Reference the package directly from the project to select a different version. \r\n DisplayInkApp -> Microsoft.NETCore.UniversalWindowsPlatform 6.0.1 -> System.Net.Sockets 4.1.0 -> runtime.win.System.Net.Sockets 4.3.0 -> System.IO.FileSystem 4.3.0 -> runtime.win.System.IO.FileSystem 4.3.0 -> System.Runtime.WindowsRuntime (>= 4.3.0) \r\n DisplayInkApp -> Microsoft.NETCore.UniversalWindowsPlatform 6.0.1 -> System.Runtime.WindowsRuntime (>= 4.0.11)",
+      "libraryId": "System.Runtime.WindowsRuntime",
       "targetGraphs": [
         "UAP,Version=v10.0.10586/win10-arm",
         "UAP,Version=v10.0.10586/win10-arm-aot",
@@ -30927,38 +31475,6 @@
       "level": "Warning",
       "warningLevel": 1,
       "message": "Detected package downgrade: System.Runtime.WindowsRuntime from 4.3.0 to 4.0.11. Reference the package directly from the project to select a different version. \r\n DisplayInkApp -> Microsoft.NETCore.UniversalWindowsPlatform 6.0.1 -> System.Runtime.Serialization.Xml 4.1.2 -> System.Xml.ReaderWriter 4.0.11 -> System.IO.FileSystem 4.0.1 -> runtime.win.System.IO.FileSystem 4.3.0 -> System.Runtime.WindowsRuntime (>= 4.3.0) \r\n DisplayInkApp -> Microsoft.NETCore.UniversalWindowsPlatform 6.0.1 -> System.Runtime.WindowsRuntime (>= 4.0.11)",
-      "libraryId": "System.Runtime.WindowsRuntime",
-      "targetGraphs": [
-        "UAP,Version=v10.0.10586/win10-arm",
-        "UAP,Version=v10.0.10586/win10-arm-aot",
-        "UAP,Version=v10.0.10586/win10-arm64-aot",
-        "UAP,Version=v10.0.10586/win10-x64",
-        "UAP,Version=v10.0.10586/win10-x64-aot",
-        "UAP,Version=v10.0.10586/win10-x86",
-        "UAP,Version=v10.0.10586/win10-x86-aot"
-      ]
-    },
-    {
-      "code": "NU1605",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Detected package downgrade: System.Runtime.WindowsRuntime from 4.3.0 to 4.0.11. Reference the package directly from the project to select a different version. \r\n DisplayInkApp -> Microsoft.NETCore.UniversalWindowsPlatform 6.0.1 -> System.Xml.XmlDocument 4.0.1 -> System.Xml.ReaderWriter 4.0.11 -> System.IO.FileSystem 4.0.1 -> runtime.win.System.IO.FileSystem 4.3.0 -> System.Runtime.WindowsRuntime (>= 4.3.0) \r\n DisplayInkApp -> Microsoft.NETCore.UniversalWindowsPlatform 6.0.1 -> System.Runtime.WindowsRuntime (>= 4.0.11)",
-      "libraryId": "System.Runtime.WindowsRuntime",
-      "targetGraphs": [
-        "UAP,Version=v10.0.10586/win10-arm",
-        "UAP,Version=v10.0.10586/win10-arm-aot",
-        "UAP,Version=v10.0.10586/win10-arm64-aot",
-        "UAP,Version=v10.0.10586/win10-x64",
-        "UAP,Version=v10.0.10586/win10-x64-aot",
-        "UAP,Version=v10.0.10586/win10-x86",
-        "UAP,Version=v10.0.10586/win10-x86-aot"
-      ]
-    },
-    {
-      "code": "NU1605",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Detected package downgrade: System.Runtime.WindowsRuntime from 4.3.0 to 4.0.11. Reference the package directly from the project to select a different version. \r\n DisplayInkApp -> Microsoft.NETCore.UniversalWindowsPlatform 6.0.1 -> System.Xml.XmlSerializer 4.0.11 -> System.Xml.ReaderWriter 4.0.11 -> System.IO.FileSystem 4.0.1 -> runtime.win.System.IO.FileSystem 4.3.0 -> System.Runtime.WindowsRuntime (>= 4.3.0) \r\n DisplayInkApp -> Microsoft.NETCore.UniversalWindowsPlatform 6.0.1 -> System.Runtime.WindowsRuntime (>= 4.0.11)",
       "libraryId": "System.Runtime.WindowsRuntime",
       "targetGraphs": [
         "UAP,Version=v10.0.10586/win10-arm",
@@ -31006,8 +31522,40 @@
       "code": "NU1605",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Detected package downgrade: System.Runtime.WindowsRuntime from 4.3.0 to 4.0.11. Reference the package directly from the project to select a different version. \r\n DisplayInkApp -> Microsoft.NETCore.UniversalWindowsPlatform 6.0.1 -> System.Net.Sockets 4.1.0 -> runtime.win.System.Net.Sockets 4.3.0 -> System.IO.FileSystem 4.3.0 -> runtime.win.System.IO.FileSystem 4.3.0 -> System.Runtime.WindowsRuntime (>= 4.3.0) \r\n DisplayInkApp -> Microsoft.NETCore.UniversalWindowsPlatform 6.0.1 -> System.Runtime.WindowsRuntime (>= 4.0.11)",
+      "message": "Detected package downgrade: System.Runtime.WindowsRuntime from 4.3.0 to 4.0.11. Reference the package directly from the project to select a different version. \r\n DisplayInkApp -> Microsoft.NETCore.UniversalWindowsPlatform 6.0.1 -> System.Xml.XmlDocument 4.0.1 -> System.Xml.ReaderWriter 4.0.11 -> System.IO.FileSystem 4.0.1 -> runtime.win.System.IO.FileSystem 4.3.0 -> System.Runtime.WindowsRuntime (>= 4.3.0) \r\n DisplayInkApp -> Microsoft.NETCore.UniversalWindowsPlatform 6.0.1 -> System.Runtime.WindowsRuntime (>= 4.0.11)",
       "libraryId": "System.Runtime.WindowsRuntime",
+      "targetGraphs": [
+        "UAP,Version=v10.0.10586/win10-arm",
+        "UAP,Version=v10.0.10586/win10-arm-aot",
+        "UAP,Version=v10.0.10586/win10-arm64-aot",
+        "UAP,Version=v10.0.10586/win10-x64",
+        "UAP,Version=v10.0.10586/win10-x64-aot",
+        "UAP,Version=v10.0.10586/win10-x86",
+        "UAP,Version=v10.0.10586/win10-x86-aot"
+      ]
+    },
+    {
+      "code": "NU1605",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Detected package downgrade: System.Runtime.WindowsRuntime from 4.3.0 to 4.0.11. Reference the package directly from the project to select a different version. \r\n DisplayInkApp -> Microsoft.NETCore.UniversalWindowsPlatform 6.0.1 -> System.Xml.XmlSerializer 4.0.11 -> System.Xml.ReaderWriter 4.0.11 -> System.IO.FileSystem 4.0.1 -> runtime.win.System.IO.FileSystem 4.3.0 -> System.Runtime.WindowsRuntime (>= 4.3.0) \r\n DisplayInkApp -> Microsoft.NETCore.UniversalWindowsPlatform 6.0.1 -> System.Runtime.WindowsRuntime (>= 4.0.11)",
+      "libraryId": "System.Runtime.WindowsRuntime",
+      "targetGraphs": [
+        "UAP,Version=v10.0.10586/win10-arm",
+        "UAP,Version=v10.0.10586/win10-arm-aot",
+        "UAP,Version=v10.0.10586/win10-arm64-aot",
+        "UAP,Version=v10.0.10586/win10-x64",
+        "UAP,Version=v10.0.10586/win10-x64-aot",
+        "UAP,Version=v10.0.10586/win10-x86",
+        "UAP,Version=v10.0.10586/win10-x86-aot"
+      ]
+    },
+    {
+      "code": "NU1605",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Detected package downgrade: System.ObjectModel from 4.3.0 to 4.0.12. Reference the package directly from the project to select a different version. \r\n DisplayInkApp -> Csv 1.0.31 -> NETStandard.Library 1.6.0 -> System.IO.FileSystem 4.0.1 -> runtime.win.System.IO.FileSystem 4.3.0 -> System.Runtime.WindowsRuntime 4.3.0 -> System.ObjectModel (>= 4.3.0) \r\n DisplayInkApp -> Csv 1.0.31 -> NETStandard.Library 1.6.0 -> System.ObjectModel (>= 4.0.12)",
+      "libraryId": "System.ObjectModel",
       "targetGraphs": [
         "UAP,Version=v10.0.10586/win10-arm",
         "UAP,Version=v10.0.10586/win10-arm-aot",
@@ -31086,38 +31634,6 @@
       "code": "NU1605",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Detected package downgrade: System.Runtime.WindowsRuntime from 4.3.0 to 4.0.11. Reference the package directly from the project to select a different version. \r\n DisplayInkApp -> Microsoft.NETCore.UniversalWindowsPlatform 6.0.1 -> System.ServiceModel.Security 4.0.1 -> System.Private.ServiceModel 4.1.0 -> System.Security.Cryptography.X509Certificates 4.1.0 -> System.IO.FileSystem 4.0.1 -> runtime.win.System.IO.FileSystem 4.3.0 -> System.Runtime.WindowsRuntime (>= 4.3.0) \r\n DisplayInkApp -> Microsoft.NETCore.UniversalWindowsPlatform 6.0.1 -> System.Runtime.WindowsRuntime (>= 4.0.11)",
-      "libraryId": "System.Runtime.WindowsRuntime",
-      "targetGraphs": [
-        "UAP,Version=v10.0.10586/win10-arm",
-        "UAP,Version=v10.0.10586/win10-arm-aot",
-        "UAP,Version=v10.0.10586/win10-arm64-aot",
-        "UAP,Version=v10.0.10586/win10-x64",
-        "UAP,Version=v10.0.10586/win10-x64-aot",
-        "UAP,Version=v10.0.10586/win10-x86",
-        "UAP,Version=v10.0.10586/win10-x86-aot"
-      ]
-    },
-    {
-      "code": "NU1605",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Detected package downgrade: System.Runtime.WindowsRuntime from 4.3.0 to 4.0.11. Reference the package directly from the project to select a different version. \r\n DisplayInkApp -> Microsoft.NETCore.UniversalWindowsPlatform 6.0.1 -> System.ServiceModel.Security 4.0.1 -> System.Private.ServiceModel 4.1.0 -> System.Xml.ReaderWriter 4.0.11 -> System.IO.FileSystem 4.0.1 -> runtime.win.System.IO.FileSystem 4.3.0 -> System.Runtime.WindowsRuntime (>= 4.3.0) \r\n DisplayInkApp -> Microsoft.NETCore.UniversalWindowsPlatform 6.0.1 -> System.Runtime.WindowsRuntime (>= 4.0.11)",
-      "libraryId": "System.Runtime.WindowsRuntime",
-      "targetGraphs": [
-        "UAP,Version=v10.0.10586/win10-arm",
-        "UAP,Version=v10.0.10586/win10-arm-aot",
-        "UAP,Version=v10.0.10586/win10-arm64-aot",
-        "UAP,Version=v10.0.10586/win10-x64",
-        "UAP,Version=v10.0.10586/win10-x64-aot",
-        "UAP,Version=v10.0.10586/win10-x86",
-        "UAP,Version=v10.0.10586/win10-x86-aot"
-      ]
-    },
-    {
-      "code": "NU1605",
-      "level": "Warning",
-      "warningLevel": 1,
       "message": "Detected package downgrade: System.Runtime.WindowsRuntime from 4.3.0 to 4.0.11. Reference the package directly from the project to select a different version. \r\n DisplayInkApp -> Microsoft.NETCore.UniversalWindowsPlatform 6.0.1 -> System.ServiceModel.Http 4.1.0 -> System.Private.ServiceModel 4.1.0 -> System.Security.Cryptography.X509Certificates 4.1.0 -> System.IO.FileSystem 4.0.1 -> runtime.win.System.IO.FileSystem 4.3.0 -> System.Runtime.WindowsRuntime (>= 4.3.0) \r\n DisplayInkApp -> Microsoft.NETCore.UniversalWindowsPlatform 6.0.1 -> System.Runtime.WindowsRuntime (>= 4.0.11)",
       "libraryId": "System.Runtime.WindowsRuntime",
       "targetGraphs": [
@@ -31167,6 +31683,38 @@
       "level": "Warning",
       "warningLevel": 1,
       "message": "Detected package downgrade: System.Runtime.WindowsRuntime from 4.3.0 to 4.0.11. Reference the package directly from the project to select a different version. \r\n DisplayInkApp -> Microsoft.NETCore.UniversalWindowsPlatform 6.0.1 -> System.ServiceModel.NetTcp 4.1.0 -> System.Private.ServiceModel 4.1.0 -> System.Xml.ReaderWriter 4.0.11 -> System.IO.FileSystem 4.0.1 -> runtime.win.System.IO.FileSystem 4.3.0 -> System.Runtime.WindowsRuntime (>= 4.3.0) \r\n DisplayInkApp -> Microsoft.NETCore.UniversalWindowsPlatform 6.0.1 -> System.Runtime.WindowsRuntime (>= 4.0.11)",
+      "libraryId": "System.Runtime.WindowsRuntime",
+      "targetGraphs": [
+        "UAP,Version=v10.0.10586/win10-arm",
+        "UAP,Version=v10.0.10586/win10-arm-aot",
+        "UAP,Version=v10.0.10586/win10-arm64-aot",
+        "UAP,Version=v10.0.10586/win10-x64",
+        "UAP,Version=v10.0.10586/win10-x64-aot",
+        "UAP,Version=v10.0.10586/win10-x86",
+        "UAP,Version=v10.0.10586/win10-x86-aot"
+      ]
+    },
+    {
+      "code": "NU1605",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Detected package downgrade: System.Runtime.WindowsRuntime from 4.3.0 to 4.0.11. Reference the package directly from the project to select a different version. \r\n DisplayInkApp -> Microsoft.NETCore.UniversalWindowsPlatform 6.0.1 -> System.ServiceModel.Security 4.0.1 -> System.Private.ServiceModel 4.1.0 -> System.Security.Cryptography.X509Certificates 4.1.0 -> System.IO.FileSystem 4.0.1 -> runtime.win.System.IO.FileSystem 4.3.0 -> System.Runtime.WindowsRuntime (>= 4.3.0) \r\n DisplayInkApp -> Microsoft.NETCore.UniversalWindowsPlatform 6.0.1 -> System.Runtime.WindowsRuntime (>= 4.0.11)",
+      "libraryId": "System.Runtime.WindowsRuntime",
+      "targetGraphs": [
+        "UAP,Version=v10.0.10586/win10-arm",
+        "UAP,Version=v10.0.10586/win10-arm-aot",
+        "UAP,Version=v10.0.10586/win10-arm64-aot",
+        "UAP,Version=v10.0.10586/win10-x64",
+        "UAP,Version=v10.0.10586/win10-x64-aot",
+        "UAP,Version=v10.0.10586/win10-x86",
+        "UAP,Version=v10.0.10586/win10-x86-aot"
+      ]
+    },
+    {
+      "code": "NU1605",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Detected package downgrade: System.Runtime.WindowsRuntime from 4.3.0 to 4.0.11. Reference the package directly from the project to select a different version. \r\n DisplayInkApp -> Microsoft.NETCore.UniversalWindowsPlatform 6.0.1 -> System.ServiceModel.Security 4.0.1 -> System.Private.ServiceModel 4.1.0 -> System.Xml.ReaderWriter 4.0.11 -> System.IO.FileSystem 4.0.1 -> runtime.win.System.IO.FileSystem 4.3.0 -> System.Runtime.WindowsRuntime (>= 4.3.0) \r\n DisplayInkApp -> Microsoft.NETCore.UniversalWindowsPlatform 6.0.1 -> System.Runtime.WindowsRuntime (>= 4.0.11)",
       "libraryId": "System.Runtime.WindowsRuntime",
       "targetGraphs": [
         "UAP,Version=v10.0.10586/win10-arm",

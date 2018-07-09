@@ -1,45 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScriptAndGraph GraphType="VertexCommands">
-  <Vertices count="6">
-    <Vertex index="1" command="-scopeVertex SV1_Extract  -i C:\Users\elmarron\dev\LocalSamples\LogInkFromCandidates\/LogInkFromCandidates_2018_07_01.ss[0:364383] -ichannel GetSStream_0[0,0,0,0] -i C:\Users\elmarron\dev\LocalSamples\LogInkFromCandidates\/LogInkFromCandidates_2018_07_01.ss[364383:602674] -ichannel GetSStream_0[1,1,0,0]  -o C:\Users\elmarron\dev\InkDisplay\PullRandomInkSamples\bin\Debug\2C7C6A548B2BA9A\_Temp\RandomEnglishInkSamples.script.Debug_21D26CD3A4A2F50B\scopetmpfile._SV1_Extract_out0" />
-    <Vertex index="2" command="-scopeVertex SV2_Extract  -i C:\Users\elmarron\dev\LocalSamples\LogInkFromCandidates\/LogInkFromCandidates_2018_07_02.ss[0:675728] -ichannel GetSStream_6[0,0,0,0] -i C:\Users\elmarron\dev\LocalSamples\LogInkFromCandidates\/LogInkFromCandidates_2018_07_02.ss[675728:1541190] -ichannel GetSStream_6[1,1,0,0]  -o C:\Users\elmarron\dev\InkDisplay\PullRandomInkSamples\bin\Debug\2C7C6A548B2BA9A\_Temp\RandomEnglishInkSamples.script.Debug_21D26CD3A4A2F50B\scopetmpfile._SV2_Extract_out0" />
-    <Vertex index="3" command="-scopeVertex SV3_Extract  -i C:\Users\elmarron\dev\LocalSamples\LogInkFromCandidates\/LogInkFromCandidates_2018_07_03.ss[0:810329] -ichannel GetSStream_12[0,0,0,0] -i C:\Users\elmarron\dev\LocalSamples\LogInkFromCandidates\/LogInkFromCandidates_2018_07_03.ss[810329:1587723] -ichannel GetSStream_12[1,1,0,0]  -o C:\Users\elmarron\dev\InkDisplay\PullRandomInkSamples\bin\Debug\2C7C6A548B2BA9A\_Temp\RandomEnglishInkSamples.script.Debug_21D26CD3A4A2F50B\scopetmpfile._SV3_Extract_out0" />
-    <Vertex index="4" command="-scopeVertex SV4_Extract  -i C:\Users\elmarron\dev\LocalSamples\LogInkFromCandidates\/LogInkFromCandidates_2018_07_04.ss[0:458848] -ichannel GetSStream_18[0,0,0,0] -i C:\Users\elmarron\dev\LocalSamples\LogInkFromCandidates\/LogInkFromCandidates_2018_07_04.ss[458848:986580] -ichannel GetSStream_18[1,1,0,0]  -o C:\Users\elmarron\dev\InkDisplay\PullRandomInkSamples\bin\Debug\2C7C6A548B2BA9A\_Temp\RandomEnglishInkSamples.script.Debug_21D26CD3A4A2F50B\scopetmpfile._SV4_Extract_out0" />
-    <Vertex index="5" command="-scopeVertex SV5_Extract  -i C:\Users\elmarron\dev\LocalSamples\LogInkFromCandidates\/LogInkFromCandidates_2018_07_05.ss[0:872603] -ichannel GetSStream_24[0,0,0,0] -i C:\Users\elmarron\dev\LocalSamples\LogInkFromCandidates\/LogInkFromCandidates_2018_07_05.ss[872603:1546827] -ichannel GetSStream_24[1,1,0,0]  -o C:\Users\elmarron\dev\InkDisplay\PullRandomInkSamples\bin\Debug\2C7C6A548B2BA9A\_Temp\RandomEnglishInkSamples.script.Debug_21D26CD3A4A2F50B\scopetmpfile._SV5_Extract_out0" />
-    <Vertex index="6" command="-scopeVertex SV6_Combine  -i C:\Users\elmarron\dev\InkDisplay\PullRandomInkSamples\bin\Debug\2C7C6A548B2BA9A\_Temp\RandomEnglishInkSamples.script.Debug_21D26CD3A4A2F50B\scopetmpfile._SV1_Extract_out0 -ichannel SV1_Extract_out0 -i C:\Users\elmarron\dev\InkDisplay\PullRandomInkSamples\bin\Debug\2C7C6A548B2BA9A\_Temp\RandomEnglishInkSamples.script.Debug_21D26CD3A4A2F50B\scopetmpfile._SV2_Extract_out0 -ichannel SV2_Extract_out0 -i C:\Users\elmarron\dev\InkDisplay\PullRandomInkSamples\bin\Debug\2C7C6A548B2BA9A\_Temp\RandomEnglishInkSamples.script.Debug_21D26CD3A4A2F50B\scopetmpfile._SV3_Extract_out0 -ichannel SV3_Extract_out0 -i C:\Users\elmarron\dev\InkDisplay\PullRandomInkSamples\bin\Debug\2C7C6A548B2BA9A\_Temp\RandomEnglishInkSamples.script.Debug_21D26CD3A4A2F50B\scopetmpfile._SV4_Extract_out0 -ichannel SV4_Extract_out0 -i C:\Users\elmarron\dev\InkDisplay\PullRandomInkSamples\bin\Debug\2C7C6A548B2BA9A\_Temp\RandomEnglishInkSamples.script.Debug_21D26CD3A4A2F50B\scopetmpfile._SV5_Extract_out0 -ichannel SV5_Extract_out0  -o C:\Users\elmarron\dev\InkDisplay\PullRandomInkSamples\bin\Debug\2C7C6A548B2BA9A\_Temp\RandomEnglishInkSamples.script.Debug_21D26CD3A4A2F50B\scopetmpfile._SV6_Combine_out0" />
-    <Vertex command="-concatenate -i C:\Users\elmarron\dev\InkDisplay\PullRandomInkSamples\bin\Debug\2C7C6A548B2BA9A\_Temp\RandomEnglishInkSamples.script.Debug_21D26CD3A4A2F50B\scopetmpfile._SV6_Combine_out0 -o C:\Users\elmarron\dev\LocalSamples\2018\07\RandomEnglishInkSamples_2018_07_01.tsv" />
+  <Vertices count="1">
+    <Vertex index="1" command="-scopeVertex SV1_Extract_Combine  -i C:\Users\elmarron\dev\LocalSamples\LogInkFromCandidates\/LogInkFromCandidates_2018_07_01.ss[0:364383] -ichannel GetSStream_0[0,0,0,0] -i C:\Users\elmarron\dev\LocalSamples\LogInkFromCandidates\/LogInkFromCandidates_2018_07_01.ss[364383:602674] -ichannel GetSStream_0[1,1,0,0] -i C:\Users\elmarron\dev\LocalSamples\LogInkFromCandidates\/LogInkFromCandidates_2018_07_02.ss[0:675728] -ichannel GetSStream_4[0,0,0,0] -i C:\Users\elmarron\dev\LocalSamples\LogInkFromCandidates\/LogInkFromCandidates_2018_07_02.ss[675728:1541190] -ichannel GetSStream_4[1,1,0,0] -i C:\Users\elmarron\dev\LocalSamples\LogInkFromCandidates\/LogInkFromCandidates_2018_07_03.ss[0:810329] -ichannel GetSStream_8[0,0,0,0] -i C:\Users\elmarron\dev\LocalSamples\LogInkFromCandidates\/LogInkFromCandidates_2018_07_03.ss[810329:1587723] -ichannel GetSStream_8[1,1,0,0] -i C:\Users\elmarron\dev\LocalSamples\LogInkFromCandidates\/LogInkFromCandidates_2018_07_04.ss[0:458848] -ichannel GetSStream_12[0,0,0,0] -i C:\Users\elmarron\dev\LocalSamples\LogInkFromCandidates\/LogInkFromCandidates_2018_07_04.ss[458848:986580] -ichannel GetSStream_12[1,1,0,0] -i C:\Users\elmarron\dev\LocalSamples\LogInkFromCandidates\/LogInkFromCandidates_2018_07_05.ss[0:872603] -ichannel GetSStream_16[0,0,0,0] -i C:\Users\elmarron\dev\LocalSamples\LogInkFromCandidates\/LogInkFromCandidates_2018_07_05.ss[872603:1546827] -ichannel GetSStream_16[1,1,0,0]  -o C:\Users\elmarron\dev\InkDisplay\PullRandomInkSamples\bin\Debug\2C7C6A548B2BA9A\_Temp\RandomEnglishInkSamples.script.Debug_21D26CD3A4A2F50B\scopetmpfile._SV1_Extract_Combine_out0" />
+    <Vertex command="-concatenate -i C:\Users\elmarron\dev\InkDisplay\PullRandomInkSamples\bin\Debug\2C7C6A548B2BA9A\_Temp\RandomEnglishInkSamples.script.Debug_21D26CD3A4A2F50B\scopetmpfile._SV1_Extract_Combine_out0 -o C:\Users\elmarron\dev\LocalSamples\2018\07\RandomEnglishInkSamples_2018_07_01.csv" />
   </Vertices>
   <Outputs>
-    <Output path="C:\Users\elmarron\dev\LocalSamples\2018\07\RandomEnglishInkSamples_2018_07_01.tsv" isBinary="False" schema="RowGuid:Guid,RecognizedText:string,RecoLength:int,InkIsf:string,Weight:double" />
+    <Output path="C:\Users\elmarron\dev\LocalSamples\2018\07\RandomEnglishInkSamples_2018_07_01.csv" isBinary="False" schema="RowGuid:Guid,RecognizedText:string,InkIsf:string,Weight:double" />
   </Outputs>
   <graph JsonErrors="True" JobType="BatchScopeServerGC" SStreamInfoFilePath="__SStreamInfo__.xml" vertexExecutable="scopehost.exe" BroadcastCopyThroughCommandLine="ScopeEngine.dll -scopeVertex SV_CopyThrough">
-    <process id="SV1_Extract" command="ScopeEngine.dll -scopeVertex SV1_Extract" managedMemorySize="2462056448" nativeIOMemorySize="1098907651" nativeExecutionMemorySize="2357198845" DummyVertexOptimization="AllInputsEmptyImpliesOutputsEmpty|RunAtLeastOneVertex">
+    <process id="SV1_Extract_Combine" command="ScopeEngine.dll -scopeVertex SV1_Extract_Combine" managedMemorySize="5683281920" nativeIOMemorySize="4294967302" nativeExecutionMemorySize="0" DummyVertexOptimization="AllInputsEmptyImpliesOutputsEmpty|RunAtLeastOneVertex">
       <input id="GetSStream_0[ALL,ALL,ALL,ALL]" structuredStream="C:\Users\elmarron\dev\LocalSamples\LogInkFromCandidates\/LogInkFromCandidates_2018_07_01.ss" />
-      <output id="SV1_Extract_out0" />
-    </process>
-    <process id="SV2_Extract" command="ScopeEngine.dll -scopeVertex SV2_Extract" managedMemorySize="2462056448" nativeIOMemorySize="1098907651" nativeExecutionMemorySize="2357198845" DummyVertexOptimization="AllInputsEmptyImpliesOutputsEmpty|RunAtLeastOneVertex">
-      <input id="GetSStream_6[ALL,ALL,ALL,ALL]" structuredStream="C:\Users\elmarron\dev\LocalSamples\LogInkFromCandidates\/LogInkFromCandidates_2018_07_02.ss" />
-      <output id="SV2_Extract_out0" />
-    </process>
-    <process id="SV3_Extract" command="ScopeEngine.dll -scopeVertex SV3_Extract" managedMemorySize="2462056448" nativeIOMemorySize="1098907651" nativeExecutionMemorySize="2357198845" DummyVertexOptimization="AllInputsEmptyImpliesOutputsEmpty|RunAtLeastOneVertex">
-      <input id="GetSStream_12[ALL,ALL,ALL,ALL]" structuredStream="C:\Users\elmarron\dev\LocalSamples\LogInkFromCandidates\/LogInkFromCandidates_2018_07_03.ss" />
-      <output id="SV3_Extract_out0" />
-    </process>
-    <process id="SV4_Extract" command="ScopeEngine.dll -scopeVertex SV4_Extract" managedMemorySize="2462056448" nativeIOMemorySize="1098907651" nativeExecutionMemorySize="2357198845" DummyVertexOptimization="AllInputsEmptyImpliesOutputsEmpty|RunAtLeastOneVertex">
-      <input id="GetSStream_18[ALL,ALL,ALL,ALL]" structuredStream="C:\Users\elmarron\dev\LocalSamples\LogInkFromCandidates\/LogInkFromCandidates_2018_07_04.ss" />
-      <output id="SV4_Extract_out0" />
-    </process>
-    <process id="SV5_Extract" command="ScopeEngine.dll -scopeVertex SV5_Extract" managedMemorySize="2462056448" nativeIOMemorySize="1098907651" nativeExecutionMemorySize="2357198845" DummyVertexOptimization="AllInputsEmptyImpliesOutputsEmpty|RunAtLeastOneVertex">
-      <input id="GetSStream_24[ALL,ALL,ALL,ALL]" structuredStream="C:\Users\elmarron\dev\LocalSamples\LogInkFromCandidates\/LogInkFromCandidates_2018_07_05.ss" />
-      <output id="SV5_Extract_out0" />
-    </process>
-    <process id="SV6_Combine" command="ScopeEngine.dll -scopeVertex SV6_Combine" managedMemorySize="1388314624" nativeIOMemorySize="1614807046" nativeExecutionMemorySize="1835008000" DummyVertexOptimization="AllInputsEmptyImpliesOutputsEmpty|RunAtLeastOneVertex">
-      <input id="SV1_Extract_out0" />
-      <input id="SV2_Extract_out0" />
-      <input id="SV3_Extract_out0" />
-      <input id="SV4_Extract_out0" />
-      <input id="SV5_Extract_out0" />
-      <output id="SV6_Combine_out0" cosmosStream="C:\Users\elmarron\dev\LocalSamples\2018\07\RandomEnglishInkSamples_2018_07_01.tsv" />
+      <input id="GetSStream_4[ALL,ALL,ALL,ALL]" structuredStream="C:\Users\elmarron\dev\LocalSamples\LogInkFromCandidates\/LogInkFromCandidates_2018_07_02.ss" />
+      <input id="GetSStream_8[ALL,ALL,ALL,ALL]" structuredStream="C:\Users\elmarron\dev\LocalSamples\LogInkFromCandidates\/LogInkFromCandidates_2018_07_03.ss" />
+      <input id="GetSStream_12[ALL,ALL,ALL,ALL]" structuredStream="C:\Users\elmarron\dev\LocalSamples\LogInkFromCandidates\/LogInkFromCandidates_2018_07_04.ss" />
+      <input id="GetSStream_16[ALL,ALL,ALL,ALL]" structuredStream="C:\Users\elmarron\dev\LocalSamples\LogInkFromCandidates\/LogInkFromCandidates_2018_07_05.ss" />
+      <output id="SV1_Extract_Combine_out0" cosmosStream="C:\Users\elmarron\dev\LocalSamples\2018\07\RandomEnglishInkSamples_2018_07_01.csv" />
     </process>
   </graph>
   <Scopescript>REFERENCE @"System.Windows.dll";
@@ -59,13 +34,13 @@ RESOURCE @ScopeLibPdb,
 USING Microsoft.SegmentRelevance.ScopeLib;
 
 // Initialization/Declarations:
-#DECLARE StartDate DateTime = DateTime.Today.AddDays(-5); // grab samples from last 5 days
+#DECLARE StartDate DateTime = DateTime.Today.AddDays(-8); // grab samples from last 5 days
 #DECLARE EndDate DateTime = DateTime.Today;
 
 #DECLARE Seed string = ((int)DateTime.Now.Ticks).ToString();
 
 #DECLARE ResultOutputDir string = @"C:/Users/elmarron/dev/LocalSamples";
-#DECLARE OutputPath string = String.Format("{0}/{2:yyyy}/{2:MM}/{1}_{2:yyyy}_{2:MM}_{2:dd}.tsv", @ResultOutputDir, "RandomEnglishInkSamples", @StartDate);
+#DECLARE OutputPath string = String.Format("{0}/{2:yyyy}/{2:MM}/{1}_{2:yyyy}_{2:MM}_{2:dd}.csv", @ResultOutputDir, "RandomEnglishInkSamples", @StartDate);
 
 #DECLARE InputDir string = String.Format(@"C:/Users/elmarron/dev/LocalSamples/LogInkFromCandidates/");
 
@@ -73,53 +48,36 @@ USING Microsoft.SegmentRelevance.ScopeLib;
 eventData =  SSTREAM SPARSE 
              STREAMSET @InputDir
              PATTERN @"LogInkFromCandidates_%Y_%m_%d.ss"
-             RANGE __date=["2018-07-01", "2018-07-05"]
+             RANGE __date=["2018-07-01", "2018-07-08"]
              USING ColumnProcessor("-produce", @"RowGuid, InputLanguage, RecognizedText, WritingRectRight, InkIsf", "-skipValidation");
 
 englishInkSamples = SELECT RowGuid,
            RecognizedText,
-           RecognizedText.Length AS RecoLength,
            InkIsf,
            ((double) 1.0) AS Weight
     FROM eventData
     WHERE InputLanguage == "en-us";
 
-sample = 
-REDUCE englishInkSamples ON RowGuid USING TopNReducer("20", "-random", @Seed, "-weightCol", "Weight");
+//sample = 
+//REDUCE englishInkSamples ON RowGuid USING TopNReducer("1000", "-random", @Seed, "-weightCol", "Weight");
 
 
 // Outputs:
-OUTPUT sample
+OUTPUT englishInkSamples
 TO @OutputPath 
-USING DefaultTextOutputter();
+USING DefaultTextOutputter(delimiter: ',');
 
 
 // Generated by ScopeStudio, version 2.3.4000.3
 </Scopescript>
-  <Optimization succeeded="true" time="00:00:00.7054674" latency="13.206363197308489" totalCost="21.806738617569103" />
+  <Optimization succeeded="true" time="00:00:00.5200214" latency="39.634821550539655" totalCost="45.24557020907384" />
   <ScopeVertexAnnotations>
-    <ScopeVertex name="SV1_Extract">
+    <ScopeVertex name="SV1_Extract_Combine">
       <Operation annotation="PROCESS USING 1" />
-      <Operation annotation="REDUCE USING TopNReducer" />
-    </ScopeVertex>
-    <ScopeVertex name="SV2_Extract">
       <Operation annotation="PROCESS USING 2" />
-      <Operation annotation="REDUCE USING TopNReducer" />
-    </ScopeVertex>
-    <ScopeVertex name="SV3_Extract">
       <Operation annotation="PROCESS USING 3" />
-      <Operation annotation="REDUCE USING TopNReducer" />
-    </ScopeVertex>
-    <ScopeVertex name="SV4_Extract">
       <Operation annotation="PROCESS USING 4" />
-      <Operation annotation="REDUCE USING TopNReducer" />
-    </ScopeVertex>
-    <ScopeVertex name="SV5_Extract">
       <Operation annotation="PROCESS USING 5" />
-      <Operation annotation="REDUCE USING TopNReducer" />
-    </ScopeVertex>
-    <ScopeVertex name="SV6_Combine">
-      <Operation annotation="REDUCE USING TopNReducer" />
     </ScopeVertex>
   </ScopeVertexAnnotations>
 </ScriptAndGraph>

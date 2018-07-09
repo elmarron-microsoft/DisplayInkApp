@@ -9,6 +9,7 @@
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -18,14 +19,17 @@
 
         <!--<Border Grid.Column ="1" Background="#1f3d7a"/>-->
         <Border Grid.Row="1" Grid.ColumnSpan="2" Background="#2f5cb6"/>
-        <StackPanel Margin="40,0,40,0" VerticalAlignment="Center">
-            <InkCanvas x:ConnectionId='4' x:Name="SampleInkCanvas" Height="200" Width="200"/>
+        <StackPanel Margin="40,0,40,0" Grid.ColumnSpan="2" VerticalAlignment="Center">
+            <InkCanvas x:ConnectionId='5' x:Name="SampleInkCanvas" Height="200" Width="200"/>
         </StackPanel>
-        <StackPanel Grid.Row="1" Margin="40,0,40,0" VerticalAlignment="Center">
-            <TextBox x:ConnectionId='1' x:Name="ISFText" Foreground="White" Header="ISF Hex Input:" FontSize="16" 
-                     PlaceholderText="Paste hexidecimal ISF string" Margin="0, 0, 0, 16" />
-            <Button x:ConnectionId='2' Content="Render Sample" FontSize="16"                     />
-            <TextBlock x:ConnectionId='3' x:Name="StrokeTextBlock" Foreground="White" FontSize="25" Text="" Margin="0,0,20,0"/>
+        <StackPanel Grid.Row="1" Grid.Column="0" Margin="40,0,40,0" VerticalAlignment="Center">
+            <TextBox x:ConnectionId='4' x:Name="ISFText" Foreground="White" Header="ISF Hex Input:" FontSize="16" 
+                     PlaceholderText="Paste hexidecimal ISF string" Margin="0, 0, 0, 16" TextWrapping="Wrap" />
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.Column="1" Margin="40,0,40,0" VerticalAlignment="Center">
+            <Button x:ConnectionId='1' Content="Render Sample" FontSize="16"                     />
+            <TextBlock x:ConnectionId='2' x:Name="StrokeTextBlock" Foreground="White" FontSize="25" Text="" Margin="0,0,20,0"/>
+            <Button x:ConnectionId='3' Content="Augment CSV" FontSize="16"                         />
         </StackPanel>
     </Grid>
 

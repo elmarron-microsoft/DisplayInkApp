@@ -14,13 +14,13 @@ RESOURCE @ScopeLibPdb,
 USING Microsoft.SegmentRelevance.ScopeLib;
 
 // Initialization/Declarations:
-#DECLARE StartDate DateTime = DateTime.Today.AddDays(-5); // grab samples from last 5 days
+#DECLARE StartDate DateTime = DateTime.Today.AddDays(-8); // grab samples from last 5 days
 #DECLARE EndDate DateTime = DateTime.Today;
 
 #DECLARE Seed string = ((int)DateTime.Now.Ticks).ToString();
 
 #DECLARE ResultOutputDir string = @"C:/Users/elmarron/dev/LocalSamples";
-#DECLARE OutputPath string = String.Format("{0}/{2:yyyy}/{2:MM}/{1}_{2:yyyy}_{2:MM}_{2:dd}.tsv", @ResultOutputDir, "RandomEnglishInkSamples", @StartDate);
+#DECLARE OutputPath string = String.Format("{0}/{2:yyyy}/{2:MM}/{1}_{2:yyyy}_{2:MM}_{2:dd}.csv", @ResultOutputDir, "RandomEnglishInkSamples", @StartDate);
 
 #DECLARE InputDir string = String.Format(@"C:/Users/elmarron/dev/LocalSamples/LogInkFromCandidates/");
 
@@ -28,23 +28,22 @@ USING Microsoft.SegmentRelevance.ScopeLib;
 eventData =  SSTREAM SPARSE 
              STREAMSET @InputDir
              PATTERN @"LogInkFromCandidates_%Y_%m_%d.ss"
-             RANGE __date=["2018-07-01", "2018-07-05"]
+             RANGE __date=["2018-07-01", "2018-07-08"]
              USING ColumnProcessor("-produce", @"RowGuid, InputLanguage, RecognizedText, WritingRectRight, InkIsf", "-skipValidation");
 
 englishInkSamples = SELECT RowGuid,
            RecognizedText,
-           RecognizedText.Length AS RecoLength,
            InkIsf,
            ((double) 1.0) AS Weight
     FROM eventData
     WHERE InputLanguage == "en-us";
 
-sample = 
-REDUCE englishInkSamples ON RowGuid USING TopNReducer("20", "-random", @Seed, "-weightCol", "Weight");
+//sample = 
+//REDUCE englishInkSamples ON RowGuid USING TopNReducer("1000", "-random", @Seed, "-weightCol", "Weight");
 
 
 // Outputs:
-OUTPUT sample
+OUTPUT englishInkSamples
 TO @OutputPath 
-USING DefaultTextOutputter();
+USING DefaultTextOutputter(delimiter: ',');
 

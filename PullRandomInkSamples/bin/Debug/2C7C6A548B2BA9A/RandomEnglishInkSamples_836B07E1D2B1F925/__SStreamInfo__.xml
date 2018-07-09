@@ -1,7 +1,10 @@
 <SStreams>
-  <SStream id="GetSStream_0" path="C:\Users\elmarron\dev\LocalSamples\LogInkFromCandidates\/LogInkFromCandidates_2018_07_01.ss" Mode="BUSS" processingGroupInfo="{{{{0:364383}},{0}},{{{364383:602674}},{1}}}" />
-  <SStream id="GetSStream_6" path="C:\Users\elmarron\dev\LocalSamples\LogInkFromCandidates\/LogInkFromCandidates_2018_07_02.ss" Mode="BUSS" processingGroupInfo="{{{{0:675728}},{0}},{{{675728:1541190}},{1}}}" />
-  <SStream id="GetSStream_12" path="C:\Users\elmarron\dev\LocalSamples\LogInkFromCandidates\/LogInkFromCandidates_2018_07_03.ss" Mode="BUSS" processingGroupInfo="{{{{0:810329}},{0}},{{{810329:1587723}},{1}}}" />
-  <SStream id="GetSStream_18" path="C:\Users\elmarron\dev\LocalSamples\LogInkFromCandidates\/LogInkFromCandidates_2018_07_04.ss" Mode="BUSS" processingGroupInfo="{{{{0:458848}},{0}},{{{458848:986580}},{1}}}" />
-  <SStream id="GetSStream_24" path="C:\Users\elmarron\dev\LocalSamples\LogInkFromCandidates\/LogInkFromCandidates_2018_07_05.ss" Mode="BUSS" processingGroupInfo="{{{{0:872603}},{0}},{{{872603:1546827}},{1}}}" />
+  <SStream id="GetSStream_0" path="C:\Users\elmarron\dev\LocalSamples\LogInkFromHandwriting\/LogInkFromHandwriting_2018_07_01.ss" Mode="BUSS" processingGroupInfo="{{{{0:3761181}},{0}}}" />
+  <SStream id="GetSStream_4" path="C:\Users\elmarron\dev\LocalSamples\LogInkFromHandwriting\/LogInkFromHandwriting_2018_07_02.ss" Mode="BUSS" processingGroupInfo="{{{{0:3991649}},{0}},{{{3991649:7943983}},{1}}}" />
+  <SStream id="GetSStream_8" path="C:\Users\elmarron\dev\LocalSamples\LogInkFromHandwriting\/LogInkFromHandwriting_2018_07_03.ss" Mode="BUSS" processingGroupInfo="{{{{0:4001260}},{0}},{{{4001260:7316547}},{1}}}" />
+  <SStream id="GetSStream_12" path="C:\Users\elmarron\dev\LocalSamples\LogInkFromHandwriting\/LogInkFromHandwriting_2018_07_04.ss" Mode="BUSS" processingGroupInfo="{{{{0:1794580}},{0}},{{{1794580:4906267}},{1}}}" />
+  <SStream id="GetSStream_16" path="C:\Users\elmarron\dev\LocalSamples\LogInkFromHandwriting\/LogInkFromHandwriting_2018_07_05.ss" Mode="BUSS" processingGroupInfo="{{{{0:3768358}},{0}},{{{3768358:8433674}},{1}}}" />
+  <SStream id="GetSStream_20" path="C:\Users\elmarron\dev\LocalSamples\LogInkFromHandwriting\/LogInkFromHandwriting_2018_07_06.ss" Mode="BUSS" processingGroupInfo="{{{{0:4729480}},{0}},{{{4729480:9485864}},{1}}}" />
+  <SStream id="GetSStream_24" path="C:\Users\elmarron\dev\LocalSamples\LogInkFromHandwriting\/LogInkFromHandwriting_2018_07_07.ss" Mode="BUSS" processingGroupInfo="{{{{0:3027337}},{0}},{{{3027337:6008028}},{1}}}" />
+  <SStream id="GetSStream_28" path="C:\Users\elmarron\dev\LocalSamples\LogInkFromHandwriting\/LogInkFromHandwriting_2018_07_08.ss" Mode="BUSS" processingGroupInfo="{{{{0:3814733}},{0}}}" />
 </SStreams>

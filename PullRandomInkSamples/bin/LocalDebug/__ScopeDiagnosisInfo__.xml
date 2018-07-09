@@ -1,9 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<OperatorPhyMapping>
-  <Mapping OperatorId="Process_5" PhyPlanGroupNo="56.1" />
-  <Mapping OperatorId="Process_11" PhyPlanGroupNo="57.1" />
-  <Mapping OperatorId="Process_17" PhyPlanGroupNo="58.1" />
-  <Mapping OperatorId="Process_23" PhyPlanGroupNo="59.1" />
-  <Mapping OperatorId="Process_29" PhyPlanGroupNo="60.1" />
-  <Mapping OperatorId="Process_31" PhyPlanGroupNo="53.2" />
-</OperatorPhyMapping>
+<OperatorPhyMapping />

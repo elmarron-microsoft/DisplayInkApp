@@ -1,7 +1,7 @@
 <SStreams>
   <SStream id="GetSStream_0" path="C:\Users\elmarron\dev\LocalSamples\LogInkFromCandidates\/LogInkFromCandidates_2018_07_01.ss" Mode="BUSS" processingGroupInfo="{{{{0:364383}},{0}},{{{364383:602674}},{1}}}" />
-  <SStream id="GetSStream_6" path="C:\Users\elmarron\dev\LocalSamples\LogInkFromCandidates\/LogInkFromCandidates_2018_07_02.ss" Mode="BUSS" processingGroupInfo="{{{{0:675728}},{0}},{{{675728:1541190}},{1}}}" />
-  <SStream id="GetSStream_12" path="C:\Users\elmarron\dev\LocalSamples\LogInkFromCandidates\/LogInkFromCandidates_2018_07_03.ss" Mode="BUSS" processingGroupInfo="{{{{0:810329}},{0}},{{{810329:1587723}},{1}}}" />
-  <SStream id="GetSStream_18" path="C:\Users\elmarron\dev\LocalSamples\LogInkFromCandidates\/LogInkFromCandidates_2018_07_04.ss" Mode="BUSS" processingGroupInfo="{{{{0:458848}},{0}},{{{458848:986580}},{1}}}" />
-  <SStream id="GetSStream_24" path="C:\Users\elmarron\dev\LocalSamples\LogInkFromCandidates\/LogInkFromCandidates_2018_07_05.ss" Mode="BUSS" processingGroupInfo="{{{{0:872603}},{0}},{{{872603:1546827}},{1}}}" />
+  <SStream id="GetSStream_4" path="C:\Users\elmarron\dev\LocalSamples\LogInkFromCandidates\/LogInkFromCandidates_2018_07_02.ss" Mode="BUSS" processingGroupInfo="{{{{0:675728}},{0}},{{{675728:1541190}},{1}}}" />
+  <SStream id="GetSStream_8" path="C:\Users\elmarron\dev\LocalSamples\LogInkFromCandidates\/LogInkFromCandidates_2018_07_03.ss" Mode="BUSS" processingGroupInfo="{{{{0:810329}},{0}},{{{810329:1587723}},{1}}}" />
+  <SStream id="GetSStream_12" path="C:\Users\elmarron\dev\LocalSamples\LogInkFromCandidates\/LogInkFromCandidates_2018_07_04.ss" Mode="BUSS" processingGroupInfo="{{{{0:458848}},{0}},{{{458848:986580}},{1}}}" />
+  <SStream id="GetSStream_16" path="C:\Users\elmarron\dev\LocalSamples\LogInkFromCandidates\/LogInkFromCandidates_2018_07_05.ss" Mode="BUSS" processingGroupInfo="{{{{0:872603}},{0}},{{{872603:1546827}},{1}}}" />
 </SStreams>
